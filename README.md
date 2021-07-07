@@ -1,2 +1,2 @@
 # CollectiveTunneling
-MSc theis project followup
+MSc thesis project.
