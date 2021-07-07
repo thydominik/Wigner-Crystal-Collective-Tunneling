@@ -44,15 +44,9 @@ for i = 1:Iteration
     [S1, S2] = integrals(Leg, Dif_Leg, C_0, N, div, z, r, alpha, S_21, S_23);
     C_0 = (C_0 + Coeffs(S1, S2, N));
     q_0 = q_curve(C_0, Leg, N, div, alpha);
-    
+
     Action(i) = action(q_0, Leg, Dif_Leg, C_0, r, alpha, div, z_res, N);
-    
-%     disp(['S_0 = ' num2str(Action(i))])
-%     disp(['Coefficients: ' num2str(C_0')])
-    
-%     if i > 1 && Action(i) > Action(i - 1)
-%         break;
-%     end
+
     if rem(i,1000) == 0
         disp(i)
         disp(['Coefficients: ' num2str(C_0)])
@@ -63,8 +57,5 @@ for i = 1:Iteration
         plot(z, func)
         hold off
     end
-    
-end
 
- 
-toc
+end
