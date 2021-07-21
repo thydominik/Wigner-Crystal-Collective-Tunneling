@@ -3,10 +3,11 @@
 clc
 clear all
 tic
-N           = 60;       % number of polynomials
+
+N           = 20;       % number of polynomials
 Iteration   = 100000;
-div         = 200;      % number of points
-r           = 3;
+div         = 100;      % number of points
+r           = 2;
 syms x
 eps     = 10^-10;    % only significant for the S_0 calculation, all first and second derivatives are non divergent integrals.
 z_res   = linspace(-1+eps, 1-eps, div);
@@ -49,7 +50,7 @@ for i = 1:Iteration
 
     if rem(i,1000) == 0
         disp(i)
-        disp(['Coefficients: ' num2str(C_0)])
+        %disp(['Coefficients: ' num2str(C_0)])
         figure(2)
         clf(figure(2))
         hold on
