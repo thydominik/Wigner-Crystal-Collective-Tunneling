@@ -6,7 +6,7 @@ eq_pos = eqpos.eqpos;
 
 r = 0.9;              %time reparametrization free parameter
 eps = 10^-6;        %z_time cutoff
-N = 50*4;             %# of points in the curve
+N = 50*2;             %# of points in the curve
 state = 30;         %
 a = eq_pos(4,state);%a --> \alpha parameter of the potential
 rs = 18.813;        %dimensionless interaction strength
