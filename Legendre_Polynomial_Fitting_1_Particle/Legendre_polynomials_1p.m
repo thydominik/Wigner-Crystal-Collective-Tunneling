@@ -4,23 +4,23 @@ clc
 clear all
 tic
 
-N           = 20;       % number of polynomials
-Iteration   = 100000;
+N           = 30;       % number of polynomials
+Iteration   = 200000;
 div         = 100;      % number of points
-r           = 2;
+r           = 1.5;
 syms x
 eps     = 10^-10;    % only significant for the S_0 calculation, all first and second derivatives are non divergent integrals.
 z_res   = linspace(-1+eps, 1-eps, div);
 z       = linspace(-1,1,div);
 alpha   = 10;
 
-func = sqrt(alpha) * tanh(atanh(z)*(r + sqrt(r)) );
+func = sqrt(alpha) * tanh(atanh(z)*r );
 
 %It's more memory friendly if we symbolically give the expressions for the
 %polynomials and store them in a matrix.
 
 for i = 1:N
-    Leg_sym(i)        = legendreP(i, x);
+    Leg_sym(i)        = chebyshevT(i, x);
     Dif_Leg_sym(i)    = diff(Leg_sym(i), x);
 end
 Leg     = eval(subs(Leg_sym',x,z));

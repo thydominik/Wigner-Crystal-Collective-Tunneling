@@ -1,10 +1,10 @@
-function action = actioncalc(pos,r,a,rs,khi0,N,z,dz,shift)
+function action = actioncalc(pos,r,a,rs,N,z,dz,shift)
     action = 0;
     %I denoted the interaction part with Q
     Q = zeros(N,1);
     for i = 1:N
-        pre = r / (1-z(i)^2);
-        Q(i) = (rs * pre) * abs((1/(pos(2,i) - pos(1,i))) + (1/(pos(3,i) - pos(1,i))) + (1/(pos(3,i) - pos(2,i)))); 
+        pre = (1 - z(i)^2)/r;
+        Q(i) = (rs * (1/pre)) * abs((1/(pos(2,i) - pos(1,i))) + (1/(pos(3,i) - pos(1,i))) + (1/(pos(3,i) - pos(2,i)))); 
     end
     
     F1 = zeros(N,1);
@@ -30,14 +30,15 @@ function action = actioncalc(pos,r,a,rs,khi0,N,z,dz,shift)
     
     for i = 1:N
         pre = (1 - z(i)^2)/r;
-        F1(i) =  pre/2 * der1(i)^2 + (1/(pre))*(((1/4)*pos(1,i)^4 + a/2 * pos(1,i)^2));
-        F2(i) =  pre/2 * der2(i)^2 + (1/(pre))*(((1/4)*pos(2,i)^4 + a/2 * pos(2,i)^2) );
-        F3(i) =  pre/2 * der3(i)^2 + (1/(pre))*(((1/4)*pos(3,i)^4 + a/2 * pos(3,i)^2) );
+        %F1(i) =  pre/2 * der1(i)^2 + (1/(pre))*(((1/4)*pos(1,i)^4 + a/2 * pos(1,i)^2));
+        F1(i) = pre/2 * der1(i)^2 + (1/pre) * 0.25 * (pos(1,i)^2 + a)^2;
+        F2(i) = pre/2 * der2(i)^2 + (1/pre) * 0.25 * (pos(2,i)^2 + a)^2;
+        F3(i) = pre/2 * der3(i)^2 + (1/pre) * 0.25 * (pos(3,i)^2 + a)^2;
     end
            
     %trapezoid rule
     for L = 2:N
        action = action + (dz/2 * (F1(L-1) + F1(L) + F2(L-1) + F2(L) + F3(L-1) + F3(L) + Q(L-1) + Q(L))); 
     end
-    %action = action - shift;
+    action = action - shift;
 end

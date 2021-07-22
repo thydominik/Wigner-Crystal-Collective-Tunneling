@@ -30,8 +30,8 @@ title('3 particle trajectories')
 scatter(z_time , trajectory(1,:))
 plot(z_time , trajectory(2,:))
 plot(z_time , trajectory(3,:))
-xlabel('\tau \equiv y = atanh(z)\rho')
-ylabel('q(\tau) \equiv q(y)')
+%xlabel('\tau \equiv y = atanh(z)\rho')
+%ylabel('q(\tau) \equiv q(y)')
 %xlim([-10 10])
 trajectory2 = trajectory;
 y_time2     = y_time;
