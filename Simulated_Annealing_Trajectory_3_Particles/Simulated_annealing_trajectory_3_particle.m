@@ -10,7 +10,7 @@ N = 50*2;             %# of points in the curve
 state = 30;         %
 a = eq_pos(4,state);%a --> \alpha parameter of the potential
 rs = 18.813;        %dimensionless interaction strength
-iter = 10000000;     %# of iterations
+iter = 2000000;     %# of iterations
 
 z = linspace(-1+eps,1-eps,N);   %z time
 dz = abs(z(1)-z(2));            %time difference for the integrations
