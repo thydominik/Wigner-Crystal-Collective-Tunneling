@@ -78,12 +78,12 @@ ylim([-3.2 3.2])
 hold off
 disp('Done')
 
-%%
+
 figure(3)
 clf(figure(3))
 hold on
-position = f_spline_fit(position, z);
-plot3(position(1,:) - 1*min(position(1,:)),position(2,:) - 1*min(position(2,:)),position(3,:) - 1*min(position(3,:)))
+positions = f_spline_fit(position, z);
+plot3(positions(1,:) - 1*min(positions(1,:)),positions(2,:) - 1*min(positions(2,:)),positions(3,:) - 1*min(positions(3,:)))
 %quiver3(0,0,0,0.4219,0.8025,0.4319)
 %quiver3(0,0,0,-0.7071,0.0,0.7071)
 %quiver3(0,0,0,-0.5675,-0.5966,0.5675)
