@@ -1,22 +1,27 @@
-function [S_int] = action(q0, Legendre, Legendre_dif, C, r, alpha, div, z, N)
-    for j = 1:N
-        q_d(j,:)    = C(j) * (Legendre_dif(j,:) .* (1 - z.^2) - (2 .* z .* Legendre(j,:)));
-    end
-    q_dif = zeros(1,div);
+function [S_int] = action(q0, Legendre, Legendre_dif, C, r, a, div, z, N, dQ)
+    dz = z(2) - z(1);
+    tra = q0;
+    N = div;
     
-    for i = 1:N
-        q_dif   = q_dif + q_d(i,:);
-    end 
+    der = zeros(1,N);
+    der(1) = (tra(2)-tra(1))/dz;
 
-    S1 = 0;
-    for i = 1:div
-        S1 = S1 + ((1 - z(i)^2)/r) * q_d(i)^2;
+    for i = 2:N-1
+        %der(i) = ((tra(i+1) - tra(i-1))/(2*dz));
+        der(i) = ((tra(i+1) - tra(i))/(dz));
+    end
+    der(N) = ((tra(N)-tra(N-1))/(dz));
+    
+    func = zeros(1,N);
+    for k=1:N
+        pre = (1 - (z(k)^2))/r;
+        func(k) = pre*(1/2) * der(k)^2 + (1/pre)*(1/4)*(tra(k)^2 - a)^2;
     end
     
-    S2 = 0;
-    for i = 1:div
-        S2 = S2 + r/(1 - z(i)^2) * ((1/4) * q0(i)^4 - (alpha/2 * q0(i)^2));
+    %trapezoid rule
+    actionn = 0;
+    for L = 2:N
+        actionn = actionn + (dz * (func(L-1)+func(L))/2);   
     end
-    S_int = S1 + S2;
+    S_int = actionn;
 end
-
