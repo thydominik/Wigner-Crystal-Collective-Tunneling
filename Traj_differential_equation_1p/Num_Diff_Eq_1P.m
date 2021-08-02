@@ -5,7 +5,7 @@ clear all
 clc
 
 %Heun method for the equation: 
-%chi'[z] = (1/2) * r/(1-z^2) (chi[z]^2 - alpha)
+%chi'[z] = (1/sqrt(2)) * r/(1-z^2) * (chi[z]^2 - alpha)
 
 %number of points in the curve
 N = 10000;
@@ -30,7 +30,7 @@ chi(1)          = 0;
 chi(end)        = sqrt(alpha);
 
 %0th step:
-chi_temp = chi(1)  + dz * (r/sqrt(2))/(1-z(1)^2) * (chi(1)^2 - alpha);  %bc the diff.eq. is divergent at Z = 1
+chi_temp = chi(1) + dz * (r/sqrt(2))/(1-z(1)^2) * (chi(1)^2 - alpha);  %bc the diff.eq. is divergent at Z = 1
 
 for i = 2:N
     %the z(i) and z(i+1) prefactors:
