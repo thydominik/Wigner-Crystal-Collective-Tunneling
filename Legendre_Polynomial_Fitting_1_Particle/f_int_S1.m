@@ -7,7 +7,7 @@ function [I_S1] = f_int_S1(z, q_0, C, div, leg, dleg, N_Lp, alpha, r)
         if prefactor == 0
             dq_0(i) = 0;
         else
-            dq_0(i) = prefactor * (r/(1-z(i)^2))*alpha /sqrt(2) * r;
+            dq_0(i) = prefactor * (r/(1-z(i)^2))*alpha /sqrt(2);
         end
     end
     %then we need the derivatives of the Legendre polynomials:
