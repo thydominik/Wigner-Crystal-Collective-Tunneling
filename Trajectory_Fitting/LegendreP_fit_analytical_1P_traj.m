@@ -4,19 +4,19 @@ clear all
 clc
 
 %the analytical solution with respect to the alpha parameter
-alpha   = 20;
+alpha   = 5;
 % z = tanh(tau/r) -> tau = atanh(z)*r; 
-r = 1/(sqrt(alpha/2));
+r = 2;
 %number of points
-N   = 1000;
+N   = 500;
 tau = linspace(-50,50,N);
-z   = linspace(-1,1,N);
+z   = linspace(-1, 1, N);
 
 Trajectory_tau  = sqrt(alpha) * tanh(sqrt(alpha/2)*tau);
 Trajectory_z    = sqrt(alpha) * tanh(sqrt(alpha/2)*atanh(z) * r);
 
 %(Max)Number of Legendre polynomials:
-N_Lp = 19;
+N_Lp = 30;
 
 %Legendre polynomial matrix:
 syms x
@@ -24,7 +24,8 @@ for i = 1:N_Lp
     Legendre_symbolical(i) = legendreP(i, x);
 end
 Lp_mtx = eval(subs(Legendre_symbolical',x,z));
-
+plot(Lp_mtx(30,:))
+pause
 for j = 2:N_Lp
     disp(j)
     %integration for the coefficitents
