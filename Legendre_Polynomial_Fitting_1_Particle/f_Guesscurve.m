@@ -1,4 +1,4 @@
-function [C_param, q, dQ] = guesscurve(alpha, N, div, r, z)
+function [C_param, q, dQ] = f_Guesscurve(alpha, N, div, r, z)
     C = zeros(N, 1);
     q = zeros(N, div);
     %let's construct the least complicated initial guess curve 
