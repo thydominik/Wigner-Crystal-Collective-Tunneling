@@ -3,8 +3,8 @@ clc
 clear all
 tic
 
-N_Lp        = 10;       % number of polynomials
-Iteration   = 100;
+N_Lp        = 3;       % number of polynomials
+Iteration   = 10;
 div         = 1000;      % number of points
 r           = 3;        %we can get back a linear traj. with r = (alpha/2)^-(1/2)
 syms x
@@ -62,15 +62,15 @@ for i = 1:Iteration
     S2 = f_int_S2(z, q_0, div, Legendre, Legendre_diff, N_Lp, alpha, r);
     
     %determining the coefficients from S1 and S2:
-    C = f_Coefficients(S1, S2, N_Lp);
+    C = f_Coefficients(S1, S2);
     %calculating the new q_0 trajectory:
     q_0 = f_q_traj(z, C, Legendre, N_Lp, r, alpha);
     
     %calculating the action from the new q_0 traj
     Action(i) = f_Action(q_0, r, alpha, div, z);
     
-    if mod(i,100) == 0
-       disp(Action(end) - S_0)
+    if mod(i,1) == 0
+       disp(Action(end))
        
        figure(2)
        clf(figure(2))
@@ -78,7 +78,7 @@ for i = 1:Iteration
        plot(q_0)
        plot(traj)
        hold off
-
+        p
     end
 end
 

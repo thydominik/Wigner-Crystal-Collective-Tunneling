@@ -5,9 +5,9 @@ clf(figure(1))
 %1 particle trajectory calculation with simulated annealing
 
 %constants:
-iteration = 10^7;
+iteration = 10^6;
 N = 2^7;                %how much points are there in the curve
-r = 3;                  %the time rescaling parameter set to some arbitrary number ordo 1
+r = 2;                  %the time rescaling parameter set to some arbitrary number ordo 1
 eps = 10^-10;            %due to some divergencies at the -infty and infty parts some cutoff value is a must.
 
 %potential paramters:
@@ -21,7 +21,7 @@ z = linspace(-1 + eps, 1 -eps,N);
 dz = abs(z(1) -z(2));
 
 %temperature & deviation:
-T_init = 300;
+T_init = 100;
 T = T_init * exp(-(linspace(0,40,iteration))/2);
 sigma = 0.1 * sqrt(T);
 
@@ -29,7 +29,7 @@ sigma = 0.1 * sqrt(T);
 %first the initial position:
 khi = initpos(N,a);
 %then the initial action calculation:
-E0 = actioncalc(khi,r,N,z,dz,a,E_p);
+E0 = actioncalc(khi,r,N,z,dz,a);
 
 figure(1)
 hold on
@@ -53,15 +53,15 @@ for i= 1:iteration
         discarded(i) = i;
     end
     E(i) = E0;
-    if rem(i,100000) == 0
-        i
-        E(i)
+    if rem(i,10000) == 0
+        %disp(i)
+        disp(E(i))
         figure(2)
         clf(figure(2))
         hold on
         ylim([(-sqrt(a)-0.1) (sqrt(a)+0.1)])
         scatter(z,khi)
-        plot(z,sqrt(a)*tanh(atanh(z)*r/sqrt(2)))
+        plot(z,sqrt(a)*tanh(atanh(z)*r*sqrt(a)/sqrt(2)))
         xlabel(['i z(r); ', 'r = ',num2str(r),'; \alpha = ',num2str(a),'; E_p = ',num2str(E_p)],'FontSize',19)
         ylabel('\chi(z)','FontSize',19)
         hold off

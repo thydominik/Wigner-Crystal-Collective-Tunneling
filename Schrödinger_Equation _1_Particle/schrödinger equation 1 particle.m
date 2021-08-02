@@ -21,7 +21,7 @@ end
 kin = hbar^2 / (2 * m * dx^2) * mtx;
 
 pot = sparse(N,N);
-a = -8;
+a = -10;
 U =  0.5 * a * x.^2 + 0.25 * x.^4;
 U = U - min(U);
 
