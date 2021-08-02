@@ -16,10 +16,8 @@ function [I_S1] = f_int_S1(z, q_0, C, div, leg, dleg, N_Lp, alpha, r)
     end
     
     prefactor   = (1 - z.^2)/r;
-    for i = 1:N_Lp
-        L_tilde     = (1 - z.^2) .* dleg(i,:) - 2 .* z .* leg(i,:);
-        
-        S1_func = (prefactor .* L_tilde .* dq_0) + (r .* q_0 .* (q_0.^2 - alpha) .* leg(i,:));
+    for i = 1:N_Lp       
+        S1_func = ((1 - z.^2)./(r) .* dq_0 .* dleg(i, :)) + (r./(1 - z.^2) .* (q_0.^3 - alpha .* q_0) .* leg(i,:));
         %trapezoid integration:
         I_S1(i) = 0;
         for j = 2:div
