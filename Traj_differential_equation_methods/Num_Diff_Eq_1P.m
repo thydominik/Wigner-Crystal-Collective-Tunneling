@@ -51,10 +51,10 @@ end
 disp('done')
 
 %the full trajectory from Z in[0, 1] curve:
-chi_full    = zeros(1, 2*N);
-z_full      = linspace(-1, 1, 2*N);
-for i = 1:2*N
-    if i < N
+chi_full    = zeros(1, 2*N - 1);
+z_full      = linspace(-1, 1, 2*N - 1);
+for i = 1:2*N - 1
+    if i <= N
         chi_full(i) = -chi(end - i + 1);
     elseif i > N
         chi_full(i) = chi(i - N);
