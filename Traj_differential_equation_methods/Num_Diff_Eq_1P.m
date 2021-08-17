@@ -8,7 +8,7 @@ clc
 %chi'[z] = (1/sqrt(2)) * r/(1-z^2) * (chi[z]^2 - alpha)
 
 %number of points in the curve
-N = 10000;
+N = 1000000;
 
 %constants:
 alpha = 3;  eps = 10^-10;   r = 3;
