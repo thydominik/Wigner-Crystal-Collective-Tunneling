@@ -1,0 +1,8 @@
+function diffcurve = f_trajectory_diff(N, traj, )
+    diffcurve = zeros(3, N);
+    for i = 1:3
+        for j = 1:N
+            if j = 
+    
+end
+
