@@ -3,9 +3,9 @@ function diffcurve = f_trajectory_diff(N, traj, z )
     dz = z(2) - z(1);
     for i = 1:3
         for j = 1:N
-            if j = 1
+            if j == 1
                 diffcurve(i, j) = 0;
-            elseif j = N
+            elseif j == N
                 diffcurve(i, j) = 0;
             else
                 diffcurve(i, j) = (traj(i, j + 1) - traj(i, j - 1))/(2 * dz);
@@ -14,4 +14,3 @@ function diffcurve = f_trajectory_diff(N, traj, z )
     end
     
 end
-
