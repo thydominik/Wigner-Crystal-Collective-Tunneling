@@ -207,9 +207,27 @@ hold off
 B_mtx = f_B_matrix(trajectory, alpha, tauspace);
 %T matrix
 %--------------------------------------------------------------------------
-T_mtx = T_matrix(tauspace);
+T_mtx = f_T_matrix(tauspace);
 
 %omega squared part two: first I'll try to do the matrix with the curvatures
 %--------------------------------------------------------------------------
-omega_sq = omega_squared(T_mtx, B_mtx, velocity, C);     %this is already the squared omega matrix hence the '_sq'
+omega_sq = f_omega_squared(T_mtx, B_mtx, velocity, C);     %this is already the squared omega matrix hence the '_sq'
 
+[Xi_euler, Xi_heun] = f_diff_equation(z_time(1:100), omega_sq, EigVal, r);
+
+
+for i = 1:N_division/2
+    j = 2;
+    matrix_difference1(i) = Xi_euler(j,j,i) - Xi_heun(j,j,i);
+    matrix_difference2(i) = Xi_euler(j-1,j-1,i) - Xi_heun(j-1,j-1,i);
+end
+
+
+figure(14)
+clf(figure(14))
+hold on
+plot(matrix_difference1)
+plot(matrix_difference2)
+%set(gca,'Yscale','log')
+hold off
+[propagator2,Trace2] = f_prefactor( Xi_heun, EigVal, z_time, z_time, alpha);
