@@ -4,16 +4,17 @@ clear all
 eqpos = load('eq_pos');
 eq_pos = eqpos.eqpos;
 
-r = 0.9;              %time reparametrization free parameter
-eps = 10^-6;        %z_time cutoff
-N = 50*2;             %# of points in the curve
-state = 30;         %
-a = eq_pos(4,state);%a --> \alpha parameter of the potential
-rs = 18.813;        %dimensionless interaction strength
-iter = 2000000;     %# of iterations
+r = 0.9;                %time reparametrization free parameter
+eps = 10^-10;           %z_time cutoff
+N = 100;                 %# of points in the curve
+state = 30;             %
+a = eq_pos(4,state);    %a --> \alpha parameter of the potential
+                        %THIS PARAMETER IS NEGATIVE!!!!
+rs = 18.813;            %dimensionless interaction strength
+iter = 5 * 10^5;        %# of iterations
 
-z = linspace(-1+eps,1-eps,N);   %z time
-dz = abs(z(1)-z(2));            %time difference for the integrations
+z = linspace(-1 + eps, 1 - eps, N);   %z time
+dz = z(2) - z(1);            %time difference for the integrations
 
 p1_in = eq_pos(1,state);        %initial and final positions of the particles
 p1_fi = -eq_pos(3,state);
@@ -25,7 +26,7 @@ p3_fi = -eq_pos(1,state);
 T_init = 10;                     %starting temperature which is exponentially decreases
 T = T_init * exp(-(linspace(0,40,iter))/2);
 
-sigma = 0.1 * sqrt(T);          %new step deviance
+sigma = 0.2 * sqrt(T);          %new step deviance
 
 [position, shift] = initpos(N,p1_in,p1_fi,p2_in,p2_fi,p3_in,p3_fi,z,r,rs,a);
 E_0 = actioncalc(position,r,a,rs,N,z,dz,shift);
@@ -36,17 +37,17 @@ discarded = zeros(iter,1);
 E = zeros(iter,1);
 
 for i = 1:iter
-    sig = sigma(i);
-    pos_new = newstep(position,N,sig,p1_in,p1_fi,p2_in,p2_fi,p3_in,p3_fi);
-    E_new = actioncalc(pos_new,r,a,rs,N,z,dz,shift);
-    E_diff = E_0 - E_new;
+    sig         = sigma(i);
+    pos_new     = newstep(position,N,sig,p1_in,p1_fi,p2_in,p2_fi,p3_in,p3_fi);
+    E_new       = actioncalc(pos_new,r,a,rs,N,z,dz,shift);
+    E_diff      = E_0 - E_new;
     
     if E_diff > 0
-        position = pos_new;
-        E_0 = E_new;
+        position    = pos_new;
+        E_0         = E_new;
     elseif rand() <= exp(E_diff/T(i))
-        position = pos_new;
-        E_0 = E_new;
+        position    = pos_new;
+        E_0         = E_new;
     else
         discarded(i) = i;
     end
@@ -62,7 +63,6 @@ for i = 1:iter
         hold off
         disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(E_0))
     end   
-
 end
 
 figure(2)
@@ -108,4 +108,13 @@ clf(figure(6))
 hold on
 set(gca, 'YScale', 'log')
 plot(E)
+hold off
+
+figure(7)
+clf(figure(7))
+hold on
+plot( diff(positions(1,:)))
+plot( diff(positions(2,:)))
+plot( diff(positions(3,:)))
+set(gca, 'YScale', 'log')
 hold off

@@ -1,7 +1,7 @@
 clear all
 clc
 
-N = 10000;      %number of points in the trajectory
+N = 1000;      %number of points in the trajectory
 N_p = 3;        %Number of particles
 
 %Here we will need the alpha values and the associated eq. positions.
@@ -19,12 +19,12 @@ E_0 = f_initial_energy(N_p, alpha, eq_position, eta);
 disp(E_0)
 
 %time variables
-eps         = 10^-3;
+eps         = 10^-10;
 r           = 3;
 z_reduced   = linspace(-1 + eps, 1 - eps, N);
 z           = linspace(-1, 1, N);
 y           = atanh(z_reduced) * r;
-%y           = linspace(-10, 10, N);
+y           = linspace(-2, 2, N);
 %trajectory
 %chi = zeros(N_p, N);
 
@@ -33,7 +33,7 @@ y           = atanh(z_reduced) * r;
 %the 0th step will be a guess at first, then I will try to find the
 %solution using interval halving methods.
 
-GuessValue = 10^-15;
+GuessValue = 10^-10;
 
 %THIS WILL HAVE TO CHANGE------------------------------------------
 %For now I wont bother with the other derivatives
@@ -50,7 +50,8 @@ chi(:,1) = eq_position;
 
 %0th step:
 dy = y(2) - y(1);
-chi_temp = chi(:,1)' + dy * f_calculation(chi(:,1), N_p, alpha, eta, E_0) + GuessValue;
+temp = dy * f_calculation(chi(:,1), N_p, alpha, eta, E_0)/-0.01
+chi_temp = chi(:,1)' + temp;
 
 for i = 2:N-1
     

@@ -19,11 +19,10 @@ function [pos, shift] = initpos(N,in1,fin1,in2,fin2,in3,fin3,z,r,rs,a)
     pos(3,1) = in3;
     pos(3,N) = fin3;
     
-    pre = (1-z(1)^2)/r;
-    F1 = (1/pre) * ((1/4)*pos(1,1)^4 - a/2 * pos(1,1)^2);
-    F2 = (1/pre) * ((1/4)*pos(2,1)^4 - a/2 * pos(2,1)^2);
-    F3 = (1/pre) * ((1/4)*pos(3,1)^4 - a/2 * pos(3,1)^2);
-    %(1/pre) *
-    Q = (1/pre) *rs * ((1/(pos(2,1)-pos(1,1))) + (1/pos(3,1)-pos(1,1)) + (1/pos(3,1)-pos(2,1))) ;
+    F1 = (1/4)*(pos(1,1)^2 + a)^2;
+    F2 = (1/4)*(pos(2,1)^2 + a)^2;
+    F3 = (1/4)*(pos(3,1)^2 + a)^2;
+    
+    Q = rs * ((1/(pos(2,1) - pos(1,1))) + (1/pos(3,1)-pos(1,1)) + (1/pos(3,1)-pos(2,1))) ;
     shift =  Q + (F1 + F2 + F3);
 end

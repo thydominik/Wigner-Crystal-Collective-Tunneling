@@ -1,8 +1,8 @@
 function pos = newstep(pos,N,sigma,in1,fin1,in2,fin2,in3,fin3)
 
-    R1 = randi(N - 2) + 1;
+    R1 = randi(N - 1) + 1;
     R2 = randi(N - 2) + 1;
-    R3 = randi(N - 2) + 1;
+    R3 = randi(N - 1) + 1;
     
     D1 = normrnd(pos(1,R1),sigma);
     D2 = normrnd(pos(2,R2),sigma);

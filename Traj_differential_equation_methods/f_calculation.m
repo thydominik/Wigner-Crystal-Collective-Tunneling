@@ -7,10 +7,10 @@ function ans = f_calculation(chi, N_p, alpha, eta, E0)
         
         for j = 1:N_p
             if j ~= i
-                part2 = part2 + eta * 2 /abs(chi(i) - chi(j));
+                part2 = part2 + eta /abs(chi(i) - chi(j));
             end
         end
-        ans(i) = sqrt(part1 + part2 - E0(i));
+        ans(i) = sqrt(abs(part1 + part2 - E0(i)));
     end
 end
 

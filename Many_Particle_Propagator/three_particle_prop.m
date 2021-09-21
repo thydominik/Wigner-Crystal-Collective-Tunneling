@@ -5,7 +5,7 @@ disp('-----------------------------------------------------------')
 trajectory_load             = load('traj_100_points');
 equilibrium_positions       = load('eq_pos'); %4th column is the alpha value!
 trajectory                  = trajectory_load.position;
-eq_pos                      = equilibrium_positions.eqpos(:,59);
+eq_pos                      = equilibrium_positions.eqpos(:,30);
 [particle_n, N_division]    = size(trajectory);
 
 disp(['particle: ',num2str(particle_n)])
@@ -61,6 +61,7 @@ x = linspace(-1,1,100);
 figure(3)
 clf(figure(3))
 hold on
+
 
 scatter(z_time(1:2:end) , trajectory(1,1:2:end),'r')
 scatter(z_time(1:2:end) , trajectory(2,1:2:end),'b')
