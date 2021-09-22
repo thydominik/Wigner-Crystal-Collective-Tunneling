@@ -10,7 +10,7 @@ eqpos   = load('eq_pos');   %from file eq_pos.mat
 eq_pos  = eqpos.eqpos;      %4 by 100 array with alpha and equilibrium values
 
 %Paramteres and constant of the Simulation
-r       = 1.1;                  %time reparametrization free parameter
+r       = 1;                  %time reparametrization free parameter
 eps     = 10^-10;               %z_time cutoff
 N       = 200;                  %# of points in the curve
 state   = 60;                   %Choosing a state inside eqpos variable

@@ -2,11 +2,17 @@ clear all
 clc
 
 %we need a trajectory
-trajectory_load             = load('200point_ztime4');
+trajectory_load             = load('200point_ztime3');
 equilibrium_positions       = load('eq_pos'); %4th column is the alpha value!
-trajectory                  = trajectory_load.position;
+trajectory2                  = trajectory_load.position;
 eq_pos                      = equilibrium_positions.eqpos(:,60);
-[particle_n, N_division]    = size(trajectory);
+[particle_n, N_division]    = size(trajectory2);
+%%
+trajectory = trajectory2;
+trajectory(2, 2:20) = smooth(trajectory(2:20),3);
+
+
+%%
 
 disp(['particle: ',num2str(particle_n)])
 disp(['divisions: ', num2str(N_division)])
@@ -28,8 +34,8 @@ title('3 particle trajectories')
 scatter(z_time , trajectory(1,:))
 plot(z_time , trajectory(2,:))
 plot(z_time , trajectory(3,:))
-xlabel('z ')
-ylabel('q(z)')
+%xlabel('\tau \equiv y = atanh(z)\rho')
+%ylabel('q(\tau) \equiv q(y)')
 %xlim([-10 10])
 hold off
 
@@ -137,7 +143,10 @@ hold off
 %rotation matrix
 %--------------------------------------------------------------------------
 Rot_mtx = f_rotation_matrix(N_division, unit_velocity_e, f, delta_phi);
-%orthogonal vector basis at -T calculation
+%orthogonal vector basis at -T calculation (\tau)
+%Mivel a kezdőpontok segítségével lett meghatározva a pálya, így azok
+%végpontjai adják a kezdőpontokat.
+
 
 [Tau01, EigVal] = f_init_tau(trajectory, alpha, velocity);
 
@@ -194,7 +203,7 @@ plot(z_time(lim:end-lim), C(1,lim:end-lim),'r')
 plot(z_time(lim:end-lim), C(2,lim:end-lim),'k')
 plot(z_time(lim:end-lim), C(3,lim:end-lim),'k')
 %set(gca,'Yscale','log')
-xlim([z_time(1) z_time(end/2)])
+xlim([z_time(1) z_time(end)])
 %ylim([-0.1 0.1])
 hold off
 
@@ -208,7 +217,7 @@ T_mtx = f_T_matrix(tauspace);
 %omega squared part two: first I'll try to do the matrix with the curvatures
 %--------------------------------------------------------------------------
 omega_sq = f_omega_squared(T_mtx, B_mtx, velocity, C);     %this is already the squared omega matrix hence the '_sq'
-%%
+
 figure(15)
 clf(figure(15))
 hold on
@@ -218,15 +227,17 @@ for i = 1:200
     c(i) = omega_sq(1,2,i);
     d(i) = omega_sq(2,2,i);
 end
-plot(atanh(z_time), smooth(a(:)),'b')
-plot(atanh(z_time), smooth(b(:)),'r')
-plot(atanh(z_time), smooth(c(:)),'ko')
-plot(atanh(z_time), smooth(d(:)), 'o')
-%xlim([-1 0])
+plot(z_time, a(:),'b')
+plot(z_time, b(:),'r')
+plot(z_time, c(:),'ko')
+plot(z_time, d(:), 'o')
+xlim([-1 0])
 hold off
 
 
-[Xi_euler, Xi_heun] = f_diff_equation(z_time, omega_sq);
+
+
+[Xi_euler, Xi_heun] = f_diff_equation(z_time(1:100), omega_sq, EigVal, r);
 
 
 for i = 1:N_division/2

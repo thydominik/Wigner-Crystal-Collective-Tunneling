@@ -37,7 +37,7 @@ function [prop,Trace] = f_prefactor( Xi_matrix, EigValu, tau_time, z_time, a)
    Integ = 0;
    for i = 2:length(tau_time)/2
        dt = tau_time(i+1) - tau_time(i);
-       Integ = Integ + Trace(i) * dt/(1 - z_time(i)^2);
+       Integ = Integ + Trace(i) * dt;%/(1 - z_time(i)^2);
    end
    disp(['Integral: ', num2str(Integ)])
    prop = prefactor * exp(Integ);

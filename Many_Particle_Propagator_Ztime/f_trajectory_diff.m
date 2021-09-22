@@ -12,5 +12,5 @@ function diffcurve = f_trajectory_diff(N, traj, z )
             end
         end
     end
-    
+    %diffcurve(:,1) = diffcurve(:,2);
 end

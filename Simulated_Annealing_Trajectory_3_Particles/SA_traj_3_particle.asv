@@ -10,7 +10,7 @@ eqpos   = load('eq_pos');   %from file eq_pos.mat
 eq_pos  = eqpos.eqpos;      %4 by 100 array with alpha and equilibrium values
 
 %Paramteres and constant of the Simulation
-r       = 1.1;                  %time reparametrization free parameter
+r       = 1.3;                  %time reparametrization free parameter
 eps     = 10^-10;               %z_time cutoff
 N       = 200;                  %# of points in the curve
 state   = 60;                   %Choosing a state inside eqpos variable
@@ -81,13 +81,13 @@ for i = 1:iter
     end   
 end
 
-
+%%
 figure(2)
 clf(figure(2))
 hold on
 z = linspace(-1,1,N);
-plot(z,position(2,:),'r','LineWidth',2)
-plot(z,position(1,:),'b','LineWidth',2)
+scatter(z,position(2,:),'r','LineWidth',2)
+scatter(z,position(1,:),'b','LineWidth',2)
 plot(z,position(3,:),'k','LineWidth',2)
 ylabel('\chi_i(z)','FontSize', 22)
 xlabel('z','FontSize', 22)
@@ -95,17 +95,17 @@ ylim([-4.5 4.5])
 hold off
 disp('Done')
 
-
+%%
 figure(3)
 clf(figure(3))
 hold on
 %positions = f_spline_fit(position, z);
-plot3(position(1,:) - 1*min(position(1,:)),position(2,:) - 1*min(position(2,:)),position(3,:) - 1*min(position(3,:)))
+plot3(position(1,:) - 1*min(position(1,:)),position(2,:) - 1*min(position(2,:)),position(3,:) - 1*min(position(3,:)), 'ro-')
 %quiver3(0,0,0,0.4219,0.8025,0.4319)
 %quiver3(0,0,0,-0.7071,0.0,0.7071)
 %quiver3(0,0,0,-0.5675,-0.5966,0.5675)
 hold off
-
+%%
 figure(4)
 clf(figure(4))
 hold on
@@ -134,8 +134,8 @@ plot(z(1:end-1) + dz/2, diff(position(1,:)))
 plot(z(1:end-1) + dz/2, diff(position(2,:)))
 plot(z(1:end-1) + dz/2, diff(position(3,:)))
 set(gca, 'YScale', 'log')
-Xlabel('z + dz/2')
-Y
+xlabel('z + dz/2 (két z érték közötti pontokon)1')
+ylabel('d/dz \chi ')
 hold off
 %%
 p = position;
