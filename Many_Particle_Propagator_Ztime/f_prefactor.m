@@ -26,11 +26,13 @@ function [prop,Trace] = f_prefactor( Xi_matrix, EigValu, tau_time, z_time, a)
    clf(figure(20))
    hold on
    title('Trace from T_0 to 0')
-   plot(atanh(tau_time), smooth(Trace))
-   plot(atanh(tau_time), zeros(1,length(tau_time)))
+   plot((tau_time), smooth(Trace))
+   plot((tau_time), zeros(1,length(tau_time)))
+   plot(tau_time, 1./(1 - tau_time.^2))
+   plot(tau_time, 1./(1 - tau_time.^2) .* Trace)
    %scatter(y_time, zeros(1,length(y_time)))
    xlim([tau_time(1) 0])
-   ylim([-1 1])
+   ylim([0 5])
    hold off
    
    %integration (midpoint)

@@ -218,15 +218,15 @@ for i = 1:200
     c(i) = omega_sq(1,2,i);
     d(i) = omega_sq(2,2,i);
 end
-plot(atanh(z_time), smooth(a(:)),'b')
-plot(atanh(z_time), smooth(b(:)),'r')
-plot(atanh(z_time), smooth(c(:)),'ko')
-plot(atanh(z_time), smooth(d(:)), 'o')
+plot(z_time, (a(:)),'b')
+plot(z_time, (b(:)),'r')
+plot(z_time, (c(:)),'ko')
+plot(z_time, (d(:)), 'o')
 %xlim([-1 0])
 hold off
 
 
-[Xi_euler, Xi_heun] = f_diff_equation(z_time, omega_sq);
+[Xi_euler, Xi_heun] = f_diff_equation(z_time, (omega_sq));
 
 
 for i = 1:N_division/2
