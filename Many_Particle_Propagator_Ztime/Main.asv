@@ -1,23 +1,35 @@
 clear all
 clc
 
-%we need a trajectory
+%loading a trajectory that is previoulsy determined by a MC simulatiton
 trajectory_load             = load('200point_ztime4');
+
+%this must be the same eq_pos file that used in the MC, but therefore it's
+%not important bc the trajectory's endpoints will be the eq_positions!
 equilibrium_positions       = load('eq_pos'); %4th column is the alpha value!
 trajectory                  = trajectory_load.position;
-eq_pos                      = equilibrium_positions.eqpos(:,60);
+
+%this will select the desired endpoints and alpha value
+state                       = 60;           
+eq_pos                      = equilibrium_positions.eqpos(:,state);
+
+%it's useful not to set in stone the division and particle number for later
+%more-particle cases
 [particle_n, N_division]    = size(trajectory);
 
 disp(['particle: ',num2str(particle_n)])
 disp(['divisions: ', num2str(N_division)])
 
-%z imaginery time paramter:
-eps             = 10^-15;                        %this have to be changed manually if it changes in the trajectory code!!!
+%z imaginery time paramter
+eps             = 10^-15;                   %this have to be changed manually if it changes in the trajectory code!!!
 r               = 3;                        %match this with the M.C. simulation
 alpha           = eq_pos(4);                %from eq_pos file!!!!
 eta             = 18.813;                   %don't try to change this.
 limits          = 50;       %1.35;          % +/- T
 N               = 2000;
+
+%at almost all places the full z time paramterization can be used, but just
+%in case I create a reduced z time parameter
 z_time_reduced  = linspace(-1 + eps,1 - eps,N_division);
 z_time          = linspace(-1, 1, N_division);
 
@@ -46,8 +58,7 @@ ylabel('q_2')
 zlabel('q_3')
 hold off
 
-%trajectory derivative
-
+%In rder to get the tangent vector first calc the derivative of the curve
 velocity = f_trajectory_diff(N_division, trajectory, z_time);
 
 figure(4)
@@ -62,8 +73,7 @@ ylabel('v_0(z) = \chi^\prime (y)')
 xlabel('z')
 hold off
 
-%unit velocity
-
+%using the previous differentiated curve to form normed vectors
 unit_velocity_e = f_velocity_unit_vector(velocity);
 
 figure(5)
@@ -86,9 +96,9 @@ ylabel('v_{q2}')
 zlabel('v_{q3}')
 hold off
 
-%f vector calculation
-
- [f, delta_e, Normalization, Nominator] = f_f_vector(unit_velocity_e);
+%creating a perpendicular vector to e named f
+%Normalization and Nominator are here for error checking purposes
+[f, delta_e, Normalization, Nominator] = f_f_vector(unit_velocity_e);
 
 figure(7)
 clf(figure(7))
@@ -103,6 +113,7 @@ ylabel('v_{q2}')
 zlabel('v_{q3}')
 hold off
 
+%Error check, how perpendicular the two vectors created above:
 for i = 1:N_division
     scalarproduct(i) = f(:,i)'*unit_velocity_e(:,i);
 end
@@ -116,6 +127,7 @@ plot(z_time, abs(scalarproduct))
 xlim([z_time(1) 0])
 hold off
 
+%determining the angle between consecutive e vectors
 delta_phi = zeros(1,N_division);
 for i = 1:N_division
     if i == 1
@@ -134,11 +146,11 @@ title('\Delta \rho (\tau)')
 plot(z_time, rad2deg(delta_phi))
 hold off
 
-%rotation matrix
-%--------------------------------------------------------------------------
+%rotation matrix, that transforms e_i & f_i to e_i+1 and f_i+1
 Rot_mtx = f_rotation_matrix(N_division, unit_velocity_e, f, delta_phi);
-%orthogonal vector basis at -T calculation
 
+%Determining the basis vectors from the equilibrium positions and
+%potentials
 [Tau01, EigVal] = f_init_tau(trajectory, alpha, velocity);
 
 x0 = trajectory(1,1);
@@ -161,8 +173,9 @@ ylim([0 0.05])
 zlabel('z')
 zlim([0 0.05])
 hold off
-%\tau space with roation matrix
-%--------------------------------------------------------------------------
+
+%using the rotation matrix above we can create the tau vector basis that
+%goes along the trajectory
 tauspace = f_tau_space(Rot_mtx, Tau01);
 
 figure(11)
@@ -180,7 +193,8 @@ quiver3(trajectory(1,s:m:fin) - x0, trajectory(2,s:m:fin) - y0, trajectory(3,s:m
 quiver3(trajectory(1,s:m:fin) - x0, trajectory(2,s:m:fin) - y0, trajectory(3,s:m:fin) - z0,tau2(1,s:m:fin), tau2(2,s:m:fin), tau2(3,s:m:fin),'k', 'LineWidth',1)
 quiver3(trajectory(1,s:m:fin) - x0, trajectory(2,s:m:fin) - y0, trajectory(3,s:m:fin) - z0,tau3(1,s:m:fin), tau3(2,s:m:fin), tau3(3,s:m:fin),'k', 'LineWidth',1)
 hold off
-     
+
+%determining the curvature of the trajectory
 C = f_curvature(unit_velocity_e, tauspace, z_time, velocity);
 
 figure(13)
@@ -199,34 +213,33 @@ xlim([z_time(1) z_time(end/2)])
 hold off
 
 %B matrix
-%--------------------------------------------------------------------------
 B_mtx = f_B_matrix(trajectory, alpha, tauspace);
+
 %T matrix
-%--------------------------------------------------------------------------
 T_mtx = f_T_matrix(tauspace);
 
 %omega squared part two: first I'll try to do the matrix with the curvatures
-%--------------------------------------------------------------------------
-omega_sq = f_omega_squared(T_mtx, B_mtx, velocity, C);     %this is already the squared omega matrix hence the '_sq'
-%%
+%this is already the squared omega matrix hence the '_sq'
+omega_sq = f_omega_squared(T_mtx, B_mtx, velocity, C);     
+
 figure(15)
 clf(figure(15))
 hold on
+title('elements of the Omega matrix')
 for i = 1:200
     a(i) = omega_sq(1,1,i);
     b(i) = omega_sq(2,1,i);
     c(i) = omega_sq(1,2,i);
     d(i) = omega_sq(2,2,i);
 end
-plot(z_time, smooth(a(:)),'b')
-plot(z_time, smooth(b(:)),'r')
-plot(atanh(z_time), smooth(c(:)),'ko')
-plot(atanh(z_time), smooth(d(:)), 'o')
+plot(z_time, (a(:)),'b')
+plot(z_time, (b(:)),'r')
+plot(z_time, (c(:)),'ko')
+plot(z_time, (d(:)), 'o')
 %xlim([-1 0])
 hold off
 
-
-[Xi_euler, Xi_heun] = f_diff_equation(z_time, omega_sq);
+[Xi_euler, Xi_heun] = f_diff_equation(z_time, (omega_sq));
 
 
 for i = 1:N_division/2

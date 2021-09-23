@@ -1,5 +1,6 @@
 function [f, delta_e, Normalization, Nominator] = f_f_vector(e)
     
+%determining the difference between neighboring unit vectors
     delta_e = zeros(3, length(e));
     for i= 1:(length(e) - 1)
         delta_e(:, i) = e(:, i +1) - e(:, i);
@@ -9,6 +10,7 @@ function [f, delta_e, Normalization, Nominator] = f_f_vector(e)
     Normalization = f;
     Nominator = f;
     
+%creating a normalized and perpendicular f vector to e
     for i  = 1:length(e)
         n1 = norm(delta_e(:, i));
         n2 = e(:, i)' * delta_e(:, i);
