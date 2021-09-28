@@ -16,8 +16,12 @@ function [f, delta_e, Normalization, Nominator] = f_f_vector(e)
         n2 = e(:, i)' * delta_e(:, i);
         
         Normalization (i) = sqrt(abs(n1^2 + n2^2));
-        Nominator(:, i) = delta_e(:, i) - ((e(:, i) * delta_e(:, i)') * e(:,i));
-        f(:, i) = Nominator(:, i)/ Normalization(i);
+        Nominator(:, i) = delta_e(:, i) - ((e(:, i)' * delta_e(:, i)) * e(:,i));
+        if Normalization(i) == 0
+            f(:,i) = f(:,i-1);
+        else
+            f(:, i) = Nominator(:, i)/ Normalization(i);
+        end
     end
 end
 

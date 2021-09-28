@@ -1,7 +1,7 @@
 clc
 clear all
 
-N = 10000;
+N = 100;
 hami = sparse(N,N);
 
 bound = 5;
@@ -21,7 +21,7 @@ end
 kin = hbar^2 / (2 * m * dx^2) * mtx;
 
 pot = sparse(N,N);
-a = -10;
+a = -3;
 U =  0.5 * a * x.^2 + 0.25 * x.^4;
 U = U - min(U);
 

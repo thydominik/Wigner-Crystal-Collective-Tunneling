@@ -1,11 +1,8 @@
-function [ModVec1, EigVal] = f_init_tau(trajectory, a, v)
+function [ModVec1, EigVal] = f_init_tau(trajectory, a, v, eta)
 
 x0  = trajectory(1,1);
 y0  = trajectory(2,1);
 z0  = trajectory(3,1);
-
-%dont change this pls
-eta = 18.813;
 
 %potentials second derivative
 xxV =  (a + 3*x0^2);

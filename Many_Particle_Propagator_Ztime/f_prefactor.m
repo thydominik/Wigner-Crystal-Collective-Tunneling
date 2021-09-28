@@ -1,5 +1,5 @@
-function [prop,Trace] = f_prefactor( Xi_matrix, EigValu, tau_time, z_time, a)
-    %first the factor before the exponential
+function [prop, Trace1, Trace2] = f_prefactor( Xi_matrix, EigValu, tau_time, z_time, a, r)
+   %first the factor before the exponential
    eigvalues = diag(EigValu(:,:,1));
    EigVal = zeros(2,2);
    for q = 1:2
@@ -9,7 +9,7 @@ function [prop,Trace] = f_prefactor( Xi_matrix, EigValu, tau_time, z_time, a)
    omega_determinant    = det(sqrtm(EigVal));
    disp(['omega_0 determinant: ', num2str(omega_determinant)])
    
-   xi_determinant       = det(abs(Xi_matrix(round(length(z_time)/2))));
+   xi_determinant       = det(abs(Xi_matrix(:,:,round(length(z_time)/2))));
    disp(['xi(0) determinant: ', num2str(xi_determinant)])
    
    prefactor            = sqrt((omega_determinant / xi_determinant));
@@ -17,40 +17,54 @@ function [prop,Trace] = f_prefactor( Xi_matrix, EigValu, tau_time, z_time, a)
    
    % now the exponential and integration
    
+   Xi_matrix(1:2,1:2,end-1) = sqrtm(EigVal);
+   
+   
    Trace = zeros(1,length(tau_time) ); %-1 becouse Tau index is the first non negative time marker
    for i = 1:length(tau_time)/2
-       Trace(i) = trace(sqrt(EigVal) - Xi_matrix(:,:,i));
+       if i == 1
+            Trace1(i) = 0;
+       elseif i == 2
+            Trace1(i) = trace(sqrt(EigVal) - Xi_matrix(:,:,end - (i+1) + 1))/8;
+       else
+            Trace1(i) = trace(sqrt(EigVal) - Xi_matrix(:,:,end - i + 1));
+       end
    end
-   
-   figure(20)
-   clf(figure(20))
-   hold on
-   title('Trace from T_0 to 0')
-   plot((tau_time), smooth(Trace))
-   plot((tau_time), zeros(1,length(tau_time)))
-   plot(tau_time, 0.1./(1 - tau_time.^2))
-   plot(tau_time, 1./(1 - tau_time.^2) .* Trace)
-   %scatter(y_time, zeros(1,length(y_time)))
-   xlim([tau_time(1) 0])
-   ylim([0 5])
-   hold off
-   
+   for i = 1:length(tau_time)/2
+       if i == 1
+            Trace2(i) = 0;
+       else
+            Trace2(i) = trace(sqrt(EigVal) - Xi_matrix(:,:,i));
+       end
+   end
+ 
    %integration (midpoint)
-   Integ = 0;
+   Integ1 = 0;
    for i = 2:length(tau_time)/2
        dt = tau_time(i+1) - tau_time(i);
-       Integ = Integ + Trace(i) * dt/(1 - z_time(i)^2);
+       Integ1 = Integ1 + (Trace1(i) + Trace1(i - 1)) * dt/2 * r/(1 - z_time(i)^2);
    end
-   disp(['Integral: ', num2str(Integ)])
-   prop = prefactor * exp(Integ);
+   Integ1 = Integ1 + (-tau_time(i)) * Trace1(i);
+   
+   Integ2 = 0;
+   for i = 2:length(tau_time)/2
+       dt = tau_time(i+1) - tau_time(i);
+       Integ2 = Integ2 + (Trace2(i) + Trace2(i - 1)) * dt/2 * r/(1 - z_time(i)^2);
+   end
+   Integ2 = Integ2 + (-tau_time(i)) * Trace2(i);
+   
+   Integ3 = 0;
+   Trace3 = Trace1;
+   Trace3(10:100) = (Trace1(10:100) + Trace2(10:100))/2;
+   for i = 2:length(tau_time)/2
+       dt = tau_time(i+1) - tau_time(i);
+       Integ3 = Integ3 + (Trace3(i) + Trace3(i - 1)) * dt/2 * r/(1 - z_time(i)^2);
+   end
+   Integ3 = Integ3 + (-tau_time(i)) * Trace3(i);
+   disp(['Integral 1: ', num2str(Integ1)])
+   disp(['Integral 2: ', num2str(Integ2)])
+   disp(['Integral 3: ', num2str(Integ3)])
+   prop = prefactor * exp(Integ3);
    disp(['prefactor: sqrt term x exp= ', num2str(prop)])
-   
-   
-   
-   Action = 1.136*(-a-4.33333)^(1.483); %0.924*a^(1.49999);
-   omega = sqrt(EigValu(1,1));
-   splitt = sqrt(2)^2 * omega * sqrt(abs(a)) * sqrt(omega/pi) * exp(-Action);
-   prop = prop * splitt;
-   disp(['prefactor: 1D * sqrt term x exp= ', num2str(prop)])
 end
 

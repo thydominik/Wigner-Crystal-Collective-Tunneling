@@ -2,23 +2,23 @@ clc
 clear all
 close all
 
-positions   = 100;
+positions   = 12;
 particles   = 3;
 
 eq_pos      = zeros(particles, positions);
 
-alpha_start = 0;
-alpha_fin   = -10;
+alpha_start = -4;
+alpha_fin   = -15;
 
-alpha       = linspace(alpha_start, alpha_fin,positions);
+alpha       = linspace(alpha_start, alpha_fin,positions)
 
 for i = 1:positions  
     disp(num2str(i))
     
-    iter                        = 100000;
+    iter                        = 5*10^5;
     well_shift                  = zeros(iter,1);
 %     well_shift(1:(end-iter/10)) = 10*exp(-(linspace(0,50,positions - iter/10))); 
-    eta                         = 18.813;
+    eta                         = 20; %18.813;
     E_0                         = 0.478;
     Ld                          = 161.07;
     
@@ -59,9 +59,9 @@ clf(figure(1))
 hold on
 ylabel('\chi_i^0','FontSize',20)
 xlabel('$$\tilde{a}$$', 'Interpreter', 'LaTeX', 'FontSize', 20)
-plot(alpha, eq_pos(1,:),'k', 'LineWidth',2)
-plot(alpha, eq_pos(2,:),'r', 'LineWidth',2)
-plot(alpha, eq_pos(3,:), 'LineWidth',2)
+scatter(alpha, eq_pos(1,:),'k', 'LineWidth',2)
+scatter(alpha, eq_pos(2,:),'r', 'LineWidth',2)
+scatter(alpha, eq_pos(3,:), 'LineWidth',2)
 hold off
 
 %%

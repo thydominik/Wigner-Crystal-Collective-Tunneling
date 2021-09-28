@@ -9,9 +9,9 @@ function diffcurve = f_trajectory_diff(N, traj, z )
             
             %exactly at the endpoints the particle should have no mom.
             if j == 1
-                diffcurve(i, j) = 0;
+                diffcurve(i, j) = (traj(i, j + 1) - traj(i, j))/ dz;
             elseif j == N
-                diffcurve(i, j) = 0;
+                diffcurve(i, j) = (traj(i, j) - traj(i, j - 1))/ dz;
             else
                 diffcurve(i, j) = (traj(i, j + 1) - traj(i, j - 1))/(2 * dz);
             end
@@ -19,6 +19,4 @@ function diffcurve = f_trajectory_diff(N, traj, z )
     end
     %it is a question that what should we do with the large step at the
     %first derivative
-    
-    %diffcurve(:,1) = diffcurve(:,2);
 end

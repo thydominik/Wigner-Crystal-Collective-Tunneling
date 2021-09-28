@@ -6,19 +6,19 @@ clear all
 format long
 
 %loading the equilibrium positions
-eqpos   = load('eq_pos');   %from file eq_pos.mat
+eqpos   = load('eq_pos4_15');   %from file eq_pos.mat
 eq_pos  = eqpos.eqpos;      %4 by 100 array with alpha and equilibrium values
 
 %Paramteres and constant of the Simulation
-r       = 1;                  %time reparametrization free parameter
+r       = 1.3;                  %time reparametrization free parameter
 eps     = 10^-10;               %z_time cutoff
 N       = 200;                  %# of points in the curve
-state   = 60;                   %Choosing a state inside eqpos variable
+state   = 4;                   %Choosing a state inside eqpos variable
 a       = eq_pos(4,state) ;     %a --> \alpha parameter of the potential
 disp("alpha = " + num2str(a))
 
 %THIS PARAMETER IS NEGATIVE!!!!
-rs      = 18.813;               %dimensionless interaction strength
+rs      = 20;               %dimensionless interaction strength 18.813;
 iter    = 5 * 10^6;             %# of iterations
 
 %time parameter

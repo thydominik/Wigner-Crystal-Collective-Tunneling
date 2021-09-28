@@ -7,6 +7,7 @@ function e = f_velocity_unit_vector(v)
         %the first vector on paper should be a vector pointing at the
         %instantons direction
         if v(:, i) == 0
+            warning('zero velocity :(')
             e(:, i) = [0, 0, 0];
         else
             e(:, i) = v(:,i) / normalization;

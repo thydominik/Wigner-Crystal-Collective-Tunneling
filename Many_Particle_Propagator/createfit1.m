@@ -16,14 +16,7 @@ cf(1) = a;
 cf(2) = b;
 cf(3) = coeffvals(1);
 cf(4) = coeffvals(2);
-% Plot results
-% figure(2)
-% hold on
-% clf(figure(2))
-% scatter(x, y, 'r+')
-% hold on
-% plot(x,fitted_curve(x))
-% hold off
+
 
 
 

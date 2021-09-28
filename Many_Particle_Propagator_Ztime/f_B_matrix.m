@@ -1,7 +1,5 @@
-function [BB] = f_B_matrix(q, a, tauspace)
+function [BB] = f_B_matrix(q, a, tauspace, eta)
     %first just the potential without the interaction:
-    eta = 18.813;
-
     %creating the second derivative diagonal potential elements for every point
     %in the trajectory
     xxV =  (a + 3*(q(1,:).^2));
@@ -38,9 +36,7 @@ function [BB] = f_B_matrix(q, a, tauspace)
         for j = 1:2
             for k = 1:length(tauspace(1,1,:))
                 temp        =  B(:,:,k) * tauspace(:,j+1,k);
-                %temp        =  tauspace(:,i+1,k)' * B(:,:,k);
                 temp2       =  tauspace(:,i+1,k)' * temp;
-                %temp2       =  temp * tauspace(:,j+1,k);
                 BB(i,j,k)   =  temp2;
             end
         end
