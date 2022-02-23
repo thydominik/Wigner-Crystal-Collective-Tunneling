@@ -11,8 +11,7 @@ Action  = load('Action.mat');
 Action  = Action.Action;
 
 %rescaling param (from the code that produces the trajectories)
-    %Mind that I did recalculate the trajectories for this so this r value
-    %is unique to this batch of trajectories! --> Folder name
+    %Mind that 
 r = 2;
 
 %Omega:
@@ -64,23 +63,23 @@ end
 
 
 
-figure(1)
-clf(figure(1))
-hold on
-title('Numerical Action vs Analyitical Action')
-xlabel('\alpha')
-ylabel('S_0')
-plot(Alpha, Action, '.-', 'DisplayName', 'Numerical S')
-plot(Alpha, 2/3 * sqrt(2) * sqrt(Alpha) .* Alpha, 'o-', 'DisplayName', 'Analytical S')
-legend
-hold off
-
-figure(2)
-clf(figure(2))
-hold on
-plot(Alpha, Action - (2/3 * sqrt(2) * sqrt(Alpha) .* Alpha), '.-' )
-title('Difference between the S')
-hold off
+% figure(1)
+% clf(figure(1))
+% hold on
+% title('Numerical Action vs Analyitical Action')
+% xlabel('\alpha')
+% ylabel('S_0')
+% plot(Alpha, Action, '.-', 'DisplayName', 'Numerical S')
+% plot(Alpha, 2/3 * sqrt(2) * sqrt(Alpha) .* Alpha, 'o-', 'DisplayName', 'Analytical S')
+% legend
+% hold off
+% 
+% figure(2)
+% clf(figure(2))
+% hold on
+% plot(Alpha, Action - (2/3 * sqrt(2) * sqrt(Alpha) .* Alpha), '.-' )
+% title('Difference between the S')
+% hold off
 
 figure(3)
 clf(figure(3))
@@ -96,19 +95,6 @@ hold off
 
 figure(4)
 clf(figure(4))
-hold on
-title('Numerical and Analytical splits on log scale')
-ylabel('\Delta')
-xlabel('\alpha')
-plot(Alpha, Split(1, :),'.-', 'DisplayName', 'dz integral numerical')
-plot(Alpha, Split(2, :),'x-', 'DisplayName', 'd\tau integral numerical')
-plot(Alpha, Split(3, :), 'o-', 'DisplayName', 'Analytical Solution')
-set(gca, 'Yscale', 'log')
-legend
-hold off
-
-figure(5)
-clf(figure(5))
 hold on
 title(' Differences between the splittings')
 xlabel('\alpha')

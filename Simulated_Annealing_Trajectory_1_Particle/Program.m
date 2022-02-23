@@ -6,14 +6,14 @@ clf(figure(1))
 
 %constants:
 iteration = 10^6;
-N = 2^7;                %how much points are there in the curve
-r = 2;                  %the time rescaling parameter set to some arbitrary number ordo 1
-eps = 10^-10;            %due to some divergencies at the -infty and infty parts some cutoff value is a must.
+N = 2^7;                % # of points in a curve
+r = 2;                  %the time rescaling parameter set to some arbitrary number O(1)
+eps = 10^-10;           %due to some divergencies at the -infty and infty parts some cutoff value is a must.
 
 %potential paramters:
 E_0 = 0.71738;          %the energy scale of the hamiltonian
-E_p = 0.71738;            %the energy scale of the potential
-a = 1;             %the paramter that describes the potential.
+E_p = 0.71738;          %the energy scale of the potential
+a = 1;                  %the paramter that describes the potential.
 l_d = 161.07;
 
 %curve paramters:
