@@ -1,18 +1,59 @@
-function propagator = f_action(eta, alpha, trajectory, r, z_time, EigValu, propagator)
+function [propagator, action, splitt1, splitt2, splitt3, splitt4] = f_action(eta, alpha, trajectory, r, z_time, EigValu, propagator, S)
 %first the action shift:
 shift = f_initshift(eta, alpha, trajectory);
 
+disp(shift)
 %then the actual action of the trajectory:
-action = f_actioncalc(trajectory, r, alpha, eta, 3, z_time, (z_time(2) - z_time(1)), shift);
-
-action = 4.653598741;
+action = f_actioncalc(trajectory, r, alpha, eta, 200, z_time, (z_time(2) - z_time(1)), shift);
 
 disp([' action = ', num2str(action)])
 
 omega = sqrt(EigValu(1,1));
-splitt = sqrt(2)^2 * omega * sqrt(abs(alpha)) * sqrt(omega/pi) * exp(-action);
-disp(['1D part= ', num2str(splitt)])
+%Easy Milnikov:
+splitt1 = 4 * omega * max(S) * sqrt(omega/pi) * exp(-action);%sqrt(2)^2 * (omega) * sqrt(abs(alpha)) * sqrt((omega))/sqrt(pi) * exp(-(action));
+%Landau approx.:
+splitt2 = omega/pi * exp(-action);
+%Instanton pref.:
+splitt3 = sqrt((6 * action)/pi) * omega * exp(-action);
 
-propagator = propagator * splitt;
+%Proper Milnikov:----------------------------------------------------------
+p1      = sqrt(2 * 0.25 .* (trajectory(1, :).^2 + alpha).^2);
+p2      = sqrt(2 * 0.25 .* (trajectory(2, :).^2 + alpha).^2);
+p3      = sqrt(2 * 0.25 .* (trajectory(3, :).^2 + alpha).^2);
+pA      = p1 + p2 + p3;
+
+for i = 2:length(trajectory)/2
+    dp1(i) = (p1(i) - p1(i - 1))/abs(trajectory(1, i) - trajectory(1, i - 1));
+    dp2(i) = (p2(i) - p2(i - 1))/abs(trajectory(2, i) - trajectory(2, i - 1));
+    dp3(i) = (p3(i) - p3(i - 1))/abs(trajectory(3, i) - trajectory(3, i - 1));
+    
+    dpA(i) = (pA(i) - pA(i - 1))/(S(i) - S(i - 1));
+
+    PPP1(i) = (sqrt(dp1(end)^2 + dp2(end)^2 + dp3(end)^2));
+    PPP2(i) = abs(dpA(end));
+
+end
+func = (omega - PPP1)./(1 - z_time(2:end/2+1).^2);
+func2 = (omega - PPP2)./(1 - z_time(2:end/2+1).^2);
+func(2) = 0;
+% func(1) = 0;
+figure(2)
+clf(figure(2))
+hold on
+plot(func)
+hold off
+
+int = 0;
+int2= 0;
+for i = 3:100
+    int = int + (func(i) - func(i-1)) * (z_time(i) - z_time(i-1));
+    int2= int2+ (func2(i) - func2(i-1)) * (z_time(i) - z_time(i-1));
+end
+int
+int2
+splitt4 = exp((int2)) * exp(-action) * sqrt(omega/pi) * 2 * omega * abs(alpha); %abs(trajectory(2, 1));
+disp(['1D part= ', num2str(splitt1)])
+
+propagator = propagator;
 end
 

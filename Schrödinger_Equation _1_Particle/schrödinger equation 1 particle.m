@@ -1,10 +1,10 @@
 clc
 clear all
 
-N = 100;
+N = 1000;
 hami = sparse(N,N);
 
-bound = 5;
+bound = 6;
 x = linspace(-bound, bound,N);
 dx = x(2) - x(1);
 kin = sparse(N,N);
@@ -21,7 +21,7 @@ end
 kin = hbar^2 / (2 * m * dx^2) * mtx;
 
 pot = sparse(N,N);
-a = -3;
+a = -1;
 U =  0.5 * a * x.^2 + 0.25 * x.^4;
 U = U - min(U);
 
@@ -40,7 +40,7 @@ hami = kin + pot;
 [psi,E] = eig(hami);
 
 EE = diag(E);
-%%
+
 figure(3)
 hold on
 plot(EE)
@@ -58,7 +58,7 @@ hold off
 legend(num2str(EE(1)),num2str(EE(2)))
 
 
-%%
+
 k = 2 *( EE(1) - U);
 k2 = 2* (EE(2) -U);
 
@@ -74,7 +74,7 @@ for i = 3:N
     P(i) = (-k(i)*dx*dx + 2) * P(i-1) - P(i-2);
     P2(i) = (-k2(i)*dx*dx + 2) * P2(i-1) - P2(i-2);
 end
-    
+    %%
     
 figure(4)
 clf(figure(4))

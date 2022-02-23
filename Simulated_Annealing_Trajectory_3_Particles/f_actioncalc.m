@@ -37,7 +37,7 @@ function action = f_actioncalc(pos, r, a, rs, N, z, dz, shift)
     
     %integrating the kinetic part:
     for i = 1:N-1
-        action = action + dz/2 * (1 - z_temp(i)^2)/r * (der(1, i)^2 + der(2, i)^2 + der(3, i)^2);
+        action = action + dz * 0.5 * (1 - z_temp(i)^2)/r * (der(1, i)^2 + der(2, i)^2 + der(3, i)^2);
     end
 end
 

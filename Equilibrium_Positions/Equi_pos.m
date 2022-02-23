@@ -2,17 +2,18 @@ clc
 clear all
 close all
 
-positions   = 12;
 particles   = 3;
 
+alpha_start = -5;
+alpha_fin   = -20;
+positions   = abs(alpha_fin - alpha_start) * 10 + 1;
+alpha       = linspace(alpha_start, alpha_fin, positions);
 eq_pos      = zeros(particles, positions);
 
-alpha_start = -4;
-alpha_fin   = -15;
-
-alpha       = linspace(alpha_start, alpha_fin,positions)
-
+disp(['Positions = ' num2str(positions)])
+disp(['Time ~ ' num2str(positions * 3.05)])
 for i = 1:positions  
+    tic
     disp(num2str(i))
     
     iter                        = 5*10^5;
@@ -48,10 +49,11 @@ for i = 1:positions
     end
     Energy(i)   = E0;
     eq_pos(:,i) = position;
-    
+    toc
 end
-%%
+
 eq_pos = organizer(eq_pos);
+
 %%
 
 figure(1)
@@ -59,13 +61,15 @@ clf(figure(1))
 hold on
 ylabel('\chi_i^0','FontSize',20)
 xlabel('$$\tilde{a}$$', 'Interpreter', 'LaTeX', 'FontSize', 20)
-scatter(alpha, eq_pos(1,:),'k', 'LineWidth',2)
-scatter(alpha, eq_pos(2,:),'r', 'LineWidth',2)
-scatter(alpha, eq_pos(3,:), 'LineWidth',2)
+plot(alpha, eq_pos(1,:), '.-')
+plot(alpha, eq_pos(2,:), '.-')
+plot(alpha, eq_pos(3,:), '.-')
 hold off
 
-%%
+
 for i = 1: positions
     eqpos(:,i) = eq_pos(:,i); 
 end
 eqpos(4,:)      = alpha;
+%%
+save('EqPos_eta20_alpha_5_20', 'eqpos')

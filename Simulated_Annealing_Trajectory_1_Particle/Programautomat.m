@@ -7,7 +7,7 @@ tic
 %constants:
 iteration = 1.2*10^6;
 N = 2^7;                %how much points are there in the curve
-r = 3;                  %the time rescaling parameter set to some arbitrary number ordo 1
+r = 2;                  %the time rescaling parameter set to some arbitrary number ordo 1
 eps = 10^-15;            %due to some divergencies at the -infty and infty parts some cutoff value is a must.
 Q = 10;
 
@@ -32,7 +32,7 @@ for j=1:Q
 %first the initial position:
 khi = initpos(N,a);
 %then the initial action calculation:
-E0 = actioncalc(khi,r,N,z,dz,a,E_p);
+E0 = actioncalc(khi,r,N,z,dz,a);
 
 % figure(1)
 % hold on
@@ -44,7 +44,7 @@ E0 = actioncalc(khi,r,N,z,dz,a,E_p);
 for i= 1:iteration
    
     khi_new = newstep(khi,N,sigma(i),a);
-    E_new = actioncalc(khi_new,r,N,z,dz,a,E_p);
+    E_new = actioncalc(khi_new,r,N,z,dz,a);
     E_diff = E0 - E_new;
     
     if E_diff > 0

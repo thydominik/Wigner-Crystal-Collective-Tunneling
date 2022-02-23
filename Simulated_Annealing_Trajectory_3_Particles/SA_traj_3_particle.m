@@ -6,80 +6,101 @@ clear all
 format long
 
 %loading the equilibrium positions
-eqpos   = load('eq_pos4_15');   %from file eq_pos.mat
+eqpos   = load('EqPos_eta20_alpha_5_20.mat');   %from file eq_pos.mat
 eq_pos  = eqpos.eqpos;      %4 by 100 array with alpha and equilibrium values
 
-%Paramteres and constant of the Simulation
-r       = 1.3;                  %time reparametrization free parameter
-eps     = 10^-10;               %z_time cutoff
-N       = 200;                  %# of points in the curve
-state   = 4;                   %Choosing a state inside eqpos variable
-a       = eq_pos(4,state) ;     %a --> \alpha parameter of the potential
-disp("alpha = " + num2str(a))
+TrajNum     = 5;
+TrajStart   = 1;
+TrajFin     = length(eq_pos);
 
-%THIS PARAMETER IS NEGATIVE!!!!
-rs      = 20;               %dimensionless interaction strength 18.813;
-iter    = 5 * 10^6;             %# of iterations
+Action          = zeros(2, length(eq_pos));
+Action(1, :)    = eq_pos(4, :);
 
-%time parameter
-z_reduced   = linspace(-1 + eps, 1 - eps, N);     %eps reduced z imag time
-z           = linspace(-1, 1, N);
-dz_reduced  = z_reduced(2) - z_reduced(1);
-dz          = z(2) - z(1);
+R = linspace(1.3, 0.3, length(eq_pos));
 
-%equilibrium positions
-p1_in =  eq_pos(1,state);        %initial and final positions of the particles
-p1_fi = -eq_pos(3,state);
-p2_in =  eq_pos(2,state);
-p2_fi = -eq_pos(2,state);
-p3_in =  eq_pos(3,state);
-p3_fi = -eq_pos(1,state);
+for St = TrajStart:TrajNum:TrajFin
+    tic
+        %Paramteres and constant of the Simulation
+    r       = R(St);                %time reparametrization free parameter
+    eps     = 10^-10;               %z_time cutoff
+    N       = 200;                  %# of points in the curve
+    state   = St;                   %Choosing a state inside eqpos variable
+    a       = eq_pos(4,state) ;     %a --> \alpha parameter of the potential
+    disp("alpha = " + num2str(a))   %THIS PARAMETER IS NEGATIVE!!!!
 
-T_init = 50;                     %starting temperature which is exponentially decreases
-T = T_init * exp(-(linspace(0,30,iter)));
+    rs      = 20;               %dimensionless interaction strength 18.813;
+    iter    = 5 * 10^6;             %# of iterations
 
-sigma = 0.1 * sqrt(T);          %new step deviance
+    %time parameter
+    z_reduced   = linspace(-1 + eps, 1 - eps, N);     %eps reduced z imag time
+    z           = linspace(-1, 1, N);
+    dz_reduced  = z_reduced(2) - z_reduced(1);
+    dz          = z(2) - z(1);
 
-%initializing the starting position & deteermining the energy shift
-[position, shift]   = f_initpos(N,p1_in,p1_fi,p2_in,p2_fi,p3_in,p3_fi,rs,a);
-E_0                 = f_actioncalc(position,r,a,rs,N,z,dz,shift);
-disp("E_0 = " + num2str(E_0, 15))
-disp("Shift = " + num2str(shift))
+    %equilibrium positions
+    p1_in =  eq_pos(1,state);        %initial and final positions of the particles
+    p1_fi = -eq_pos(3,state);
+    p2_in =  eq_pos(2,state);
+    p2_fi = -eq_pos(2,state);
+    p3_in =  eq_pos(3,state);
+    p3_fi = -eq_pos(1,state);
 
-%Keeping track of the discarded moves & Energy/iteration:
-discarded = zeros(iter,1);
-E = zeros(iter,1);
+    T_init = 50;                     %starting temperature which is exponentially decreases
+    T = T_init * exp(-(linspace(0,30,iter)));
 
-%Simulated Annealing:
-for i = 1:iter
-    
-    sig         = sigma(i);
-    pos_new     = f_newstep(position,N,sig,p1_in,p1_fi,p2_in,p2_fi,p3_in,p3_fi);
-    E_new       = f_actioncalc(pos_new,r,a,rs,N,z,dz,shift);
-    E_diff      = E_0 - E_new;
-    
-    if E_diff > 0
-        position    = pos_new;
-        E_0         = E_new;
-    elseif rand() <= exp(E_diff/T(i))
-        position    = pos_new;
-        E_0         = E_new;
-    else
-        discarded(i) = i;
+    sigma = 0.1 * sqrt(T);          %new step deviance
+
+    %initializing the starting position & deteermining the energy shift
+    [position, shift]   = f_initpos(N,p1_in,p1_fi,p2_in,p2_fi,p3_in,p3_fi,rs,a);
+    E_0                 = f_actioncalc(position,r,a,rs,N,z,dz,shift);
+    disp("E_0 = " + num2str(E_0, 15))
+    disp("Shift = " + num2str(shift))
+
+    %Keeping track of the discarded moves & Energy/iteration:
+    discarded = zeros(iter,1);
+    E = zeros(iter,1);
+
+    %Simulated Annealing:
+    for i = 1:iter
+
+        sig         = sigma(i);
+        pos_new     = f_newstep(position,N,sig,p1_in,p1_fi,p2_in,p2_fi,p3_in,p3_fi);
+        E_new       = f_actioncalc(pos_new,r,a,rs,N,z,dz,shift);
+        E_diff      = E_0 - E_new;
+
+        if E_diff > 0
+            position    = pos_new;
+            E_0         = E_new;
+        elseif rand() <= exp(E_diff/T(i))
+            position    = pos_new;
+            E_0         = E_new;
+        else
+            discarded(i) = i;
+        end
+        E(i) = E_0;
+
+        if rem(i,50000) == 0
+            figure(1)
+            clf(figure(1))
+            hold on
+            plot(z,position(1,:))
+            plot(z,position(2,:))
+            plot(z,position(3,:))
+            hold off
+            disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(E_0, 10))
+        end   
     end
-    E(i) = E_0;
     
-    if rem(i,10000) == 0
-        figure(1)
-        clf(figure(1))
-        hold on
-        plot(z,position(1,:))
-        plot(z,position(2,:))
-        plot(z,position(3,:))
-        hold off
-        disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(E_0, 10))
-    end   
+    disp(['done with alpha = ' num2str(a)])
+    Action(2, St) = E(end);
+    
+    %NameString = ['Pos_eta_' num2str(rs) '_alpha_' strrep(num2str(-a,2),'.','_') '_r_' strrep(num2str(r,2),'.','_')];
+    NameString = ['P_' num2str(St)];
+    save(NameString, 'position')
+    toc
 end
+
+save('Action_eta_20', 'Action')
 
 %%
 figure(2)

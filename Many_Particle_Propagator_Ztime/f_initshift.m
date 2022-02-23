@@ -9,5 +9,6 @@ function [shift] = f_initshift(rs, a, pos)
     
     Q = rs * ((1/abs(in2 - in1)) + 1/abs(in3 - in1) + 1/abs(in3 - in2 )) ;
     shift =  Q + (F1 + F2 + F3);
+
 end
 
