@@ -408,7 +408,7 @@ for ind = 1:5:71
     % end
     % plot(deter)
     % hold off
-    [splittt, action, ODPM1, ODPL, ODPI, ODPM2] = f_action(eta, alpha, trajectory, r, z_time, EigVal, propagator, S);
+    [splittt, action, ODPM1, ODPL, ODPI, ODPM2, ODPM3] = f_action(eta, alpha, trajectory, r, z_time, EigVal, propagator, S, VS);
     disp(['splitting: 1D * sqrt_term * exp(-action) = ', num2str(splittt)])
     data(ind, 1) = alpha;       %positive apha values
     data(ind, 2) = splittt;     %N-1 dimensional part
@@ -416,7 +416,8 @@ for ind = 1:5:71
     data(ind, 4) = ODPM1;       %One Dimensional Part 1D Milnikov (without integral)
     data(ind, 5) = ODPL;        %Landau prefactor
     data(ind, 6) = ODPI;        %Instanton
-    data(ind, 7) = ODPM2;       %Milnikov with integral
+    data(ind, 7) = ODPM2;       %Milnikov with integral and original omega
+    data(ind, 8) = ODPM3;       %Milnikov with integral and 'corrected' omega
     disp('---------------------------------000-------------------------------------')
 end
 
@@ -453,24 +454,31 @@ hold off
 PascuD = load('Delta_E_DMRG_Norb_8_eta_20.00.mat');
 PascuD2 = load('E_Schrodinger_3e_eta_20.00_N_100_beta_0.300.dat');
 M_data = load('E_Schrodinger_3e_eta_20.00_beta_0.01_N_100.dat');
+% Putting a 1/sqrt(pi) factor in the splitting calculation pushed the
+% Instanton curves down to the ED pretty well
+
+
 
 figure(3)
 clf(figure(3))
 hold on
+title('Instanton & ED splitting comparison')
 plot(-M_data(:, 1), M_data(:, 3) - M_data(:, 2), '.-', 'DisplayName', 'ED')
-plot(abs(data(:,1)), data(:,4) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', '1D Milnikov w/ N-1')
-plot(abs(data(:,1)), data(:,4), '.-', 'LineWidth', 2, 'DisplayName', '1D Milnikov w/o N-1')
+plot(abs(data(:,1)), data(:,4) .* data(:,2), '.-', 'DisplayName', '1D Milnikov w/o Int')
+plot(abs(data(:,1)), data(:,7) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
+plot(abs(data(:,1)), data(:,8) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int and omega from arc length param')
 %plot(abs(data(:,1)), data(:,5), '.-', 'LineWidth', 2, 'DisplayName', 'Landau prefactor w/o N-1 dim part')
 %plot(abs(data(:,1)), data(:,6) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Instanton prefactor with N-1 dim part')
 %plot(abs(data(:,1)), data(:,7) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Milnikov')
 %plot(abs(PascuD.alpha_list), PascuD.delta_E_DMRG,'.-', 'DisplayName', 'Pascu DMRG')
 %plot(abs(PascuD2(:,1)), abs(PascuD2(:, 2) - PascuD2(:, 10)),'.-', 'DisplayName', 'Pascu Schrödinger')
-%set(gca, 'Yscale', 'log')
+set(gca, 'Yscale', 'log')
 xlim([5 12])
 legend
 grid on
 xlabel('|\alpha|')
 ylabel('\Delta')
+ylim([10^-5 10])
 hold off
 
 %%

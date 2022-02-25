@@ -46,7 +46,10 @@ for i = 1:length(Alpha)
         dP(k) = (P(k+1) - P(k-1))./(Chi(i, k + 1) - Chi(i, k - 1));
     end
     dP(length(P)) = (P(end) - P(end-1))./(Chi(i, end) - Chi(i, end-1));
-
+    
+    plot(dP)
+    plot(P)
+    pause
     Int2 = 0;
     func2 = (r./(1 - z.^2)) .* (Omega(i) - dP);
     for k = 2:length(Chi(1, :))/2 - 1
@@ -80,6 +83,7 @@ clf(figure(2))
 hold on
 plot(Alpha, Action - (2/3 * sqrt(2) * sqrt(Alpha) .* Alpha), '.-' )
 title('Difference between the S')
+
 hold off
 
 figure(3)
@@ -113,8 +117,16 @@ hold on
 title(' Differences between the splittings')
 xlabel('\alpha')
 ylabel('\Delta')
-plot(Alpha, Split(3,:) - Split(1, :), '.-', 'DisplayName', 'Analytical - dz integral ')
-plot(Alpha, Split(3,:) - Split(2, :), '.-', 'DisplayName', 'Analytical - d\tau integral ')
-set(gca, 'Yscale', 'log')
+plot(Alpha, 100 * (Split(3,:) ./ Split(1, :) - 1), '.-', 'DisplayName', 'Analytical - dz integral ')
+plot(Alpha, 100 * (Split(3,:) ./ Split(2, :) - 1), '.-', 'DisplayName', 'Analytical - d\tau integral ')
+%set(gca, 'Yscale', 'log')
 legend
 hold off
+
+figure(6)
+hold on
+title('Splittings Numerical & Analytical Calculation')
+plot(Alpha, Split(1, :), 'o-', 'DisplayName', 'Numerical Milnikov')
+xlabel('-\alpha')
+hold off
+

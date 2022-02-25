@@ -3,7 +3,7 @@ clear all
 
 %1 particle tunneling splitting comparison with different methods
 
-N       = 500;                          % # of points for ED
+N       = 1000;                          % # of points for ED
 Nalpha  = 100;                          % # of alpha values
 alpha   = linspace(0, 10, Nalpha);      % the range of alpha
 Action  = 2/3 * sqrt(2) * alpha.^(3/2); % analytical action values
@@ -107,18 +107,31 @@ end
 figure(1)
 clf(figure(1))
 hold on
-plot(alpha, splits(:, 1),'.-', 'DisplayName', 'Landau')
+title('Splittings analyitical calculation')
+%plot(alpha, splits(:, 1),'.-', 'DisplayName', 'Landau')
 plot(alpha, splits(:, 2),'-', 'LineWidth', 2, 'DisplayName', 'Schrödinger equation')
 %plot(alpha, splits(:, 3),'o-', 'DisplayName', 'Colemans approximation')
-plot(alpha, splits(:, 4),'O-', 'DisplayName', 'Instanton approximation')
-plot(alpha, splits(:, 5),'.-', 'DisplayName', 'Milnikovs approximation')
+%plot(alpha, splits(:, 4),'O-', 'DisplayName', 'Instanton approximation')
+%plot(alpha, splits(:, 5),'.-', 'DisplayName', 'Milnikovs approximation')
 legend
 xlabel('Energy')
 ylabel('\Delta')
-%set(gca, 'Xscale', 'log')
-%set(gca, 'Yscale', 'log')
 hold off
 
+
+figure(6)
+clf(figure(6))
+hold on
+title('Splittings analyitical calculation')
+%plot(alpha, splits(:, 1),'.-', 'DisplayName', 'Numerical Milnikov')
+plot(alpha, splits(:, 2),'-', 'LineWidth', 2, 'DisplayName', 'Schrödinger equation')
+%plot(alpha, splits(:, 3),'o-', 'DisplayName', 'Colemans approximation')
+%plot(alpha, splits(:, 4),'O-', 'DisplayName', 'Instanton approximation')
+plot(alpha, splits(:, 5),'.-', 'DisplayName', 'Milnikov')
+legend
+xlabel('Energy')
+ylabel('\Delta')
+hold off
 % figure(2)
 % clf(figure(2))
 % hold on
@@ -141,3 +154,15 @@ hold off
 % legend
 % 
 % hold off
+%%
+for k = 1:98
+    dSp(k) = (splits(k + 2, 2) - splits(k, 2))/(alpha(k + 2) - alpha(k));
+end
+figure(7)
+clf(figure(7))
+hold on
+%plot(alpha(2:end-1), dSp, '.-')
+plot(alpha(1:end-1), diff(splits(:, 2)))
+xline(3)
+%set(gca, 'Yscale', 'log')
+hold off
