@@ -1,0 +1,30 @@
+function [pos, shift] = f_initpos(N, Nt, p_in, p_out, rs, alpha)
+%whats what:
+    %N - # of particles
+    %Nt - # of points on the trajectory
+    %p_in - The starting positions of the particles
+    %p_out - final positions of the particles
+    %rs - interaction strength
+    %alpha - alpha :)
+
+    pos = zeros(N, Nt);
+    
+    
+    for i = 1:N 
+        pos(i, 1:end/2)     = p_in(i);
+        pos(i, end/2 : end) = p_out(i);
+    end
+    
+    %Calculating the energy shift needed
+    % The F's are coming from the quartic potential:
+    for i = 1:N
+
+    end
+    F1 = 0.25 *(pos(1,1)^2 + a)^2;
+    F2 = 0.25 *(pos(2,1)^2 + a)^2;
+    F3 = 0.25 *(pos(3,1)^2 + a)^2;
+    
+    Q = rs * ((1/abs(pos(2,1) - pos(1,1))) + 1/abs(pos(3,1)-pos(1,1)) + 1/abs(pos(3,1)-pos(2,1))) ;
+    shift =  Q + (F1 + F2 + F3);
+end
+
