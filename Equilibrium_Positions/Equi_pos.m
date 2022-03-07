@@ -2,7 +2,7 @@ clc
 clear all
 close all
 
-particles   = 3;
+particles   = 5;
 
 alpha_start = -5;
 alpha_fin   = -20;
