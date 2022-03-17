@@ -6,7 +6,7 @@ clc
 clear all
 
 %Loading the equlibrium positions:
-eqpos   = load('EqPos_eta20_alpha_5_20_5p.mat');
+eqpos   = load('Eq_Pos_eta_20_particles_7.mat');
 eq_pos  = eqpos.eqpos;
 
 %Getting the number of particles involved:
@@ -14,8 +14,8 @@ N = length(eq_pos(:, 1)) - 1;
 
 %Trajectory selection:
 TrajNum     = 1; %Parameter to skip a certain number of positions
-TrajStart   = 100; %Starting from the TrajStart \alpha value
-TrajFin     = length(eq_pos);
+TrajStart   = 70; %Starting from the TrajStart \alpha value
+TrajFin     = 70; %%length(eq_pos);
 
 Action          = zeros(2, length(eq_pos)); %First column alpha; second column actions
 Action(1, :)    = eq_pos(N + 1, :);             %These are the alpha values
@@ -105,11 +105,13 @@ for State = TrajStart:TrajNum:TrajFin
             plot(z, Position(3, :))
             plot(z, Position(4, :))
             plot(z, Position(5, :))
-            plot(0.01 * 0.25 * (linspace(-5, 5, 100).^2 + alpha).^2 - 1, linspace(-5, 5, 100))
+            plot(z, Position(6, :))
+            plot(z, Position(7, :))
+            plot(0.01 * 0.25 * (linspace(-6, 6, 100).^2 + alpha).^2 - 1, linspace(-5, 5, 100))
             xlim([-1 1])
             %ylim([-2 2])
-            yline([p_in(1) p_in(2) p_in(3) p_in(4) p_in(5) 0])
-            yline([p_out(1) p_out(2) p_out(3) p_out(4) p_out(5)])
+            yline([p_in(1) p_in(2) p_in(3) p_in(4) p_in(5) p_in(6) p_in(7) 0])
+            yline([p_out(1) p_out(2) p_out(3) p_out(4) p_out(5) p_out(6) p_out(7)])
             grid on
             hold off
             disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(E_0, 10))
@@ -117,9 +119,28 @@ for State = TrajStart:TrajNum:TrajFin
     end
    
     Action(2, State) = E(end);
-    NameString = ['Traj_5p_' num2str(State)];
-    save(NameString, 'position')
+    NameString = ['Traj_7p_' num2str(State)];
+    save(NameString, 'Position')
 
     toc
 end
 
+%%
+figure(1)
+clf(figure(1))
+hold on
+plot(z, Position(1, :),'LineWidth', 2)
+plot(z, Position(2, :),'LineWidth', 2)
+plot(z, Position(3, :),'LineWidth', 2)
+plot(z, Position(4, :),'LineWidth', 2)
+plot(z, Position(5, :),'LineWidth', 2)
+plot(z, Position(6, :),'LineWidth', 2)
+plot(z, Position(7, :),'LineWidth', 2)
+plot(0.01 * 0.25 * (linspace(-6, 6, 100).^2 + alpha).^2 - 1, linspace(-5, 5, 100), '--')
+xlim([-1 1])
+%ylim([-2 2])
+yline([p_in(1) p_in(2) p_in(3) p_in(4) p_in(5) p_in(6) p_in(7) 0])
+yline([p_out(1) p_out(2) p_out(3) p_out(4) p_out(5) p_out(6) p_out(7)])
+grid on
+hold off
+disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(E_0, 10))
