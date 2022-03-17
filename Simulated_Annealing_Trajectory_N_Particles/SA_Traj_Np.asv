@@ -6,28 +6,28 @@ clc
 clear all
 
 %Loading the equlibrium positions:
-eqpos   = load('EqPos_eta20_alpha_5_20_5p.mat');
+eqpos   = load('Eq_Pos_eta_20_particles_7.mat');
 eq_pos  = eqpos.eqpos;
 
 %Getting the number of particles involved:
 N = length(eq_pos(:, 1)) - 1;
 
 %Trajectory selection:
-TrajNum     = 22; %Parameter to skip a certain number of positions
-TrajStart   = 22; %Starting from the TrajStart \alpha value
-TrajFin     = length(eq_pos);
+TrajNum     = 1; %Parameter to skip a certain number of positions
+TrajStart   = 70; %Starting from the TrajStart \alpha value
+TrajFin     = 70; %%length(eq_pos);
 
 Action          = zeros(2, length(eq_pos)); %First column alpha; second column actions
-Action(1, :)    = eq_pos(N, :);             %These are the alpha values
+Action(1, :)    = eq_pos(N + 1, :);             %These are the alpha values
 
 figure(2)
 clf(figure(2))
 hold on
 figure(1)
-x = linspace(-1, 1, 100);
-plot(x, 0.25*(x.^2 + ))
+x = linspace(-5, 5, 100);
+plot(x, 0.25.*(x.^2 + eq_pos(N + 1, TrajStart)).^2)
+xline(eq_pos(1:N, TrajStart))
 hold off
-
 
 %Now this is sort of the tricky part: In order to get "good" trajectories,
 %one should choose such r parameter, that ensures that the second point
@@ -81,7 +81,6 @@ for State = TrajStart:TrajNum:TrajFin
     
     %Simulated Annealing part:
     for i = 1:iter
-        i
         pos_new     = f_newstep(Position, N, Nt, sigma(i), p_in, p_out);
         E_new       = f_actioncalc(pos_new, r, alpha, rs, N, Nt, z, dz, Shift);
         E_diff      = E_0 - E_new;
@@ -106,11 +105,13 @@ for State = TrajStart:TrajNum:TrajFin
             plot(z, Position(3, :))
             plot(z, Position(4, :))
             plot(z, Position(5, :))
-            plot(0.01 * 0.25 * (linspace(-5, 5, 100).^2 + alpha).^2 - 1, linspace(-5, 5, 100))
+            plot(z, Position(6, :))
+            plot(z, Position(7, :))
+            plot(0.01 * 0.25 * (linspace(-6, 6, 100).^2 + alpha).^2 - 1, linspace(-5, 5, 100))
             xlim([-1 1])
-            ylim([-2 2])
-            yline([p_in(1) p_in(2) p_in(3) p_in(4) p_in(5) 0])
-            yline([p_out(1) p_out(2) p_out(3) p_out(4) p_out(5)])
+            %ylim([-2 2])
+            yline([p_in(1) p_in(2) p_in(3) p_in(4) p_in(5) p_in(6) p_in(7) 0])
+            yline([p_out(1) p_out(2) p_out(3) p_out(4) p_out(5) p_out(6) p_out(7)])
             grid on
             hold off
             disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(E_0, 10))
@@ -118,8 +119,8 @@ for State = TrajStart:TrajNum:TrajFin
     end
    
     Action(2, State) = E(end);
-    NameString = ['Traj_5p_' num2str(State)];
-    save(NameString, 'position')
+    NameString = ['Traj_7p_' num2str(State)];
+    save(NameString, 'Position')
 
     toc
 end
