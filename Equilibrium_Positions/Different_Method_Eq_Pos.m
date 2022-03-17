@@ -28,10 +28,10 @@ for i = 1:length(alpha)
     clc
 end
 
-%% 2 particles
+%% 2 particles coming soon....
 clc
 clear all
-alpha = linspace(0, 10, 10);
+alpha = linspace(0, 10, 2);
 
 syms x y
 assume(x, 'real')
@@ -40,7 +40,7 @@ assume(y, 'real')
 for i = 1:length(alpha)
     f = 0.25 * (x^2 - alpha(i))^2 + 0.25 * (y^2 - alpha(i))^2 + 20 * 1/(abs(x - y));
     dfx = diff(f, x);
-    dfy = diff(dfx, y);
+    dfy = diff(f, y);
     
     figure(2)
     clf(figure(2))
@@ -53,3 +53,12 @@ for i = 1:length(alpha)
     hold off
 pause
 end
+%%
+clc
+clear all
+
+%syms x y
+%func = 3 * x^2 + 2*x*y + y^2 - 4*x + 5*y;
+func        = @(x) 3*x(1)^2 + 2*x(1)*x(2) + x(2)^2 - 4*x(1) + 5*x(2) + 1/(x(1) - x(2));
+Interval    = [-10, 10];
+[xx, fval] = fminunc(func, Interval)

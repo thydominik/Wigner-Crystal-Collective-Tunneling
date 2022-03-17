@@ -2,10 +2,10 @@ clc
 clear all
 
 %Script for calculating the classical equilibriumm positions in a quartic potential 
-particles   = 8;        % # of particles in the system 
+particles   = 1;        % # of particles in the system 
 
-alpha_start = -8;                                           % The initial value of alpha
-alpha_fin   = -15;                                          % The Final value of alpha
+alpha_start = 2;                                           % The initial value of alpha
+alpha_fin   = -10;                                          % The Final value of alpha
 positions   = abs(alpha_fin - alpha_start) * 10 + 1;        % # of alpha values ( right now it's 0.1 increments)
 alpha       = linspace(alpha_start, alpha_fin, positions);  % All alpha values
 eq_pos      = zeros(particles, positions);                 
@@ -53,7 +53,7 @@ end
 
 eq_pos = organizer(eq_pos, particles);
 
-%%
+
 
 figure(1)
 clf(figure(1))
@@ -61,12 +61,12 @@ hold on
 ylabel('\chi_i^0','FontSize',20)
 xlabel('$$\tilde{a}$$', 'Interpreter', 'LaTeX', 'FontSize', 20)
 plot(alpha, eq_pos(1,:), '.', 'DisplayName', '1st p.')
-plot(alpha, eq_pos(2,:), '.', 'DisplayName', '2st p.')
-plot(alpha, eq_pos(3,:), '.', 'DisplayName', '3st p.')
-plot(alpha, eq_pos(4,:), '.', 'DisplayName', '4st p.')
-plot(alpha, eq_pos(5,:), '.', 'DisplayName', '5st p.')
-plot(alpha, eq_pos(6,:), '.', 'DisplayName', '6st p.')
-plot(alpha, eq_pos(7,:), '.', 'DisplayName', '7st p.')
+% plot(alpha, eq_pos(2,:), '.', 'DisplayName', '2st p.')
+% plot(alpha, eq_pos(3,:), '.', 'DisplayName', '3st p.')
+% plot(alpha, eq_pos(4,:), '.', 'DisplayName', '4st p.')
+% plot(alpha, eq_pos(5,:), '.', 'DisplayName', '5st p.')
+% plot(alpha, eq_pos(6,:), '.', 'DisplayName', '6st p.')
+% plot(alpha, eq_pos(7,:), '.', 'DisplayName', '7st p.')
 plot(alpha, -sqrt(-alpha), 'k-', 'DisplayName', '-sqrt(\alpha)')
 plot(alpha, sqrt(-alpha), 'k-', 'DisplayName', 'sqrt(\alpha)')
 legend
@@ -77,6 +77,6 @@ hold off
 for i = 1: positions
     eqpos(:,i) = eq_pos(:,i); 
 end
-eqpos(4,:)      = alpha;
-%%
-save('EqPos_eta20_alpha_5_20', 'eqpos')
+eqpos(particles + 1, :) = alpha;
+FileName                = ['Eq_Pos_eta_20_particles_' num2str(particles)];
+save(FileName, 'eqpos')
