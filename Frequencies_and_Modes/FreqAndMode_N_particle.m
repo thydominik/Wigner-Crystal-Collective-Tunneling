@@ -78,7 +78,7 @@ for n = 1:N
 end
 minimum = min(min(Frequencies));
 [x, y] = find(Frequencies == minimum);
-xline(Alpha(x), 'DisplayName', ['\alpha_c = ' num2str(Alpha(x))])
+xline(Alpha(x), 'DisplayName', ['\alpha_c \sim ' num2str(Alpha(x))])
 grid on
 legend
 hold off
