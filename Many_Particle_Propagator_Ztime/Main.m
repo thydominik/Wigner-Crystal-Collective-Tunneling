@@ -57,6 +57,20 @@ for ind = 1:5:71
     omegaS_sq       = 4 * fc.b * (3 * max(S)^2 - fc.c);
     disp(['Classical frequancy squared from arc length param: ' num2str(omegaS_sq) ' & ' num2str(sqrt(omegaS_sq))])
     
+    [Spectra] = Schrodinger_VS(VS, S, fc.a, fc.b, fc.c);
+    
+    figure(2)
+    clf(figure(2))
+    hold on
+    E = diag(Spectra);
+    plot(E)
+    disp(E(3) - E(1))
+    EEE1(ind) = E(2) - E(1);
+    EEE2(ind) = E(3) - E(1);
+    EEE3(ind) = E(3) - E(2);
+    EEE4(ind) = E(4) - E(1);
+    hold off
+    
     % figure(1)
     % clf(figure(1))
     % hold on
@@ -426,6 +440,7 @@ delta(:, 1)                 = data(:, 1);
 delta(:, 2)                 = data(:,2);
 data( ~any(data,2), : )     = [];
 delta( ~any(delta,2), :)    = [];
+
 %%
 figure(1)
 clf(figure(1))
@@ -464,9 +479,11 @@ clf(figure(3))
 hold on
 title('Instanton & ED splitting comparison')
 plot(-M_data(:, 1), M_data(:, 3) - M_data(:, 2), '.-', 'DisplayName', 'ED')
-plot(abs(data(:,1)), data(:,4) .* data(:,2), '.-', 'DisplayName', '1D Milnikov w/o Int')
-plot(abs(data(:,1)), data(:,7) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
-plot(abs(data(:,1)), data(:,8) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int and omega from arc length param')
+%plot(abs(data(:,1)), data(:,4) .* data(:,2), '.-', 'DisplayName', '1D Milnikov w/o Int')
+%plot(abs(data(:,1)), data(:,7) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
+%plot(abs(data(:,1)), data(:,8) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int and omega from arc length param')
+plot(abs(data(:, 1)), nonzeros(EEE1) .* nonzeros(EEE3), 'r')
+plot(abs(data(:, 1)), nonzeros(EEE1))
 %plot(abs(data(:,1)), data(:,5), '.-', 'LineWidth', 2, 'DisplayName', 'Landau prefactor w/o N-1 dim part')
 %plot(abs(data(:,1)), data(:,6) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Instanton prefactor with N-1 dim part')
 %plot(abs(data(:,1)), data(:,7) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Milnikov')
