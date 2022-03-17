@@ -5,10 +5,10 @@ disp('Frequencies and Modes for N particle systems')
 
 %Loading the equilbirium positions and Alpha values:
 %Data = load('Eq_Pos_eta_20_particles_1');
-Data = load('jooo.mat');
+Data = load('Eq_Pos_eta_20_particles_7.mat');
 
 % Distributing the alpha and the position values:
-SubData = Data.eq_pos;
+SubData = Data.eqpos;
 
 Alpha   = SubData(end, :); 
 Eq_Pos  = SubData(1:end-1, :);      %Equilibrium positions
@@ -81,6 +81,9 @@ minimum = min(min(Frequencies));
 xline(Alpha(x), 'DisplayName', ['\alpha_c \sim ' num2str(Alpha(x))])
 grid on
 legend
+xlabel('\alpha', 'FontSize', 22)
+ylabel('\omega_i', 'FontSize', 22)
+
 hold off
 
 FileName = ['Omega_sq_Freqs_N_' num2str(N)];
