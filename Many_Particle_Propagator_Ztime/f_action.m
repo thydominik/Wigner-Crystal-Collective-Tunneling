@@ -1,4 +1,4 @@
-function [propagator, action, splitt1, splitt2, splitt3, splitt4, splitt5] = f_action(eta, alpha, trajectory, r, z_time, EigValu, propagator, S, VS)
+function [propagator, action, splitt1, splitt2, splitt3, splitt4, splitt5] = f_action(eta, alpha, trajectory, r, z_time, EigValu, propagator, S, VS, analytical)
 %first the action shift:
 shift = f_initshift(eta, alpha, trajectory);
 
@@ -9,17 +9,20 @@ z_time = linspace(-1 + 10^-15 , 1 - 10^-15, length(S));
 disp([' action = ', num2str(action)])
 
 omega = sqrt(EigValu(1,1));
-[gof, fc]       = f_fitting_VS(S, VS);
-VS2              = fc.a + fc.b * (S.^2 - fc.c).^2;
+[gof, fc]   = f_fitting_VS(S, VS);
+VS2         = fc.a + fc.b * (S.^2 - fc.c).^2;
 VS = VS - min(VS);
-VS = VS2;
+if analytical == 1
+    VS = VS2 - min(VS2);
+end
 figure(10)
 clf(figure(10))
 hold on
 % plot(S, VS, '.-')
-% plot(S, VS2, 'o-')
-plot(S, VS - VS2)
+plot(S, VS, 'o-')
+% plot(S, VS - VS2)
 hold off
+
 
 omegaS_sq       = 4 * fc.b * (2 * fc.c);
 omega           = sqrt(omegaS_sq);
@@ -75,15 +78,30 @@ for i = 2:length(P_s)-1
 end
 dP_s(end+1) = (P_s(end) - P_s(end - 1))/(S(end) - S(end - 1));
 
-%dP_s = -dP_s ;
+if analytical == 1
+    for i = 1:length(P_s)
+        dP_s(i) = sqrt(2) *  2 * fc.b * S(i) * (S(i)^2 - fc.c)/sqrt(fc.a + fc.b * (S(i)^2 - fc.c)^2);
+    end
+end
+
+figure(100)
+clf(figure(100))
+hold on
 plot(S, dP_s)
-plot(diff(P_s))
+hold off
+
+figure(101)
+clf(figure(101))
+hold on
+plot(S(1:end-1), diff(dP_s))
+hold off
+
 
 %Integral:
-int = 0;
-int2 = 0;
-func = (r./(1 - z_time.^2)) .* (omega - dP_s);
-func2= (r./(1 - z_time.^2)) .* (dP_s(1) - dP_s);
+int     = 0;
+int2    = 0;
+func    = (r./(1 - z_time.^2)) .* (omega - dP_s);
+func2   = (r./(1 - z_time.^2)) .* (dP_s(1) - dP_s);
 % func(1) = 0;
 % func(end) = 0;
 

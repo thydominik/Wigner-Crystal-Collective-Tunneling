@@ -48,8 +48,6 @@ for ind = 1:5:71
     plot(S/max(S), (VS - min(VS))/max((VS - min(VS))), '.-')
     legend
     hold off
-    pause
-
 
     figure(11)
     %clf(figure(1))
@@ -431,7 +429,7 @@ for ind = 1:5:71
     % end
     % plot(deter)
     % hold off
-    [splittt, action, ODPM1, ODPL, ODPI, ODPM2, ODPM3] = f_action(eta, alpha, trajectory, r, z_time, EigVal, propagator, S, VS);
+    [splittt, action, ODPM1, ODPL, ODPI, ODPM2, ODPM3] = f_action(eta, alpha, trajectory, r, z_time, EigVal, propagator, S, VS, 0);
     disp(['splitting: 1D * sqrt_term * exp(-action) = ', num2str(splittt)])
     data(ind, 1) = alpha;       %positive apha values
     data(ind, 2) = splittt;     %N-1 dimensional part

@@ -40,7 +40,8 @@ end
 Potential = sparse(N, N);
 
 for i = 1:N
-    Potential(i, i) =a + b * (x(i)^2 - c)^2;
+    Potential(i, i) = a + b * (x(i)^2 - c)^2;
+    
 end
 
 Hamiltonian = full(Kinetic + Potential);
