@@ -2,6 +2,7 @@
 clc
 data = zeros(15,2);
 name = 1;
+clf(figure(20))
 for ind = 1:5:71
     name = ind;
     nameSTR = ['P_' num2str(name)];
@@ -42,17 +43,25 @@ for ind = 1:5:71
 
     [chiS, S, VS]   = f_arclength(trajectory, alpha, eta, z_time);
 
-    
-    figure(1)
+    figure(20)
+    hold on
+    plot(S/max(S), (VS - min(VS))/max((VS - min(VS))), '.-')
+    legend
+    hold off
+    pause
+
+
+    figure(11)
     %clf(figure(1))
     hold on
     S = S - max(S)/2;
 %     VS = VS - min(VS);
 %     VS = VS./max(VS);
-    plot(S, VS - min(VS), '.-')
+    plot(S/max(S), (VS - min(VS))/max((VS - min(VS))), '.-')
     xlabel('S - symm.')
     ylabel('V(S)')
     hold off
+
     [gof, fc]       = f_fitting_VS(S, VS);
     omegaS_sq       = 4 * fc.b * (3 * max(S)^2 - fc.c);
     disp(['Classical frequancy squared from arc length param: ' num2str(omegaS_sq) ' & ' num2str(sqrt(omegaS_sq))])
@@ -445,7 +454,8 @@ delta( ~any(delta,2), :)    = [];
 figure(1)
 clf(figure(1))
 hold on
-plot(abs(data(:,1)), data(:,2),'.-', 'DisplayName', 'N-1 Dimensional part')
+plot(abs(data(:, 1)), data(:,2),'.-', 'DisplayName', 'N-1 Dimensional part')
+plot(abs(data(:, 1)), nonzeros(EEE4), '.-')
 %set(gca, 'Yscale', 'log')
 xlim([5 12])
 legend
@@ -453,12 +463,16 @@ grid on
 xlabel('|\alpha|')
 
 hold off
-
+%%
 figure(2)
 clf(figure(2))
 hold on
-plot(abs(data(:,1)), data(:,3),'.-', 'DisplayName', 'Action')
-set(gca, 'Yscale', 'log')
+% plot(abs(data(:,1)), data(:,4),'.-', 'DisplayName', 'W/O integral')
+% plot(abs(data(:,1)), data(:,7),'.-', 'DisplayName', 'original omega')
+% plot(abs(data(:,1)), data(:,8),'.-', 'DisplayName', 'V(S) Omega')
+plot(abs(data(:,1)), data(:,4)./data(:,7),'.-', 'DisplayName', 'original omega')
+%plot(abs(data(:,1)), data(:,4)./data(:,8),'.-', 'DisplayName', 'V(S) omega')
+%set(gca, 'Yscale', 'log')
 xlim([5 12])
 legend
 grid on
@@ -473,17 +487,19 @@ M_data = load('E_Schrodinger_3e_eta_20.00_beta_0.01_N_100.dat');
 % Instanton curves down to the ED pretty well
 
 
-
+%%
 figure(3)
 clf(figure(3))
 hold on
-title('Instanton & ED splitting comparison')
+title('ED from V(S) & Milnikov 1D part')
 plot(-M_data(:, 1), M_data(:, 3) - M_data(:, 2), '.-', 'DisplayName', 'ED')
+plot(abs(data(:,1)), data(:,4) .* data(:, 2), '.-', 'DisplayName', '1D Milnikov')
 %plot(abs(data(:,1)), data(:,4) .* data(:,2), '.-', 'DisplayName', '1D Milnikov w/o Int')
-%plot(abs(data(:,1)), data(:,7) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
+plot(abs(data(:,1)), data(:,7) .* data(:, 2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
 %plot(abs(data(:,1)), data(:,8) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int and omega from arc length param')
-plot(abs(data(:, 1)), nonzeros(EEE1) .* nonzeros(EEE3), 'r', 'DisplayName', '\DeltaE_{1,2} x \DeltaE_{1,3} ')
-plot(abs(data(:, 1)), nonzeros(EEE1), 'DisplayName', '\DeltaE_{1, 2}')
+%plot(abs(data(:, 1)), nonzeros(EEE1) .* nonzeros(EEE3), 'r', 'DisplayName', '\DeltaE_{1,2} x \DeltaE_{1,3} ')
+plot(abs(data(:, 1)), nonzeros(EEE1) .* data(:, 2), '.-', 'DisplayName', '\DeltaE_{1, 2}')
+%plot(abs(data(:, 1)), nonzeros(EEE1) .* data(:, 2), 'DisplayName', '\DeltaE_{1, 2}')
 %plot(abs(data(:,1)), data(:,5) .*data(:, 2), '.-', 'LineWidth', 2, 'DisplayName', 'Landau prefactor w/o N-1 dim part')
 %plot(abs(data(:,1)), data(:,6) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Instanton prefactor with N-1 dim part')
 %plot(abs(data(:,1)), data(:,7) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Milnikov')
@@ -499,8 +515,8 @@ ylim([10^-5 10])
 hold off
 
 %%
-figure(3)
-clf(figure(3))
+figure(4)
+clf(figure(4))
 hold on
 plot(abs(data(:,1))-5, data(:,2),'.-', 'DisplayName', 'Instanton')
 %plot(dE(:, 1), dE(:, 2), '.-', 'DisplayName', 'Schrödinger & DMRG')
