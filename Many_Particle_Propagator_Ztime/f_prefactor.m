@@ -64,7 +64,7 @@ function [prop, Trace1, Trace2] = f_prefactor( Xi_matrix, EigValu, tau_time, z_t
    disp(['Integral 1: ', num2str(Integ1)])
    disp(['Integral 2: ', num2str(Integ2)])
    disp(['Integral 3: ', num2str(Integ3)])
-   prop = prefactor * exp(Integ1);
+   prop = prefactor * exp(Integ3);
    disp(['prefactor: sqrt term x exp= ', num2str(prop)])
 end
 
