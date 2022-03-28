@@ -153,7 +153,7 @@ for ind = 1:5:71
 
     %Error check, how perpendicular the two vectors created above:
     for i = 1:N_division
-        scalarproduct(i) = f(:,i)'*unit_velocity_e(:,i);
+        scalarproduct(i) = f(:,i)' * unit_velocity_e(:,i);
     end
     % figure(7)
     % clf(figure(7))

@@ -12,6 +12,7 @@ omega = sqrt(EigValu(1,1));
 [gof, fc]       = f_fitting_VS(S, VS);
 VS2              = fc.a + fc.b * (S.^2 - fc.c).^2;
 VS = VS - min(VS);
+VS = VS2;
 figure(10)
 clf(figure(10))
 hold on
