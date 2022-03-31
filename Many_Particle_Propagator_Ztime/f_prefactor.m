@@ -25,7 +25,7 @@ function [prop, Trace1, Trace2] = f_prefactor( Xi_matrix, EigValu, tau_time, z_t
        if i == 1
             Trace1(i) = 0;
        elseif i == 2
-            Trace1(i) = trace(sqrt(EigVal) - Xi_matrix(:,:,end - (i+1) + 1))/8;
+            Trace1(i) = trace(sqrt(EigVal) - Xi_matrix(:,:,end - (i+1) + 1))/2;
        else
             Trace1(i) = trace(sqrt(EigVal) - Xi_matrix(:,:,end - i + 1));
        end
@@ -41,15 +41,15 @@ function [prop, Trace1, Trace2] = f_prefactor( Xi_matrix, EigValu, tau_time, z_t
    %integration (midpoint)
    Integ1 = 0;
    for i = 2:length(tau_time)/2
-       dt = tau_time(i+1) - tau_time(i);
-       Integ1 = Integ1 + (Trace1(i) + Trace1(i - 1)) * dt/2 * r/(1 - z_time(i)^2);
+       dt       = tau_time(i+1) - tau_time(i);
+       Integ1   = Integ1 + (Trace1(i) + Trace1(i - 1)) * dt/2 * r/(1 - z_time(i)^2);
    end
    Integ1 = Integ1 + (-tau_time(i)) * Trace1(i);
    
    Integ2 = 0;
    for i = 2:length(tau_time)/2
-       dt = tau_time(i+1) - tau_time(i);
-       Integ2 = Integ2 + (Trace2(i) + Trace2(i - 1)) * dt/2 * r/(1 - z_time(i)^2);
+       dt       = tau_time(i+1) - tau_time(i);
+       Integ2   = Integ2 + (Trace2(i) + Trace2(i - 1)) * dt/2 * r/(1 - z_time(i)^2);
    end
    Integ2 = Integ2 + (-tau_time(i)) * Trace2(i);
    
@@ -64,7 +64,7 @@ function [prop, Trace1, Trace2] = f_prefactor( Xi_matrix, EigValu, tau_time, z_t
    disp(['Integral 1: ', num2str(Integ1)])
    disp(['Integral 2: ', num2str(Integ2)])
    disp(['Integral 3: ', num2str(Integ3)])
-   prop = prefactor * exp(Integ3);
+   prop = prefactor * exp(Integ1); %előbb Integ3 volt beírva
    disp(['prefactor: sqrt term x exp= ', num2str(prop)])
 end
 

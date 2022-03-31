@@ -1,11 +1,17 @@
-%clear all
 clc
+clear all
+
+disp('Instanton Prefactor and Tunneling splitting calculation')
+
+% this data variable will hold all results from this calculation
 data = zeros(15,2);
-name = 1;
-clf(figure(20))
+
+%This loops goes through the previously calculated trajectories:
 for ind = 1:5:71
+    % Pulling in the trajectory
     name = ind;
     nameSTR = ['P_' num2str(name)];
+
     %loading a trajectory that is previoulsy determined by a MC simulatiton
     trajectory_load              = load(nameSTR);%load('200_point_ztime_r_1_3_a_8_eta_20');
 
@@ -14,69 +20,259 @@ for ind = 1:5:71
     equilibrium_positions       = load('EqPos_eta20_alpha_5_20'); %4th column is the alpha value!
     trajectory                  = trajectory_load.position;
 
-
     %this will select the desired endpoints and alpha value
     state                       = ind;  
-
     eq_pos                      = equilibrium_positions.eqpos(:, state);
 
     %it's useful not to set in stone the division and particle number for later
     %more-particle cases
     [particle_n, N_division]    = size(trajectory);
 
-    disp(['particle: ',num2str(particle_n)])
-    disp(['divisions: ', num2str(N_division)])
+    disp(['Particle # = ',num2str(particle_n)])
+    disp(['Trajectory points = ', num2str(N_division)])
 
+    %This needs to be carried over from the trajectory calculation
     R = linspace(1.3, 0.3, 151);
-    %z imaginery time paramter
-    eps             = 10^-15;                   %this have to be changed manually if it changes in the trajectory code!!!
-    r               = R(state);                        %match this with the M.C. simulation
-    alpha           = eq_pos(4); disp(['Alpha= ', num2str(alpha)])                %from eq_pos file!!!!
-    eta             = 20;                   %don't try to change this. Fitted value(experimetnts) = 18.813
-    limits          = 50;       %1.35;          % +/- T
-    N               = 2000;
+    
+    % z imaginery time paramter
+    eps             = 10^-15;   %this have to be changed manually if it changes in the trajectory code!!!
+    r               = R(state); %match this with the M.C. simulation
+    alpha           = eq_pos(4); disp(['Alpha= ', num2str(alpha)])  %from eq_pos file!!!!
+    eta             = 20;       %don't try to change this. Fitted value(experimetnts) = 18.813
+    limits          = 50;       %1.35;  % +/- T
 
     %at almost all places the full z time paramterization can be used, but just
     %in case I create a reduced z time parameter
     z_time_reduced  = linspace(-1 + eps,1 - eps,N_division);
     z_time          = linspace(-1, 1, N_division);
 
+    % Using the trajectories, creating the arc length param and the arc
+    % length parametrized V(S) potential.
     [chiS, S, VS]   = f_arclength(trajectory, alpha, eta, z_time);
 
-    figure(20)
-    hold on
-    plot(S/max(S), (VS - min(VS))/max((VS - min(VS))), '.-')
-    legend
-    hold off
-
-    figure(11)
-    %clf(figure(1))
-    hold on
+    % Obviously initially S \in [0, 2*S_0], but I want S(\tau = 0 ) = 0 so
+    % S = [-S_0, S_0]
     S = S - max(S)/2;
-%     VS = VS - min(VS);
-%     VS = VS./max(VS);
-    plot(S/max(S), (VS - min(VS))/max((VS - min(VS))), '.-')
-    xlabel('S - symm.')
-    ylabel('V(S)')
-    hold off
 
+    % Fitting the V(S) potential with a quartic potential
     [gof, fc]       = f_fitting_VS(S, VS);
+
+    % Calculating the frequencies from the fits
     omegaS_sq       = 4 * fc.b * (3 * max(S)^2 - fc.c);
-    disp(['Classical frequancy squared from arc length param: ' num2str(omegaS_sq) ' & ' num2str(sqrt(omegaS_sq))])
-    
+    omegaS_sq_S     = 4 * fc.b * (3 * max(S)^2 - max(S)^2);
+
+    disp('Classical frequancy squared from arc length param from 3 parameter fit: ')
+    disp([num2str(omegaS_sq) ' & ' num2str(sqrt(omegaS_sq))])
+    disp('Classical frequancy squared from arc length param: ')
+    disp([num2str(omegaS_sq_S) ' & ' num2str(sqrt(omegaS_sq_S)) ])
+    disp('Difference between the two freqs : ')
+    disp(num2str(abs(sqrt(omegaS_sq_S) - sqrt(omegaS_sq))))
+
+    % Using the fitted V(S) potential I do an ED in this effectively 1
+    % dimensional problem
     [Spectra] = Schrodinger_VS(VS, S, fc.a, fc.b, fc.c);
     
-    figure(2)
-    clf(figure(2))
-    hold on
-    E = diag(Spectra);
-    plot(E)
-    disp(E(3) - E(1))
+    %Getting the tunneling splitting from this image:
+    E = Spectra;
     EEE1(ind) = E(2) - E(1);
     EEE2(ind) = E(3) - E(1);
     EEE3(ind) = E(3) - E(2);
     EEE4(ind) = E(4) - E(1);
-    hold off
+
+    %In order to get the tangent vector first calc the derivative of the curve
+    velocity = f_trajectory_diff(N_division, trajectory, z_time);
+
+    %using the previous differentiated curve to form normed vectors
+    unit_velocity_e = f_velocity_unit_vector(velocity);
+
+    %creating a perpendicular vector to e named f
+    %Normalization and Nominator are here for error checking purposes
+    [f, delta_e, Normalization, Nominator] = f_f_vector(unit_velocity_e);
+
+    %Error check, how perpendicular the two vectors created above:
+    for i = 1:N_division
+        scalarproduct(i) = f(:,i)' * unit_velocity_e(:,i);
+    end
+
+    %determining the angle between consecutive e vectors
+    delta_phi = zeros(1,N_division);
+    for i = 1:N_division
+        if i == 1
+            delta_phi(i) = 2 * asin((norm(delta_e(:,i))/2));
+        else
+            delta_phi(i) = 2 * asin((norm(delta_e(:,i))/2));
+        end
+    end
+
+    %rotation matrix, that transforms e_i & f_i to e_i+1 and f_i+1
+    Rot_mtx = f_rotation_matrix(N_division, unit_velocity_e, f, delta_phi);
+
+    %Determining the basis vectors from the equilibrium positions and
+    %potentials
+    [Tau01, EigVal] = f_init_tau(trajectory, alpha, velocity, eta);
+
+    x0 = trajectory(1,1);
+    y0 = trajectory(2,1);
+    z0 = trajectory(3,1);
+
+    %using the rotation matrix above we can create the tau vector basis that
+    %goes along the trajectory
+    tauspace = f_tau_space(Rot_mtx, Tau01);
+    
+    %determining the curvature of the trajectory
+    C = f_curvature(unit_velocity_e, tauspace, z_time, velocity);
+    
+    %B matrix -- See notes what this is
+    B_mtx = f_B_matrix(trajectory, alpha, tauspace, eta);
+
+    %T matrix -- See notes on what this is
+    T_mtx = f_T_matrix(tauspace);
+
+    %omega squared part two: first I'll try to do the matrix with the curvatures
+    %this is already the squared omega matrix hence the '_sq'
+    omega_sq = f_omega_squared(T_mtx, B_mtx, velocity, C);     
+
+    omega_sq_old = omega_sq;
+
+    omega_sq = f_fitting(omega_sq, z_time);
+
+    %now only the heun method works, but later on I will be interested in the
+    %simpler euler method and their difference
+    [Xi_heun, temp_mtx] = f_diff_equation(z_time, omega_sq, r);
+
+    %constructing the full propagotor with the 1D term
+    [propagator, Trace, Trace2] = f_prefactor(Xi_heun, EigVal, z_time, z_time, alpha, r);
+
+
+    [splittt, action, ODPM1, ODPL, ODPI, ODPM2, ODPM3] = f_action(eta, alpha, trajectory, r, z_time, EigVal, propagator, S, VS, 1);
+    disp(['splitting: 1D * sqrt_term * exp(-action) = ', num2str(splittt)])
+    data(ind, 1) = alpha;       %positive apha values
+    data(ind, 2) = splittt;     %N-1 dimensional part
+    data(ind, 3) = action;      %actio calculated from trajectories
+    data(ind, 4) = ODPM1;       %One Dimensional Part 1D Milnikov (without integral)
+    data(ind, 5) = ODPL;        %Landau prefactor
+    data(ind, 6) = ODPI;        %Instanton
+    data(ind, 7) = ODPM2;       %Milnikov with integral and original omega
+    data(ind, 8) = ODPM3;       %Milnikov with integral and 'corrected' omega
+    disp('---------------------------------000-------------------------------------')
+end
+
+    delta                       = [];
+    delta(:, 1)                 = data(:, 1);
+    delta(:, 2)                 = data(:,2);
+    data( ~any(data,2), : )     = [];
+    delta( ~any(delta,2), :)    = [];
+
+save('WorkSpace')
+    
+
+%%
+figure(1)
+clf(figure(1))
+hold on
+plot(abs(data(:, 1)), data(:,2),'.-', 'DisplayName', 'N-1 Dimensional part')
+%plot(abs(data(:, 1)), nonzeros(EEE4), '.-')
+%set(gca, 'Yscale', 'log')
+xlim([5 12])
+legend
+grid on
+xlabel('|\alpha|')
+
+hold off
+%%
+figure(2)
+clf(figure(2))
+hold on
+% plot(abs(data(:,1)), data(:,4),'.-', 'DisplayName', 'W/O integral')
+% plot(abs(data(:,1)), data(:,7),'.-', 'DisplayName', 'original omega')
+% plot(abs(data(:,1)), data(:,8),'.-', 'DisplayName', 'V(S) Omega')
+plot(abs(data(:,1)), data(:,4)./data(:,7),'.-', 'DisplayName', 'R')
+%plot(abs(data(:,1)), data(:,4)./data(:,8),'.-', 'DisplayName', 'V(S) omega')
+%set(gca, 'Yscale', 'log')
+xlim([5 12])
+title('Ratio of the 1D parts')
+grid on
+xlabel('|\alpha|')
+
+hold off
+
+PascuD = load('Delta_E_DMRG_Norb_8_eta_20.00.mat');
+PascuD2 = load('E_Schrodinger_3e_eta_20.00_N_100_beta_0.300.dat');
+M_data = load('E_Schrodinger_3e_eta_20.00_beta_0.01_N_100.dat');
+% Putting a 1/sqrt(pi) factor in the splitting calculation pushed the
+% Instanton curves down to the ED pretty well
+
+%%
+figure(3)
+clf(figure(3))
+hold on
+title('ED from V(S) & Milnikov 1D part')
+plot(-M_data(:, 1), M_data(:, 3) - M_data(:, 2), '.-', 'DisplayName', 'ED')
+plot(abs(data(:,1)), data(:, 4) .* data(:, 2), 'o-', 'DisplayName', '1D Milnikov')
+%plot(abs(data(:,1)), data(:, 4) .* data(:, 2), '.-', 'DisplayName', '1D Milnikov w/o Int')
+plot(abs(data(:,1)), data(:, 7) .*data(:, 2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
+%plot(abs(data(:,1)), data(:, 8) .* data(:, 2), 'o-', 'DisplayName', '1D Milnikov w/ Int and omega from arc length param')
+%plot(abs(data(:, 1)), nonzeros(EEE1) .* nonzeros(EEE3), 'r', 'DisplayName', '\DeltaE_{1,2} x \DeltaE_{1,3} ')
+plot(abs(data(:, 1)), nonzeros(EEE1) .* data(:, 2), '.-', 'DisplayName', '\DeltaE_{1, 2} from V(S)')
+%plot(abs(data(:, 1)), nonzeros(EEE1), 'DisplayName', '\DeltaE_{1, 2}')
+%plot(abs(data(:,1)), data(:,5), '.-', 'LineWidth', 2, 'DisplayName', 'Landau prefactor w/o N-1 dim part')
+plot(abs(data(:,1)), data(:,6) .* data(:,2), 'x-', 'LineWidth', 1, 'DisplayName', 'Coleman pref.')
+%plot(abs(data(:,1)), data(:,7) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Milnikov')
+%plot(abs(PascuD.alpha_list), PascuD.delta_E_DMRG,'.-', 'DisplayName', 'Pascu DMRG')
+%plot(abs(PascuD2(:,1)), abs(PascuD2(:, 2) - PascuD2(:, 10)),'.-', 'DisplayName', 'Pascu Schrödinger')
+set(gca, 'Yscale', 'log')
+xlim([5 12])
+legend
+grid on
+xlabel('|\alpha|')
+ylabel('\Delta')
+ylim([10^-5 10])
+hold off
+
+%%
+figure(4)
+clf(figure(4))
+hold on
+plot(abs(data(:,1))-5, data(:,2),'.-', 'DisplayName', 'Instanton')
+%plot(dE(:, 1), dE(:, 2), '.-', 'DisplayName', 'Schrödinger & DMRG')
+plot(splitt(:, 1), splitt(:, 2), '.-', 'DisplayName', 'Instanton')
+set(gca, 'Yscale', 'log')
+xlim([0 10])
+legend
+grid on
+xlabel('|\alpha|')
+ylabel('\Delta')
+hold off
+%%
+%     figure(20)
+%     clf(figure(20))
+%     hold on
+%     plot(S/max(S), (VS - min(VS))/max((VS - min(VS))), '.-')
+%     legend
+%     hold off
+
+%     figure(11)
+%     %clf(figure(1))
+%     hold on
+% 
+% %     VS = VS - min(VS);
+% %     VS = VS./max(VS);
+%     plot(S/max(S), (VS - min(VS))/max((VS - min(VS))), '.-')
+%     xlabel('S - symm.')
+%     ylabel('V(S)')
+%     hold off
+    
+%     figure(2)
+%     clf(figure(2))
+%     hold on
+%     E = diag(Spectra);
+%     plot(E)
+%     disp(E(3) - E(1))
+%     EEE1(ind) = E(2) - E(1);
+%     EEE2(ind) = E(3) - E(1);
+%     EEE3(ind) = E(3) - E(2);
+%     EEE4(ind) = E(4) - E(1);
+%     hold off
     
     % figure(1)
     % clf(figure(1))
@@ -103,9 +299,6 @@ for ind = 1:5:71
     % zlabel('q_3')
     % hold off
 
-    %In rder to get the tangent vector first calc the derivative of the curve
-    velocity = f_trajectory_diff(N_division, trajectory, z_time);
-
     % figure(3)
     % clf(figure(3))
     % hold on
@@ -117,9 +310,6 @@ for ind = 1:5:71
     % ylabel('v_0(z) = \chi^\prime (y)')
     % xlabel('z')
     % hold off
-
-    %using the previous differentiated curve to form normed vectors
-    unit_velocity_e = f_velocity_unit_vector(velocity);
 
     % figure(4)
     % clf(figure(4))
@@ -141,9 +331,7 @@ for ind = 1:5:71
     % zlabel('v_{q3}')
     % hold off
 
-    %creating a perpendicular vector to e named f
-    %Normalization and Nominator are here for error checking purposes
-    [f, delta_e, Normalization, Nominator] = f_f_vector(unit_velocity_e);
+    
 
     % figure(6)
     % clf(figure(6))
@@ -158,10 +346,7 @@ for ind = 1:5:71
     % zlabel('v_{q3}')
     % hold off
 
-    %Error check, how perpendicular the two vectors created above:
-    for i = 1:N_division
-        scalarproduct(i) = f(:,i)' * unit_velocity_e(:,i);
-    end
+    
     % figure(7)
     % clf(figure(7))
     % hold on
@@ -172,15 +357,7 @@ for ind = 1:5:71
     % xlim([z_time(1) 0])
     % hold off
 
-    %determining the angle between consecutive e vectors
-    delta_phi = zeros(1,N_division);
-    for i = 1:N_division
-        if i == 1
-            delta_phi(i) = 2 * asin((norm(delta_e(:,i))/2));
-        else
-            delta_phi(i) = 2 * asin((norm(delta_e(:,i))/2));
-        end
-    end
+    
 
     % figure(8)
     % clf(figure(8))
@@ -191,18 +368,7 @@ for ind = 1:5:71
     % plot(z_time, rad2deg(delta_phi))
     % hold off
 
-    %rotation matrix, that transforms e_i & f_i to e_i+1 and f_i+1
-    Rot_mtx = f_rotation_matrix(N_division, unit_velocity_e, f, delta_phi);
-
-    %Determining the basis vectors from the equilibrium positions and
-    %potentials
-    [Tau01, EigVal] = f_init_tau(trajectory, alpha, velocity, eta);
-
-    x0 = trajectory(1,1);
-    y0 = trajectory(2,1);
-    z0 = trajectory(3,1);
-
-    % figure(9)
+        % figure(9)
     % clf(figure(9))
     % hold on
     % oszto   = 10;
@@ -219,9 +385,7 @@ for ind = 1:5:71
     % zlim([0 0.05])
     % hold off
 
-    %using the rotation matrix above we can create the tau vector basis that
-    %goes along the trajectory
-    tauspace = f_tau_space(Rot_mtx, Tau01);
+    
 
     % figure(10)
     % clf(figure(10))
@@ -239,8 +403,7 @@ for ind = 1:5:71
     % quiver3(trajectory(1,s:m:fin) - x0, trajectory(2,s:m:fin) - y0, trajectory(3,s:m:fin) - z0,tau3(1,s:m:fin), tau3(2,s:m:fin), tau3(3,s:m:fin),'k', 'LineWidth',1)
     % hold off
 
-    %determining the curvature of the trajectory
-    C = f_curvature(unit_velocity_e, tauspace, z_time, velocity);
+    
 
     % figure(11)
     % clf(figure(11))
@@ -258,8 +421,7 @@ for ind = 1:5:71
     % hold off
 
 
-    %B matrix
-    B_mtx = f_B_matrix(trajectory, alpha, tauspace, eta);
+    
 
     % figure(19)
     % clf(figure(19))
@@ -271,16 +433,9 @@ for ind = 1:5:71
     % plot(reshape(B_mtx(2,2,:), [1,200]),'b')
     % hold off
 
-    %T matrix
-    T_mtx = f_T_matrix(tauspace);
+    
 
-    %omega squared part two: first I'll try to do the matrix with the curvatures
-    %this is already the squared omega matrix hence the '_sq'
-    omega_sq = f_omega_squared(T_mtx, B_mtx, velocity, C);     
-
-
-
-    omega_sq_old = omega_sq;
+    
 
     % figure(12)
     % clf(figure(12))
@@ -299,7 +454,7 @@ for ind = 1:5:71
     % %xlim([-1 0])
     % hold off
 
-    omega_sq = f_fitting(omega_sq, z_time);
+    
 
     % figure(13)
     % clf(figure(13))
@@ -333,10 +488,7 @@ for ind = 1:5:71
     % %xlim([-1 0])
     % hold off
 
-    %now only the heun method works, but later on I will be interested in the
-    %simpler euler method and their difference
-
-    [Xi_heun, temp_mtx] = f_diff_equation(z_time, omega_sq, r);
+    
 
     % figure(15)
     % clf(figure(15))
@@ -389,8 +541,7 @@ for ind = 1:5:71
 
 
 
-    %constructing the full propagotor with the 1D term
-    [propagator, Trace, Trace2] = f_prefactor( Xi_heun, EigVal, z_time, z_time, alpha, r);
+    
 
     % figure(18)
     % clf(figure(18))
@@ -429,100 +580,3 @@ for ind = 1:5:71
     % end
     % plot(deter)
     % hold off
-    [splittt, action, ODPM1, ODPL, ODPI, ODPM2, ODPM3] = f_action(eta, alpha, trajectory, r, z_time, EigVal, propagator, S, VS, 0);
-    disp(['splitting: 1D * sqrt_term * exp(-action) = ', num2str(splittt)])
-    data(ind, 1) = alpha;       %positive apha values
-    data(ind, 2) = splittt;     %N-1 dimensional part
-    data(ind, 3) = action;      %actio calculated from trajectories
-    data(ind, 4) = ODPM1;       %One Dimensional Part 1D Milnikov (without integral)
-    data(ind, 5) = ODPL;        %Landau prefactor
-    data(ind, 6) = ODPI;        %Instanton
-    data(ind, 7) = ODPM2;       %Milnikov with integral and original omega
-    data(ind, 8) = ODPM3;       %Milnikov with integral and 'corrected' omega
-    disp('---------------------------------000-------------------------------------')
-end
-
-delta                       = [];
-delta(:, 1)                 = data(:, 1);
-delta(:, 2)                 = data(:,2);
-data( ~any(data,2), : )     = [];
-delta( ~any(delta,2), :)    = [];
-
-%%
-figure(1)
-clf(figure(1))
-hold on
-plot(abs(data(:, 1)), data(:,2),'.-', 'DisplayName', 'N-1 Dimensional part')
-plot(abs(data(:, 1)), nonzeros(EEE4), '.-')
-%set(gca, 'Yscale', 'log')
-xlim([5 12])
-legend
-grid on
-xlabel('|\alpha|')
-
-hold off
-%%
-figure(2)
-clf(figure(2))
-hold on
-% plot(abs(data(:,1)), data(:,4),'.-', 'DisplayName', 'W/O integral')
-% plot(abs(data(:,1)), data(:,7),'.-', 'DisplayName', 'original omega')
-% plot(abs(data(:,1)), data(:,8),'.-', 'DisplayName', 'V(S) Omega')
-plot(abs(data(:,1)), data(:,4)./data(:,7),'.-', 'DisplayName', 'original omega')
-%plot(abs(data(:,1)), data(:,4)./data(:,8),'.-', 'DisplayName', 'V(S) omega')
-%set(gca, 'Yscale', 'log')
-xlim([5 12])
-legend
-grid on
-xlabel('|\alpha|')
-
-hold off
-
-PascuD = load('Delta_E_DMRG_Norb_8_eta_20.00.mat');
-PascuD2 = load('E_Schrodinger_3e_eta_20.00_N_100_beta_0.300.dat');
-M_data = load('E_Schrodinger_3e_eta_20.00_beta_0.01_N_100.dat');
-% Putting a 1/sqrt(pi) factor in the splitting calculation pushed the
-% Instanton curves down to the ED pretty well
-
-
-%%
-figure(3)
-clf(figure(3))
-hold on
-title('ED from V(S) & Milnikov 1D part')
-plot(-M_data(:, 1), M_data(:, 3) - M_data(:, 2), '.-', 'DisplayName', 'ED')
-plot(abs(data(:,1)), data(:,4) .* data(:, 2), '.-', 'DisplayName', '1D Milnikov')
-%plot(abs(data(:,1)), data(:,4) .* data(:,2), '.-', 'DisplayName', '1D Milnikov w/o Int')
-plot(abs(data(:,1)), data(:,7) .* data(:, 2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
-%plot(abs(data(:,1)), data(:,8) .* data(:,2), 'o-', 'DisplayName', '1D Milnikov w/ Int and omega from arc length param')
-%plot(abs(data(:, 1)), nonzeros(EEE1) .* nonzeros(EEE3), 'r', 'DisplayName', '\DeltaE_{1,2} x \DeltaE_{1,3} ')
-plot(abs(data(:, 1)), nonzeros(EEE1) .* data(:, 2), '.-', 'DisplayName', '\DeltaE_{1, 2}')
-%plot(abs(data(:, 1)), nonzeros(EEE1) .* data(:, 2), 'DisplayName', '\DeltaE_{1, 2}')
-%plot(abs(data(:,1)), data(:,5) .*data(:, 2), '.-', 'LineWidth', 2, 'DisplayName', 'Landau prefactor w/o N-1 dim part')
-%plot(abs(data(:,1)), data(:,6) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Instanton prefactor with N-1 dim part')
-%plot(abs(data(:,1)), data(:,7) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Milnikov')
-%plot(abs(PascuD.alpha_list), PascuD.delta_E_DMRG,'.-', 'DisplayName', 'Pascu DMRG')
-%plot(abs(PascuD2(:,1)), abs(PascuD2(:, 2) - PascuD2(:, 10)),'.-', 'DisplayName', 'Pascu Schrödinger')
-set(gca, 'Yscale', 'log')
-xlim([5 12])
-legend
-grid on
-xlabel('|\alpha|')
-ylabel('\Delta')
-ylim([10^-5 10])
-hold off
-
-%%
-figure(4)
-clf(figure(4))
-hold on
-plot(abs(data(:,1))-5, data(:,2),'.-', 'DisplayName', 'Instanton')
-%plot(dE(:, 1), dE(:, 2), '.-', 'DisplayName', 'Schrödinger & DMRG')
-plot(splitt(:, 1), splitt(:, 2), '.-', 'DisplayName', 'Instanton')
-set(gca, 'Yscale', 'log')
-xlim([0 10])
-legend
-grid on
-xlabel('|\alpha|')
-ylabel('\Delta')
-hold off

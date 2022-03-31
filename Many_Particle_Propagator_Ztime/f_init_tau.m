@@ -22,7 +22,7 @@ yzU = -eta*(2/((z0 - y0)^3));
 %constructing the matrix from the derivatives
 mtx =  [(xxV + xxU) xyU xzU;...
         xyU (yyV + yyU) yzU;...
-        xzU yzU (zzV + zzU)]
+        xzU yzU (zzV + zzU)];
 
 %eigenvectors and values of 'mtx'                     
 [ModVec1, EigVal] = eig(mtx);

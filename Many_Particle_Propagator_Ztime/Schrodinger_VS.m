@@ -15,7 +15,7 @@ function [Spectra] = Schrodinger_VS(VS, S, a, b, c)
 % -------------------------------------------------------------------------
 
 % Calculation paramteres:
-N           = 3000;             % Spatial Resolution
+N           = 2000;             % Spatial Resolution
 Hamiltonian = sparse(N, N);     % Hamiltonian
 m           = 1;                % Particles mass
 hbar        = 1;                % Hbar constant
@@ -30,11 +30,11 @@ dx  = x(2) - x(1);
 Kinetic         = sparse(N, N);
 
 Kin_factor = hbar^2 / (2 * dx^2 * m);
-Kinetic(1, 1)   = 2 * Kin_factor;
+Kinetic(1, 1)   = 0; %2 * Kin_factor;
 for i = 2:N
     Kinetic(i - 1, i)   = -1 * Kin_factor;
     Kinetic(i, i - 1)   = -1 * Kin_factor;
-    Kinetic(i, i)       = 2 * Kin_factor;
+    %Kinetic(i, i)       = 0; %2 * Kin_factor;
 end
 
 Potential = sparse(N, N);
@@ -50,5 +50,6 @@ Hamiltonian = full(Kinetic + Potential);
 [Psi, Spectra] = eig(Hamiltonian);
 
 plot(diag(Potential))
+Spectra = diag(Spectra);
 end
 
