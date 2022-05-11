@@ -2,13 +2,11 @@ clc
 clear all
 
 %Script for calculating the classical equilibriumm positions in a quartic potential 
-particles   = 3;        % # of particles in the system 
+particles   = 7;        % # of particles in the system 
 
-alpha_start = -4.40;                                           % The initial value of alpha
-alpha_fin   = -4.55;                                          % The Final value of alpha
+alpha_start = -9;                                           % The initial value of alpha
+alpha_fin   = -21;                                          % The Final value of alpha
 positions   = abs(alpha_fin - alpha_start) * 10 + 1;        % # of alpha values ( right now it's 0.1 increments)
-positions   = round(abs(alpha_fin - alpha_start) * 20 + 1);
-positions   = 10;
 alpha       = linspace(alpha_start, alpha_fin, positions);  % All alpha values
 eq_pos      = zeros(particles, positions);                 
 
@@ -66,10 +64,10 @@ xlabel('$$\tilde{a}$$', 'Interpreter', 'LaTeX', 'FontSize', 20)
 plot(alpha, eq_pos(1,:), '.', 'DisplayName', '1st p.')
 plot(alpha, eq_pos(2,:), '.', 'DisplayName', '2st p.')
 plot(alpha, eq_pos(3,:), '.', 'DisplayName', '3st p.')
-% plot(alpha, eq_pos(4,:), '.', 'DisplayName', '4st p.')
-% plot(alpha, eq_pos(5,:), '.', 'DisplayName', '5st p.')
-% plot(alpha, eq_pos(6,:), '.', 'DisplayName', '6st p.')
-% plot(alpha, eq_pos(7,:), '.', 'DisplayName', '7st p.')
+plot(alpha, eq_pos(4,:), '.', 'DisplayName', '4st p.')
+plot(alpha, eq_pos(5,:), '.', 'DisplayName', '5st p.')
+plot(alpha, eq_pos(6,:), '.', 'DisplayName', '6st p.')
+plot(alpha, eq_pos(7,:), '.', 'DisplayName', '7st p.')
 plot(alpha, -sqrt(-alpha), 'k-', 'DisplayName', '-sqrt(\alpha)')
 plot(alpha, sqrt(-alpha), 'k-', 'DisplayName', 'sqrt(\alpha)')
 legend

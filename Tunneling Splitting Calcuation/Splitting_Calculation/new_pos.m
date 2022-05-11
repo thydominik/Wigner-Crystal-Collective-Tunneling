@@ -1,0 +1,24 @@
+function [pos] = new_pos(xpos,T,a,el_stre,sigma)
+%Choosing a random electron
+    j = randi(length(xpos));
+    x_chosen = xpos(j);
+    %dE = denergy(xpos,a,c,el_stre);   
+    x_new = normrnd(x_chosen,sigma);
+
+    %nem engedem meg hogy a részecskék átlépjenek egymáson
+    if j>1 && j<length(xpos)
+        while xpos(j+1) <= x_new || xpos(j-1) >= x_new
+            x_new=normrnd(x_chosen,sigma);
+        end
+    elseif j == length(xpos) && length(xpos)~=1
+        while xpos(j-1) >= x_new
+            x_new=normrnd(x_chosen,sigma);
+        end
+    elseif length(xpos) ~= 1
+        while xpos(2) <= x_new 
+            x_new=normrnd(x_chosen,sigma);
+        end
+    end
+    xpos(j) = x_new;
+    pos = xpos;
+end
