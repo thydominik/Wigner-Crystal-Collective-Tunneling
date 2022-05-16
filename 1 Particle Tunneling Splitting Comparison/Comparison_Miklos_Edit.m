@@ -111,17 +111,18 @@ end
 figure(1)
 clf(figure(1))
 hold on
-plot(alpha, splits(:, 1),'.-', 'DisplayName', 'Landau')
+%plot(alpha, splits(:, 1),'.-', 'DisplayName', 'Landau')
 plot(alpha, splits(:, 2),'.-', 'LineWidth', 2, 'DisplayName', 'Schrödinger equation')
 %plot(alpha, splits(:, 3),'.-', 'DisplayName', 'Colemans approximation')
-plot(alpha, splits(:, 4),'.-', 'DisplayName', 'Instanton approximation')
+%plot(alpha, splits(:, 4),'.-', 'DisplayName', 'Instanton approximation')
 plot(alpha, splits(:, 5),'.-', 'DisplayName', 'Milnikovs approximation')
 legend
-xlabel('alpha')
+xlabel('| \alpha |')
 ylabel('\Delta')
+yline([10^-1 10^-2])
 %set(gca, 'Xscale', 'log')
 set(gca, 'Yscale', 'log')
-hold off
+grid on
 
 % figure(2)
 % clf(figure(2))

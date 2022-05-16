@@ -114,11 +114,12 @@ plot(alpha, splits(:, 2),'-', 'LineWidth', 2, 'DisplayName', 'Schrödinger equat
 %plot(alpha, splits(:, 4),'O-', 'DisplayName', 'Instanton approximation')
 %plot(alpha, splits(:, 5),'.-', 'DisplayName', 'Milnikovs approximation')
 legend
-xlabel('Energy')
+xlabel('| \alpha |')
 ylabel('\Delta')
+
 hold off
 
-
+%%
 figure(6)
 clf(figure(6))
 hold on

@@ -83,4 +83,10 @@ plot(x,P)
 plot(x,P2 + EE(2))
 hold off
    
-    
+%%
+figure(5)
+clf(figure(5))
+hold on
+plot()
+
+hold off

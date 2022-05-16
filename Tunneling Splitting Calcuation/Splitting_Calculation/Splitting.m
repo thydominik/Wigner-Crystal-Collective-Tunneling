@@ -5,11 +5,11 @@ clear all
 %energy splitting. (3 particle only)
 
 %Constants for the calculations ------------------------------------------
-PartNum     = 3;                %Number of Particles in the calculation
+PartNum     = 1;                %Number of Particles in the calculation
 AlphaValNum = 30;               %Number of Alpha values 
 
-AlphaMin    = -6;               %Minimum value of abs(alpha)
-AlphaMax    = -15;              %Maximum value of abs(alpha)
+AlphaMin    = -1;               %Minimum value of abs(alpha)
+AlphaMax    = -6;              %Maximum value of abs(alpha)
 
 Alpha       = linspace(AlphaMin, AlphaMax, AlphaValNum);
 

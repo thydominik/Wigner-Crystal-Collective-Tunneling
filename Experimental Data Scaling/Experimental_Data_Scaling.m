@@ -1,9 +1,10 @@
 clc
 clear all
+
 % THIS WILL CHANGE: Adding the folders with the data to path
 addpath("D:\BME PhD\Wigner Crystal Collective Tunneling\Data\Shahal Experimental Data")
-addpath("D:\BME PhD\Temp\#Collective tunneling\Data\Pascu Experimental Data");
-
+%addpath("D:\BME PhD\Temp\#Collective tunneling\Data\Pascu Experimental Data");
+addpath("D:\BME PhD\Wigner Crystal Collective Tunneling\Data");
 % Loading experimental data (from P1.tsv ect.)
 P1 = load('P1.tsv');
 P3 = load('P3.tsv');
@@ -31,13 +32,13 @@ a_c = [alpha_c_1 alpha_c_3 alpha_c_5 alpha_c_7];
 % eff_beta = b
 %the a scaling values:
 alpha_eff_a(1) = 1;
-alpha_eff_a(2) = 1.401;
+alpha_eff_a(2) = 1.37; %1.401;
 alpha_eff_a(3) = 1.552;
 %alpha_eff_a(4) = ???
 
 %effective beta values:
 beta_eff_b(1) = 1;
-beta_eff_b(2) = 1.454;
+beta_eff_b(2) = 1.5; %1.454;
 beta_eff_b(3) = 1.5;
 %beta_eff_b(4) = ???
 
@@ -50,12 +51,12 @@ figure(1)
 clf(figure(1))
 hold on
 plot(ED1(:, 1), ED1(:, 2), '-s', 'DisplayName', '1P ED')
-E_d0 = 1/0.76;
+E_d0 = 1.5;
 p = 1.3;
-plot((abs(ED3(:, 1)) - a_c(2)), abs(ED3(:, 2) - ED3(:, 3)), 'd-', 'DisplayName', '3P ED \alpha = \alpha - \alpha_c')
-plot((abs(ED3(:, 1)) - a_c(2)) * r13, abs(ED3(:, 2) - ED3(:, 3)), 'o-', 'DisplayName', '3P ED \alpha = (\alpha - \alpha_c) * a * b^{-(2/3)}')
+%plot((abs(ED3(:, 1)) - a_c(2)), abs(ED3(:, 2) - ED3(:, 3)), 'd-', 'DisplayName', '3P ED \alpha = \alpha - \alpha_c')
+%plot((abs(ED3(:, 1)) - a_c(2)) * r13, abs(ED3(:, 2) - ED3(:, 3)), 'o-', 'DisplayName', '3P ED \alpha = (\alpha - \alpha_c) * a * b^{-(2/3)}')
 plot((abs(ED3(:, 1)) - a_c(2)) * r13, abs(ED3(:, 2) - ED3(:, 3)) / E_d0, '.-', 'DisplayName', '3P ED \alpha = (\alpha - \alpha_c) * a * b^{-(2/3)} & \Delta = \Delta / E_{d0}')
-plot((abs(ED3(:, 1)) - a_c(2)), abs(ED3(:, 2) - ED3(:, 3)) / E_d0, '*-', 'DisplayName', '3P ED \alpha = (\alpha - \alpha_c) & \Delta = \Delta / E_{d0}')
+%plot((abs(ED3(:, 1)) - a_c(2)), abs(ED3(:, 2) - ED3(:, 3)) / E_d0, '*-', 'DisplayName', '3P ED \alpha = (\alpha - \alpha_c) & \Delta = \Delta / E_{d0}')
 %plot((abs(ED3(:, 1)) - 5.21) * p, abs(ED3(:, 2) - ED3(:, 3)), '*-')
 text(7, 0.4, 'Best fit from these: green stars')
 title('Scalings of 1 and 3 particle EDs together')
@@ -63,7 +64,7 @@ xlabel('alpha')
 ylabel('\Delta')
 legend
 grid on
-% xlim([0 5])
+xlim([0 5])
 % set(gca, 'Yscale', 'log')
 hold off
 
