@@ -22,7 +22,7 @@ function action = f_actioncalc(pos, r, a, rs, N, Nt, z, dz, shift)
     
     %integrating the potential and the interaction terms:
     for i = 2:Nt-1
-        if Q(i) + V(1, i) + V(2, i) + V(3, i) + V(4, i) + V(5, i) - shift == 0
+        if Q(i) + V(1, i) + V(2, i) + V(3, i) - shift == 0% + V(4, i) + V(5, i) - shift == 0
             action = action;
         elseif i > 1 || i < Nt
             pre     = ((1 - z(i)^2)/r);

@@ -94,12 +94,17 @@ for ind = 1:5:71
     hold off
     dE1(ind) = Spectra1(2) - Spectra1(1);
     dE2(ind) = Spectra2(2) - Spectra2(1);
+    a(ind) = alpha;
 end
 %%
+M_data1 = load('E_Schrodinger_3e_eta_20.00_beta_0.01_N_100.dat');
+data = load('WorkSpace.mat');
+data = data.data;
 figure(5)
 clf(figure(5))
 hold on
-plot(nonzeros(dE1), '.-')
-plot(nonzeros(dE2), 'o-')
+plot(-nonzeros(a), nonzeros(dE1) .* data(:, 2), '.-')
+plot(-nonzeros(a), nonzeros(dE2) .* data(:, 2), 'o-')
+plot(-M_data1(:, 1), M_data1(:, 3) - M_data1(:, 2), '.-', 'DisplayName', 'Beta = 0.01')
 set(gca, 'Yscale', 'log')
 hold off

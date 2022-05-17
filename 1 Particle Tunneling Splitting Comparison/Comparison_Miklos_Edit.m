@@ -111,6 +111,9 @@ end
 figure(1)
 clf(figure(1))
 hold on
+x = linspace(0,4,100);
+func = 1.08 - 0.37 * x;
+plot(x, func)
 %plot(alpha, splits(:, 1),'.-', 'DisplayName', 'Landau')
 plot(alpha, splits(:, 2),'.-', 'LineWidth', 2, 'DisplayName', 'Schrödinger equation')
 %plot(alpha, splits(:, 3),'.-', 'DisplayName', 'Colemans approximation')
@@ -121,7 +124,9 @@ xlabel('| \alpha |')
 ylabel('\Delta')
 yline([10^-1 10^-2])
 %set(gca, 'Xscale', 'log')
-set(gca, 'Yscale', 'log')
+%set(gca, 'Yscale', 'log')
+xlim([0 3])
+ylim([0 1.1])
 grid on
 
 % figure(2)
@@ -146,3 +151,20 @@ grid on
 % legend
 % 
 % hold off
+
+%%
+d = load('E_Schrodinger_3e_eta_20.00_beta_0.01_N_100.dat');
+figure(1)
+clf(figure(1))
+hold on
+D = abs(d(:, 2) - d(:, 3));
+a = - d(:, 1);
+plot(a, D)
+
+hold off
+
+
+
+
+
+

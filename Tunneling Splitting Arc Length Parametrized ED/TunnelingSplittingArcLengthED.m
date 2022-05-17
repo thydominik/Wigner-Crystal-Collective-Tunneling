@@ -180,13 +180,13 @@ figure(6)
     %title(['\Delta_2 and \Delta_4 at \alpha = ' num2str(alpha)])
     xlabel('|\alpha|', 'FontSize', 20)
     ylabel('\Delta', 'FontSize', 20)
-    plot(abs(nonzeros(aaa)) - 4.45, nonzeros(dE2) .* data(:, 2), '.-', 'DisplayName', 'quadratic fit for eff. V(S) - ED')
-    plot(abs(nonzeros(aaa)) - 4.45, nonzeros(dE4) .* data(:, 2), '.-', 'DisplayName', 'quartic fir for eff. V(S) - ED')
+    plot(abs(nonzeros(aaa)), nonzeros(dE2) .* data(:, 2), '.-', 'DisplayName', 'quadratic fit for eff. V(S) - ED')
+    plot(abs(nonzeros(aaa)), nonzeros(dE4) .* data(:, 2), '.-', 'DisplayName', 'quartic fir for eff. V(S) - ED')
     %plot(abs(data(:,1)), data(:, 7) .* data(:, 2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
-    plot(-M_data(:, 1) - 4.45, M_data(:, 3) - M_data(:, 2), '*-', 'DisplayName', '3 particle ED')
+    plot(-M_data(:, 1) , M_data(:, 3) - M_data(:, 2), '*-', 'DisplayName', '3 particle ED')
     legend
     grid on
-    %set(gca, 'Yscale', 'log')
+    set(gca, 'Yscale', 'log')
     hold off
 
     %%

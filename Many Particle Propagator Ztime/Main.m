@@ -2,24 +2,26 @@ clc
 clear all
 
 disp('Instanton Prefactor and Tunneling splitting calculation')
+addpath('D:\BME PhD\Wigner Crystal Collective Tunneling\Data\Trajectories\eta 20\5 particles');
 
 % this data variable will hold all results from this calculation
 data = zeros(15,2);
 
 %This loops goes through the previously calculated trajectories:
-for ind = 1:5:71
+for ind = 11:5:121
     % Pulling in the trajectory
     name = ind;
     nameSTR = ['P_' num2str(name)];
+    nameSTR = ['Traj_5p_' num2str(name)];
 
     %loading a trajectory that is previoulsy determined by a MC simulatiton
     trajectory_load              = load(nameSTR);%load('200_point_ztime_r_1_3_a_8_eta_20');
 
     %this must be the same eq_pos file that used in the MC, but therefore it's
     %not important bc the trajectory's endpoints will be the eq_positions!
-    equilibrium_positions       = load('EqPos_eta20_alpha_5_20'); %4th column is the alpha value!
-    trajectory                  = trajectory_load.position;
-
+    equilibrium_positions       = load('Eq_Pos_eta_20_particles_5.mat'); %4th column is the alpha value!
+    % trajectory                  = trajectory_load.position;
+    trajectory                  = trajectory_load.Position;
     %this will select the desired endpoints and alpha value
     state                       = ind;  
     eq_pos                      = equilibrium_positions.eqpos(:, state);
@@ -37,7 +39,7 @@ for ind = 1:5:71
     % z imaginery time paramter
     eps             = 10^-15;   %this have to be changed manually if it changes in the trajectory code!!!
     r               = R(state); %match this with the M.C. simulation
-    alpha           = eq_pos(4); disp(['Alpha= ', num2str(alpha)])  %from eq_pos file!!!!
+    alpha           = eq_pos(particle_n + 1); disp(['Alpha= ', num2str(alpha)])  %from eq_pos file!!!!
     eta             = 20;       %don't try to change this. Fitted value(experimetnts) = 18.813
     limits          = 50;       %1.35;  % +/- T
 
@@ -48,7 +50,7 @@ for ind = 1:5:71
 
     % Using the trajectories, creating the arc length param and the arc
     % length parametrized V(S) potential.
-    [chiS, S, VS]   = f_arclength(trajectory, alpha, eta, z_time);
+    [chiS, S, VS]   = f_arclength(trajectory, alpha, eta, z_time, particle_n);
 
     % Obviously initially S \in [0, 2*S_0], but I want S(\tau = 0 ) = 0 so
     % S = [-S_0, S_0]
@@ -206,17 +208,17 @@ M_data = load('E_Schrodinger_3e_eta_20.00_beta_0.01_N_100.dat');
 figure(3)
 clf(figure(3))
 hold on
-title('ED from V(S) & Milnikov 1D part')
+title('ED with 3 particles & Milnikov')
 plot(-M_data(:, 1), M_data(:, 3) - M_data(:, 2), '.-', 'DisplayName', 'ED')
 plot(abs(data(:,1)), data(:, 4) .* data(:, 2), 'o-', 'DisplayName', '1D Milnikov')
 %plot(abs(data(:,1)), data(:, 4) .* data(:, 2), '.-', 'DisplayName', '1D Milnikov w/o Int')
 plot(abs(data(:,1)), data(:, 7) .*data(:, 2), 'o-', 'DisplayName', '1D Milnikov w/ Int')
 %plot(abs(data(:,1)), data(:, 8) .* data(:, 2), 'o-', 'DisplayName', '1D Milnikov w/ Int and omega from arc length param')
 %plot(abs(data(:, 1)), nonzeros(EEE1) .* nonzeros(EEE3), 'r', 'DisplayName', '\DeltaE_{1,2} x \DeltaE_{1,3} ')
-plot(abs(data(:, 1)), nonzeros(EEE1) .* data(:, 2), '.-', 'DisplayName', '\DeltaE_{1, 2} from V(S)')
+%plot(abs(data(:, 1)), nonzeros(EEE1) .* data(:, 2), '.-', 'DisplayName', '\DeltaE_{1, 2} from V(S)')
 %plot(abs(data(:, 1)), nonzeros(EEE1), 'DisplayName', '\DeltaE_{1, 2}')
 %plot(abs(data(:,1)), data(:,5), '.-', 'LineWidth', 2, 'DisplayName', 'Landau prefactor w/o N-1 dim part')
-plot(abs(data(:,1)), data(:,6) .* data(:,2), 'x-', 'LineWidth', 1, 'DisplayName', 'Coleman pref.')
+%plot(abs(data(:,1)), data(:,6) .* data(:,2), 'x-', 'LineWidth', 1, 'DisplayName', 'Coleman pref.')
 %plot(abs(data(:,1)), data(:,7) .* data(:,2), '.-', 'LineWidth', 2, 'DisplayName', 'Milnikov')
 %plot(abs(PascuD.alpha_list), PascuD.delta_E_DMRG,'.-', 'DisplayName', 'Pascu DMRG')
 %plot(abs(PascuD2(:,1)), abs(PascuD2(:, 2) - PascuD2(:, 10)),'.-', 'DisplayName', 'Pascu Schrödinger')
