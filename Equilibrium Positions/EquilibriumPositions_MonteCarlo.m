@@ -2,10 +2,10 @@ clc
 clear all
 
 %Script for calculating the classical equilibriumm positions in a quartic potential 
-particles   = 1;        % # of particles in the system 
+particles   = 7;        % # of particles in the system 
 
-alpha_start = 0;                                           % The initial value of alpha
-alpha_fin   = -5;                                          % The Final value of alpha
+alpha_start = -8;                                           % The initial value of alpha
+alpha_fin   = -15;                                          % The Final value of alpha
 positions   = abs(alpha_fin - alpha_start) * 10 + 1;        % # of alpha values ( right now it's 0.1 increments)
 alpha       = linspace(alpha_start, alpha_fin, positions);  % All alpha values
 eq_pos      = zeros(particles, positions);                 
