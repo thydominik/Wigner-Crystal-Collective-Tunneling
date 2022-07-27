@@ -5,7 +5,7 @@ clear all
 
 %constants:
 
-NoP         = 200;                  % # of points in a curve
+NoP         = 50;                  % # of points in a curve
 AlphaJumps  = 0.5;                 % Increments in the alpha
 AlphaValues = 1:AlphaJumps:10;      % Potential barrier parameter
 
@@ -35,11 +35,11 @@ for stateInd = 1:length(AlphaValues)
 
     % Simulated temperature & Sigma (variance)
     T_init  = 10;
-    T       = T_init * exp(-(linspace(0,40,iter))/2);
+    T       = T_init * exp(-(linspace(0,60,iter))/2);
     sigma   = 0.1 * sqrt(T);
 
     [Position, Shift] = InitPos1Particle(alpha, NoP);
-    CurrentAction = ActionCalc(Position, r, NoP, z, dz, alpha);
+    CurrentAction = ActionCalc(Position, r, NoP, z, dz, alpha)
 
     PosAnalytic = sqrt(alpha)*tanh(atanh(z)*r*sqrt(alpha)/sqrt(2));
     ActionAnalytic = ActionCalc(PosAnalytic, r, NoP, z, dz, alpha);
@@ -69,6 +69,7 @@ for stateInd = 1:length(AlphaValues)
             ylim([(-sqrt(alpha)-0.1) (sqrt(alpha)+0.1)])
             scatter(z,Position)
             plot(z, sqrt(alpha)*tanh(atanh(z)*r*sqrt(alpha)/sqrt(2)))
+            plot(linspace(-1, 0, 25), linspace(-sqrt(alpha), 0, 25))
             xlabel(['i z(r); ', 'r = ',num2str(r),'; \alpha = ',num2str(alpha),'; E_p = ',num2str(E_p)],'FontSize',19)
             ylabel('\chi(z)','FontSize',19)
             hold off
@@ -78,7 +79,7 @@ for stateInd = 1:length(AlphaValues)
     end
 
     toc
-    NameString = ['Traj_1p_' num2str(state)];
+    NameString = ['Traj_1p_' num2str(stateInd)];
 
     IterData.NameString                 = NameString;
     IterData.NumberOfParticles          = 1;
@@ -90,7 +91,7 @@ for stateInd = 1:length(AlphaValues)
     IterData.EquilibriumPositions       = [EqPosIn EqPosOut];
     IterData.RValue                     = r;
     IterData.IterationNumber            = iter;
-    IterData.EnergySeries               = Energy(1:10:end);
+    %IterData.EnergySeries               = E(1:10:end);
     IterData.EnergyShift                = Shift;
     IterData.Trajectories               = Position;
     IterData.Action                     = E(end);
