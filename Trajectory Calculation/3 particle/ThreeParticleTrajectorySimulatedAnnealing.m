@@ -14,11 +14,11 @@ MS  = 1;        % Method switch: MS = {1, 2, 3} = {Standard MC, Restricted MC, N
 PN  = 3;        % Number of Particles
 
 %% Constants of the calculation:
-NoP             = 100;              % Number of points in each trajectory
+NoP             = 200;              % Number of points in each trajectory
 AlphaJumps      = 0.5;             % Increments in Alpha
-AlphaValues     = 5:AlphaJumps:13;  % 'Potential barrier' values
-iter            = 2 * 10^6;             % Number of MC iterations
-R0 = 3;
+AlphaValues     = 5.5:AlphaJumps:13;  % 'Potential barrier' values
+iter            = 5 * 10^6;             % Number of MC iterations
+R0 = 4;
 for k = 1:length(AlphaValues)
     R(k) = R0 / sqrt(AlphaValues(k)); %the time rescaling parameter set to some arbitrary number O(1)
 end
@@ -35,7 +35,7 @@ for a = 1:length(AlphaValues)
     Potential = @(x) 0.25 * (x(1)^2 - AlphaValues(a))^2 + 0.25 * (x(2)^2 - AlphaValues(a))^2 + 0.25 * (x(3)^2 - AlphaValues(a))^2 + Eta/abs(x(1) - x(2)) + Eta/abs(x(1) - x(3)) + Eta/abs(x(2) - x(3));
 
     options = optimset('TolFun', 1e-14, 'TolX', 1e-14, 'MaxFunEvals', 10^9, 'MaxIter', 10^9);
-    x_start = [-sqrt(a)-1 -1 sqrt(a)];
+    x_start = [-sqrt(a)-2 -1 sqrt(a)];
     [x0, fval0] = fminsearch(Potential, x_start, options);
     EqPos(:, a) = x0;
     FuncVal(a)  = fval0;
@@ -69,7 +69,7 @@ disp(['dz:                                      ' num2str(dz)])
 disp(['Dimless Coulomb interaction parameter:   ' num2str(Eta)])
 %% Simulated Annealing:
 
-for stateInd = 10:length(AlphaValues)
+for stateInd = 1:length(AlphaValues)
     % Simulated temperature & Sigma (variance)
     T_init  = 10;
     T       = T_init * exp(-(linspace(0, 60, iter))/2);
@@ -142,7 +142,7 @@ for stateInd = 10:length(AlphaValues)
 
         Energy(i) = CurrentAction;
 
-        if rem(i,10000) == 0 && FS == 1
+        if rem(i, 20000) == 0 && FS == 1
             figure(2)
             clf(figure(2))
             hold on
@@ -211,9 +211,9 @@ for stateInd = 10:length(AlphaValues)
     for particleInd = 1:3
         if particleInd == 1 || particleInd == 3
             a = gofmtx(particleInd, 1);
-            b = abs(Position(particleInd, end) - Position(particleInd, 1))/2;
-            c = gofmtx(particleInd, 2);
-            d = gofmtx(particleInd, 3);
+            b = gofmtx(particleInd, 2);
+            c = gofmtx(particleInd, 3);
+            d = gofmtx(particleInd, 4);
             FittedPosition(particleInd, :) = a + b.*tanh(atanh(z).*c + d);
         else
             FittedPosition(particleInd, :) = abs(Position(2, 1)) .* tanh(atanh(z).*gofmtx(particleInd, 1));

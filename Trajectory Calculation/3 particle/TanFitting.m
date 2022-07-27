@@ -12,10 +12,9 @@ function [GOFMTX] = TanFitting(Pos, NoP, PN, z)
             disp('illesztés adatai: ')
             disp(num2str(coeffvals))
         else
-            starting_points = [0 0 0];
-            b = abs(y(end) - y(1))/2;
+            starting_points = [1 2 3 4];
 
-            fitfun = fittype( @(a, c, d, x) a + b.*tanh(atanh(x).* c + d));
+            fitfun = fittype( @(a, b, c, d, x) a + b.*tanh(atanh(x).* c + d));
             [fitted_curve, gof] = fit(x, y, fitfun, 'StartPoint', starting_points);
             coeffvals = coeffvalues(fitted_curve);
             disp('illesztés adatai: ')
