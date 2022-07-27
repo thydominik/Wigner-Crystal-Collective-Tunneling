@@ -23,7 +23,7 @@ l_d = 161.07;           % Length scale of the potential
 z   = linspace(-1, 1, NoP);
 dz  = abs(z(1) - z(2));
 
-for stateInd = 1:length(AlphaValues)
+for stateInd = 17:length(AlphaValues)
     tic
     
     r       = R(stateInd);
@@ -35,7 +35,7 @@ for stateInd = 1:length(AlphaValues)
 
     % Simulated temperature & Sigma (variance)
     T_init  = 10;
-    T       = T_init * exp(-(linspace(0,40,iter))/2);
+    T       = T_init * exp(-(linspace(0,60,iter))/2);
     sigma   = 0.1 * sqrt(T);
 
     [Position, Shift] = InitPos1Particle(alpha, NoP);
@@ -78,7 +78,8 @@ for stateInd = 1:length(AlphaValues)
     end
 
     toc
-    NameString = ['Traj_1p_' num2str(state)];
+    
+    NameString = ['Traj_1p_' num2str(stateInd)];
 
     IterData.NameString                 = NameString;
     IterData.NumberOfParticles          = 1;
@@ -90,11 +91,12 @@ for stateInd = 1:length(AlphaValues)
     IterData.EquilibriumPositions       = [EqPosIn EqPosOut];
     IterData.RValue                     = r;
     IterData.IterationNumber            = iter;
-    IterData.EnergySeries               = Energy(1:10:end);
+    IterData.EnergySeries               = E(1:10:end);
     IterData.EnergyShift                = Shift;
     IterData.Trajectories               = Position;
     IterData.Action                     = E(end);
     IterData.AnalyticalAction           = ActionAnalytic;
 
     save(NameString, "IterData");
+    
 end
