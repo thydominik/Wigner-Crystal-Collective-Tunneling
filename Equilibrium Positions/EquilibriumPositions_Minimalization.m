@@ -89,6 +89,22 @@ plot(alpha, -sqrt(alpha), 'k')
 yline(0)
 hold off
 
+for k = 1:length(alpha)
+    for i = 1:3
+        for j = (i + 1):3
+            distances(k, i, j) = Eq_pos_3(k, i) - Eq_pos_3(k, j);
+        end
+    end
+end
+
+figure(3)
+clf(figure(3))
+hold on
+plot(alpha, distances(:, 1, 2))
+plot(alpha, distances(:, 1, 3))
+plot(alpha, distances(:, 2, 3))
+hold off
+
 %% 5 Particles
 
 clc
@@ -128,6 +144,32 @@ plot(alpha, sqrt(alpha), 'k')
 plot(alpha, -sqrt(alpha), 'k')
 yline(0)
 hold off
+
+for k = 1:length(alpha)
+    for i = 1:5
+        for j = (i + 1):5
+            distances(k, i, j) = Eq_pos_5(k, i) - Eq_pos_5(k, j);
+        end
+    end
+end
+
+figure(3)
+clf(figure(3))
+hold on
+plot(alpha, distances(:, 1, 2))
+%plot(alpha, distances(:, 1, 3))
+%plot(alpha, distances(:, 1, 4))
+%plot(alpha, distances(:, 1, 5))
+plot(alpha, distances(:, 2, 3))
+%plot(alpha, distances(:, 2, 4))
+%plot(alpha, distances(:, 2, 5))
+plot(alpha, distances(:, 3, 4))
+%plot(alpha, distances(:, 3, 5))
+plot(alpha, distances(:, 4, 5))
+
+hold off
+
+
 
 %% 7 particles
 
