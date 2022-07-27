@@ -1,0 +1,26 @@
+function [FittedTrajectory] = TanFitting(Pos, NoP, PN, z)
+    for particleInd = 1:PN
+        x = Pos(particleInd, :);
+        y = z;
+        
+        if particleInd == floor(NP/2) + 1
+            starting_points = [0 0 0 0];
+            b = abs(x(1));
+            d = 0;
+            fitfun = fittype( @(c, x) b.*tanh(atanh(x).* c));
+            [fitted_curve, gof] = fit(x, y, fitfun, 'StartPoint', starting_points);
+            coeffvals = coeffvalues(fitted_curve);
+            disp('illesztés adatai: ')
+            disp(num2str(coeffvals))
+        else
+            starting_points = [0 0 0 0];
+            fitfun = fittype( @(a, b, c, d, x) a + b.*tanh(atanh(x).* c + d));
+            [fitted_curve, gof] = fit(x, y, fitfun, 'StartPoint', starting_points);
+            coeffvals = coeffvalues(fitted_curve);
+            disp('illesztés adatai: ')
+            disp(num2str(coeffvals))
+        end
+
+    end
+end
+

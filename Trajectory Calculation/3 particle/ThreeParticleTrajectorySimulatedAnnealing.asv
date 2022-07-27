@@ -17,7 +17,7 @@ PN  = 3;        % Number of Particles
 NoP             = 100;              % Number of points in each trajectory
 AlphaJumps      = 0.5;             % Increments in Alpha
 AlphaValues     = 5:AlphaJumps:13;  % 'Potential barrier' values
-iter            = 2 * 10^6;             % Number of MC iterations
+iter            = 10^5;             % Number of MC iterations
 R0 = 3;
 for k = 1:length(AlphaValues)
     R(k) = R0 / sqrt(AlphaValues(k)); %the time rescaling parameter set to some arbitrary number O(1)
@@ -233,10 +233,6 @@ for stateInd = 10:length(AlphaValues)
         grid on
         hold off
     end
-    disp('fitted action: ')
-    num2str(ActionCalc(FittedPosition, r, alpha, Eta, PN, NoP, z, dz, Shift))
-    disp('MC action: ')
-    num2str(Energy(end))
 
     time(stateInd) = toc;
     if MS == 1
