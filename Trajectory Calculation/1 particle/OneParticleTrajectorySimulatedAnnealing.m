@@ -23,7 +23,7 @@ l_d = 161.07;           % Length scale of the potential
 z   = linspace(-1, 1, NoP);
 dz  = abs(z(1) - z(2));
 
-for stateInd = 1:length(AlphaValues)
+for stateInd = 17:length(AlphaValues)
     tic
     
     r       = R(stateInd);
@@ -79,6 +79,10 @@ for stateInd = 1:length(AlphaValues)
     end
 
     toc
+<<<<<<< HEAD
+=======
+    
+>>>>>>> be8acb1575e0bac7d18cf2ad54e7c6eabcdc260b
     NameString = ['Traj_1p_' num2str(stateInd)];
 
     IterData.NameString                 = NameString;
@@ -91,11 +95,16 @@ for stateInd = 1:length(AlphaValues)
     IterData.EquilibriumPositions       = [EqPosIn EqPosOut];
     IterData.RValue                     = r;
     IterData.IterationNumber            = iter;
+<<<<<<< HEAD
     %IterData.EnergySeries               = E(1:10:end);
+=======
+    IterData.EnergySeries               = E(1:10:end);
+>>>>>>> be8acb1575e0bac7d18cf2ad54e7c6eabcdc260b
     IterData.EnergyShift                = Shift;
     IterData.Trajectories               = Position;
     IterData.Action                     = E(end);
     IterData.AnalyticalAction           = ActionAnalytic;
 
     save(NameString, "IterData");
+    
 end
