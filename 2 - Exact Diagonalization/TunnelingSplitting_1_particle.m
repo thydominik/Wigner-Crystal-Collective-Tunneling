@@ -6,7 +6,7 @@ disp('1 particle tunneling splitting calculation.')
 
 %% 1 particle Equilibrium positions
 
-Nx = 200;
+Nx = 800;
 alpha = linspace(0, 10, Nx);
 
 Eq_Pos = [];
@@ -81,7 +81,7 @@ for alphaInd = 1 : length(alpha)
     ylim([0 1])
     plot(S, 10*V/max(V))
     plot(S, Psi(:, 1)/max(Psi(:, 1)))
-    plot(S, Psi(:, 2)/max(Psi(:, 1)))
+    plot(S, Psi(:, 2)/max(Psi(:, 2)))
     yline(0)
     
     Fr = getframe(gcf);

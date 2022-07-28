@@ -5,11 +5,11 @@ disp('2 particle tunneling splitting calculation.')
 
 % 2 particle Equilibrium positions
 
-Nx = 100;
+Nx = 200;
 alpha = linspace(0, 15, Nx);
 eta = 20;
 Eq_Pos = [];
-Beta = 0.01;
+Beta = 10^-5;
 
 for i = 1:Nx
     a           = alpha(i);

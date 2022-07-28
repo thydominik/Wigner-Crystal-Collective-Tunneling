@@ -70,7 +70,7 @@ for i = 1:N
     x_start = [-sqrt(a)-1 -sqrt(a)+1 sqrt(a)];
     [x0, fval0] = fminsearch(Potential, x_start, options);
     Eq_pos_3(i, :) = x0;
-    FuncVal = fval0;
+    FuncVal(i) = fval0;
 end
 
 disp('Done with 3 particle')
@@ -101,17 +101,24 @@ figure(3)
 clf(figure(3))
 hold on
 plot(alpha, distances(:, 1, 2))
-plot(alpha, distances(:, 1, 3))
 plot(alpha, distances(:, 2, 3))
 hold off
 
+DataStruct.NumberOfParticles = 3;
+DataStruct.NumberOfAlphaPoints = N;
+DataStruct.Alpha = alpha;
+DataStruct.EquilibriumPositions = Eq_pos_3;
+DataStruct.FunctionValue = FuncVal;
+
+
+save('ThreeParticleEquilibriumPositions', 'DataStruct');
 %% 5 Particles
 
 clc
 clear all
 
-N = 500;
-alpha = linspace(7.5, 15, N);
+N = 1000;
+alpha = linspace(7.5, 20, N);
 eta = 20;
 
 Eq_pos_5 = [];
@@ -120,11 +127,11 @@ for i = 1:N
     a = alpha(i);
     Potential = @(x) 0.25 * ((x(1)^2 - a)^2 + (x(2)^2 - a)^2 + (x(3)^2 - a)^2 + (x(4)^2 - a)^2 + (x(5)^2 - a)^2) + eta * (1/abs(x(1) - x(2)) + 1/abs(x(1) - x(3)) + 1/abs(x(1) - x(4)) + 1/abs(x(1) - x(5)) + 1/abs(x(2) - x(3)) + 1/abs(x(2) - x(4)) + 1/abs(x(2) - x(5)) + 1/abs(x(3) - x(4)) + 1/abs(x(3) - x(5)) + 1/abs(x(4) - x(5)));
     % options = optimset('Display','iter','PlotFcns',@optimplotfval, 'TolFun', 1e-8, 'TolX', 1e-8);
-    options = optimset('TolFun', 1e-12, 'TolX', 1e-12, 'MaxFunEvals', 10^6, 'MaxIter', 10^6);
+    options = optimset('TolFun', 1e-25, 'TolX', 1e-25, 'MaxFunEvals', 10^14, 'MaxIter', 10^14);
     x_start = [-sqrt(a)-1 -sqrt(a)+0.5 -sqrt(a)+1 sqrt(a)-1 sqrt(a)+1];
     [x0, fval0] = fminsearch(Potential, x_start, options);
     Eq_pos_5(i, :) = sort(x0);
-    FuncVal = fval0;
+    FuncVal(i) = fval0;
 end
 
 disp('Done with 5 particle')
@@ -169,7 +176,14 @@ plot(alpha, distances(:, 4, 5))
 
 hold off
 
+DataStruct.NumberOfParticles = 5;
+DataStruct.NumberOfAlphaPoints = N;
+DataStruct.Alpha = alpha;
+DataStruct.EquilibriumPositions = Eq_pos_5;
+DataStruct.FunctionValue = FuncVal;
 
+
+save('FiveParticleEquilibriumPositions', 'DataStruct');
 
 %% 7 particles
 

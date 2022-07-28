@@ -5,11 +5,12 @@ disp('3 particle tunneling splitting calculation.')
 tic
 %% 3 particle Equilibrium positions
 
-Nx      = 40;
-alpha   = linspace(2, 10, Nx);
+Nx      = 50;
+Nx^3
+alpha   = linspace(2, 15, Nx);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 0.001;
+Beta    = 10^-5;
 
 Eq_pos_3 = [];
 
@@ -138,7 +139,11 @@ hold on
 plot(alpha, dE)
 hold off
 
+data(:, 1) = alpha;
+data(:, 2) = dE;
 
+name = ['EDSplitting_2_particles_restricted_Nx_' num2str(Nx) '_beta_' num2str(Beta)];
+save(name, 'data');
 
 
 

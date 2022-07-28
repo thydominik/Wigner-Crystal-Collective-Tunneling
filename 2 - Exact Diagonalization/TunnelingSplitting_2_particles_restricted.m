@@ -3,12 +3,12 @@ clear all
 
 disp('2 particle tunneling splitting calculation.')
 N = 100;
-Nx1     = 70;
-Nx2     = 70;
+Nx1     = 200;
+Nx2     = 200;
 alpha   = linspace(0, 15, N);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 0.01;
+Beta    = 10^-5;
 
 XMin1    = -1;
 XMax1    = 5;
@@ -106,3 +106,10 @@ hold on
 plot(alpha, dE)
 hold off
 
+data.alpha = alpha;
+data.EnergySplitting = dE
+data.Particle1space = x1;
+data.Particle2space = x2;
+
+name = ['EDSplitting_2_particles_restricted_Nx1_' num2str(Nx1) '_Nx2_' num2str(Nx2) '_beta_' num2str(Beta)];
+save(name, 'data');

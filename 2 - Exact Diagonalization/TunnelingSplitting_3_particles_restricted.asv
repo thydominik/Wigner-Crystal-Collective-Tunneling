@@ -60,14 +60,14 @@ Nx2 = 60;
 Nx3 = 20;
 Nx1 * Nx2 * Nx3
 
-XMin1    = -6;
+XMin1    = -5;
 XMax1    = 0;
 
 XMin2    = -5;
 XMax2    = 5;
 
 XMin3    = 0;
-XMax3    = 6;
+XMax3    = 5;
 
 x1 = linspace(XMin1, XMax1, Nx1);
 x2 = linspace(XMin2, XMax2, Nx2);

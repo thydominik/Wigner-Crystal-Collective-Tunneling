@@ -5,11 +5,11 @@ disp('5 particle tunneling splitting calculation.')
 tic
 %% 5 particle Equilibrium positions
 
-Na      = 27;
+Na      = 20;
 alpha   = linspace(7, 20, Na);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 0.0001;
+Beta    = 10^-5;
 
 Eq_Pos = [];
 
@@ -59,10 +59,13 @@ hold off
 for q = 1:length(alpha)
     alpha(q)
     Nx1 = 15;
-    Nx2 = 25;
-    Nx3 = 60;
-    Nx4 = 25;
+    Nx2 = 20;
+    Nx3 = 40;
+    Nx4 = 20;
     Nx5 = 15;
+
+    Nx1 * Nx2 * Nx3 * Nx4 * Nx5
+
     a = 1.5;
     XMin1   = Eq_Pos(q, 1) - a;
     XMax1   = -Eq_Pos(q, 5) + a;
@@ -233,16 +236,16 @@ for q = 1:length(alpha)
 end
 %%
 toc
-d = load('matlab.mat');
+
 %%
 pa = [7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5];
 ps = [1.77 1.57 1.33 1.068 0.76 0.48 0.23 0.0756 0.0275 0.01548 0.015 0.01803];
 figure(3)
-clf(figure(3))
+%clf(figure(3))
 hold on
 ylabel('Split')
 xlabel('\alpha')
-plot(d.alpha, d.dE, 'o')
+plot(alpha, dE, 'o')
 plot(pa, ps, '.-')
 set(gca, 'Yscale', 'log')
 hold off
@@ -261,5 +264,9 @@ hold off
 
 
 
+data(:, 1) = alpha;
+data(:, 2) = dE;
 
+name = ['EDSplitting_5_particles_restricted_Nx1_' num2str(Nx1) '_Nx2_' num2str(Nx2) '_Nx3_' num2str(Nx3) '_Nx4_' num2str(Nx4) '_Nx5_' num2str(Nx5) '_beta_' num2str(Beta)];
+save(name, 'data');
 
