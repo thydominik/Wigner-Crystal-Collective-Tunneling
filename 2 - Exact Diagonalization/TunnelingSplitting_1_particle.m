@@ -93,8 +93,7 @@ for alphaInd = 1 : length(alpha)
     Split(alphaInd, 2) = a;
 
 end
-%%
-imwrite(Im, Map, 'OneParticle.gif', 'DelayTime', 0, 'LoopCount', inf)
+
 
 %%
 figure(5)
