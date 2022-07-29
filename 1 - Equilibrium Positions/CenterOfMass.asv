@@ -1,0 +1,22 @@
+clc
+clear all
+
+addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\1 - Equilibrium Positions\Data')
+
+P1 = load('OneParticleEquilibriumPositions.mat');
+P3 = load('ThreeParticleEquilibriumPositions.mat');
+P5 = load('FiveParticleEquilibriumPositions.mat');
+P7 = load('SevenParticleEquilibriumPositions.mat');
+
+%% 1 particle
+P1 = P1.DataStruct
+COM(1, :) = P1.Alpha;
+for i = 1:length(P1.Alpha)
+    COM(2, )
+end
+%% 3 particle
+
+%% 5 particle
+
+%% 7 particle
+
