@@ -6,12 +6,13 @@ disp('1 particle tunneling splitting calculation.')
 
 %% 1 particle Equilibrium positions
 
-Nx = 800;
-alpha = linspace(0, 10, Nx);
+Na = 800;
+Nx = 5000;
+alpha = 0:0.3:7.2;
 
 Eq_Pos = [];
 
-for i = 1:Nx
+for i = 1:length(alpha)
     a = alpha(i);
     Potential = @(x) 0.25 * (x^2 - a)^2;
     % options = optimset('Display','iter','PlotFcns',@optimplotfval, 'TolFun', 1e-8, 'TolX', 1e-8);
@@ -100,6 +101,7 @@ figure(5)
 clf(figure(5))
 hold on
 plot(Split(2:end, 2), Split(2:end, 1))
+plot(-DMRG(:, 1), DMRG(:, 2))
 xline([0 0.0725 0.6])
 set(gca, 'Yscale', 'log')
 hold off
