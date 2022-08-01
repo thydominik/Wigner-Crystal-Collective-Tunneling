@@ -57,7 +57,7 @@ clc
 clear all
 
 N = 1000;
-alpha = linspace(4, 10, N);
+alpha = linspace(4, 14, N);
 eta = 20;
 
 Eq_pos_3 = [];
@@ -81,12 +81,13 @@ hold on
 title('Equilibrium positions for 3 particle')
 xlabel('\alpha')
 ylabel('\chi')
-plot(alpha, Eq_pos_3(:, 1), '.-')
-plot(alpha, Eq_pos_3(:, 2), '.-')
-plot(alpha, Eq_pos_3(:, 3), '.-')
-plot(alpha, sqrt(alpha), 'k')
-plot(alpha, -sqrt(alpha), 'k')
-yline(0)
+plot(alpha, Eq_pos_3(:, 1), '.-', 'DisplayName', '\chi_1')
+plot(alpha, Eq_pos_3(:, 2), '.-', 'DisplayName', '\chi_2')
+plot(alpha, Eq_pos_3(:, 3), '.-', 'DisplayName', '\chi_3')
+plot(alpha, sqrt(alpha), 'k', 'DisplayName', 'sqrt(\alpha)')
+plot(alpha, -sqrt(alpha), 'k', 'DisplayName', '-sqrt(\alpha)')
+grid
+legend
 hold off
 
 for k = 1:length(alpha)
@@ -118,7 +119,7 @@ clc
 clear all
 
 N = 1000;
-alpha = linspace(7.5, 20, N);
+alpha = linspace(7.8, 7.82, N);
 eta = 20;
 
 Eq_pos_5 = [];
@@ -142,14 +143,15 @@ hold on
 title('Equilibrium positions for 5 particle')
 xlabel('\alpha')
 ylabel('\chi')
-plot(alpha, Eq_pos_5(:, 1), '.-')
-plot(alpha, Eq_pos_5(:, 2), '.-')
-plot(alpha, Eq_pos_5(:, 3), '.-')
-plot(alpha, Eq_pos_5(:, 4), '.-')
-plot(alpha, Eq_pos_5(:, 5), '.-')
-plot(alpha, sqrt(alpha), 'k')
-plot(alpha, -sqrt(alpha), 'k')
-yline(0)
+plot(alpha, Eq_pos_5(:, 1), '.-', 'DisplayName', '\chi_1')
+plot(alpha, Eq_pos_5(:, 2), '.-', 'DisplayName', '\chi_2')
+plot(alpha, Eq_pos_5(:, 3), '.-', 'DisplayName', '\chi_3')
+plot(alpha, Eq_pos_5(:, 4), '.-', 'DisplayName', '\chi_4')
+plot(alpha, Eq_pos_5(:, 5), '.-', 'DisplayName', '\chi_5')
+plot(alpha, sqrt(alpha), 'k', 'DisplayName', 'sqrt(\alpha)')
+plot(alpha, -sqrt(alpha), 'k', 'DisplayName', '-sqrt(\alpha)')
+grid
+legend
 hold off
 
 for k = 1:length(alpha)

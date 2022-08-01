@@ -28,8 +28,12 @@ end
 figure(2)
 clf(figure(2))
 hold on
-plot(COM3(1, :), COM3(2, :))
 
+plot(COM3(1, :), COM3(2, :), '.-', 'DisplayName', 'Centr of Mass 3P')
+legend
+grid
+ylabel('Center of Mass')
+xlabel('\alpha')
 hold off
 %% 5 particle
 
@@ -41,8 +45,11 @@ end
 figure(3)
 clf(figure(3))
 hold on
-plot(COM5(1, :), COM5(2, :))
-
+plot(COM5(1, :), COM5(2, :), '.-', 'DisplayName', 'Centr of Mass 5P')
+legend
+grid
+ylabel('Center of Mass')
+xlabel('\alpha')
 hold off
 
 %% 7 particle
@@ -55,7 +62,11 @@ end
 figure(4)
 clf(figure(4))
 hold on
-plot(-COM7(1, :), COM7(2, :))
+plot(-COM7(1, :), COM7(2, :), '.-', 'DisplayName', 'Centr of Mass 7P')
+legend
+grid
+ylabel('Center of Mass')
+xlabel('\alpha')
 
 hold off
 
