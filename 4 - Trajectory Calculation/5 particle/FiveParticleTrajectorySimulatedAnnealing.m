@@ -14,7 +14,7 @@ MS  = 1;        % Method switch: MS = {1, 2, 3} = {Standard MC, Restricted MC, N
 PN  = 5;        % Number of Particles
 
 %% Constants of the calculation:
-NoP             = 10;              % Number of points in each trajectory
+NoP             = 200;              % Number of points in each trajectory
 AlphaJumps      = 0.5;             % Increments in Alpha
 AlphaValues     = 8.5:AlphaJumps:15;  % 'Potential barrier' values
 iter            = 7 * 10^7;             % Number of MC iterations
