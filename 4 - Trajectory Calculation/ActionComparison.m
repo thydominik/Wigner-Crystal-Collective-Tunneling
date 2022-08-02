@@ -72,3 +72,50 @@ xlabel('\alpha')
 ylabel('S diff.')
 legend
 hold off
+
+%%
+clc
+clear all
+
+for i = 1:16
+    nameSTR = ['Traj_1p_SIMPLEMC' num2str(i)];
+    Data1 = load(nameSTR);
+    Data1 = Data1.IterData;
+
+    AlphaSimple(i) = Data1.AlphaValues(i);
+    ActionSimple(i) = Data1.Action;
+end
+
+for i = 1:16
+    nameSTR = ['Traj_3p_RESTMC' num2str(i)];
+    Data2 = load(nameSTR);
+    Data2 = Data2.IterData;
+
+    AlphaRest(i) = Data2.AlphaValues(i);
+    ActionRest(i) = Data2.Action;
+end
+
+for i = 1:16
+    nameSTR = ['Traj_3p_STDMC' num2str(i)];
+    Data3 = load(nameSTR);
+    Data3 = Data3.IterData;
+
+    AlphaStd(i) = Data3.AlphaValues(i);
+    ActionStd(i) = Data3.Action;
+end
+
+%%
+
+figure(1)
+clf(figure(1))
+hold on
+plot(AlphaStd, ActionStd - ActionRest, 'o')
+plot(AlphaRest, ActionStd - ActionSimple, 'd')
+hold off
+%%
+figure(2)
+clf(figure(2))
+hold on
+plot(Data1.time, Data1.Trajectories(2, :) - Data2.Trajectories(2, :))
+plot(Data2.time, Data1.Trajectories(2, :)  - Data3.Trajectories(2, :))
+hold off

@@ -6,9 +6,9 @@ disp('1 particle tunneling splitting calculation.')
 
 %% 1 particle Equilibrium positions
 
-Na = 800;
-Nx = 5000;
-alpha = 0:0.3:7.2;
+Na = 19;
+Nx = 800;
+alpha = 1:.5:10
 
 Eq_Pos = [];
 
@@ -107,6 +107,6 @@ set(gca, 'Yscale', 'log')
 hold off
 data(:, 1) = alpha;
 data(:, 2) = Split(:, 1);
-
+%%
 name = ['EDSplitting_1_particle_Nx_' num2str(Nx)];
-save(name, 'data');
+save(name, 'Split');
