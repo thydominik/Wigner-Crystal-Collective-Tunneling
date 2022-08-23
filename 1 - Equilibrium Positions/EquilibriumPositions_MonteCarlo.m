@@ -17,13 +17,13 @@ disp(['Positions = ' num2str(positions)])
 for i = 1:positions             % Loop: different potentials// ifferent alphas
     disp(num2str(i))
     
-    iter        = 2 * 10^6;           % # of iterations for one particular alpha value
+    iter        = 5 * 10^7;           % # of iterations for one particular alpha value
     eta         = 20; %18.813;      % Interaction strength
     E_0         = 0.478;            % Energy unit -- Irrelevant for now
     Ld          = 161.07;           % Length Unit
     well_shift  = zeros(1, iter);
     T_init      = 60;                                      % Initial Temperature
-    T           = T_init * exp(-(linspace(0,80,iter))/2);   % T(iteration)
+    T           = T_init * exp(-(linspace(0,76,iter))/2);   % T(iteration)
     sigma       = 0.1 * sqrt(T);                            % New position divergence metric
     
     position    = initpos(particles);
@@ -44,6 +44,19 @@ for i = 1:positions             % Loop: different potentials// ifferent alphas
             E0=E;
         else
             discarded(i)=i;
+        end
+
+        if rem(j, 20000) == 0
+            figure(2)
+            clf(figure(2))
+            hold on
+            x = linspace(-6, 6, 1000);
+            Pot = 0.25 * (x.^2 + alpha(i)).^2;
+            plot(x, Pot);
+            scatter(position, 0.25 * (position.^2 + alpha(i)).^2)
+            ylim([-1 Pot(end/2)+1])
+            hold off
+            disp("iter= " + num2str(j) + "   "+ "E_0= " + num2str(E0, 20))
         end
      
     end

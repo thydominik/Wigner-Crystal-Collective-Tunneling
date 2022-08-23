@@ -23,6 +23,13 @@ function [prop, Trace1, Trace2, Integ1, Integ2, Integ3] = Prefactor(Xi, Omega, E
         end
     end
     
+    figure(14)
+    clf(figure(14))
+    hold on
+    plot(z, Trace1)
+
+    hold off
+
     %Calculate trace way 2:
     for i = 1:Nt/2
         if i == 1
@@ -36,7 +43,7 @@ function [prop, Trace1, Trace2, Integ1, Integ2, Integ3] = Prefactor(Xi, Omega, E
     % integration:
     %integration (midpoint)
    Integ1 = 0;
-   for i = 2:Nt/2
+   for i = 25:Nt/2
        dz       = z(i) - z(i-1);
        Integ1   = Integ1 + (Trace1(i) + Trace1(i - 1)) * dz/2 * R/(1 - z(i)^2);
    end
@@ -51,15 +58,16 @@ function [prop, Trace1, Trace2, Integ1, Integ2, Integ3] = Prefactor(Xi, Omega, E
    
    Integ3 = 0;
    Trace3 = Trace1;
-   Trace3(10:100) = (Trace1(10:100) + Trace2(10:100))/2;
-   for i = 2:Nt/2
-       dz = z(i+1) - z(i);
-       Integ3 = Integ3 + (Trace3(i) + Trace3(i - 1)) * dz/2 * R/(1 - z(i)^2);
-   end
+%    Trace3(10:100) = (Trace1(10:100) + Trace2(10:100))/2;
+%    for i = 2:Nt/2
+%        dz = z(i+1) - z(i);
+%        Integ3 = Integ3 + (Trace3(i) + Trace3(i - 1)) * dz/2 * R/(1 - z(i)^2);
+%    end
    Integ3 = Integ3 + (-z(i)) * Trace3(i);
    disp(['Integral 1: ', num2str(Integ1)])
    disp(['Integral 2: ', num2str(Integ2)])
-   disp(['Integral 3: ', num2str(Integ3)])
+   %disp(['Integral 3: ', num2str(Integ3)])
+   Integ3 = 0;
    prop = FractionPrefactor * exp(Integ1); %előbb Integ3 volt beírva
    disp(['prefactor: sqrt term x exp= ', num2str(prop)])
 end

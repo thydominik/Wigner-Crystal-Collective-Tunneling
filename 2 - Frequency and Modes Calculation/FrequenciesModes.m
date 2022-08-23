@@ -5,7 +5,7 @@ format long
 %% Structural Initialization:
 FS  = 1;        % Figure switch
 FE  = 1;        % ErrorFinding Figure switch
-PN  = 7;        % Particle Number
+PN  = 3;        % Particle Number
 
 NoA = 4001;
 Eta = 20;
@@ -79,10 +79,10 @@ for alphaInd = 1:length(AlphaValues)
     Frequencies(alphaInd, :)    = diag(EigVal);
     EigModes(alphaInd, :)    = ModVec(:, 1);
 end
-
+%%
 if FS == 1
-    figure(2)
-    clf(figure(2))
+    figure(19)
+    clf(figure(19))
     hold on
     for n = 1:PN
         CurveName = [num2str(n) ' \omega'];
@@ -91,14 +91,17 @@ if FS == 1
     minimum = min(min(Frequencies));
     [x, y] = find(Frequencies == minimum);
     xline(AlphaValues(x), 'DisplayName', ['\alpha_c \sim ' num2str(AlphaValues(x))])
-    grid on
-    legend
-    xlabel('\alpha', 'FontSize', 22)
-    ylabel('\omega_i', 'FontSize', 22)
+    %grid on
+    %legend
+    xlabel('\alpha', 'FontSize', 40)
+    ylabel('\omega_i', 'FontSize', 40)
+    set(gca,'fontsize', 30)
+    xlabel('\alpha', 'FontSize', 40)
+    ylabel('\omega_i', 'FontSize', 40)
     hold off
 
 end
-
+%%
 if FS == 1
     figure(3)
     clf(figure(3))

@@ -3,8 +3,8 @@ clear all
 format long
 
 %% Structural Initialization:
-FGS  = 1;        % Figure switch
-FE  = 1;        % ErrorFinding Figure switch
+FGS  = 0;        % Figure switch
+FE  = 0;        % ErrorFinding Figure switch
 MS  = 1;        % Method switch: MS = {1, 2, 3} = {Standard MC, Restricted MC, No derivatives}
     % For Option two how many spwees do you want?
     if MS == 2
@@ -16,9 +16,9 @@ PN  = 5;        % Number of Particles
 %% Constants of the calculation:
 NoP             = 200;              % Number of points in each trajectory
 AlphaJumps      = 0.5;              % Increments in Alpha
-AlphaValues     = 8.5:AlphaJumps:15;  % 'Potential barrier' values
-iter            = 7 * 10^7;             % Number of MC iterations
-R0 = 4;
+AlphaValues     = 11:AlphaJumps:18;  % 'Potential barrier' values
+iter            = 10^3;             % Number of MC iterations
+R0 = 1.5 * 11;
 for k = 1:length(AlphaValues)
     R(k) = R0 / sqrt(AlphaValues(k)); %the time rescaling parameter set to some arbitrary number O(1)
 end
@@ -230,30 +230,32 @@ for stateInd = 1:length(AlphaValues)
     save(NameString, 'Position')
 
     IterData.NameString                 = NameString;
-    IterData.NumberOfParticles          = NoP;
-    IterData.AlphaIncrements            = alpha_jumps;
+    IterData.NumberOfParticles          = PN;
+    IterData.AlphaIncrements            = AlphaJumps;
     IterData.AlphaValues                = AlphaValues;
+    IterData.AlphaValue                 = alpha;
     IterData.CoulombStrength            = Eta;
-    IterData.NumberOfPoinsInTrajectory  = Nt;
+    IterData.NumberOfPoinsInTrajectory  = NoP;
     IterData.time                       = z;
     IterData.dt                         = dz;
     IterData.EquilibriumPositions       = EqPos;
-    IterData.RValues                    = R;
-    IterData.Excludedregion             = Exclude;
+    IterData.RValues                    = r;
+    %IterData.Excludedregion             = Exclude;
     IterData.IterationNumber            = iter;
     %IterData.TemperatureValues          = T;
     %IterData.Sigma                      = sigma;
-    IterData.EnergySeries               = Energy(1:10:end);
-    IterData.EnergyShift                = Shift;
-    IterData.OneParticleIteration       = iter2;
+    %IterData.EnergySeries               = Energy(1:10:end);
+    %IterData.EnergyShift                = Shift;
+    %IterData.OneParticleIteration       = iter2;
     %IterData.OneParticleTemperature     = T1;
     %IterData.AcceptancefactorForTemp    = 0.2;
     %IterData.OneParticleSigma           = sigma2;
     %IterData.DiscardedSteps             = discarded;
-    IterData.oneParticelEnergies        = E1(1:10:end);
-    IterData.ElapsedTime                = time(end);
+    %IterData.oneParticelEnergies        = E1(1:10:end);
+    %IterData.ElapsedTime                = time(end);
     IterData.Trajectories               = Position;
-    IterData.Action                     = E1(end);
+    IterData.Action                     = Energy(end);
+    IterData.MinAction                  = min(Energy);
 
     save(['TrajectoryData_5p_' num2str(stateInd)], "IterData");
 end
