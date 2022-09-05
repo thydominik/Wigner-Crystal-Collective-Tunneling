@@ -192,24 +192,25 @@ save('FiveParticleEquilibriumPositions', 'DataStruct');
 clc
 clear all
 
-N = 500;
-alpha = linspace(10, 20, N);
+N = 50;
+alpha = linspace(4, 28, N);
 eta = 20;
 
 Eq_pos_5 = [];
 
 for i = 1:N
     a = alpha(i);
-    Potential = @(x) 0.25 * ((x(1)^2 - a)^2 + (x(2)^2 - a)^2 + (x(3)^2 - a)^2 + (x(4)^2 - a)^2 + (x(5)^2 - a)^2 + (x(6)^2 - a)^2 + (0^2 - a)^2) + eta * (1/abs(x(1) - x(2)) + 1/abs(x(1) - x(3)) + 1/abs(x(1) - x(4)) + 1/abs(x(1) - x(5)) + 1/abs(x(1) - x(6)) + 1/abs(x(1) - 0) + 1/abs(x(2) - x(3)) + 1/abs(x(2) - x(4)) + 1/abs(x(2) - x(5)) + 1/abs(x(2) - x(6)) + 1/abs(x(2) - 0) + 1/abs(x(3) - x(4)) + 1/abs(x(3) - x(5)) + 1/abs(x(3) - x(6)) + 1/abs(x(3) - 0) + 1/abs(x(4) - x(5)) + 1/abs(x(4) - x(6)) + 1/abs(x(4) - 0) + 1/abs(x(5) - x(6)) + 1/abs(x(5) - 0) + 1/abs(x(6) - 0));
+    Potential = @(x) 0.25 * ((x(1)^2 - a)^2 + (x(2)^2 - a)^2 + (x(3)^2 - a)^2 + (x(4)^2 - a)^2 + (x(5)^2 - a)^2 + (x(6)^2 - a)^2 + (x(7)^2 - a)^2) + eta * (1/abs(x(1) - x(2)) + 1/abs(x(1) - x(3)) + 1/abs(x(1) - x(4)) + 1/abs(x(1) - x(5)) + 1/abs(x(1) - x(6)) + 1/abs(x(1) - x(7)) + 1/abs(x(2) - x(3)) + 1/abs(x(2) - x(4)) + 1/abs(x(2) - x(5)) + 1/abs(x(2) - x(6)) + 1/abs(x(2) - x(7)) + 1/abs(x(3) - x(4)) + 1/abs(x(3) - x(5)) + 1/abs(x(3) - x(6)) + 1/abs(x(3) - x(7)) + 1/abs(x(4) - x(5)) + 1/abs(x(4) - x(6)) + 1/abs(x(4) - x(7)) + 1/abs(x(5) - x(6)) + 1/abs(x(5) - x(7)) + 1/abs(x(6) - (7)));
     % options = optimset('Display','iter','PlotFcns',@optimplotfval, 'TolFun', 1e-8, 'TolX', 1e-8);
-    options = optimset('TolFun', 1e-12, 'TolX', 1e-12, 'MaxFunEvals', 10^6, 'MaxIter', 10^6);
-    x_start = [-sqrt(a)-2 -sqrt(a) -sqrt(a)+1 - sqrt(a)+2 sqrt(a)-2 sqrt(a)-1 sqrt(a)+1];
+    options = optimset('TolFun', 1e-25, 'TolX', 1e-25, 'MaxFunEvals', 10^14, 'MaxIter', 10^14);
+    x_start = [(-sqrt(a)-2) (-sqrt(a)) (-sqrt(a)+1) (-sqrt(a)+2) (sqrt(a)-2) (sqrt(a)-1) (sqrt(a)+1)];
+    x_start = [(-sqrt(a)-2) (-sqrt(a)) (-sqrt(a)+1) 0 (sqrt(a)-2) (sqrt(a)-1) (sqrt(a)+1)];
     [x0, fval0] = fminsearch(Potential, x_start, options);
     Eq_pos_5(i, :) = sort(x0);
     FuncVal = fval0;
 end
 
-disp('Done with 5 particle')
+disp('Done with 7 particle')
 
 figure(1)
 clf(figure(1))
@@ -223,7 +224,7 @@ plot(alpha, Eq_pos_5(:, 3), '.-')
 plot(alpha, Eq_pos_5(:, 4), '.-')
 plot(alpha, Eq_pos_5(:, 5), '.-')
 plot(alpha, Eq_pos_5(:, 6), '.-')
-
+plot(alpha, Eq_pos_5(:, 7), '.-')
 plot(alpha, sqrt(alpha), 'k')
 plot(alpha, -sqrt(alpha), 'k')
 yline(0)

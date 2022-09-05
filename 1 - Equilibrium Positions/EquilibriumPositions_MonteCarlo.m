@@ -4,20 +4,22 @@ clear all
 %Script for calculating the classical equilibriumm positions in a quartic potential 
 particles   = 7;        % # of particles in the system 
 
-alpha_start = -8;                                           % The initial value of alpha
-alpha_fin   = -15;                                          % The Final value of alpha
+alpha_start = -10;                                              % The initial value of alpha
+alpha_fin   = -28;                                          % The Final value of alpha
 positions   = abs(alpha_fin - alpha_start) * 10 + 1;        % # of alpha values ( right now it's 0.1 increments)
 alpha       = linspace(alpha_start, alpha_fin, positions);  % All alpha values
-eq_pos      = zeros(particles, positions);                 
+alpha       = alpha_start:-2:alpha_fin
+eq_pos      = zeros(particles, length(alpha));                 
 
 disp(['Positions = ' num2str(positions)])
 %disp(['Time ~ ' num2str(positions * 3.05)])
 
 
-for i = 1:positions             % Loop: different potentials// ifferent alphas
+for i = 1:length(alpha) 
+    % Loop: different potentials// ifferent alphas
     disp(num2str(i))
     
-    iter        = 5 * 10^7;           % # of iterations for one particular alpha value
+    iter        = 7 * 10^4;           % # of iterations for one particular alpha value
     eta         = 20; %18.813;      % Interaction strength
     E_0         = 0.478;            % Energy unit -- Irrelevant for now
     Ld          = 161.07;           % Length Unit
@@ -31,7 +33,8 @@ for i = 1:positions             % Loop: different potentials// ifferent alphas
     discarded   = [];       %discarded iterations
     
     for j = 1:iter  %Loop: particular alpha iterations
-        [new_position, sigma_new]   = new_pos(position, T(j), alpha(i), well_shift(j), eta, sigma(j));
+        tic
+        [new_position, sigma_new]   = new_pos_7(position, T(j), alpha(i), well_shift(j), eta, sigma(j));
         E                           = energy(new_position, particles, alpha(i), well_shift(j), eta, E_0);
         E_diff                      = E0 - E;
         
@@ -46,10 +49,12 @@ for i = 1:positions             % Loop: different potentials// ifferent alphas
             discarded(i)=i;
         end
 
-        if rem(j, 20000) == 0
+        if rem(j, 100000) == 0
+            toc
             figure(2)
             clf(figure(2))
             hold on
+            title(num2str(alpha(i)))
             x = linspace(-6, 6, 1000);
             Pot = 0.25 * (x.^2 + alpha(i)).^2;
             plot(x, Pot);
@@ -57,10 +62,10 @@ for i = 1:positions             % Loop: different potentials// ifferent alphas
             ylim([-1 Pot(end/2)+1])
             hold off
             disp("iter= " + num2str(j) + "   "+ "E_0= " + num2str(E0, 20))
+            tic
         end
-     
+
     end
-    sqrt(-alpha(i)) - position
 
     %Saving stuff
     Energy(i)   = E0;
@@ -90,7 +95,7 @@ grid on
 hold off
 
 
-for i = 1: positions
+for i = 1:length(alpha)
     eqpos(:,i) = eq_pos(:,i); 
 end
 eqpos(particles + 1, :) = alpha;
