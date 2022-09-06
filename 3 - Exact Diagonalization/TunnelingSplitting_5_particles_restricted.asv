@@ -9,7 +9,7 @@ Na      = 20;
 alpha   = linspace(7, 20, Na);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 0.5;
+Beta    = 0.1;
 
 Eq_Pos = [];
 
@@ -58,11 +58,11 @@ hold off
 %%
 for q = 1:length(alpha)
     alpha(q)
-    Nx1 = 20;
-    Nx2 = 25;
-    Nx3 = 45;
-    Nx4 = 25;
-    Nx5 = 20;
+    Nx1 = 15;
+    Nx2 = 20;
+    Nx3 = 40;
+    Nx4 = 20;
+    Nx5 = 15;
 
     Nx1 * Nx2 * Nx3 * Nx4 * Nx5
 
@@ -241,12 +241,12 @@ toc
 pa = [7 7.5 8 8.5 9 9.5 10 10.5 11 11.5 12 12.5];
 ps = [1.77 1.57 1.33 1.068 0.76 0.48 0.23 0.0756 0.0275 0.01548 0.015 0.01803];
 figure(3)
-%clf(figure(3))
+clf(figure(3))
 hold on
 ylabel('Split')
 xlabel('\alpha')
 plot(alpha, dE, 'o')
-plot(pa, ps, '.-')
+%plot(pa, ps, '.-')
 set(gca, 'Yscale', 'log')
 hold off
 
