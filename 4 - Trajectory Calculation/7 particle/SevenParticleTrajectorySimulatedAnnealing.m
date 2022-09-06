@@ -1,6 +1,6 @@
 clc
 clear all
-close all
+
 format long
 
 %% Structural Initialization:
@@ -18,8 +18,8 @@ PN  = 7;        % Number of Particles
 NoP             = 160;              % Number of points in each trajectory
 AlphaJumps      = 0.5;              % Increments in Alpha
 AlphaValues     = 13:AlphaJumps:28;  % 'Potential barrier' values
-iter            = 11.2 * 10^7;             % Number of MC iterations
-R0 = 2.0 * 13;
+iter            = 1.2 * 10^8; %11.2 * 10^7;             % Number of MC iterations
+R0 = 0.6 * 13;
 for k = 1:length(AlphaValues)
     R(k) = R0 / sqrt(AlphaValues(k)); %the time rescaling parameter set to some arbitrary number O(1)
 end
@@ -178,8 +178,8 @@ for stateInd = 1:length(AlphaValues)
                 clf(figure(2))
                 hold on
                 x = linspace(-1, 1, NoP/2);
-                f = linspace(p_in(3), p_out(3), NoP/2);
-                %plot(x, f, 'k')  
+                f = linspace(p_in(4), p_out(4), NoP/2);
+                plot(x, f, 'k')  
                 plot(z, Position(1, :))
                 plot(z, Position(2, :))
                 plot(z, Position(3, :))
@@ -194,7 +194,7 @@ for stateInd = 1:length(AlphaValues)
                 xline([1-Exclude (-1 + Exclude)])
                 grid on
                 hold off
-                disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(CurrentAction, 10))
+                disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(CurrentAction, 10) + ' ' + num2str(i/iter * 100) + '%')
             end
         else
             if rem(i, 20000) == 0

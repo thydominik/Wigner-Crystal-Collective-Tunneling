@@ -1,6 +1,6 @@
 clc
 clear all
-close all
+
 format long
 
 %% Structural Initialization:
@@ -18,7 +18,7 @@ PN  = 7;        % Number of Particles
 NoP             = 160;              % Number of points in each trajectory
 AlphaJumps      = 0.5;              % Increments in Alpha
 AlphaValues     = 13:AlphaJumps:28;  % 'Potential barrier' values
-iter            = 10^3;             % Number of MC iterations
+iter            = 11.2 * 10^7; %11.2 * 10^7;             % Number of MC iterations
 R0 = 2.0 * 13;
 for k = 1:length(AlphaValues)
     R(k) = R0 / sqrt(AlphaValues(k)); %the time rescaling parameter set to some arbitrary number O(1)
@@ -85,7 +85,7 @@ if FGS
     for i = 1:PN
         plot(AlphaValues, EqPos(:, i), '.-', 'DisplayName', ['Particle ' num2str(i)])
     end
-    y = linspace(8, max(AlphaValues));
+    y = linspace(13, max(AlphaValues));
     plot(y, -sqrt(y), 'k', 'DisplayName', '-sqrt(\alpha)')
     plot(y, sqrt(y), 'k', 'DisplayName', 'sqrt(\alpha)')
     legend
@@ -101,7 +101,7 @@ Exclude = 0;
 for stateInd = 1:length(AlphaValues)
     % Simulated temperature & Sigma (variance)
     T_init = 30;
-    T = T_init * exp(-(linspace(0,33,iter)));
+    T = T_init * exp(-(linspace(0,35,iter)));
 
     sigma = 0.01 * sqrt(T);
 
@@ -111,12 +111,12 @@ for stateInd = 1:length(AlphaValues)
     alpha   = AlphaValues(stateInd); %Specific state's alpha value
 
     for q = 1:PN
-        p_in(q)     = EqPos(q, stateInd);
-        p_out(q)    = -EqPos(PN - q + 1, stateInd);
+        p_in(q)     = EqPos(stateInd, q)
+        p_out(q)    = -EqPos(stateInd, PN - q + 1);
     end
 
     % Initializing the starting positions & determining the energy shift:
-    [Position, Shift]   = InitPos5Particle(PN, NoP, p_in, p_out, Eta, alpha);
+    [Position, Shift]   = InitPos7Particle(PN, NoP, p_in, p_out, Eta, alpha);
 
     if FGS == 1 && FE == 1
         figure(3)
@@ -135,7 +135,7 @@ for stateInd = 1:length(AlphaValues)
         hold off
     end
 
-    CurrentAction       = ActionCalc(Position, r, alpha, Eta, PN, NoP, z, dz, Shift);
+    CurrentAction   = ActionCalc(Position, r, alpha, Eta, PN, NoP, z, dz, Shift);
 
     % Keeping track of the discarded moves & Energy/iteration:
     discarded   = zeros(iter, 1);
@@ -178,21 +178,23 @@ for stateInd = 1:length(AlphaValues)
                 clf(figure(2))
                 hold on
                 x = linspace(-1, 1, NoP/2);
-                f = linspace(p_in(3), p_out(3), NoP/2);
+                f = linspace(p_in(4), p_out(4), NoP/2);
                 plot(x, f, 'k')  
                 plot(z, Position(1, :))
                 plot(z, Position(2, :))
                 plot(z, Position(3, :))
                 plot(z, Position(4, :))
                 plot(z, Position(5, :))
+                plot(z, Position(6, :))
+                plot(z, Position(7, :))
                 plot(0.01 * 0.25 * (linspace(-6, 6, 100).^2 - alpha).^2 - 1, linspace(-5, 5, 100))
                 xlim([-1 1])
-                yline([p_in(1) p_in(2) p_in(3) p_in(4) p_in(5)])
-                yline([p_out(1) p_out(2) p_out(3) p_out(4) p_out(5)])
+                yline(p_in)
+                yline(p_out)
                 xline([1-Exclude (-1 + Exclude)])
                 grid on
                 hold off
-                disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(CurrentAction, 10))
+                disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(CurrentAction, 10) + ' ' + num2str(i/iter * 100) + '%')
             end
         else
             if rem(i, 20000) == 0
