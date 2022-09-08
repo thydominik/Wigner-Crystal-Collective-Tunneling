@@ -72,7 +72,7 @@ disp(['Dimless Coulomb interaction parameter:   ' num2str(Eta)])
 for stateInd = 1:length(AlphaValues)
     % Simulated temperature & Sigma (variance)
     T_init  = 10;
-    T       = T_init * exp(-(linspace(0, 60, iter))/2);
+    T       = T_init * exp(-(linspace(0, 34, iter))/1);
     sigma   = 0.1 * sqrt(T);
 
     Exclude = 0.2;
