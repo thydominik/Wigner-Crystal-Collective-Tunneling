@@ -17,7 +17,7 @@ PN  = 7;        % Number of Particles
 %% Constants of the calculation:
 NoP             = 160;              % Number of points in each trajectory
 AlphaJumps      = 0.5;              % Increments in Alpha
-AlphaValues     = 11:AlphaJumps:14;  % 'Potential barrier' values
+AlphaValues     = 11.5:AlphaJumps:14;  % 'Potential barrier' values
 iter            = 1.4 * 10^8; %11.2 * 10^7;             % Number of MC iterations
 R0 = 0.35 * 13;         % 0.25 is low for a = 11; but after 15 it could be good again.
 for k = 1:length(AlphaValues)
