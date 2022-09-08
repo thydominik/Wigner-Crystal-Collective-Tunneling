@@ -34,8 +34,8 @@ Xi(:, :, 6) = sqrtm(Omega(:, :, 6));
 for time_ind = 7:Nt
     F1 = dz * r /(1 - z(time_ind - 1)^2) ;
     F2 = Omega(:, :, time_ind - 1) - (Xi(:, :, time_ind - 1) * Xi(:, :, time_ind - 1));
-    size(F1)
-    size(F2)
+    size(F1);
+    size(F2);
     
     Xi_tilde = Xi(:, :, time_ind - 1) + F1 * F2;
 

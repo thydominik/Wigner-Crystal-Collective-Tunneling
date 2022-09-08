@@ -9,7 +9,7 @@ disp('Instanton Prefactor and Tunneling splitting calculation')
 addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\5 - Energy Splitting Calculation\7 particle\Trajectories')
 
 %This loops goes through the previously calculated trajectories:
-for ind = 1:3
+for ind = 1:4
     %Clearing a variable in each cycle: This will hold some of the arc
     %length
     Sf = [];
@@ -17,7 +17,7 @@ for ind = 1:3
     % Pulling in the trajectory
     name = ind;
 
-    nameSTR = ['TrajectoryData_7P_' num2str(name)];
+    nameSTR = ['TrajectoryData_5P_' num2str(name)];
 
     %loading a trajectory that is previoulsy determined by a MC simulatiton
     trajectory_load = load(nameSTR);
@@ -71,7 +71,7 @@ for ind = 1:3
     % length parametrized V(S) potential.
     [S, VS]         = ArcLengthParametrization(Trajectory, PN, NoP, Alpha, Eta);    % Arc length paramterization
     VS              = VS - min(VS);     % Shifting the effective potential to 0
-    NoPS            = 300;              % Points in the interpolation
+    NoPS            = 1000;              % Points in the interpolation
     Sq              = linspace(min(S), max(S), NoPS);   % New arc length parameter
     dS              = Sq(2) - Sq(1);    % difference between arc length points
     LSq             = length(Sq);       % NoPoints in the new S
@@ -92,12 +92,12 @@ for ind = 1:3
     % Fitting the V(S) potential with a quartic potential
     [gof, fc] = f_fitting_VS_2(S(1:20), VS(1:20)); % Fit the first part of the potential
 
-    NoNP = 1000; %The Number of New Points in V(S) (to continue the potential)
+    NoNP = 2000; %The Number of New Points in V(S) (to continue the potential)
     SS = Sq;
     for i = 1:NoNP
-        VS_interpolate = [fc.b * ((-i*dS + min(Sq)) - min(Sq))^2 VS_interpolate];
+        VS_interpolate = [fc.b * abs((-i*dS + min(Sq)) - min(Sq))^2 VS_interpolate];
         SS = [(-i*dS + min(Sq)) SS];
-        VS_interpolate = [VS_interpolate fc.b * ((i*dS + max(Sq)) - max(Sq))^2];
+        VS_interpolate = [VS_interpolate fc.b * abs((i*dS + max(Sq)) - max(Sq))^2];
         SS = [SS (i*dS + max(Sq))];
     end
     SS = SS - min(SS);
@@ -140,8 +140,8 @@ for ind = 1:3
         hold on
         title(["Wavefunctions and the splitting: " num2str(Spectra(2) - Spectra(1))])
         plot(SS, VS_interpolate/norm(VS_interpolate))
-        plot(SS, Psi(:, 1), '.-')
-        plot(SS, Psi(:, 2), 'r.-')
+        plot(SS, abs(Psi(:, 1)), '.-')
+        plot(SS, abs(Psi(:, 2)), 'r.-')
         yline(0)
         xline(0)
         hold off
@@ -301,7 +301,7 @@ for ind = 1:3
     SPLITTINGS(ind, 7) = Split_Prop_a * PerpPropagator;
     SPLITTINGS(ind, 8) = Split_Prop_b * PerpPropagator;
     SPLITTINGS(ind, 9) = PerpPropagator;
-    pause
+
 end
 
 save('Standard7particleSplitting', 'SPLITTINGS')
@@ -331,11 +331,11 @@ plot(SPLITTINGS(:, 1), SPLITTINGS(:, 2), 'o-', 'DisplayName', '1D part from ED')
 plot(STDMC.SPLITTINGS(:, 1), STDMC.SPLITTINGS(:, 3), 'o-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - STD')
 %plot(RESTMC.SPLITTINGS(:, 1), RESTMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - REST')
 %plot(SIMPMC.SPLITTINGS(:, 1), SIMPMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - SIMP')
-%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 4), '.-', 'DisplayName', 'Easy Milnikov')
+plot(SPLITTINGS(:, 1), SPLITTINGS(:, 4), '.-', 'DisplayName', 'Easy Milnikov')
 %plot(SPLITTINGS(:, 1), SPLITTINGS(:, 5), '.-', 'DisplayName', 'Landau')
-%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 6), '.-', 'DisplayName', 'Coleman')
+plot(SPLITTINGS(:, 1), SPLITTINGS(:, 6), '.-', 'DisplayName', 'Coleman')
 plot(SPLITTINGS(:, 1), SPLITTINGS(:, 7), 'o-', 'DisplayName', 'Integral ver.1')
-%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 8), 'o-', 'DisplayName', 'Integral ver. 2')
+plot(SPLITTINGS(:, 1), SPLITTINGS(:, 8), 'o-', 'DisplayName', 'Integral ver. 2')
 %plot(ED(:, 1), ED(:, 2), 's-', 'DisplayName', 'ED')
 %plot(-DMRG_a, DMRG_d, '--', 'DisplayName', 'DMRG')
 

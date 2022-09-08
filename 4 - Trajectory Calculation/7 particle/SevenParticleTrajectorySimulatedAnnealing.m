@@ -4,8 +4,8 @@ clear all
 format long
 
 %% Structural Initialization:
-FGS = 1;        % Figure switch
-FE  = 1;        % ErrorFinding Figure switch
+FGS = 0;        % Figure switch
+FE  = 0;        % ErrorFinding Figure switch
 MS  = 1;        % Method switch: MS = {1, 2, 3} = {Standard MC, Restricted MC, No derivatives}
     % For Option two how many spwees do you want?
     if MS == 2
@@ -17,7 +17,7 @@ PN  = 7;        % Number of Particles
 %% Constants of the calculation:
 NoP             = 160;              % Number of points in each trajectory
 AlphaJumps      = 0.5;              % Increments in Alpha
-AlphaValues     = 11.5:AlphaJumps:14;  % 'Potential barrier' values
+AlphaValues     = 11:AlphaJumps:14;  % 'Potential barrier' values
 iter            = 1.4 * 10^8; %11.2 * 10^7;             % Number of MC iterations
 R0 = 0.35 * 13;         % 0.25 is low for a = 11; but after 15 it could be good again.
 for k = 1:length(AlphaValues)
@@ -57,23 +57,24 @@ for i = 1:N
 end
 
 disp('Done with 7 particle')
-
-figure(1)
-clf(figure(1))
-hold on
-title('Equilibrium positions for 7 particle')
-xlabel('\alpha')
-ylabel('\chi')
-plot(alpha, EqPos(:, 1), 'o-')
-plot(alpha, EqPos(:, 2), 'o-')
-plot(alpha, EqPos(:, 3), 'o-')
-plot(alpha, EqPos(:, 4), 'o-')
-plot(alpha, EqPos(:, 5), 'o-')
-plot(alpha, EqPos(:, 6), 'o-')
-plot(alpha, EqPos(:, 7), 'o-')
-plot(alpha, sqrt(alpha), 'k')
-plot(alpha, -sqrt(alpha), 'k')
-yline(0)
+if FGS 
+    figure(1)
+    clf(figure(1))
+    hold on
+    title('Equilibrium positions for 7 particle')
+    xlabel('\alpha')
+    ylabel('\chi')
+    plot(alpha, EqPos(:, 1), 'o-')
+    plot(alpha, EqPos(:, 2), 'o-')
+    plot(alpha, EqPos(:, 3), 'o-')
+    plot(alpha, EqPos(:, 4), 'o-')
+    plot(alpha, EqPos(:, 5), 'o-')
+    plot(alpha, EqPos(:, 6), 'o-')
+    plot(alpha, EqPos(:, 7), 'o-')
+    plot(alpha, sqrt(alpha), 'k')
+    plot(alpha, -sqrt(alpha), 'k')
+    yline(0)
+end
 
 if FGS
     figure(1)
@@ -147,6 +148,7 @@ for stateInd = 1:length(AlphaValues)
 
     %tic
     for i = 1:iter
+        tic
         if MS == 1
             % Option 1: Basic 5 particle MC/ SA
             pos_new = NewStepStandard(Position, alpha, Eta, PN, NoP, sigma(i), p_in, p_out, z);
@@ -201,7 +203,6 @@ for stateInd = 1:length(AlphaValues)
                 disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(CurrentAction, 10))
             end
         end
-
     end
     disp('Done with Primary MC')
    

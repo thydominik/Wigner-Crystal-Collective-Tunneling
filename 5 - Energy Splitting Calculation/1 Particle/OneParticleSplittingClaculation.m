@@ -70,7 +70,7 @@ plot(Alpha, NumericalSplitting, 'o-', 'DisplayName', 'Numerical Calculation (fro
 plot(Alpha, AnalyiticalSplitting, 'd-', 'DisplayName', 'Analytical calculation')
 plot(-DMRGdata(:, 1), DMRGdata(:, 2), '*-', 'DisplayName', 'DMRG')
 plot(EDdata.data(1:5:end, 1), EDdata.data(1:5:end, 2), 's-', 'DisplayName', 'ED')
-%set(gca, "Yscale", "log")
+set(gca, "Yscale", "log")
 xline(2.934, 'DisplayName',"Elbow's end")
 grid
 legend
