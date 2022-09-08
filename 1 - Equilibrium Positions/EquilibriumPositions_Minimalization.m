@@ -3,7 +3,7 @@
 clc
 clear all
 
-N = 500;
+N = 1000;
 alpha = linspace(0, 10, N);
 
 Eq_Pos = [];
@@ -49,6 +49,14 @@ DataStruct.Alpha = alpha;
 DataStruct.EquilibriumPositions = Eq_Pos;
 DataStruct.FunctionValue = Error;
 
+figure(3)
+clf(figure(3))
+hold on
+plot(alpha, 2 * abs(Eq_Pos), '.-')
+x = linspace(0, 10, 1000);
+func = 2 * abs(x - 0).^0.5;
+plot(x, func)
+hold off
 
 save('OneParticleEquilibriumPositions', 'DataStruct');
 %% 3 particles
@@ -111,6 +119,15 @@ DataStruct.Alpha = alpha;
 DataStruct.EquilibriumPositions = Eq_pos_3;
 DataStruct.FunctionValue = FuncVal;
 
+figure(4)
+clf(figure(4))
+hold on
+Tunneling_Distance = 2 * abs(Eq_pos_3(:, 2)); 
+plot(alpha, Tunneling_Distance, '.-')
+x = linspace(4.45, 15, 1000);
+func = 1.962 * abs(x - 4.45).^0.5011;
+plot(x, func)
+hold off
 
 save('ThreeParticleEquilibriumPositions', 'DataStruct');
 %% 5 Particles
@@ -119,7 +136,7 @@ clc
 clear all
 
 N = 1000;
-alpha = linspace(7.8, 7.82, N);
+alpha = linspace(6, 16, N);
 eta = 20;
 
 Eq_pos_5 = [];
@@ -184,6 +201,15 @@ DataStruct.Alpha = alpha;
 DataStruct.EquilibriumPositions = Eq_pos_5;
 DataStruct.FunctionValue = FuncVal;
 
+figure(4)
+clf(figure(4))
+hold on
+Tunneling_Distance = 2 * abs(Eq_pos_5(:, 3)); 
+plot(alpha, Tunneling_Distance, '.-')
+x = linspace(6, 16, N);
+func = 1.942 * abs(x - 7.81).^0.5017;
+plot(x, func)
+hold off
 
 save('FiveParticleEquilibriumPositions', 'DataStruct');
 
@@ -192,7 +218,7 @@ save('FiveParticleEquilibriumPositions', 'DataStruct');
 clc
 clear all
 
-N = 50;
+N = 500;
 alpha = linspace(4, 28, N);
 eta = 20;
 
@@ -200,12 +226,12 @@ Eq_pos_5 = [];
 
 for i = 1:N
     a = alpha(i);
-    Potential = @(x) 0.25 * ((x(1)^2 - a)^2 + (x(2)^2 - a)^2 + (x(3)^2 - a)^2 + (x(4)^2 - a)^2 + (x(5)^2 - a)^2 + (x(6)^2 - a)^2 + (x(7)^2 - a)^2) + eta * (1/abs(x(1) - x(2)) + 1/abs(x(1) - x(3)) + 1/abs(x(1) - x(4)) + 1/abs(x(1) - x(5)) + 1/abs(x(1) - x(6)) + 1/abs(x(1) - x(7)) + 1/abs(x(2) - x(3)) + 1/abs(x(2) - x(4)) + 1/abs(x(2) - x(5)) + 1/abs(x(2) - x(6)) + 1/abs(x(2) - x(7)) + 1/abs(x(3) - x(4)) + 1/abs(x(3) - x(5)) + 1/abs(x(3) - x(6)) + 1/abs(x(3) - x(7)) + 1/abs(x(4) - x(5)) + 1/abs(x(4) - x(6)) + 1/abs(x(4) - x(7)) + 1/abs(x(5) - x(6)) + 1/abs(x(5) - x(7)) + 1/abs(x(6) - (7)));
+    Potential = @(x) 0.25 * ((x(1)^2 - a)^2 + (x(2)^2 - a)^2 + (x(3)^2 - a)^2 + (x(4)^2 - a)^2 + (x(5)^2 - a)^2 + (x(6)^2 - a)^2 + (x(7)^2 - a)^2) + eta * (1/abs(x(1) - x(2)) + 1/abs(x(1) - x(3)) + 1/abs(x(1) - x(4)) + 1/abs(x(1) - x(5)) + 1/abs(x(1) - x(6)) + 1/abs(x(1) - x(7)) + 1/abs(x(2) - x(3)) + 1/abs(x(2) - x(4)) + 1/abs(x(2) - x(5)) + 1/abs(x(2) - x(6)) + 1/abs(x(2) - x(7)) + 1/abs(x(3) - x(4)) + 1/abs(x(3) - x(5)) + 1/abs(x(3) - x(6)) + 1/abs(x(3) - x(7)) + 1/abs(x(4) - x(5)) + 1/abs(x(4) - x(6)) + 1/abs(x(4) - x(7)) + 1/abs(x(5) - x(6)) + 1/abs(x(5) - x(7)) + 1/abs(x(6) - x(7)));
     % options = optimset('Display','iter','PlotFcns',@optimplotfval, 'TolFun', 1e-8, 'TolX', 1e-8);
-    options = optimset('TolFun', 1e-25, 'TolX', 1e-25, 'MaxFunEvals', 10^14, 'MaxIter', 10^14);
+    options = optimset('TolFun', 1e-60, 'TolX', 1e-60, 'MaxFunEvals', 10^20, 'MaxIter', 10^20);
     x_start = [(-sqrt(a)-2) (-sqrt(a)) (-sqrt(a)+1) (-sqrt(a)+2) (sqrt(a)-2) (sqrt(a)-1) (sqrt(a)+1)];
-    x_start = [(-sqrt(a)-2) (-sqrt(a)) (-sqrt(a)+1) 0 (sqrt(a)-2) (sqrt(a)-1) (sqrt(a)+1)];
-    [x0, fval0] = fminsearch(Potential, x_start, options);
+    %x_start = [(-sqrt(a)-2) (-sqrt(a)) (-sqrt(a)+1) 0 (sqrt(a)-2) (sqrt(a)-1) (sqrt(a)+1)];
+    [x0, fval0,a(i),b] = fminsearch(Potential, x_start, options);
     Eq_pos_5(i, :) = sort(x0);
     FuncVal = fval0;
 end
@@ -228,4 +254,30 @@ plot(alpha, Eq_pos_5(:, 7), '.-')
 plot(alpha, sqrt(alpha), 'k')
 plot(alpha, -sqrt(alpha), 'k')
 yline(0)
+hold off
+
+figure(4)
+clf(figure(4))
+hold on
+Tunneling_Distance = 2 * abs(Eq_pos_5(:, 4)); 
+plot(alpha, Tunneling_Distance, '.-')
+x = linspace(4, 28, N);
+func = 1.909 * abs(x - 10.5892).^0.506;
+plot(x, func)
+hold off
+
+%%
+
+figure(5)
+clf(figure(5))
+hold on
+x = linspace(0, 10, 100);
+func1 = 2 * x.^0.5;
+func3 = 1.962 *  x.^0.5011;
+func5 = 1.942 *  x.^0.5017;
+func7 = 1.909 * x.^0.506;
+plot(x, func1)
+plot(x, func3)
+plot(x, func5)
+plot(x, func7)
 hold off

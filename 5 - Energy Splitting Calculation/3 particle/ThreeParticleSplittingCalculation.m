@@ -2,8 +2,8 @@ clc
 clear all
 format long
 
-FS = 0;         % Figure Switch = 0 - Off; 1 - On
-Method = 3;     % 1 - STDMC; 2 - RESTMC; 3 - SIMPLEMC
+FS = 1;         % Figure Switch = 0 - Off; 1 - On
+Method = 1;     % 1 - STDMC; 2 - RESTMC; 3 - SIMPLEMC
 
 disp('Instanton Prefactor and Tunneling splitting calculation')
 
@@ -322,7 +322,7 @@ xlabel('\alpha', 'FontSize', 20)
 ylabel('\Delta', 'FontSize', 20)
 title('3 Particle Splitting')
 legend
-%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 2), 'o-', 'DisplayName', '1D part from ED')
+plot(SPLITTINGS(:, 1), SPLITTINGS(:, 2), 'o-', 'DisplayName', '1D part from ED')
 plot(STDMC.SPLITTINGS(:, 1), STDMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - STD')
 plot(RESTMC.SPLITTINGS(:, 1), RESTMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - REST')
 plot(SIMPMC.SPLITTINGS(:, 1), SIMPMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - SIMP')

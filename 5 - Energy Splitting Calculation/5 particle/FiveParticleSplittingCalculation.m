@@ -328,7 +328,7 @@ plot(STDMC.SPLITTINGS(:, 1), STDMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'Disp
 plot(ED(:, 1), ED(:, 2), 's-', 'DisplayName', 'ED')
 %plot(-DMRG_a, DMRG_d, '--', 'DisplayName', 'DMRG')
 
-set(gca, 'Yscale', 'log')
+%set(gca, 'Yscale', 'log')
 xlim([7.8 14])
 ylim([10^-5 3])
 xline(10.857299871771385, 'r', 'DisplayName', 'Elbow point')

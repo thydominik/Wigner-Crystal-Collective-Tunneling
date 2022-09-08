@@ -3,8 +3,8 @@ function Pos = newstep(Pos, NoP, sigma, alpha, z)
     D = (normrnd(Pos(R),sigma));
     temp = Pos(R);
     Pos(R) = D;
-    while Pos(R) > 0 || Pos(R) < -sqrt(alpha) || Pos(R) > (z(R) * abs(Pos(1))) 
-       D = (normrnd(temp,sigma));
+    while Pos(R) > 0 || Pos(R) < -sqrt(alpha) || Pos(R) > (z(R) * abs(Pos(1))) || Pos(R) < Pos(R - 1) || Pos(R) > Pos(R + 1)
+       D = (normrnd(temp,sigma * 0.05));
        Pos(R) = D;
     end
     Pos(NoP-(R-1)) = -Pos(R);
