@@ -33,7 +33,7 @@ function [eq_pos] = organizer(eq_pos, particles)
             end
         end
     elseif particles == 7
-        for i = 1:length(eq_pos)
+        for i = 1:71
             if eq_pos(4,i) > 0
                 eq_pos(1,i) = -eqpos(7,i);
                 eq_pos(2,i) = -eqpos(6,i);
