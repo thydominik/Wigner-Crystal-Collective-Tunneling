@@ -17,9 +17,9 @@ PN  = 7;        % Number of Particles
 %% Constants of the calculation:
 NoP             = 160;              % Number of points in each trajectory
 AlphaJumps      = 0.5;              % Increments in Alpha
-AlphaValues     = 13:AlphaJumps:28;  % 'Potential barrier' values
-iter            = 1.2 * 10^8; %11.2 * 10^7;             % Number of MC iterations
-R0 = 0.6 * 13;
+AlphaValues     = 11:AlphaJumps:14;  % 'Potential barrier' values
+iter            = 1.4 * 10^8; %11.2 * 10^7;             % Number of MC iterations
+R0 = 0.35 * 13;         % 0.25 is low for a = 11; but after 15 it could be good again.
 for k = 1:length(AlphaValues)
     R(k) = R0 / sqrt(AlphaValues(k)); %the time rescaling parameter set to some arbitrary number O(1)
 end
@@ -100,8 +100,8 @@ Exclude = 0;
 
 for stateInd = 1:length(AlphaValues)
     % Simulated temperature & Sigma (variance)
-    T_init = 30;
-    T = T_init * exp(-(linspace(0,35,iter)));
+    T_init = 40;
+    T = T_init * exp(-(linspace(0,36,iter)));
 
     sigma = 0.01 * sqrt(T);
 
@@ -111,7 +111,7 @@ for stateInd = 1:length(AlphaValues)
     alpha   = AlphaValues(stateInd); %Specific state's alpha value
 
     for q = 1:PN
-        p_in(q)     = EqPos(stateInd, q)
+        p_in(q)     = EqPos(stateInd, q);
         p_out(q)    = -EqPos(stateInd, PN - q + 1);
     end
 
@@ -194,7 +194,7 @@ for stateInd = 1:length(AlphaValues)
                 xline([1-Exclude (-1 + Exclude)])
                 grid on
                 hold off
-                disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(CurrentAction, 10) + ' ' + num2str(i/iter * 100) + '%')
+                disp("iter= " + num2str(i) + "   "+ "E_0= " + num2str(CurrentAction, 20) + ' ' + num2str(i/iter * 100) + '%')
             end
         else
             if rem(i, 20000) == 0
@@ -254,7 +254,7 @@ for stateInd = 1:length(AlphaValues)
 
    % time(stateInd) = toc;
 
-    NameString = ['Traj_5p_' num2str(stateInd)];
+    NameString = ['Traj_7p_' num2str(stateInd)];
     save(NameString, 'Position')
 
     IterData.NameString                 = NameString;
@@ -285,6 +285,6 @@ for stateInd = 1:length(AlphaValues)
     IterData.Action                     = Energy(end);
     IterData.MinAction                  = min(Energy);
 
-    save(['TrajectoryData_5p_' num2str(stateInd)], "IterData");
+    save(['TrajectoryData_7p_' num2str(stateInd)], "IterData");
 end
 
