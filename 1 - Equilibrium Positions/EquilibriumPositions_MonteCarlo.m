@@ -5,10 +5,10 @@ clear all
 particles   = 7;        % # of particles in the system 
 
 alpha_start = -10;                                              % The initial value of alpha
-alpha_fin   = -28;                                          % The Final value of alpha
+alpha_fin   = -17;                                          % The Final value of alpha
 positions   = abs(alpha_fin - alpha_start) * 10 + 1;        % # of alpha values ( right now it's 0.1 increments)
 alpha       = linspace(alpha_start, alpha_fin, positions);  % All alpha values
-alpha       = alpha_start:-2:alpha_fin
+%alpha       = alpha_start:-2:alpha_fin
 eq_pos      = zeros(particles, length(alpha));                 
 
 disp(['Positions = ' num2str(positions)])
@@ -19,7 +19,7 @@ for i = 1:length(alpha)
     % Loop: different potentials// ifferent alphas
     disp(num2str(i))
     
-    iter        = 7 * 10^4;           % # of iterations for one particular alpha value
+    iter        = 7 * 10^6;           % # of iterations for one particular alpha value
     eta         = 20; %18.813;      % Interaction strength
     E_0         = 0.478;            % Energy unit -- Irrelevant for now
     Ld          = 161.07;           % Length Unit
