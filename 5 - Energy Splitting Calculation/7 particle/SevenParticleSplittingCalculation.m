@@ -2,14 +2,14 @@ clc
 clear all
 format long
 
-FS = 1;         % Figure Switch = 0 - Off; 1 - On
+FS = 0;         % Figure Switch = 0 - Off; 1 - On
 
 disp('Instanton Prefactor and Tunneling splitting calculation')
 
 addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\5 - Energy Splitting Calculation\7 particle\Trajectories')
 
 %This loops goes through the previously calculated trajectories:
-for ind = 1:4
+for ind = 2:3
     %Clearing a variable in each cycle: This will hold some of the arc
     %length
     Sf = [];
@@ -17,7 +17,7 @@ for ind = 1:4
     % Pulling in the trajectory
     name = ind;
 
-    nameSTR = ['TrajectoryData_5P_' num2str(name)];
+    nameSTR = ['TrajectoryData_7P_' num2str(name)];
 
     %loading a trajectory that is previoulsy determined by a MC simulatiton
     trajectory_load = load(nameSTR);
@@ -25,10 +25,10 @@ for ind = 1:4
 
     % Separating the equilibrium positions
     equilibrium_positions   = trajecotry_data.EquilibriumPositions(ind, :);
-    Trajectory              = trajecotry_data.Trajectories;
+    OrigTrajectory              = trajecotry_data.Trajectories;
 
     PN  = 7;
-    NoP = length(Trajectory(1, :));
+    NoP = length(OrigTrajectory(1, :));
 
     disp(['Particle # = ',num2str(PN)])
     disp(['Trajectory points = ', num2str(NoP)])
@@ -45,6 +45,21 @@ for ind = 1:4
     Eta     = 20;       % Change this if u r a Heretic!
 
     z = trajecotry_data.time;
+    
+%     Trajectory(1, :) = (interp1(z, OrigTrajectory(1, :), linspace(-1, 1, 200), 'Spline'));
+%     Trajectory(2, :) = (interp1(z, OrigTrajectory(2, :), linspace(-1, 1, 200), 'Spline'));
+%     Trajectory(3, :) = (interp1(z, OrigTrajectory(3, :), linspace(-1, 1, 200), 'Spline'));
+%     Trajectory(4, :) = (interp1(z, OrigTrajectory(4, :), linspace(-1, 1, 200), 'Spline'));
+%     Trajectory(5, :) = (interp1(z, OrigTrajectory(5, :), linspace(-1, 1, 200), 'Spline'));
+%     Trajectory(6, :) = (interp1(z, OrigTrajectory(6, :), linspace(-1, 1, 200), 'Spline'));
+%     Trajectory(7, :) = (interp1(z, OrigTrajectory(7, :), linspace(-1, 1, 200), 'Spline'));
+% 
+%     z   = linspace(-1, 1, 200);
+%     NoP = length(Trajectory(1, :));
+
+
+    Trajectory = OrigTrajectory;
+
 
     if FS
         figure(1)
@@ -92,7 +107,7 @@ for ind = 1:4
     % Fitting the V(S) potential with a quartic potential
     [gof, fc] = f_fitting_VS_2(S(1:20), VS(1:20)); % Fit the first part of the potential
 
-    NoNP = 2000; %The Number of New Points in V(S) (to continue the potential)
+    NoNP = 4000; %The Number of New Points in V(S) (to continue the potential)
     SS = Sq;
     for i = 1:NoNP
         VS_interpolate = [fc.b * abs((-i*dS + min(Sq)) - min(Sq))^2 VS_interpolate];
@@ -304,7 +319,7 @@ for ind = 1:4
 
 end
 
-save('Standard7particleSplitting', 'SPLITTINGS')
+save('Standard7particleSplitting2', 'SPLITTINGS')
 
 %%
 % SIMPMC = load('SimplifiedSplitting.mat');
@@ -316,7 +331,7 @@ STDMC = load('Standard7particleSplitting.mat');
 %ED_a = ED(:, 1);
 %ED_d = ED(:, 2);
 % 
-% DMRG = load('Delta_E_DMRG_Norb_8_eta_20.00.mat');
+DMRG = load('DMRG7Particle.mat');
 % DMRG_a = DMRG.alpha_list;
 % DMRG_d = DMRG.delta_E_DMRG;
 
@@ -327,17 +342,17 @@ xlabel('\alpha', 'FontSize', 20)
 ylabel('\Delta', 'FontSize', 20)
 title('7 Particle Splitting')
 legend
-plot(SPLITTINGS(:, 1), SPLITTINGS(:, 2), 'o-', 'DisplayName', '1D part from ED')
+%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 2), 'o-', 'DisplayName', '1D part from ED')
 plot(STDMC.SPLITTINGS(:, 1), STDMC.SPLITTINGS(:, 3), 'o-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - STD')
 %plot(RESTMC.SPLITTINGS(:, 1), RESTMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - REST')
 %plot(SIMPMC.SPLITTINGS(:, 1), SIMPMC.SPLITTINGS(:, 3), '.-', 'LineWidth', 2, 'DisplayName', '1D part ED * N-1 Milnikov - SIMP')
-plot(SPLITTINGS(:, 1), SPLITTINGS(:, 4), '.-', 'DisplayName', 'Easy Milnikov')
+%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 4), '.-', 'DisplayName', 'Easy Milnikov')
 %plot(SPLITTINGS(:, 1), SPLITTINGS(:, 5), '.-', 'DisplayName', 'Landau')
-plot(SPLITTINGS(:, 1), SPLITTINGS(:, 6), '.-', 'DisplayName', 'Coleman')
-plot(SPLITTINGS(:, 1), SPLITTINGS(:, 7), 'o-', 'DisplayName', 'Integral ver.1')
-plot(SPLITTINGS(:, 1), SPLITTINGS(:, 8), 'o-', 'DisplayName', 'Integral ver. 2')
+%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 6), '.-', 'DisplayName', 'Coleman')
+%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 7), 'o-', 'DisplayName', 'Integral ver.1')
+%plot(SPLITTINGS(:, 1), SPLITTINGS(:, 9), 'o-', 'DisplayName', 'Integral ver. 2')
 %plot(ED(:, 1), ED(:, 2), 's-', 'DisplayName', 'ED')
-%plot(-DMRG_a, DMRG_d, '--', 'DisplayName', 'DMRG')
+plot(DMRG.DMRG7Particle(1, :), DMRG.DMRG7Particle(2, :), '--', 'DisplayName', 'DMRG')
 
 set(gca, 'Yscale', 'log')
 xlim([11 18])

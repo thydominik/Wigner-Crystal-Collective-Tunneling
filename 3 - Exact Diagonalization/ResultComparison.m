@@ -62,21 +62,27 @@ set(gca, 'YScale', 'log')
 hold off
 
 %%
-disp('2 particles')
+disp('3 particles')
 
 a1 = load('EDSplitting_3_particles_Nx_10.mat');
 a2 = load('EDSplitting_3_particles_Nx_20.mat');
 a3 = load('EDSplitting_3_particles_Nx_30.mat');
 a4 = load('EDSplitting_3_particles_Nx_40.mat');
-
-
+a5 = load('EDSplitting_3_particles_restricted_Nx_80_beta_1e-05.mat');
+a6 = load('EDSplitting_3_particles_restricted_Nx_90_beta_1e-05.mat');
+a7 = load('EDSplitting_3_particles_restricted_Nx_200_beta_1e-05.mat');
+a8 = load('EDSplitting_3_particles_restricted_Nx1_40_Nx2_90_Nx3_40_beta_0_1.mat');
 figure(1)
 clf(figure(1))
 hold on
-plot(a1.data(:, 1), a1.data(:, 2), '.-', 'DisplayName', 'Nx = 10')
-plot(a2.data(:, 1), a2.data(:, 2), '.-', 'DisplayName', 'Nx = 20')
-plot(a3.data(:, 1), a3.data(:, 2), '.-', 'DisplayName', 'Nx = 30')
-plot(a4.data(:, 1), a4.data(:, 2), '.-', 'DisplayName', 'Nx = 40')
+%plot(a1.data(:, 1), a1.data(:, 2), '.-', 'DisplayName', 'Nx = 10')
+%plot(a2.data(:, 1), a2.data(:, 2), '.-', 'DisplayName', 'Nx = 20')
+%plot(a3.data(:, 1), a3.data(:, 2), '.-', 'DisplayName', 'Nx = 30')
+%plot(a4.data(:, 1), a4.data(:, 2), '.-', 'DisplayName', 'Nx = 40')
+plot(a5.data(:, 1), a5.data(:, 2), '.-', 'DisplayName', 'Nx = 80')
+plot(a6.data(:, 1), a6.data(:, 2), '.-', 'DisplayName', 'Nx = 90')
+plot(a7.data(:, 1), a7.data(:, 2), '.-', 'DisplayName', 'Nx = 200')
+plot(a8.data.alpha(:), a8.data.EnergySplitting(:), '.-', 'DisplayName', 'Nx = 200')
 title('')
 xlabel('\alpha')
 ylabel('\Delta')

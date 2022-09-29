@@ -3,13 +3,13 @@ clear all
 
 disp('3 particle tunneling splitting calculation.')
 tic
-%% 3 particle Equilibrium positions
+% 3 particle Equilibrium positions
 
 Na      = 50;
 alpha   = linspace(2, 15, Na);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 10^-5;
+Beta    = 0.1;
 
 Eq_pos_3 = [];
 
@@ -55,9 +55,9 @@ yline(min(FuncVal))
 hold off
 
 %%
-Nx1 = 20;
-Nx2 = 60;
-Nx3 = 20;
+Nx1 = 40;
+Nx2 = 90;
+Nx3 = 40;
 Nx1 * Nx2 * Nx3
 
 XMin1    = -6;
@@ -174,7 +174,7 @@ end
 %%
 toc
 figure(3)
-%clf(figure(3))
+clf(figure(3))
 hold on
 plot(alpha, dE)
 set(gca, 'Yscale', 'log')
@@ -186,7 +186,7 @@ data.Particle1space = x1;
 data.Particle2space = x2;
 data.Particle3space = x3;
 
-name = ['EDSplitting_3_particles_restricted_Nx1_' num2str(Nx1) '_Nx2_' num2str(Nx2) '_Nx3_' num2str(Nx3) '_beta_' num2str(Beta)];
+name = ['EDSplitting_3_particles_restricted_Nx1_' num2str(Nx1) '_Nx2_' num2str(Nx2) '_Nx3_' num2str(Nx3) '_beta_' '0_1'];
 save(name, 'data');
 
 

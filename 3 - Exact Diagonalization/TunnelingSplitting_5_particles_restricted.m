@@ -9,7 +9,7 @@ Na      = 20;
 alpha   = linspace(7, 20, Na);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 0.5;
+Beta    = 0.1;
 
 Eq_Pos = [];
 
@@ -58,11 +58,11 @@ hold off
 %%
 for q = 1:length(alpha)
     alpha(q)
-    Nx1 = 20;
-    Nx2 = 25;
-    Nx3 = 45;
-    Nx4 = 25;
-    Nx5 = 20;
+    Nx1 = 30;
+    Nx2 = 35;
+    Nx3 = 50;
+    Nx4 = 35;
+    Nx5 = 30;
 
     Nx1 * Nx2 * Nx3 * Nx4 * Nx5
 

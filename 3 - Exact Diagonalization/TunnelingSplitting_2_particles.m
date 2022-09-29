@@ -13,7 +13,7 @@ Beta = 10^-5;
 
 for i = 1:Nx
     a           = alpha(i);
-    Potential   = @(x) 0.25 * (x(1)^2 - a)^2 + 0.25 * (x(2)^2 - a)^2 + eta/(abs(x(2) - x(1)) + Beta) ;
+    Potential   = @(x) 0.25 * (x(1)^2 - a)^2 + 10*x(1) + 0.25 * (x(2)^2 - a)^2 + 10*x(2) + eta/(abs(x(2) - x(1)) + Beta) ;
     options     = optimset('TolFun', 1e-14, 'TolX', 1e-14, 'MaxFunEvals', 10^9, 'MaxIter', 10^9);
     x_start     = [-1 1];
     [x0, fval0] = fminsearch(Potential, x_start, options);
@@ -78,7 +78,7 @@ KineticMtx = K1 + K2;
 for i = 1:length(alpha)
     PotentialMtx = sparse(zeros(Nx));
     
-    U = 0.25 * (x.^2 - alpha(i)).^2;
+    U = 0.25 * (x.^2 - alpha(i)).^2 + x;
     PotentialMtx = sparse(diag(U));
     
     U1 = kron(PotentialMtx, speye(Nx));
@@ -103,10 +103,15 @@ for i = 1:length(alpha)
     Temp_Proj = zeros(Nx^2, 3);
     
     k = 1;
-    for j = 1:Nx^2
-        if X12(j) < -eps
-            Temp_Proj(k, :) = [k, j, 1];
-            k = k + 1;
+    for j1 = 1:Nx
+        jsize(j1) = 0;
+        for j2 = 1:Nx
+            j = (j1 - 1) * 200 + j2;
+            if X12(j) < -eps
+                Temp_Proj(k, :) = [k, j, 1];
+                k = k + 1;
+                jsize(j1) = jsize(j1) + 1;
+            end
         end
     end
 
@@ -118,6 +123,8 @@ for i = 1:length(alpha)
     [Psi, E]    = eigs(Hamiltonian, 2, 'sa');
     Spectrum    = diag(E);
     dE(i)       = Spectrum(2) - Spectrum(1);
+    disp('ok...')
+    a
 end
 %%
 figure(3)
@@ -132,5 +139,25 @@ data(:, 2) = dE;
 
 name = ['EDSplitting_2_particles_Nx_' num2str(Nx)];
 save(name, 'data');
+
+%%
+figure(4)
+clf(figure(4))
+hold on
+a = 1;
+b = 200;
+for i = 1:200
+    figure(4)
+    clf(figure(4))
+    hold on
+    xx = linspace(-10, 10, b-a + 1);
+    plot(xx, abs(Psi(a:b, 1)))
+    plot(xx, (0.25 * (xx.^2 - alpha(end)).^2)/norm(0.25 * (xx.^2 - alpha(end)).^2))
+    a = b + 1
+    b = a + 200 - 2*i
+    disp('asd')
+    pause
+    hold off
+end
 
 

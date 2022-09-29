@@ -1,4 +1,4 @@
-function [action, Kin] = ActionCalc(pos, r, alpha, eta, NoP, Nt, z, dz, shift)
+function [action, Kin] = ActionCalc(pos, r, alpha, eta, NoP, Nt, z, dz, shift, beta)
     %ACTIONCALC: Calculating the action of a given trajectory set: {pos}
     % pos - [matrix, doulbe] gives the trajectories for NoP # of particles; r -
     % [doulbe] time scaling varieble; alpha - [double] alpha parameter; eta -
@@ -15,7 +15,7 @@ function [action, Kin] = ActionCalc(pos, r, alpha, eta, NoP, Nt, z, dz, shift)
     for i = 1:Nt
         for j = 1:NoP
             for k = (j+1):NoP
-                Q(i) = Q(i) + eta/abs(pos(j, i) - pos(k, i));
+                Q(i) = Q(i) + eta/abs(pos(j, i) - pos(k, i) + beta);
             end
         end
     end

@@ -3,18 +3,18 @@ clear all
 
 disp('3 particle tunneling splitting calculation.')
 tic
-%% 3 particle Equilibrium positions
+% 3 particle Equilibrium positions
 
-Nx      = 80;
+Nx      = 90;
 Nx^3
-alpha   = linspace(2, 15, Nx);
+alpha   = 0:0.25:15;
 eta     = 20;
 Eq_Pos  = [];
 Beta    = 10^-5;
 
 Eq_pos_3 = [];
 
-for i = 1:Nx
+for i = 1:length(alpha)
     a = alpha(i);
     Potential = @(x) 0.25 * (x(1)^2 - a)^2 + 0.25 * (x(2)^2 - a)^2 + 0.25 * (x(3)^2 - a)^2 + eta/abs(x(1) - x(2)) + eta/abs(x(1) - x(3)) + eta/abs(x(2) - x(3));
     % options = optimset('Display','iter','PlotFcns',@optimplotfval, 'TolFun', 1e-8, 'TolX', 1e-8);
@@ -130,17 +130,18 @@ for i = 1:length(alpha)
     [Psi, E]    = eigs(Hamiltonian, 2, 'sa');
     Spectrum    = diag(E);
     dE(i)       = Spectrum(2) - Spectrum(1);
+    disp('ok')
 end
 %%
 toc
 figure(3)
-%clf(figure(3))
+clf(figure(3))
 hold on
-plot(alpha, dE, '.-', 'DisplayName', 'Nx = 80')
+plot(alpha, dE, '.-', 'DisplayName', 'Nx = 200')
 set(gca, 'Yscale', 'log')
 legend
 hold off
-
+clear data
 data(:, 1) = alpha;
 data(:, 2) = dE;
 

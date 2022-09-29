@@ -6,9 +6,8 @@ disp('1 particle tunneling splitting calculation.')
 
 %% 1 particle Equilibrium positions
 
-Na = 19;
-Nx = 800;
-alpha = 1:.5:10
+Nx = 5000;
+alpha = -20:.1:20
 
 Eq_Pos = [];
 
@@ -32,7 +31,7 @@ title('Equilibrium positions for 1 particle')
 xlabel('\alpha')
 ylabel('\chi_0')
 plot(alpha, Eq_Pos, '.-')
-plot(alpha, sqrt(alpha), 'o')
+plot(alpha, sqrt(abs(alpha)), 'o')
 hold off
 
 figure(2)
@@ -50,7 +49,7 @@ hold off
 for alphaInd = 1 : length(alpha)
     a = alpha(alphaInd);
 
-    S   = linspace(-6, 6, Nx);
+    S   = linspace(-10, 10, Nx);
     dx  = S(2) - S(1);
     V   = 0.25 * (S.^2 - a).^2;
 
@@ -81,12 +80,12 @@ for alphaInd = 1 : length(alpha)
 %     xlim([S(1) S(end)])
     ylim([0 1])
     plot(S, 10*V/max(V))
-    plot(S, Psi(:, 1)/max(Psi(:, 1)))
-    plot(S, Psi(:, 2)/max(Psi(:, 2)))
+    plot(S, (Psi(:, 1)/norm(Psi(:, 1))))
+    plot(S, (Psi(:, 2)/norm(Psi(:, 2))))
     yline(0)
-    
-    Fr = getframe(gcf);
-    [Im(:, :, 1, alphaInd), Map] = rgb2ind(Fr.cdata, 8);
+    ylim([-0.2 0.2])
+    %Fr = getframe(gcf);
+    %[Im(:, :, 1, alphaInd), Map] = rgb2ind(Fr.cdata, 8);
 
     hold off
 
@@ -101,7 +100,7 @@ figure(5)
 clf(figure(5))
 hold on
 plot(Split(2:end, 2), Split(2:end, 1))
-plot(-DMRG(:, 1), DMRG(:, 2))
+%plot(-DMRG(:, 1), DMRG(:, 2))
 xline([0 0.0725 0.6])
 set(gca, 'Yscale', 'log')
 hold off

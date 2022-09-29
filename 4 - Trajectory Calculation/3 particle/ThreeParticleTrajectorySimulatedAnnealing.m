@@ -17,7 +17,8 @@ PN  = 3;        % Number of Particles
 NoP             = 200;              % Number of points in each trajectory
 AlphaJumps      = 0.5;             % Increments in Alpha
 AlphaValues     = 5.5:AlphaJumps:13;  % 'Potential barrier' values
-iter            = 5 * 10^6;             % Number of MC iterations
+iter            = 10^7;             % Number of MC iterations
+beta            = 0.1^2;
 R0 = 4;
 for k = 1:length(AlphaValues)
     R(k) = R0 / sqrt(AlphaValues(k)); %the time rescaling parameter set to some arbitrary number O(1)
@@ -32,7 +33,7 @@ dz  = z(2) - z(1);              % dt in imaginary time
 EqPos = [];
 warning('Always check the equilibrium positions when changing the AlphaJumps or the initial and final value of alpha in AlphaValues before running the whole calculation!')
 for a = 1:length(AlphaValues)
-    Potential = @(x) 0.25 * (x(1)^2 - AlphaValues(a))^2 + 0.25 * (x(2)^2 - AlphaValues(a))^2 + 0.25 * (x(3)^2 - AlphaValues(a))^2 + Eta/abs(x(1) - x(2)) + Eta/abs(x(1) - x(3)) + Eta/abs(x(2) - x(3));
+    Potential = @(x) 0.25 * (x(1)^2 - AlphaValues(a))^2 + 0.25 * (x(2)^2 - AlphaValues(a))^2 + 0.25 * (x(3)^2 - AlphaValues(a))^2 + Eta/abs(x(1) - x(2) + beta) + Eta/abs(x(1) - x(3) + beta) + Eta/abs(x(2) - x(3) + beta);
 
     options = optimset('TolFun', 1e-14, 'TolX', 1e-14, 'MaxFunEvals', 10^9, 'MaxIter', 10^9);
     x_start = [-sqrt(a)-2 -1 sqrt(a)];
@@ -105,7 +106,7 @@ for stateInd = 1:length(AlphaValues)
         hold off
     end
 
-    CurrentAction = ActionCalc(Position, r, alpha, Eta, PN, NoP, z, dz, Shift);
+    CurrentAction = ActionCalc(Position, r, alpha, Eta, PN, NoP, z, dz, Shift, beta);
     
     % Keeping track of the discarded moves & Energy/iteration:
     discarded   = zeros(iter,1);
@@ -127,7 +128,7 @@ for stateInd = 1:length(AlphaValues)
             % Option 3: No derivatives on the sides MC
             pos_new = HibridStep5PartEasy(Position, alpha, Eta, PN, NoP, sigma(i), Exclude, p_in, p_out, z);
         end
-        E_new   = ActionCalc(pos_new, r, alpha, Eta, PN, NoP, z, dz, Shift);
+        E_new   = ActionCalc(pos_new, r, alpha, Eta, PN, NoP, z, dz, Shift, beta);
         E_diff  = CurrentAction - E_new;
 
         if E_diff > 0
@@ -234,7 +235,7 @@ for stateInd = 1:length(AlphaValues)
         hold off
     end
     disp('fitted action: ')
-    num2str(ActionCalc(FittedPosition, r, alpha, Eta, PN, NoP, z, dz, Shift))
+    num2str(ActionCalc(FittedPosition, r, alpha, Eta, PN, NoP, z, dz, Shift, beta))
     disp('MC action: ')
     num2str(Energy(end))
 
@@ -265,7 +266,7 @@ for stateInd = 1:length(AlphaValues)
     IterData.Trajectories               = Position;
     IterData.Action                     = Energy(end);
     IterData.AnalyticalAction           = 0;
-    IterData.FittedAction               = ActionCalc(FittedPosition, r, alpha, Eta, PN, NoP, z, dz, Shift);
+    IterData.FittedAction               = ActionCalc(FittedPosition, r, alpha, Eta, PN, NoP, z, dz, Shift, beta);
     IterData.FittedTrajectories         = FittedPosition;
     save(NameString, "IterData");
 
