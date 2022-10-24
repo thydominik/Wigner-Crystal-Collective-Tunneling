@@ -1,15 +1,12 @@
 clc
 clear all
 
-
 Nx      = 100;
 Alpha   = 3:0.2:12;
 Kappa   = -0.2:0.01:0.2;
 Eta     = 20;
-Eq_Pos  = [];
 Beta    = 10^-5;
 Polarization = struct();
-Eq_pos_3 = [];
 
 XMin    = -7;
 XMax    = 7;
