@@ -1,32 +1,34 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}Path Integral Formalism (introduction)}{1}{}%
-\contentsline {section}{\numberline {2}Wigner Crystals}{1}{}%
-\contentsline {section}{\numberline {3}Instanton Formalism}{1}{}%
-\contentsline {subsection}{\numberline {3.1}Free Particle}{1}{}%
-\contentsline {subsection}{\numberline {3.2}Harmonic Oscillator}{1}{}%
-\contentsline {subsection}{\numberline {3.3}One particle tunneling}{1}{}%
-\contentsline {subsubsection}{\numberline {3.3.1}One Particle Hamiltonian}{1}{}%
-\contentsline {subsubsection}{\numberline {3.3.2}Action Integral Calculation}{1}{}%
-\contentsline {subsubsection}{\numberline {3.3.3}Tunneling calculation in quartic potentials}{1}{}%
-\contentsline {section}{\numberline {4}Experimental Considerations}{1}{}%
-\contentsline {subsection}{\numberline {4.1}Modeling the Potential and Fitting}{1}{}%
-\contentsline {subsection}{\numberline {4.2}Polarization data}{1}{}%
-\contentsline {subsection}{\numberline {4.3}Scaling}{1}{}%
-\contentsline {section}{\numberline {5}Many Body Tunneling Calculations - Instanton}{1}{}%
-\contentsline {subsection}{\numberline {5.1}Quartic Hamiltonian model}{1}{}%
-\contentsline {subsubsection}{\numberline {5.1.1}Rescaling and Dimensionless Hamiltonian}{1}{}%
-\contentsline {subsection}{\numberline {5.2}Milnikov method}{1}{}%
-\contentsline {subsection}{\numberline {5.3}Classical Equilibrium Positions}{1}{}%
-\contentsline {subsection}{\numberline {5.4}Harmonic Oscillator Eigenfrequencies adn Eigenmodes}{1}{}%
-\contentsline {subsection}{\numberline {5.5}Trajectory Calculation}{1}{}%
-\contentsline {subsection}{\numberline {5.6}Arc Lengt Paramterization}{1}{}%
-\contentsline {subsection}{\numberline {5.7}Egzact Diagonalization (ED)}{1}{}%
-\contentsline {section}{\numberline {6}Polarization}{1}{}%
-\contentsline {subsection}{\numberline {6.1}Classical Polarization Calculation}{1}{}%
-\contentsline {subsection}{\numberline {6.2}Polarization using ED}{1}{}%
-\contentsline {section}{\numberline {A}Mathematics}{1}{}%
-\contentsline {subsection}{\numberline {A.1}Gaussian Integrals}{1}{}%
-\contentsline {subsection}{\numberline {A.2}Besel Problem}{1}{}%
-\contentsline {section}{\numberline {B}Algorithms and Methods}{1}{}%
-\contentsline {subsection}{\numberline {B.1}Monte Carlo and Simulated Annealing}{1}{}%
-\contentsline {subsection}{\numberline {B.2}Minimalization by Nelder-Mead algorithm}{1}{}%
+\contentsline {section}{\numberline {1}Path Integral Formalism (introduction)}{3}{section.1}%
+\contentsline {section}{\numberline {2}Wigner Crystals}{4}{section.2}%
+\contentsline {section}{\numberline {3}Instanton Formalism}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Free Particle}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Harmonic Oscillator}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}One particle tunneling}{5}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}One Particle Hamiltonian}{5}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Action Integral Calculation}{5}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Tunneling calculation in quartic potentials}{5}{subsubsection.3.3.3}%
+\contentsline {section}{\numberline {4}Experimental Considerations}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Modeling the Potential and Fitting}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Polarization data}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Scaling}{6}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Many Body Tunneling Calculations - Instanton}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Quartic Hamiltonian model}{7}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Rescaling and Dimensionless Hamiltonian}{7}{subsubsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.2}Milnikov method}{7}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Classical Equilibrium Positions}{7}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Harmonic Oscillator Eigenfrequencies adn Eigenmodes}{7}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Trajectory Calculation}{7}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Arc Lengt Paramterization}{7}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Egzact Diagonalization (ED)}{7}{subsection.5.7}%
+\contentsline {section}{\numberline {6}Polarization}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Classical Polarization Calculation}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Polarization using ED}{8}{subsection.6.2}%
+\contentsline {section}{\numberline {A}Mathematics}{9}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Gaussian Integrals}{9}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Besel Problem}{9}{subsection.A.2}%
+\contentsline {paragraph}{Fourier Way}{9}{section*.2}%
+\contentsline {paragraph}{Complex Integral Way}{10}{section*.3}%
+\contentsline {section}{\numberline {B}Algorithms and Methods}{11}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Monte Carlo and Simulated Annealing}{11}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Minimalization by Nelder-Mead algorithm}{11}{subsection.B.2}%

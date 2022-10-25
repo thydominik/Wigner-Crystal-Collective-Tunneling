@@ -1,25 +1,27 @@
-% Documentclass and packages
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\input{LatexTemplate.tex}
+
+% Title, Author and other stuff
+\title{Theoretical modeling of the collective tunneling of a Wigner necklace\\}
+\author{Dominik szombathy}
+\date{\today}
+
 
 \begin{document}
-\begin{center}
-{\large{Dominik Szombathy}}\\
-Theoretical modeling of the collective\\ tunneling of a Wigner necklace\\
-\today
-\end{center}
-\pagestyle{empty}
-\tableofcontents
-\newpage
+\maketitle
 
-\setcounter{page}{1}
+%\pagestyle{empty}
+\tableofcontents
+
+%\setcounter{page}{1}
 \pagestyle{plain}
 
+\newpage
 \section{Path Integral Formalism (introduction)}
 
+\newpage
 \section{Wigner Crystals}
 
+\newpage
 \section{Instanton Formalism}
 	\subsection{Free Particle}
 	\subsection{Harmonic Oscillator}
@@ -28,11 +30,13 @@ Theoretical modeling of the collective\\ tunneling of a Wigner necklace\\
 		\subsubsection{Action Integral Calculation}
 		\subsubsection{Tunneling calculation in quartic potentials}
 
+\newpage
 \section{Experimental Considerations}
 	\subsection{Modeling the Potential and Fitting}
 	\subsection{Polarization data}
 	\subsection{Scaling}
 		
+\newpage
 \section{Many Body Tunneling Calculations - Instanton}
 	\subsection{Quartic Hamiltonian model}
 		\subsubsection{Rescaling and Dimensionless Hamiltonian}	
@@ -43,18 +47,22 @@ Theoretical modeling of the collective\\ tunneling of a Wigner necklace\\
 	\subsection{Arc Lengt Paramterization}
 	\subsection{Egzact Diagonalization (ED)}
 
+\newpage
 \section{Polarization}
 	\subsection{Classical Polarization Calculation}
 	\subsection{Polarization using ED}
 	
 
-	
-	\appendix
-	\section{Mathematics}
+\newpage	
+\appendix
+\section{Mathematics}
+	In this appendix I will write down some useful mathematical expressions, proofs or identities that are used in the discussion above
 		\subsection{Gaussian Integrals}
 		\subsection{Besel Problem}
-		
-	\section{Algorithms and Methods}
+			\input{Besel_Problem.tex}
+
+\newpage		
+\section{Algorithms and Methods}
 		\subsection{Monte Carlo and Simulated Annealing}
 		\subsection{Minimalization by Nelder-Mead algorithm}
 	
