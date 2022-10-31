@@ -52,6 +52,8 @@
 	\subsection{Classical Polarization Calculation}
 	\subsection{Polarization using ED}
 	
+\newpage
+\section{Open Questions}
 
 \newpage	
 \appendix
@@ -65,5 +67,22 @@
 \section{Algorithms and Methods}
 		\subsection{Monte Carlo and Simulated Annealing}
 		\subsection{Minimalization by Nelder-Mead algorithm}
-	
+
+\newpage
+\section{Links, Data and other stuff}	
+
+
+
+
+\cite{aa}, \cite{bb}
+
+\newpage
+\begin{thebibliography}{3}
+
+\bibitem{aa} Anna Anderegg, 2022, Example 1.
+
+\bibitem{bb} Brenda Bradshaw, 2021, Example 2.
+
+\end{thebibliography}
+
 \end{document}

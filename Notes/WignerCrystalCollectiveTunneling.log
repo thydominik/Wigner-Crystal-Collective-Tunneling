@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.3)  25 OCT 2022 17:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.3)  31 OCT 2022 17:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./WignerCrystalCollectiveTunneling.tex
 (WignerCrystalCollectiveTunneling.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24> (LatexTemplate.tex
+L3 programming layer <2022-02-24> (WCCT_LatexTemplate.tex
 (C:\Installs 1\MikTex\tex/latex/base\article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (C:\Installs 1\MikTex\tex/latex/base\size11.clo
@@ -323,18 +323,18 @@ LaTeX Info: Redefining \nameref on input line 9.
 \tf@toc=\write4
 \openout4 = `WignerCrystalCollectiveTunneling.toc'.
 
- [2] [3] [4] [5] [6] [7] [8] (Besel_Problem.tex
-[9]) [10] [11] (WignerCrystalCollectiveTunneling.aux)
+ [2] [3] [4] [5] [6] [7] [8] [9] (Besel_Problem.tex [10]) [11] [12] [13] [14] (
+WignerCrystalCollectiveTunneling.aux)
 Package rerunfilecheck Info: File `WignerCrystalCollectiveTunneling.out' has no
 t changed.
-(rerunfilecheck)             Checksum: 2B34C2E1781D872E953FBB068F658FB5;5860.
+(rerunfilecheck)             Checksum: C1A30B10449EF7B1E21B40AC5039E72D;6169.
  ) 
 Here is how much of TeX's memory you used:
- 9498 strings out of 478582
- 149197 string characters out of 2855567
- 465905 words of memory out of 3000000
- 27519 multiletter control sequences out of 15000+600000
- 475328 words of font info for 49 fonts, out of 8000000 for 9000
+ 9511 strings out of 478582
+ 149332 string characters out of 2855567
+ 465955 words of memory out of 3000000
+ 27524 multiletter control sequences out of 15000+600000
+ 475636 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  65i,11n,66p,399b,467s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Installs 1/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Installs 
@@ -347,10 +347,10 @@ s 1/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Installs 1/MikTex/fonts
 sfonts/cm/cmr17.pfb><C:/Installs 1/MikTex/fonts/type1/public/amsfonts/cm/cmr8.p
 fb><C:/Installs 1/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Installs
  1/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on WignerCrystalCollectiveTunneling.pdf (11 pages, 193306 bytes)
+Output written on WignerCrystalCollectiveTunneling.pdf (14 pages, 199974 bytes)
 .
 PDF statistics:
- 308 PDF objects out of 1000 (max. 8388607)
- 68 named destinations out of 1000 (max. 500000)
- 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 338 PDF objects out of 1000 (max. 8388607)
+ 76 named destinations out of 1000 (max. 500000)
+ 265 words of extra memory for PDF output out of 10000 (max. 10000000)
 
