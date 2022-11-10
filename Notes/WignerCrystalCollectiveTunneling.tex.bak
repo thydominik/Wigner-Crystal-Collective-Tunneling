@@ -1,6 +1,6 @@
-\input{LatexTemplate.tex}
+\input{WCCT_LatexTemplate.tex}
 
-% Title, Author and other stuff
+% Title, Author, Date
 \title{Theoretical modeling of the collective tunneling of a Wigner necklace\\}
 \author{Dominik szombathy}
 \date{\today}
@@ -9,19 +9,21 @@
 \begin{document}
 \maketitle
 
+\begin{abstract}
+
+\end{abstract}
+
 %\pagestyle{empty}
 \tableofcontents
 
 %\setcounter{page}{1}
 \pagestyle{plain}
 
-\newpage
+
 \section{Path Integral Formalism (introduction)}
 
-\newpage
 \section{Wigner Crystals}
 
-\newpage
 \section{Instanton Formalism}
 	\subsection{Free Particle}
 	\subsection{Harmonic Oscillator}
@@ -30,13 +32,11 @@
 		\subsubsection{Action Integral Calculation}
 		\subsubsection{Tunneling calculation in quartic potentials}
 
-\newpage
 \section{Experimental Considerations}
 	\subsection{Modeling the Potential and Fitting}
 	\subsection{Polarization data}
 	\subsection{Scaling}
-		
-\newpage
+
 \section{Many Body Tunneling Calculations - Instanton}
 	\subsection{Quartic Hamiltonian model}
 		\subsubsection{Rescaling and Dimensionless Hamiltonian}	
@@ -47,31 +47,27 @@
 	\subsection{Arc Lengt Paramterization}
 	\subsection{Egzact Diagonalization (ED)}
 
-\newpage
 \section{Polarization}
 	\subsection{Classical Polarization Calculation}
 	\subsection{Polarization using ED}
-	
-\newpage
-\section{Open Questions}
 
-\newpage	
+\section{Open Questions}
+	
 \appendix
 \section{Mathematics}
 	In this appendix I will write down some useful mathematical expressions, proofs or identities that are used in the discussion above
 		\subsection{Gaussian Integrals}
+		\subsection{Cauchy's Resiude Theorem}\label{CRT}
 		\subsection{Besel Problem}
 			\input{Besel_Problem.tex}
-
-\newpage		
+		
 \section{Algorithms and Methods}
 		\subsection{Monte Carlo and Simulated Annealing}
 		\subsection{Minimalization by Nelder-Mead algorithm}
 
-\newpage
 \section{Links, Data and other stuff}	
 
-
+\section{Research Diary}
 
 
 \cite{aa}, \cite{bb}

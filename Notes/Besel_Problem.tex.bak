@@ -1,67 +1,57 @@
-\paragraph{Fourier Way}
-Let's consider first an arbitrary function $f(x)$. The fourier series of this function is:
 \begin{equation}
-f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left\lbrace a_n \cos\left( \frac{n \pi l}{L}  \right) + b_n \sin \left(  \frac{n \pi l}{L} \right)  \right\rbrace
+\sum_{n = 1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}
 \end{equation}
-where $l\in [l_i,l_f]$ and $L = l_f - l_i$
 
-let $f(x) = x^2$ and $l_i = -l_f = -\pi$ so that $L = 2\pi$
 
-Now the coefficients can be calculated:
+\paragraph{Fourier Way}
+
+Let's consider first an arbitrary function $f(x)$. One could wirte the fourier series of this function as
+\begin{equation}
+f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left\lbrace a_n \cos\left( \frac{n \pi l}{L}  \right) + b_n \sin \left(  \frac{n \pi l}{L} \right)  \right\rbrace,
+\end{equation}
+where $l\in [l_i,l_f]$ and $L = l_f - l_i$. Let $f(x) = x^2$ and $l_i = -l_f = -\pi$ so that $L = 2\pi$. The coefficients can be calculated as
 \begin{align}
-a_0 &= \frac{2}{L} \int_{-\pi}^\pi f(x) dx \\
-&= \frac{2}{\pi} \int_0^\pi dx\, x^2\\
-&= \frac{2}{3}\pi^2
+a_0 &= \frac{2}{L} \int_{-\pi}^\pi f(x) dx = \frac{2}{\pi} \int_0^\pi dx\, x^2 = \frac{2}{3}\pi^2
 \end{align}
 
 \begin{align}
-a_n &= \frac{2}{L} \int_{-\pi}^\pi dx\, f(x) \cos\left(\frac{n \pi 2 x}{L} \right) \\
-&= \frac{2}{\pi }\left.\left(  \frac{x^2 \sin(nx)}{n} \right)\right|_0^\pi - \frac{2}{\pi} \int_0^\pi dx\, \frac{2x \sin(nx)}{n}\\
-&=\text{another partial integration later}\\
-&= \frac{4 (-1)^n}{n^2}
+	a_n &= \frac{2}{L} \int_{-\pi}^\pi dx\, f(x) \cos\left(\frac{n \pi 2 x}{L} \right) \\ \nonumber
+		&= \frac{2}{\pi }\left.\left(  \frac{x^2 \sin(nx)}{n} \right)\right|_0^\pi - \frac{2}{\pi} \int_0^\pi dx\, \frac{2x 		\sin(nx)}{n}\\ \nonumber
+		&= \frac{4 (-1)^n}{n^2}.
 \end{align}
-
-$b_n = 0$ because $x^2$ is even. So the function now looks like this:
+Considering the problem at hand, consider the function as $x^2$, so $b_n = 0$ because $x^2$ is even. The Fourier series then takes the form
 \begin{align}
 x^2 &= \frac{2\pi^2}{3\cdot 2} + \sum_{n=1}^\infty \frac{4 (-1)^n}{n^2} \cos\left( \frac{2n\pi x}{L}  \right) \\
-&= \frac{\pi^2}{3} + \sum_{n=1}^\infty \frac{4 (-1)^n}{n^2} (-1)^n
-\end{align}
-
-now choose $x^2$ tob e equal to 0:
+&= \frac{\pi^2}{3} + \sum_{n=1}^\infty \frac{4 (-1)^n}{n^2} (-1)^n. \nonumber
+\end{align} Choose $x^2$ to be equal to 0,
 \begin{equation}
-\pi^2 = \frac{\pi^2}{3} + \sum_{n=1}^\infty \frac{4}{n^2}
-\end{equation}
+\pi^2 = \frac{\pi^2}{3} + \sum_{n=1}^\infty \frac{4}{n^2}.
+\end{equation} Then subtract the $a_0$ term and devide by 4
 
-subtract the $a_0$ term and devide by 4:
 \begin{equation}
 \frac{\pi^2}{6} = \sum_{n=1}^\infty \frac{1}{n^2}
 \end{equation}
 
 \paragraph{Complex Integral Way}
 
-consider the following integral:
+Consider the following integral:
 \begin{equation}
-I = \int_C \frac{1}{z^2} f(z) dz
-\end{equation}
-
-let $f(z) $ be the Fermi function:
+I = \int_C \frac{1}{z^2} f(z) dz.
+\end{equation} Let $f(z) $ be the Fermi function:
 \begin{equation}
-f(z) = \frac{1}{1+ e^{i\pi z}}
-\end{equation}
-
-we have several first order poles at $z=\pm (2n + 1 ) =p_n$ and a second order pole at $z=0$.
+f(z) = \frac{1}{1+ e^{i\pi z}},
+\end{equation} then we have several first order poles at $z=\pm (2n + 1 ) =p_n$ and a second order pole at $z=0$.
 
 The residue from the 1st order poles:
 \begin{equation}
 Res(f(z),p_n) = \lim_{z\rightarrow p_n} (z-p_n) f(z) = \frac{
-i}{\pi p_n^2}
-\end{equation}
-
-rom the 2nd order pole:
+i}{\pi p_n^2},
+\end{equation} and from the 2nd order pole:
 \begin{equation}
-Res(f(z),0) = \lim_{z\rightarrow 0} \frac{d}{dz} (z^2 f(z)) = \frac{-\pi i}{4}
+Res(f(z),0) = \lim_{z\rightarrow 0} \frac{d}{dz} (z^2 f(z)) = \frac{-\pi i}{4}.
 \end{equation}
 
+Writing now Cauchy's residue theorem \ref{CRT}
 \begin{equation}
 \int_C g(z) dz = 2\pi i \sum Res(g(z))
 \end{equation}
