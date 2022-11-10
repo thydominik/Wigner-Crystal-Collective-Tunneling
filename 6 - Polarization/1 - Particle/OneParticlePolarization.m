@@ -1,7 +1,7 @@
 clc
 clear all
 
-Nx      = 200;
+Nx      = 1000;
 Alpha   = -1:0.2:8;
 Kappa   = -0.5:0.01:0.5;
 
