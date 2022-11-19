@@ -2,8 +2,8 @@ clc
 clear all
 
 Nx      = 100;
-Alpha   = 3:0.2:12;
-Kappa   = -0.2:0.01:0.2;
+Alpha   = 4:0.2:9;
+Kappa   = -0.1:0.001:0.1;
 Eta     = 20;
 Beta    = 10^-5;
 Polarization = struct();
