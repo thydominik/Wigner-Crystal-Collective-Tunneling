@@ -7,7 +7,7 @@ FS  = 1;        % Figure switch
 FE  = 1;        % ErrorFinding Figure switch
 PN  = 3;        % Particle Number
 
-NoA = 4001;
+NoA = 1001;
 Eta = 20;
 %% Loadig EQPOS data
 addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\1 - Equilibrium Positions\Data')
