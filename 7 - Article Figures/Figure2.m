@@ -9,6 +9,7 @@ Polarization = Polarization.Polarization;
 k = 1;
 figure(3)
 clf(figure(3))
+figure('Renderer', 'painters', 'Position', [10 10 1000 1000])
 hold on
 title('Polarization: P(\alpha, \kappa)')
 xlabel('')
@@ -23,10 +24,28 @@ xlabel('\alpha', 'FontSize', FontSize)
 xlim([6 9])
 ylabel('\kappa', 'FontSize', FontSize)
 zlabel('P(\alpha, \kappa)', 'FontSize', FontSize)
-view([90 0])
+view([120 30])
 grid on
 axis square
 ax = gca;
 ax.FontSize = 20;
 % Colorbar
 hold off
+
+%%
+
+mu=[0 0];
+sigma=[5 -2 ;-2 2];
+x = -10:0.1:10; y = x;
+[X,Y] = meshgrid(x,y);
+F = mvnpdf([X(:) Y(:)], mu,sigma);
+F = reshape(F,length(x),length(x));
+contour(x,y,F);
+xlabel('X'); ylabel('Y');
+grid on
+axis square
+%%DRawing line 
+yi=-4:2:4 ;
+xi = interp1(y,x,yi) ;
+hold on
+plot(xi,yi,'r')

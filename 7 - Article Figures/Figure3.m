@@ -68,10 +68,13 @@ hold off
 %
 figure(4)
 clf(figure(4))
-
-t = tiledlayout(2, 1)
+figure('Renderer', 'painters', 'Position', [10 10 900 600])
+t = tiledlayout(2, 1);
 
 ax1 = nexttile;
+ylabel('\Delta_{Exp}', 'FontSize', 20)
+set(ax1,'xticklabel',[])
+grid
 hold on
 ylim([2*10^-1 0.3*10^2])
 xlim([0 18])
@@ -84,9 +87,13 @@ plot((Exp3(:, 1) - xshift) * xscale, Exp3(:, 2) * yscale, 'x', 'MarkerSize', 8, 
 plot((Exp5(:, 1) - xshift) * xscale, Exp5(:, 2) * yscale, 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
 plot((Exp7(:, 1) - xshift) * xscale, Exp7(:, 2) * yscale, 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
 set(gca,'Yscale', 'log')
+qw{1} = plot(nan, 'kx', 'MarkerSize', 8, 'LineWidth', 1.5)
+legend([qw{:}], {'experimental data'}, 'location', 'best')
 hold off
 
 ax2 = nexttile;
+ylabel('\Delta_{Th.}', 'FontSize', 20)
+xlabel('\alpha', 'FontSize', 20)
 hold on
 box
 
@@ -119,12 +126,18 @@ plot((IT7A + xshift) * xscale, IT7D * yscale, 'ko--', 'MarkerFaceColor', 'k')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ylim([10^-3 1.5])
 set(gca,'Yscale', 'log')
+grid
+qw{1} = plot(nan, 'ko--', 'MarkerFaceColor', 'k');
+qw{2} = plot(nan, 'b.-', 'MarkerSize', 15);
+qw{3} = plot(nan, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
+%qw{4} = plot(nan, 'k-d'); % You can add an extra element too
+legend([qw{:}], {'instanton theory','egzact diagonalization','DMRG'}, 'location', 'best')
 hold off
 
 
-xlabel(t, '\alpha', 'FontSize', 20)
-ylabel(t, '\Delta', 'FontSize', 20)
-t.TileSpacing = 'compact'
+%xlabel(t, '\alpha', 'FontSize', 20)
+%ylabel(t, '\Delta', 'FontSize', 20)
+t.TileSpacing = 'none'
 ax1.FontSize = 20
 ax2.FontSize = 20
 linkaxes([ax1, ax2], 'x')
@@ -132,20 +145,21 @@ linkaxes([ax1, ax2], 'x')
 
 figure(5)
 clf(figure(5))
+figure('Renderer', 'painters', 'Position', [10 10 1000 1000])
 hold on
 ax = gca;
 ax.FontSize = 20;
 axis square
 box
 grid
-xlabel('\alpha', 'FontSize', 20)
-ylabel('\Delta', 'FontSize', 20)
+xlabel('\alpha', 'FontSize', 25)
+ylabel('\Delta_{Th.} & \Delta_{Scaled Exp.}', 'FontSize', 25)
 ylim([10^-2 1.5])
 set(gca, 'Yscale', 'log')
 xshift = -20;
 xscale = 1/52;
 yscale = 1/10;
-plot((Exp3(:, 1) - xshift) * xscale, Exp3(:, 2) * yscale, 'mx', 'MarkerSize', 10, 'LineWidth', 1.5)
+plot((Exp3(:, 1) - xshift) * xscale, Exp3(:, 2) * yscale, 'x', 'Color', [0.8500 0.3250 0.0980], 'MarkerSize', 10, 'LineWidth', 1.5)
 xshift = 0;
 xscale = 1;
 yscale = 1;
@@ -157,14 +171,18 @@ axes('Position',[.28 .22 .34 .34])
 box on
 hold on
 scatter([2.9 7.4 10.8 13.7], [114 368 711 1031], 100, 'r', 'Filled')
+scatter([7.4], [368], 150, 'bd', 'Filled')
 x = linspace(0, 15, 1000);
 plot(x, (x -2.5)*90, 'k--', 'LineWidth', 4)
 xlim([1.5 14.5])
 ylim([0 1100])
 ax = gca;
 ax.FontSize = 20;
-xlabel('\alpha_Q', 'FontSize', 15)
-ylabel('V_Q [mV]', 'FontSize', 15)
+xlabel('\alpha_Q', 'FontSize',20)
+ylabel('V_Q [V]', 'FontSize', 20)
+xticks([3 6 9 12])
+yticks([0 200 400 600 800 1000])
+yticklabels({'0.0','0.2','0.4','0.6','0.8','1'})
 axis square
 hold off
 
