@@ -38,7 +38,7 @@ Budapest University of Technology and Economics, Műegyetem rkp. 3., H-1111 Buda
 %\includegraphics[width=1\textwidth]{figure1plus2}
 \includegraphics[page=1,width=1\textwidth]{figure1plus2}
 \label{1stImage}
-\caption{Effective potential in case of 3 particles and wavefunction density as a function of detuning paramtere ($\epsilon$)}
+\caption{Effective potential in case of 3 particles and wavefunction density as a function of detuning paramtere ($\epsilon$) {\textcolor{red}{Mikló's idea was to change back the colorscheme to 'hot' like the science article, due to black and white printing might be more visible using this.}} {\textcolor{blue}{Insted of $\epsilon$ it is more accurate to write $\chi_0 \epsilon$}}}
 \end{figure}
 
 \begin{figure}[h]
