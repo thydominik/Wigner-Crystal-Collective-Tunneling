@@ -20,10 +20,10 @@ hold off
 % DMRG:
 
 DMRG1   = load('DMRG_Ne_1_gauss.dat');
-DMRG3   = load('DMRG_Ne_3_gauss.dat');
-DMRG5   = load('DMRG_Ne_5_gauss.dat');
-DMRG7eg = load('DMRG7Particle.mat');
-DMRG7   = DMRG7eg.DMRG7Particle;
+DMRG3   = load('DMRG3.mat'); DMRG3 = DMRG3.DMRG3
+DMRG5   = load('DMRG5.mat'); DMRG5 = DMRG5.DMRG5
+DMRG7   = load('DMRG7.mat'); DMRG7 = DMRG7.DMRG7
+
 
 figure(42)
 clf(figure(42))
@@ -52,8 +52,8 @@ hold off
 % Instanton:
 
 IT1 = load('Standard1particleSplitting.mat'); IT1 = IT1.OneParticleInstanton;
-IT3 = load('Standar3particledSplitting.mat'); IT3 = IT3.SPLITTINGS
-IT5 = load('Standard5particleSplitting.mat'); IT5 = IT5.SPLITTINGS
+IT3 = load('Standar3particledSplitting.mat'); IT3 = IT3.SPLITTINGS;
+IT5 = load('Standard5particleSplitting.mat'); IT5 = IT5.SPLITTINGS;
 IT7e = load('Standard7particleSplitting.mat');
 IT7 = IT7e.SPLITTINGS; %IT7e.Instanton7;
 
@@ -102,27 +102,21 @@ xscale = 1;
 yscale = 1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 plot((ED1(:, 1) + xshift) * xscale, ED1(:, 2) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
-            DMRG3(end-9, 6) = DMRG3(end-9, 6)-(2.75*10^-3);
 plot((-DMRG3(10:end-9, 3) + xshift) * xscale, abs(DMRG3(10:end-9, 6)) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
-            DMRG5(end-17, 6) = DMRG5(end-17, 6) - 0.8*10^-2;
 plot((-DMRG5(1:end-17, 3) + xshift) * xscale + 0.05, DMRG5(1:end-17, 6) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
-            DMRG7(2, end-2) = DMRG7(2, end-2) - 0.5 * 10^-2;
 plot((DMRG7(1, 1:end-2) + xshift) * xscale, DMRG7(2, 1:end-2) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 plot((ED1(:, 1) + xshift) * xscale, ED1(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
 plot((ED3(:, 1) + xshift) * xscale, ED3(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
 plot((ED5(:, 1) + xshift) * xscale, ED5(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
-            ED7(end-2, 2) = ED7(end-2, 2) - 2*10^-2;
 plot((ED7(1:end-2, 1) - 0.05 + xshift) * xscale, ED7(1:end-2, 2) * yscale, 'b.-', 'MarkerSize', 15)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 plot((IT1(:, 1) + xshift) * xscale, IT1(:, 2) * yscale, 'ko--', 'MarkerFaceColor', 'k')
 plot((IT3(:, 1) + xshift) * xscale, IT3(:, 3) * yscale, 'ko--', 'MarkerFaceColor', 'k')
 plot((IT5(:, 1) + xshift) * xscale, IT5(:, 3) * yscale, 'ko--', 'MarkerFaceColor', 'k')
-     IT7A = 12:0.5:15;
-     IT7D = [1.85 0.8 0.3*10^-0 10.3*10^-2 2.7*10^-2 0.5*10^-2 0.89*10^-3];
-plot((IT7A + xshift) * xscale, IT7D * yscale, 'ko--', 'MarkerFaceColor', 'k')
+plot((IT7(:, 1) + xshift) * xscale, IT7(:, 2) * yscale, 'ko--', 'MarkerFaceColor', 'k')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ylim([10^-3 1.5])
 set(gca,'Yscale', 'log')
