@@ -1,0 +1,57 @@
+%Parameters for the spinless Hamiltonian model
+
+%System size
+
+L = 200;
+
+%Nearest-neighbors interaction 
+U = 0.00;
+
+% decay rate amplitude 
+Gamma = 1.0;
+
+eta = 0.2; 
+
+
+%chemical potential difference for in-out
+mu = 0.0005;
+
+% number of iterations
+
+iteration_no = 800; 
+
+% time step
+
+dt = 0.1;
+
+dtm = 0.2;
+
+% site with loses/gain
+
+open_sites = {1, 6};
+
+
+%Gamma1 = {0.8944, 1.0954}; 
+%Gamma1 = {0.4, 0.0}; 
+%Gamma1 = {0.4472, 1.3416}; 
+
+% gain rate
+%Gamma2 = {1.0954 , 0.8944}; 
+%Gamma2 = {0.0 , 0.0}; 
+%Gamma2 = {1.3416 , 0.4472}
+
+%Maximum bond dimension
+Mmax = 200;
+
+
+% symmetries
+symmetry_names ={U1_Q, U1_twoSz}
+
+% convention used for creation/annihilation operators.
+convention = 'real'; 
+
+%error used throughout of the calculation
+
+eps = 1e-8; 
+
+

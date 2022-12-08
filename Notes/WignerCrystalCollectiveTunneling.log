@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.3)  2 NOV 2022 20:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.11.28)  7 DEC 2022 10:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,22 +327,22 @@ LaTeX Info: Redefining \nameref on input line 9.
 \openout4 = `WignerCrystalCollectiveTunneling.toc'.
 
  [2] [3]
-Overfull \vbox (53.91316pt too high) has occurred while \output is active []
+Overfull \vbox (25.06964pt too high) has occurred while \output is active []
 
 
 [4] (Besel_Problem.tex [5]) [6] [7] [8] (WignerCrystalCollectiveTunneling.aux)
 Package rerunfilecheck Info: File `WignerCrystalCollectiveTunneling.out' has no
 t changed.
-(rerunfilecheck)             Checksum: 29EDF2DC76238A0AB675F2D4B4AE9BC9;6472.
+(rerunfilecheck)             Checksum: D40C3A2474FD204DA732C2D6550B670F;6246.
  ) 
 Here is how much of TeX's memory you used:
- 9545 strings out of 478582
- 150176 string characters out of 2855567
- 465359 words of memory out of 3000000
- 27563 multiletter control sequences out of 15000+600000
+ 9543 strings out of 478582
+ 150156 string characters out of 2855565
+ 466359 words of memory out of 3000000
+ 27562 multiletter control sequences out of 15000+600000
  475636 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 65i,11n,66p,399b,467s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 65i,11n,66p,399b,449s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Installs 1/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Installs 
 1/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Installs 1/MikTex/fonts/
 type1/public/amsfonts/cm/cmex10.pfb><C:/Installs 1/MikTex/fonts/type1/public/am
@@ -353,10 +353,10 @@ s 1/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Installs 1/MikTex/fonts
 sfonts/cm/cmr17.pfb><C:/Installs 1/MikTex/fonts/type1/public/amsfonts/cm/cmr8.p
 fb><C:/Installs 1/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Installs
  1/MikTex/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on WignerCrystalCollectiveTunneling.pdf (8 pages, 197084 bytes).
+Output written on WignerCrystalCollectiveTunneling.pdf (8 pages, 195712 bytes).
 
 PDF statistics:
- 317 PDF objects out of 1000 (max. 8388607)
- 67 named destinations out of 1000 (max. 500000)
- 281 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 311 PDF objects out of 1000 (max. 8388607)
+ 66 named destinations out of 1000 (max. 500000)
+ 273 words of extra memory for PDF output out of 10000 (max. 10000000)
 
