@@ -5,7 +5,9 @@ close all
 
 set(0,'DefaultFigureWindowStyle','docked')
 set(0,'DefaultFigureWindowStyle','normal')
-
+addpath('./Experimental data/')
+addpath('./DMRG data/')
+addpath('./WaveFunction data/')
 %% Figure 1: Polarization 2 dimensional plot
 % 
 clear all
@@ -105,8 +107,6 @@ hold on
 
     AlphaInd = 20;
 
-    addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\6 - Polarization\3 - Particle\WaveFunction data')
-
     WF1 = load(['X_' num2str(AlphaInd) '_1']); WF1 = WF1.PsiX; WF1 = interp1(linspace(-7, 7, 100), WF1, linspace(-7, 7, 1000), 'spline');
     WF2 = load(['Y_' num2str(AlphaInd) '_1']); WF2 = WF2.PsiY; WF2 = interp1(linspace(-7, 7, 100), WF2, linspace(-7, 7, 1000), 'spline');
     WF3 = load(['Z_' num2str(AlphaInd) '_1']); WF3 = WF3.PsiZ; WF3 = interp1(linspace(-7, 7, 100), WF3, linspace(-7, 7, 1000), 'spline');
@@ -179,8 +179,6 @@ hold on
     Pol = load('Polarization3Particle.mat'); Pol = Pol.Polarization;
 
     AlphaInd = 20;
-
-    addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\6 - Polarization\3 - Particle\WaveFunction data')
 
     WF1 = load(['X_' num2str(AlphaInd) '_1']); WF1 = WF1.PsiX; WF1 = interp1(linspace(-7, 7, 100), WF1, linspace(-7, 7, 1000), 'spline');
     WF2 = load(['Y_' num2str(AlphaInd) '_1']); WF2 = WF2.PsiY; WF2 = interp1(linspace(-7, 7, 100), WF2, linspace(-7, 7, 1000), 'spline');
@@ -576,7 +574,7 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -1, 40, 3, '(#)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 2, 38, 3, '(#)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     %text( 0, 45, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     text( 2.9, 3, 0, '$1e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     text( 7.4, 5, 0, '$3e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
