@@ -1,0 +1,83 @@
+\input{WCCT_LatexTemplate.tex}
+
+% Title, Author, Date
+\title{Theoretical modeling of the collective tunneling of a Wigner necklace\\}
+\author{Dominik szombathy}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+%\pagestyle{empty}
+\tableofcontents
+
+%\setcounter{page}{1}
+\pagestyle{plain}
+
+\section{Wigner Crystals}
+
+\section{Path Integral Formalism}
+
+
+	\subsection{Free Particle}
+	\subsection{Harmonic Oscillator}
+	\subsection{One particle tunneling}
+		\subsubsection{One Particle Hamiltonian}
+		\subsubsection{Action Integral Calculation}
+		\subsubsection{Tunneling calculation in quartic potentials}
+
+\section{Experimental Considerations}
+	\subsection{Modeling the Potential and Fitting}
+	\subsection{Polarization data}
+	\subsection{Scaling}
+
+\section{Many Body Tunneling Calculations - Instanton}
+	\subsection{Quartic Hamiltonian model}
+		\subsubsection{Rescaling and Dimensionless Hamiltonian}	
+	\subsection{Milnikov method}
+	\subsection{Classical Equilibrium Positions}
+	\subsection{Harmonic Oscillator Eigenfrequencies adn Eigenmodes}
+	\subsection{Trajectory Calculation}
+	\subsection{Arc Lengt Paramterization}
+	\subsection{Egzact Diagonalization (ED)}
+
+\section{Polarization}
+	\subsection{Classical Polarization Calculation}
+	\subsection{Polarization using ED}
+
+\section{Open Questions}
+	
+\appendix
+\section{Mathematics}
+	In this appendix I will write down some useful mathematical expressions, proofs or identities that are used in the discussion above
+		\subsection{Gaussian Integrals}
+			\input{Gaussian_Integrals.tex}
+		\subsection{Cauchy's Resiude Theorem}\label{CRT}
+		\subsection{Besel Problem}
+			\input{Besel_Problem.tex}
+		
+\section{Algorithms and Methods}
+		\subsection{Monte Carlo and Simulated Annealing}
+		\subsection{Minimalization by Nelder-Mead algorithm}
+
+\section{Links, Data and other stuff}	
+
+
+
+\cite{aa}, \cite{bb}
+
+\newpage
+\begin{thebibliography}{3}
+
+\bibitem{aa} Anna Anderegg, 2022, Example 1.
+
+\bibitem{bb} Brenda Bradshaw, 2021, Example 2.
+
+\end{thebibliography}
+
+\end{document}

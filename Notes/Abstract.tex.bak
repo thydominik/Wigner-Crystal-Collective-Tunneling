@@ -1,0 +1,10 @@
+% Generic abstract
+
+The documentation of the title's topic, Wigner crystal collective tunneling. Motivated by experiments, where in an effectively one dimensional system a wigner crystal for up to 7 electrons were observed. This work aims to investigate the phenomena from a theoreitcal point of view using ED, Instanton and DMRG techniques.
+
+	\begin{description}
+		\item[Usage]
+This note aims to document every major developement in the project, explain the necessary 'new' physics (at least new for me), derive or proof mathematical concepts that the investigation is dependent upon, and be a somewhat self-contained material for me and possibly others during the research process. 
+		\item[Structure]
+The structure is as follows: Starting from elementary physics concepts that describes the environment that we are trying to understand, then developing the path integral tools along Feynman's book and Milnikov's work, these are followed by Monte-Carlo simulations, ED calculations and Polarization calculations,then ends with open quaestions, hopefully with some answers. The notes ends with the Appendix containing the necessary math, programming and other important materials.
+	\end{description}

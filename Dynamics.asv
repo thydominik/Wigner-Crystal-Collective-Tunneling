@@ -1,0 +1,64 @@
+clc
+clear all
+
+disp('WavePacket simulation')
+
+NoP = 2^10;
+alpha = 5;
+
+x               = linspace(-7, 7, NoP);
+IntervalLength  = abs(max(x) - min(x));
+
+dx = x(2) - x(1);
+
+k       = zeros(1, NoP);
+dk      = 2 * pi/IntervalLength;
+Omega   = dk * NoP;
+k       = linspace(-Omega/2, Omega/2, NoP);
+
+dt = 10^-2;
+
+k0      = 0.0;
+sigma   = 1;
+x0      = -sqrt(alpha);
+
+V = 0.25 * (x.^2 - alpha).^2;
+
+ImpulseOp = fftshift(exp(-1i*dt*k.^2 / 4));
+
+IterSteps = 10^3;
+for j = 1:IterSteps
+    j
+    if j == 1
+        for h = 1:NoP
+            psi0(h) = exp((x(h) - x0)^2 / -(sigma^2)) * exp(1i * k0 * x(h));
+        end
+    end
+
+    psi = fft(psi0);
+
+    for h = 1:NoP
+        psi(h) = ImpulseOp(h) * psi(h);
+    end
+    psi = ifft(psi);
+    for h = 1:NoP
+        psi(h) = exp(-1i * dt * V(h)) * psi(h);
+    end
+    psi = fft(psi);
+    for h = 1:NoP
+        psi(h) = ImpulseOp(h) * psi(h);
+    end
+
+    psi = ifft(psi);
+    psi0 = psi;
+    figure(1)
+    clf(figure(1))
+    hold on
+        plot(x, V ./ norm(V))
+        plot(x, abs(psi ./ norm(psi)))
+        disp(norm(psi))
+    hold off
+    T(j) = sum(psi0(end/2 : end).^2);
+end
+%%
+plot(linspace(0, IterSteps * dt, IterSteps), T)

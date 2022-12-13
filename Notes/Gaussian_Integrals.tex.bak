@@ -1,0 +1,46 @@
+% Guassian integrals
+
+\begin{problem}[\label{PureQuadraticGaussInt}Purely quadratic case]
+$I(a) = \int_{-\infty}^{\infty} {\rm{d}}x\, e^{ax^2}$
+A way to solve this integral is to intorduce $I(a)^2$, go to a polar coordinate representation by a simple substitution, then integrate over the polar angle $\phi$ and finally take the square root of the result.
+\begin{align}
+	I(a)^2 &= \int_{-\infty}^{\infty} {\rm{d}}x_1 \int_{-\infty}^{\infty} {\rm{d}} x_2 e^{ax_1^2} e^{ax_2^2} \\
+	&= \iint_{-\infty}^{\infty} {\rm{d}}x_1 {\rm{d}}x_2 \, e^{a(x_1^2 + x_2^2)}
+\end{align}
+Now one can go from ${\rm{d}}x_1 {\rm{d}}x_2$ to ${\rm{d}}r {\rm{d}}\phi$, by the $x_1 = r \cos(\phi)$ and $x_2 = r\sin(\phi)$. Meaning that $x_1^2 + x_2^2 = r^2$ replaces the exponent. Calculating the Jacobian for the change of the metric
+\begin{equation}
+	J = \left| 
+	\begin{matrix}
+	\frac{\partial x_1}{\partial r} & \frac{\partial x_1}{\partial \phi} \\
+	\frac{\partial x_2}{\partial r} & \frac{\partial x_2}{\partial \phi} 
+	\end{matrix}
+	\right| = \left|
+	\begin{matrix}
+	\cos(\phi) & -r\sin(\phi)\\
+	\sin(\phi) & r\cos(\phi)\\
+	\end{matrix}
+	\right| = r
+\end{equation}
+
+\begin{align}
+	I(a)^2 &= \int_{0}^{\infty} {\rm{d}}r \int_{0}^{2\pi}{\rm{d}}\phi \, re^{a(r^2)} \\
+	&= 2\pi \int_{0}^{\infty} {\rm{d}}r \, re^{a(r^2)}
+\end{align}
+It is convinient to make another substitution $q = -r^2 \rightarrow {\rm{d}}q = -2r {\rm{d}}r$.
+\begin{align}
+	I(a)^2 &= -2\pi \int_{0}^{\infty} {\rm{d}}q \, \frac{1}{2} e^{-a\,q} \\
+	&= \frac{\pi}{-a} \\
+	I(a) &= \sqrt{I(a)^2} = \sqrt{\frac{\pi}{-a}}\\
+	 &\text{ assuming that $\Real{a} \leq 0$} \nonumber
+\end{align}
+\end{problem}
+
+\begin{problem}[\label{GeneralQuadraticGaussInt} General Gaussian Integral ]
+
+\end{problem}
+
+
+
+
+
+

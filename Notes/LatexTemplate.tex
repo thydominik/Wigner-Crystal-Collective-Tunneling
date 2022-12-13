@@ -1,0 +1,31 @@
+% LatexTemplate-------------------------------------------------------------------------
+% Rules: 	- Remember keep it light!
+%			- Comment out packages that are not in use
+%			- Only put in packages with clear intentions that are stated with a comment
+% --------------------------------------------------------------------------------------
+% Documentclass and packages
+	%\documentclass[aps, twocolumns, showpacs, preprintnumbers, superscriptaddress]{revtex4-2}
+	\documentclass[reprint, twocolumn, superscriptaddress, preprintnumbers, aps]{revtex4-2}
+	
+	\usepackage[english]{babel} % This package manages culturally-determined typographical (and other) rules
+	\usepackage{amsmath}		% Lot of math input
+	\usepackage{amsthm}
+	\usepackage{amsfonts}	 	% Mathematical fonts like \mathbb{R}...
+	\usepackage{physics}		% for hbar and other  physics related notations
+	\usepackage[usenames,dvipsnames]{xcolor}			% use if there are colors in the text
+	\usepackage{graphicx}		% for figures
+
+% 
+	\usepackage{hyperref} % Makes references, links, toc clickable with changable color
+	\hypersetup{
+    	colorlinks=true,
+    	citecolor=PineGreen,
+    	filecolor=Peach,
+    	linkcolor=MidnightBlue,
+    	urlcolor=purple
+	}
+%
+	\usepackage{import}
+
+% Visual elements
+\numberwithin{equation}{section}		% Makes the numbering of the equations numbered by the section/appendix (###) -> (#.##)

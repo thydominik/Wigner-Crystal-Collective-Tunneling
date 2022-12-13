@@ -1,15 +1,30 @@
+% LatexTemplate-------------------------------------------------------------------------
+% Rules: 	- Remember keep it light!
+%			- Comment out packages that are not in use
+%			- Only put in packages with clear intentions that are stated with a comment
+% --------------------------------------------------------------------------------------
 % Documentclass and packages
-\documentclass[11pt,a4paper]{article}
-\usepackage[english]{babel} % This package manages culturally-determined typographical (and other) rules
+	%\documentclass[aps, twocolumns, showpacs, preprintnumbers, superscriptaddress]{revtex4-2}
+	\documentclass[reprint, twocolumn, superscriptaddress, preprintnumbers, aps]{revtex4-2}
+	
+	\usepackage[english]{babel} % This package manages culturally-determined typographical (and other) rules
+	\usepackage{amsmath}		% Lot of math input
+	\usepackage{amsthm}
+	\usepackage{amsfonts}	 	% Mathematical fonts like \mathbb{R}...
+	\usepackage{physics}		% for hbar and other  physics related notations
+	\usepackage{xcolor}			% use if there are colors in the text
+	\usepackage{graphicx}		% for figures
+% 
+	\usepackage{hyperref} % Makes references, links, toc clickable with changable color
+	\hypersetup{
+    	colorlinks=true,
+    	citecolor=green,
+    	filecolor=blue,
+    	linkcolor=red,
+    	urlcolor=purple
+	}
+%
+	\usepackage{import}
 
-\usepackage{hyperref} % Makes references, links, toc clickable with changable color
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-}
-
-\usepackage{amsmath}	% Lot of math input
-\numberwithin{equation}{section}	% Makes the numbering of the equations numbered by the section/appendix (###) -> (#.##)
+% Visual elements
+\numberwithin{equation}{section}		% Makes the numbering of the equations numbered by the section/appendix (###) -> (#.##)

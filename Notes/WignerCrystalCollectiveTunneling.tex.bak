@@ -1,39 +1,44 @@
-\input{WCCT_LatexTemplate.tex}
+\input{LatexTemplate.tex}
 
-% Title, Author, Date
-\title{Theoretical modeling of the collective tunneling of a Wigner necklace\\}
-\author{Dominik szombathy}
+\input{Commands.tex}
+\input{Environments.tex}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+\title{Wigner Crystal Collective tunneling - A theoretical investigation}
+\author{Szombathy Dominik}
+	\email{szombathy.dominik@gmail.com \\ szombathy.dominik@edu.bme.hu}
+	\homepage{www.internet.hu/secrets}
+	\affiliation{Budapest University of Technology}
+	
+	
 \date{\today}
 
 
-\begin{document}
-\maketitle
 
 \begin{abstract}
-
+	\input{Abstract.tex}
 \end{abstract}
 
-%\pagestyle{empty}
+\maketitle
+
 \tableofcontents
 
-%\setcounter{page}{1}
-\pagestyle{plain}
 
-\section{Wigner Crystals}
-
-\section{Path Integral Formalism}
+\section{Wigner Crystal}
+\section{Path Integral Formalism} 
 	\subsection{Free Particle}
 	\subsection{Harmonic Oscillator}
-	\subsection{One particle tunneling}
+	\subsection{One Particle Tunneling}
 		\subsubsection{One Particle Hamiltonian}
 		\subsubsection{Action Integral Calculation}
 		\subsubsection{Tunneling calculation in quartic potentials}
-
 \section{Experimental Considerations}
 	\subsection{Modeling the Potential and Fitting}
 	\subsection{Polarization data}
 	\subsection{Scaling}
-
 \section{Many Body Tunneling Calculations - Instanton}
 	\subsection{Quartic Hamiltonian model}
 		\subsubsection{Rescaling and Dimensionless Hamiltonian}	
@@ -43,20 +48,19 @@
 	\subsection{Trajectory Calculation}
 	\subsection{Arc Lengt Paramterization}
 	\subsection{Egzact Diagonalization (ED)}
-
 \section{Polarization}
 	\subsection{Classical Polarization Calculation}
 	\subsection{Polarization using ED}
-
 \section{Open Questions}
-	
+
+
 \appendix
 \section{Mathematics}
-	In this appendix I will write down some useful mathematical expressions, proofs or identities that are used in the discussion above
 		\subsection{Gaussian Integrals}
+			\import{./Mathematics/}{Gaussian_Integrals.tex}
 		\subsection{Cauchy's Resiude Theorem}\label{CRT}
 		\subsection{Besel Problem}
-			\input{Besel_Problem.tex}
+			\import{./Mathematics/}{Besel_Problem.tex}
 		
 \section{Algorithms and Methods}
 		\subsection{Monte Carlo and Simulated Annealing}
@@ -64,7 +68,6 @@
 
 \section{Links, Data and other stuff}	
 
-\section{Research Diary}
 
 
 \cite{aa}, \cite{bb}
@@ -77,5 +80,4 @@
 \bibitem{bb} Brenda Bradshaw, 2021, Example 2.
 
 \end{thebibliography}
-
 \end{document}

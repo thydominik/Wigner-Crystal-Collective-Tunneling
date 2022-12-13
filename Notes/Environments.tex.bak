@@ -1,0 +1,20 @@
+% Latex Environments:
+	% Update the original 'Environments.tex' file then copy it to the project that you work on, to keep an updated and uniform latex sintax, ty!
+
+% Notes elements:
+	% Theorem
+		\newtheorem{theorem}{Theorem}[section]		%\begin{} and \end{} 'theorem', with printed 'Theorem ###' where the numbering will depend on the section it is placed in
+	% Corollary
+		\newtheorem{corollary}{Corollary}[theorem]
+	% Definition
+		\newtheorem{definition}{Definition}[section]
+	% Lemma
+		\newtheorem{lemma}[theorem]{Lemma}
+	% Remark
+		\theoremstyle{remark}
+		\newtheorem*{remark}{Remark}
+		
+	\theoremstyle{definition}
+		\newtheorem{example}{Example}[section] %\begin{} and \end{} 'example', with printed 'Example ###' where the numbering will depend on the section it is placed in
+		\newtheorem{exercise}{Exercise}[section] 	% Initially for Bevezető kalkulus notes
+		\newtheorem{recexercise}{recommended Exercise}[section]		% Initially for Bevezető kalkulus notes

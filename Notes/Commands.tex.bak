@@ -1,0 +1,19 @@
+% Latex template:
+	% Update the original 'Commands.tex' file then copy it to the project that you work on, to keep an updated and uniform latex sintax, ty!
+
+% MATHEMATICS
+	% Vectors & Matricies
+		\newcommand{\vect}[1]{\,\underline{#1}}		% Creates an underlined vector, good for 3D ones
+		\newcommand{\bv}[1]{\,{\bold{#1}}}				% Creates a bold vector
+		\newcommand{\mtx}[1]{\,\underline{\underline{#1}}}		% Creates a doubly underlined letter, as matrix
+		\newcommand{\bmtx}[1]{\,\underline{\underline{#1}}}		% Creates a bold letter as matrix
+		
+		\newcommand{\absv}[1]{\,\lVert #1 \rVert}
+		\newcommand{\diad}[2]{\, {\bold{#1} \circ \bold{#2}}}
+	
+	% 
+		\newcommand{\R}{\mathbb{R}} 	% set for real numbers
+		\newcommand{\Q}{\mathbb{Q}}		% set for cplx numbers
+		\newcommand{\argu}[1]{\!\left({#1} \right)} 	% identity
+% PHYSICS
+
