@@ -1,7 +1,9 @@
 % Guassian integrals
 
 \begin{problem}[\label{PureQuadraticGaussInt}Purely quadratic case]
-$I(a) = \int_{-\infty}^{\infty} {\rm{d}}x\, e^{ax^2}$
+\begin{equation}
+I_{\text{pure gauss.}}(a) = \int_{-\infty}^{\infty} {\rm{d}}x\, e^{ax^2}
+\end{equation} 
 A way to solve this integral is to intorduce $I(a)^2$, go to a polar coordinate representation by a simple substitution, then integrate over the polar angle $\phi$ and finally take the square root of the result.
 \begin{align}
 	I(a)^2 &= \int_{-\infty}^{\infty} {\rm{d}}x_1 \int_{-\infty}^{\infty} {\rm{d}} x_2 e^{ax_1^2} e^{ax_2^2} \\
@@ -30,13 +32,27 @@ It is convinient to make another substitution $q = -r^2 \rightarrow {\rm{d}}q = 
 \begin{align}
 	I(a)^2 &= -2\pi \int_{0}^{\infty} {\rm{d}}q \, \frac{1}{2} e^{-a\,q} \\
 	&= \frac{\pi}{-a} \\
-	I(a) &= \sqrt{I(a)^2} = \sqrt{\frac{\pi}{-a}}\\
+	\int_{-\infty}^{\infty} {\rm{d}}x\, e^{ax^2} &= \sqrt{\frac{\pi}{-a}}\\
 	 &\text{ assuming that $\Real{a} \leq 0$} \nonumber
 \end{align}
 \end{problem}
 
 \begin{problem}[\label{GeneralQuadraticGaussInt} General Gaussian Integral ]
-
+\begin{equation}
+	I_{\text{Gen.gauss.}}(a, b, c) = \int_{-\infty}^{\infty} {\rm{d}}x\, e^{ax^2 + bx + c}
+\end{equation}
+The second order polinomial in the exponent can be written as a square: $ \alpha(x + \beta)^2 - \gamma = ax^2 + bx + c$. Identifying the coefficients on the l.h.s. we find that $\alpha = a;\, \beta = \frac{b}{2a};$ and $\gamma = c - \frac{b^2}{4a^2}$. Now rewrite the integral using the squared form of the polynomial
+\begin{equation}
+	I(a, b, c) = \int {\rm{d}}x\, e^{a(x + \frac{b}{2a})^2 + c - \frac{b^2}{4a^2}}
+\end{equation}
+where the last two terms in the exponent are just constant factors which can be placed outside of the integral, leaving the $a(x + \frac{b}{2a})^2$ term. Substitute in $y = x + \frac{b}{2a}$ (${\rm{d}}y = {\rm{d}}x$)
+\begin{equation}
+	I(a, b, c) = e^{c - \frac{b^2}{4a^2}} \int_{-\infty}^{\infty} {\rm{d}}y\, e^{ay^2}.
+\end{equation}
+Integral on the l.h.s. is the same as in problem \ref{PureQuadraticGaussInt}, giving the answer as
+\begin{equation}
+	\boxed{\int_{-\infty}^{\infty} {\rm{d}}x\, e^{ax^2 + bx + c} = e^{c - \frac{b^2}{4a^2}} \sqrt{\frac{\pi}{-a}}}
+\end{equation}
 \end{problem}
 
 
