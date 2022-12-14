@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.11.28)  14 DEC 2022 13:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.11.28)  14 DEC 2022 13:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -952,177 +952,12 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
 (C:\Installs 1\MikTex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(WignerCrystalCollectiveTunneling.toc
-Overfull \hbox (5.8889pt too wide) detected at line 6
- \OT1/cmr/m/n/10 I.
- []
-
-
-Overfull \hbox (9.7778pt too wide) detected at line 7
- \OT1/cmr/m/n/10 II.
- []
-
-
-Overfull \hbox (9.7778pt too wide) detected at line 8
- \OT1/cmr/m/n/10 A.
- []
-
-
-Overfull \hbox (9.36115pt too wide) detected at line 9
- \OT1/cmr/m/n/10 B.
- []
-
-
-Overfull \hbox (9.50002pt too wide) detected at line 10
- \OT1/cmr/m/n/10 C.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 11
- \OT1/cmr/m/n/10 1.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 12
- \OT1/cmr/m/n/10 2.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 13
- \OT1/cmr/m/n/10 3.
- []
-
-
-Overfull \hbox (13.6667pt too wide) detected at line 14
- \OT1/cmr/m/n/10 III.
- []
-
-
-Overfull \hbox (9.7778pt too wide) detected at line 15
- \OT1/cmr/m/n/10 A.
- []
-
-
-Overfull \hbox (9.36115pt too wide) detected at line 16
- \OT1/cmr/m/n/10 B.
- []
-
-
-Overfull \hbox (9.50002pt too wide) detected at line 17
- \OT1/cmr/m/n/10 C.
- []
-
-
-Overfull \hbox (13.38892pt too wide) detected at line 18
- \OT1/cmr/m/n/10 IV.
- []
-
-
-Overfull \hbox (9.7778pt too wide) detected at line 19
- \OT1/cmr/m/n/10 A.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 20
- \OT1/cmr/m/n/10 1.
- []
-
-
-Overfull \hbox (9.36115pt too wide) detected at line 21
- \OT1/cmr/m/n/10 B.
- []
-
-
-Overfull \hbox (9.50002pt too wide) detected at line 22
- \OT1/cmr/m/n/10 C.
- []
-
-
-Overfull \hbox (9.91669pt too wide) detected at line 23
- \OT1/cmr/m/n/10 D.
- []
-
-
-Overfull \hbox (9.08336pt too wide) detected at line 24
- \OT1/cmr/m/n/10 E.
- []
-
-
-Overfull \hbox (8.80559pt too wide) detected at line 25
- \OT1/cmr/m/n/10 F.
- []
-
-
-Overfull \hbox (10.12502pt too wide) detected at line 26
- \OT1/cmr/m/n/10 G.
- []
-
-
-Overfull \hbox (9.7778pt too wide) detected at line 27
- \OT1/cmr/m/n/10 V.
- []
-
-
-Overfull \hbox (9.7778pt too wide) detected at line 28
- \OT1/cmr/m/n/10 A.
- []
-
-
-Overfull \hbox (9.36115pt too wide) detected at line 29
- \OT1/cmr/m/n/10 B.
- []
-
-
-Overfull \hbox (13.38892pt too wide) detected at line 30
- \OT1/cmr/m/n/10 VI.
- []
-
-
-Overfull \hbox (9.7778pt too wide) detected at line 32
- \OT1/cmr/m/n/10 A.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 33
- \OT1/cmr/m/n/10 1.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 34
- \OT1/cmr/m/n/10 2.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 35
- \OT1/cmr/m/n/10 3.
- []
-
-
-Overfull \hbox (9.36115pt too wide) detected at line 36
- \OT1/cmr/m/n/10 B.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 37
- \OT1/cmr/m/n/10 1.
- []
-
-
-Overfull \hbox (7.2778pt too wide) detected at line 38
- \OT1/cmr/m/n/10 2.
- []
-
-
-Overfull \hbox (9.50002pt too wide) detected at line 39
- \OT1/cmr/m/n/10 C.
- []
-
-)
+(WignerCrystalCollectiveTunneling.toc)
 \tf@toc=\write6
 \openout6 = `WignerCrystalCollectiveTunneling.toc'.
 
- (Mathematics/Gaussian_Integrals.tex [1{C:/Users/szomb/AppData/Local/MiKTeX/fon
-ts/map/pdftex/pdftex.map}]
+ (Mathematics/Gaussian_Integrals.tex
+[1{C:/Users/szomb/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 Missing character: There is no e in font msbm10!
 Missing character: There is no e in font msbm10!
 Missing character: There is no e in font msbm7!
@@ -1134,9 +969,6 @@ Missing character: There is no e in font msbm5!
 ) (Mathematics/Besel_Problem.tex [2]) [3]
 No file WignerCrystalCollectiveTunneling.bbl.
 [4] (WignerCrystalCollectiveTunneling.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `WignerCrystalCollectiveTunneling.out' has no
 t changed.
 (rerunfilecheck)             Checksum: A7B20A3C844DFBA90D096BC4FBA590AD;6834.
@@ -1144,7 +976,7 @@ t changed.
 Here is how much of TeX's memory you used:
  31851 strings out of 478582
  624133 string characters out of 2855565
- 992691 words of memory out of 3000000
+ 992708 words of memory out of 3000000
  49421 multiletter control sequences out of 15000+600000
  477169 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1164,7 +996,7 @@ MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Installs 1/MikTex/fonts/type
 C:/Installs 1/MikTex/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Installs 1/Mi
 kTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Installs 1/MikTex/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on WignerCrystalCollectiveTunneling.pdf (4 pages, 284344 bytes).
+Output written on WignerCrystalCollectiveTunneling.pdf (4 pages, 284408 bytes).
 
 PDF statistics:
  401 PDF objects out of 1000 (max. 8388607)
