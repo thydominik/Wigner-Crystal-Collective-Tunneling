@@ -1,0 +1,59 @@
+%---------------------------------------------------------
+%
+%           version: 01. date: 2000.02.20
+%        Input file for Be with ?????? basis set
+%
+%          4 e-, 8 orbitals:  2 filled  6 empty
+%
+%----------------------------------------------------------
+
+
+Molecule_name = WC_spinless;
+Outtext_      = WC_spinless;
+CL = 9;
+fact_ = 1.0000;
+%---test for the relativistic code
+n_tot = 3;
+par_tot = 1;
+%K_tot             = NaN; %0 to exclude orbital symmetry
+Qnumbers_type     = {U(1), Z2};
+Qnumbers_operator = {n, par};
+%Qnumbers_type     = {U(1)};
+%Qnumbers_operator = {n};
+deas_ops          = {n}
+n_i = [ 1  1  1  1  1  1  1  1  1  1  1  1 ];
+par_i = [ 1 -1  1 -1  1 -1  1 -1  1 ];
+
+%---hot fix to use Z2 symmetry
+%n_proton_tot        =  3;
+%n_neutron_tot       =  0;
+%par_tot             =  1;
+%Qnumbers_type     = {U(1), U(1), Z2};
+%Qnumbers_operator = {n_proton, n_neutron, par};
+%deas_ops          = {n_proton,n_neutron}
+%n_proton_i  = [ 1  1  1  1  1  1  1  1  1  1  1  1 ];
+%n_neutron_i = [ 0  0  0  0  0  0  0  0  0  0  0  0 ];
+%par_i       = [ 1 -1  1  1 -1 -1  1 -1  1  1 -1 -1 ];
+
+
+Modelfile         = model_chemistry_spinless;
+
+order = [ 1  2  3  4  5  6  7  8  9 ];
+
+HF_orb  = [1 2 3];
+HF_ocu  = [2 2 2];
+
+
+pt0_operators={n};
+pt1_operators={cp, c; c, cp; n,n}
+
+FCIDUMP = ./FCIDUMP.dat;
+
+%CAS_orb = [2 11  3 12  4 13  9 18  8 17  6 15  5 14  7 16 10  1]
+%CAS_orb = ;
+%---------------------------------------------------------
+%---------------------------------------------------------
+
+V_sym = 0;
+
+

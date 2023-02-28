@@ -1,6 +1,6 @@
 clc
 clear all
-ED = 0;
+ED = 1;
 disp('WavePacket simulation')
 
 NoP = 2^11;
@@ -16,13 +16,15 @@ dk      = 2 * pi/IntervalLength;
 Omega   = dk * NoP;
 k       = linspace(-Omega/2, Omega/2, NoP);
 
-dt = 10^-3;
+dt = 10^-5;
 
 k0      = 0.0;
 sigma   = 2;
 x0      = -sqrt(alpha);
 
-V = 0.25 * (x.^2 - alpha).^2;
+V = 1 * (x.^2 - alpha).^2;
+V(1) = 10^10;
+V(end) = 10^10;
 
 ImpulseOp = fftshift(exp(-1i*dt*k.^2 / 4));
 
@@ -48,7 +50,9 @@ for j = 1:IterSteps
                 hold off
         else
             psi0= exp((x - x0).^2 / -(sigma^2)) .* exp(1i * k0 * x);
-            psi0 = psi0 ./ norm(psi0);
+            
+            psi0 = ones(1, length(x));
+            psi0 = psi0 ./ norm(psi0); 
         end
     end
 
@@ -71,7 +75,7 @@ for j = 1:IterSteps
     figure(2)
     clf(figure(2))
     hold on
-        plot(x, V ./ norm(V))
+        plot(x(2:end-1), V(2:end-1) ./ norm(V(2:end-1)))
         plot(x, abs(psi ./ norm(psi)))
         
     hold off

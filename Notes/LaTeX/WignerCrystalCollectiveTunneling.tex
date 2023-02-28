@@ -1,0 +1,84 @@
+\input{LatexTemplate.tex}
+
+\input{Commands.tex}
+\input{Environments.tex}
+
+\usepackage{blindtext}
+
+\begin{document}
+
+\title{Wigner Crystal Collective tunneling - A theoretical investigation}
+\author{Szombathy Dominik}
+	\email{szombathy.dominik@gmail.com \\ szombathy.dominik@edu.bme.hu}
+	\homepage{www.internet.hu/secrets}
+	\affiliation{Budapest University of Technology}
+	
+	
+\date{\today}
+
+
+
+\begin{abstract}
+	\input{Abstract.tex}
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+
+\section{Wigner Crystal}\blindtext
+	\nt{this is a note, neat isn't it?}
+\section{Path Integral Formalism} \blindtext
+	\subsection{Free Particle}\blindtext
+	\subsection{Harmonic Oscillator}\blindtext
+	\subsection{One Particle Tunneling}\blindtext
+		\subsubsection{One Particle Hamiltonian}\blindtext
+		\subsubsection{Action Integral Calculation}\blindtext
+		\subsubsection{Tunneling calculation in quartic potentials}\blindtext
+\section{Experimental Considerations}\blindtext
+	\subsection{Modeling the Potential and Fitting}\blindtext
+	\subsection{Polarization data}\blindtext
+	\subsection{Scaling}\blindtext
+\section{Many Body Tunneling Calculations - Instanton}\blindtext
+	\subsection{Quartic Hamiltonian model}\blindtext
+		\subsubsection{Rescaling and Dimensionless Hamiltonian}	\blindtext
+	\subsection{Milnikov method}\blindtext
+	\subsection{Classical Equilibrium Positions}\blindtext
+	\subsection{Harmonic Oscillator Eigenfrequencies adn Eigenmodes}\blindtext
+	\subsection{Trajectory Calculation}\blindtext
+	\subsection{Arc Lengt Paramterization}\blindtext
+	\subsection{Egzact Diagonalization (ED)}\blindtext
+\section{Polarization}\blindtext
+	\subsection{Classical Polarization Calculation}\blindtext
+	\subsection{Polarization using ED}\blindtext
+\section{Open Questions}\blindtext
+
+
+\appendix
+\section{Mathematics}
+		\subsection{Gaussian Integrals}
+			\import{./Mathematics/}{Gaussian_Integrals.tex}
+		\subsection{Cauchy's Resiude Theorem}\label{CRT}
+		\subsection{Besel Problem}
+			\import{./Mathematics/}{Besel_Problem.tex}
+		
+\section{Algorithms and Methods}
+		\subsection{Monte Carlo and Simulated Annealing}
+		\subsection{Minimalization by Nelder-Mead algorithm}
+
+\section{Links, Data and other stuff}	
+
+
+
+\cite{aa}, \cite{bb}
+
+\newpage
+\begin{thebibliography}{3}
+
+\bibitem{aa} Anna Anderegg, 2022, Example 1.
+
+\bibitem{bb} Brenda Bradshaw, 2021, Example 2.
+
+\end{thebibliography}
+\end{document}

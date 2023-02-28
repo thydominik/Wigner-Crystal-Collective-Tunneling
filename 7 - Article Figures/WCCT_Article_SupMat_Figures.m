@@ -93,7 +93,7 @@ clear all
 close all
 clc
 
-FontSize = 20;
+FontSize = 30;
 Position = [1 1 7 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
@@ -111,8 +111,8 @@ hold on
     %axis square
     box on
 % Axis Labels:
-    xlabel('$z$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    ylabel('$\chi_i(z)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
+    xlabel('$z$', 'Interpreter', 'latex', 'FontSize', FontSize + 10)
+    ylabel('$\chi_i(z)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 10)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\4 - Trajectory Calculation\3 particle\Standard MC Data')
@@ -134,13 +134,13 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -0.95, 4.6, 0, '(#)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 0.5, 1.25, 0, '$\alpha = 12.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( -1.6, 4.6, 0, '(a)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 0.3, 1.25, 0, '$\alpha = 12.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
 % Saving:
-    fname   = sprintf('SupMatFig_3Particle_Trajectory.pdf');
+    fname   = sprintf('Fig_3Particle_Trajectory.pdf');
     hfig    = gcf;
     print(hfig,'-bestfit','-dpdf', '-r960', fname);
 %% Figure 3: Tunneling trajectories FIVE PARTICLES
@@ -209,7 +209,8 @@ clear all
 close all
 clc
 
-FontSize = 25;
+
+FontSize = 30;
 Position = [1 1 7 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
@@ -228,15 +229,16 @@ hold on
 
 % Axis Labels:
     xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', FontSize+5)
-    ylabel('$\omega_i$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize+5)
+    ylabel('$\omega_i$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize+10)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     F = load('Freqs.mat'); F = F.Frequencies;
     A = load('AlphaVals.mat'); A = A.AlphaValues;
 % Plotting:
-    plot(A, sqrt(F), '-', 'LineWidth', 3)
+    plot(A, sqrt(F), '-', 'LineWidth', 3.5)
     xline(4.443, 'LineWidth', 2)
-    grid
+    %grid
+    box
 % Colors:
     %colormap turbo;
     %c                   = colorbar('eastoutside'); %, 'Direction','reverse');
@@ -250,7 +252,7 @@ hold on
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
 % Saving:
-    fname   = sprintf('SupMatFig_Freqs.pdf');
+    fname   = sprintf('Fig_Freqs.pdf');
     hfig    = gcf;
     print(hfig,'-bestfit','-dpdf', '-r960', fname);
 

@@ -64,7 +64,7 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -5, 0.085, 10, '(c)', 'Color', 'white', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( -5, 0.085, 10, '(a)', 'Color', 'white', 'interpreter', 'Latex', 'FontSize', FontSize);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
@@ -79,7 +79,7 @@ clear all
 close all
 clc
 
-FontSize = 20;
+FontSize = 30;
 Position = [1 1 6 3];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
@@ -89,16 +89,19 @@ hold on
     set(gca, 'FontSize', FontSize)
 
 % Axis limits:
-    xlim([-5.5 5.5])
-    xticks([-7.5 -5 -2.5 0 2.5 5 7.5])
+    xlim([-5.5*160 5.5*160])
+    xticks([-500 0 500])
     ylim([-13 70])
-    yticks([0 20 40 60])
+    yticks([0 30 60])
     %zlim([])
     %axis square
 
 % Axis Labels:
-    xlabel('$\chi$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    ylabel('$V(\chi)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
+    xlabel('$x [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
+    label = ylabel('$V(x) $', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
+    %label.Position(1) = -5.8;
+    %label.Position(2) = 70;
+    %set(label, 'Rotation', 0)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     x = linspace(-7, 7, 1000);
@@ -113,10 +116,10 @@ hold on
     WaveFunction = WF1 + WF2 + WF3;
 % Plotting:
     % Potential:
-        LinePlot = plot(x, ((Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 7);
+        LinePlot = plot(x * 160, ((Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 7);
         LinePlot.Color(4) = 0.5;
 
-        yline(0, 'k-', 'LineWidth', 2, 'Alpha', 1);
+        yline(0, 'k-', 'LineWidth', 2.5, 'Alpha', 1);
 
     % Wavefunctions:
     trshld = 8*10^-4;
@@ -125,7 +128,7 @@ hold on
     %plot(x(abs(WF1) > trshld), mult * abs(WF1(abs(WF1) > trshld)), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF2) > trshld), mult * abs(WF2(abs(WF2) > trshld)), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF3) > trshld), mult * abs(WF3(abs(WF3) > trshld)), 'r-', 'LineWidth', 2.0)
-    plot(x, mult * WaveFunction, 'r-', 'LineWidth', 2.0)
+    plot(x*160, mult * WaveFunction, 'r-', 'LineWidth', 3.5)
 % Colors:
     %colormap turbo;
     %c                   = colorbar('eastoutside'); %, 'Direction','reverse');
@@ -136,8 +139,8 @@ hold on
     % Note that in the matlab figure, the label (a) is out of the fram,
     % after saving the figure as pdf the label will be in a good place i
     % think.
-    text( -7.7, 65, 0, '(b)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 0, 45, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( -8.7, 65, 0, '(b)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 0, 55, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
@@ -152,7 +155,7 @@ close all
 clc
 
 Version = 1; % 1 or 2
-FontSize = 20;
+FontSize = 30;
 Position = [1 1 6 3];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
@@ -162,16 +165,16 @@ hold on
     set(gca, 'FontSize', FontSize)
 
 % Axis limits:
-    xlim([-5.5 5.5])
-    xticks([-7.5 -5 -2.5 0 2.5 5 7.5])
+    xlim([-5.5*160 5.5*160])
+    xticks([-500 0 500])
     ylim([-13 70])
-    yticks([0 20 40 60])
+    yticks([0 30 60])
     %zlim([])
     %axis square
 
 % Axis Labels:
-    xlabel('$\chi$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    ylabel('$V(\chi)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
+    xlabel('$x [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
+    ylabel('$V(x)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     x = linspace(-7, 7, 1000);
@@ -186,10 +189,10 @@ hold on
     WaveFunction = WF1 + WF2 + WF3;
 % Plotting:
     % Potential:
-        LinePlot = plot(x, ((-Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 7);
+        LinePlot = plot(x*160, ((-Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 7);
         LinePlot.Color(4) = 0.5;
 
-        yline(0, 'k-', 'LineWidth', 2, 'Alpha', 1);
+        yline(0, 'k-', 'LineWidth', 2.5, 'Alpha', 1);
 
     % Wavefunctions:
     trshld = 8*10^-4;
@@ -198,7 +201,7 @@ hold on
     %plot(x(abs(WF1) > trshld), flip(mult * abs(WF1(abs(WF1) > trshld))), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF2) > trshld), flip(mult * abs(WF2(abs(WF2) > trshld))), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF3) > trshld), flip(mult * abs(WF3(abs(WF3) > trshld))), 'r-', 'LineWidth', 2.0)
-    plot(x, mult * flip(WaveFunction), 'r-', 'LineWidth', 2.0)
+    plot(x*160, mult * flip(WaveFunction), 'r-', 'LineWidth', 3.5)
     if Version == 2
         y1 = linspace(2.1,3.2, 10);
         y2 = linspace(-3.3, 3.2, 10);
@@ -212,9 +215,9 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -7.7, 65, 0, '(a)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( -8.7, 65, 0, '(a)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     if Version == 1
-        text( 0, 45, 0, '$\epsilon > 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+        text( 0, 55, 0, '$\epsilon > 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
     elseif Version == 2
         text( 3, -6, 0, '$\epsilon > 0$', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 5);
     end
@@ -299,16 +302,31 @@ hold on
     set(gca, 'FontSize', FontSize)
 
 % Axis limits:
-    xlim([0 1100])
-    xticks([-200 200 600 1000])
-    ylim([10^-2 1])
+    %xlim([0 1100])
+    %xticks([-200 200 600 1000])
+    ylim([10^-3 1])
     %yticks([0 20 40 60])
     %zlim([])
     %axis square
-    set(gca, 'Yscale', 'log')
+    %set(gca, 'Yscale', 'log')
     %set(gca, 'Xscale', 'log')
     %grid
     box on
+    scalingVec(1, :) = [7.182 0.875 0.917 0.482]; % pascu's 1st
+    scalingVec(2, :) = [13.05 1.327 0.682 0.51];    % Pascu's 2nd
+    scalingVec(3, :) = [12.8 9.2 9.067 8.02];   % Original from Shahal
+    scalingVec(4, :) = [9 4 3.5 3.5];   % Eyeballed
+
+    Exponent    = 1; %1/2.1; % 1.9 - 2.2 majdnem ugyanúgy szemre jót kapunk.
+    Factor      = 1;
+
+    %xline([114 368 711 1031])
+    %yline([7.182 0.875 0.917 0.482])
+    %xline([104 360 720 1020])
+    %yline([13.05 1.327 0.682 0.51])
+    %xline([104 280 560 850])
+    %yline([13.05 9.2 9.067 8.2])
+    yline(1)
 % Axis Labels:
     xlabel('$V_k$', 'Interpreter', 'latex', 'FontSize', FontSize)
     ylabel('$\Pi^{-1} / \Pi^{-1}_0$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
@@ -319,10 +337,15 @@ hold on
     Exp5 = load('P5.tsv');
     Exp7 = load('P7.tsv');
 % Plotting:
-    plot(Exp1(:, 1), Exp1(:, 2)/max(Exp1(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
-    plot(Exp3(:, 1), Exp3(:, 2)/max(Exp3(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
-    plot(Exp5(:, 1), Exp5(:, 2)/max(Exp5(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
-    plot(Exp7(:, 1), Exp7(:, 2)/max(Exp7(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    scaleInd = 3;
+    %plot(Exp1(:, 1), Exp1(:, 2)/max(Exp1(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    plot(Factor * Exp1(:, 1).^Exponent, Exp1(:, 2)/scalingVec(scaleInd, 1), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    %plot(Exp3(:, 1), Exp3(:, 2)/max(Exp3(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    plot(Factor * Exp3(:, 1).^Exponent, Exp3(:, 2)/scalingVec(scaleInd, 2), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    %plot(Exp5(:, 1), Exp5(:, 2)/max(Exp5(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    plot(Factor * Exp5(:, 1).^Exponent, Exp5(:, 2)/scalingVec(scaleInd, 3), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    %plot(Exp7(:, 1), Exp7(:, 2)/max(Exp7(:, 2)), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
+    plot(Factor * Exp7(:, 1).^Exponent, Exp7(:, 2)/scalingVec(scaleInd, 4), 'x', 'MarkerSize', 8, 'LineWidth', 1.5)
 % Colors:
     %colormap turbo;
     %c                   = colorbar('eastoutside'); %, 'Direction','reverse');
@@ -330,11 +353,11 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( 40, 1.7, 0, '(a)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 80, 0.5*10^-1, 0, '$1e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 300, 0.5*10^-1, 0, '$3e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 600, 0.5*10^-1, 0, '$5e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 900, 0.5*10^-1, 0, '$7e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 40, 1.7, 0, '(a)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 80, 0.5*10^-1, 0, '$1e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 300, 0.5*10^-1, 0, '$3e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 600, 0.5*10^-1, 0, '$5e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 900, 0.5*10^-1, 0, '$7e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
 
     qw{1} = plot(nan, 'kx', 'MarkerSize', 8, 'LineWidth', 1.5)
     legend([qw{:}], {'Exp.'}, 'location', 'best')
@@ -395,7 +418,8 @@ hold on
 % Plotting:
     xshift = 0;
     xscale = 1;
-    yscale = 1/1.5;
+    yscale = 1;
+    xline(6.8)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     plot((ED1(:, 1) + xshift) * xscale, ED1(:, 2) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
     plot((-DMRG3(10:end-9, 3) + xshift) * xscale, abs(DMRG3(10:end-9, 6)) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
@@ -438,6 +462,80 @@ hold on
     fname   = sprintf('Fig_spectral_gap_theor.pdf');
     hfig    = gcf;
     print(hfig,'-bestfit','-dpdf', '-r960', fname);
+%% Figure ??: Boxes
+clear all
+close all
+clc
+
+FontSize = 20;
+Position = [5 5 7 3];
+
+Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
+
+hold on
+% Fontsize:
+    set(gca, 'FontSize', FontSize)
+    
+% Axis limits:
+    xlim([0 16])
+    xticks([0 3 6 9 12 15])
+    ylim([10^-3 1])
+    yticks([10^-2 10^-1 1])
+    %zlim([])
+    %axis square
+    set(gca, 'Yscale', 'log')
+    %set(gca, 'Xscale', 'log')
+    %grid
+    box on
+% Axis Labels:
+    xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', FontSize)
+    ylabel('$\Delta / \Delta_0$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
+    %zlabel('$P(\alpha, \epsilon)$', 'Interpreter', 'latex', 'FontSize', FontSize)
+% Data: 
+xshift = 0;
+    xscale = 1;
+    yscale = 1/1;
+    DMRG1   = load('DMRG_Ne_1_gauss.dat');
+    DMRG3   = load('DMRG3.mat'); DMRG3 = DMRG3.DMRG3
+    DMRG5   = load('DMRG5.mat'); DMRG5 = DMRG5.DMRG5
+    DMRG7   = load('DMRG7.mat'); DMRG7 = DMRG7.DMRG7
+
+    ED1 = load('EDSplitting_1_particle_Nx_5000.mat'); ED1 = ED1.data;
+    ED3 = load('EDSplitting_3_particles_restricted_Nx_90_beta_1e-05.mat'); ED3 = ED3.data;
+    ED5 = load('ED5P.mat'); ED5 = ED5.data;
+    ED7 = load('ED7P.mat'); ED7 = ED7.ED7;
+
+    IT1 = load('Standard1particleSplitting.mat'); IT1 = IT1.OneParticleInstanton;
+    IT3 = load('Standar3particledSplitting.mat'); IT3 = IT3.SPLITTINGS;
+    IT5 = load('Standard5particleSplitting.mat'); IT5 = IT5.SPLITTINGS;
+    IT7e = load('Standard7particleSplitting.mat');
+    IT7 = IT7e.SPLITTINGS; %IT7e.Instanton7;
+
+    Exp1 = load('P1.tsv');
+    Exp3 = load('P3.tsv');
+    Exp5 = load('P5.tsv');
+    Exp7 = load('P7.tsv');
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    plot((ED1(:, 1) + xshift) * xscale, ED1(:, 2) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
+    plot((-DMRG3(10:end-9, 3) + xshift) * xscale, abs(DMRG3(10:end-9, 6)) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
+    plot((-DMRG5(1:end-17, 3) + xshift) * xscale + 0.05, DMRG5(1:end-17, 6) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
+    plot((DMRG7(1, 1:end-2) + xshift) * xscale, DMRG7(2, 1:end-2) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    plot((ED1(:, 1) + xshift) * xscale, ED1(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
+    plot((ED3(:, 1) + xshift) * xscale, ED3(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
+    plot((ED5(:, 1) + xshift) * xscale, ED5(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
+    plot((ED7(1:end-2, 1) - 0.05 + xshift) * xscale, ED7(1:end-2, 2) * yscale, 'b.-', 'MarkerSize', 15)
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    plot((IT1(:, 1) + xshift) * xscale, IT1(:, 2) * yscale, 'ko--', 'MarkerFaceColor', 'k')
+    plot((IT3(:, 1) + xshift) * xscale, IT3(:, 3) * yscale, 'ko--', 'MarkerFaceColor', 'k')
+    plot((IT5(:, 1) + xshift) * xscale, IT5(:, 3) * yscale, 'ko--', 'MarkerFaceColor', 'k')
+    plot((IT7(:, 1) + xshift) * xscale, IT7(:, 2) * yscale, 'ko--', 'MarkerFaceColor', 'k')
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %% Figure 7: Spectral gap for 3 BOTH
 % 
 clear all
@@ -470,7 +568,7 @@ hold on
 % Data: 
     Exp3 = load('P3.tsv');
 
-    DMRG3   = load('DMRG3.mat'); DMRG3 = DMRG3.DMRG3
+    DMRG3   = load('DMRG3.mat'); DMRG3 = DMRG3.DMRG3;
 
     ED3 = load('EDSplitting_3_particles_restricted_Nx_90_beta_1e-05.mat'); ED3 = ED3.data;
 
@@ -523,17 +621,195 @@ hold on
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
 % Saving:
-    fname   = sprintf('Fig_spectral_gap_comparison.pdf');
+    fname   = sprintf('Fig_spectral_gap_comparison_N_3.pdf');
     hfig    = gcf;
     print(hfig,'-bestfit','-dpdf', '-r960', fname);
-%% Figure 8: Perp factor
+%% Figure 7: Spectral gap for 1 BOTH
+% 
+clear all
+close all
+clc
+
+FontSize = 20;
+Position = [1 1 7 6];
+
+Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
+
+hold on
+% Fontsize:
+    set(gca, 'FontSize', FontSize)
+
+% Axis limits:
+    xlim([0 5])
+    %xticks([0 3 6 9 12 15])
+    ylim([10^-2 1])
+    %yticks([10^-2 10^-1 1])
+    %zlim([])
+    %axis square
+    set(gca, 'Yscale', 'log')
+    %grid
+    box on
+% Axis Labels:
+    xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', FontSize + 5)
+    ylabel('$\Delta$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
+    %zlabel('$P(\alpha, \epsilon)$', 'Interpreter', 'latex', 'FontSize', FontSize)
+% Data: 
+    Exp1 = load('P1.tsv');
+
+    
+
+    ED1 = load('EDSplitting_1_particle_Nx_5000.mat'); ED1 = ED1.data;
+    DMRG1   = ED1;
+    IT1 = load('Standard1particleSplitting.mat'); IT1 = IT1.OneParticleInstanton;
+
+% Plotting:
+    text( 4.75, 0.75, 0, '(c)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    axis square
+    xshift = 65;
+    xscale = 1/20;
+    yscale = 1/30;
+    plot((Exp1(1:end-4, 1) - xshift) * xscale, Exp1(1:end-4, 2) * yscale, 'x', 'Color', [0.8500 0.3250 0.0980], 'MarkerSize', 10, 'LineWidth', 1.5)
+    xshift = 0;
+    xscale = 1;
+    yscale = 1;
+    plot((ED1(:, 1) + xshift) * xscale, ED1(:, 2) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
+    plot((ED1(:, 1) + xshift) * xscale, ED1(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
+    plot((IT1(:, 1) + xshift) * xscale, IT1(:, 2) * yscale, 'ko--', 'MarkerFaceColor', 'k')
+    hold off
+    %axes('Position',[.29 .26 .34 .34])
+    %box on
+    %hold on
+    %scatter([2.85 7.4 10.8 13.7], [114 368 711 1031], 100, 'r', 'Filled')
+    %scatter([7.4], [368], 150, 'bd', 'Filled')
+    x = linspace(0, 15, 1000);
+    %plot(x, (x -2.5)*90, 'k--', 'LineWidth', 4)
+    %xlim([1.5 14.5])
+    %ylim([0 1100])
+    %ax = gca;
+    %ax.FontSize = 20;
+    %xlabel('\alpha_Q', 'FontSize', 20, 'Position', [15 -30])
+    %ylabel('V_Q [V]', 'FontSize', 20)
+    %xticks([3 6 9 12])
+    %yticks([0 200 400 600 800 1000])
+    %yticklabels({'0.0','0.2','0.4','0.6','0.8','1'})
+    axis square
+    hold off
+% Colors:
+    %colormap turbo;
+    %c                   = colorbar('eastoutside'); %, 'Direction','reverse');
+    %c.Label.String      = '$\left| \Psi  \right|^2$';
+    %c.Label.Interpreter = 'latex';
+    %c.Label.FontSize    = FontSize + 5; 
+% Additional Labels:
+    
+    %text( 0, 45, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+% Legend:
+
+% PaperSize:
+    set(gcf,'paperunits','in');
+    set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
+% Saving:
+    fname   = sprintf('Fig_spectral_gap_comparison_N_1.pdf');
+    hfig    = gcf;
+    print(hfig,'-bestfit','-dpdf', '-r960', fname);
+    
+%% Figure 7: Spectral gap for 5 BOTH
+% 
+clear all
+close all
+clc
+
+FontSize = 20;
+Position = [1 1 7 6];
+
+Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
+
+hold on
+% Fontsize:
+    set(gca, 'FontSize', FontSize)
+
+% Axis limits:
+    xlim([9 12])
+    %xticks([0 3 6 9 12 15])
+    ylim([10^-2 1])
+    %yticks([10^-2 10^-1 1])
+    %zlim([])
+    %axis square
+    set(gca, 'Yscale', 'log')
+    %grid
+    box on
+% Axis Labels:
+    xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', FontSize + 5)
+    ylabel('$\Delta$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
+    %zlabel('$P(\alpha, \epsilon)$', 'Interpreter', 'latex', 'FontSize', FontSize)
+% Data: 
+    Exp5 = load('P5.tsv');
+
+    
+
+    ED5 = load('ED5P.mat'); ED5 = ED5.data;
+    DMRG5   = load('DMRG5.mat'); DMRG5 = DMRG5.DMRG5
+    IT5 = load('Standard5particleSplitting.mat'); IT5 = IT5.SPLITTINGS;
+
+% Plotting:
+    text( 4.75, 0.75, 0, '(c)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    axis square
+    xshift = -490;
+    xscale = 1/110;
+    yscale = 1/10;
+    plot((Exp5(1:end-4, 1) - xshift) * xscale, Exp5(1:end-4, 2) * yscale, 'x', 'Color', [0.8500 0.3250 0.0980], 'MarkerSize', 10, 'LineWidth', 1.5)
+    xshift = 0;
+    xscale = 1;
+    yscale = 1;
+    plot((ED5(:, 1) + xshift) * xscale, ED5(:, 2) * yscale, 'b.-', 'MarkerSize', 15)
+    
+    plot((-DMRG5(1:end-17, 3) + xshift) * xscale + 0.05, DMRG5(1:end-17, 6) * yscale, 'rs', 'MarkerSize', 10, 'LineWidth', 1.5)
+    plot((IT5(:, 1) + xshift) * xscale, IT5(:, 3) * yscale, 'ko--', 'MarkerFaceColor', 'k')
+    hold off
+    %axes('Position',[.29 .26 .34 .34])
+    %box on
+    %hold on
+    %scatter([2.85 7.4 10.8 13.7], [114 368 711 1031], 100, 'r', 'Filled')
+    %scatter([7.4], [368], 150, 'bd', 'Filled')
+    x = linspace(0, 15, 1000);
+    %plot(x, (x -2.5)*90, 'k--', 'LineWidth', 4)
+    %xlim([1.5 14.5])
+    %ylim([0 1100])
+    %ax = gca;
+    %ax.FontSize = 20;
+    %xlabel('\alpha_Q', 'FontSize', 20, 'Position', [15 -30])
+    %ylabel('V_Q [V]', 'FontSize', 20)
+    %xticks([3 6 9 12])
+    %yticks([0 200 400 600 800 1000])
+    %yticklabels({'0.0','0.2','0.4','0.6','0.8','1'})
+    axis square
+    hold off
+% Colors:
+    %colormap turbo;
+    %c                   = colorbar('eastoutside'); %, 'Direction','reverse');
+    %c.Label.String      = '$\left| \Psi  \right|^2$';
+    %c.Label.Interpreter = 'latex';
+    %c.Label.FontSize    = FontSize + 5; 
+% Additional Labels:
+    
+    %text( 0, 45, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+% Legend:
+
+% PaperSize:
+    set(gcf,'paperunits','in');
+    set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
+% Saving:
+    fname   = sprintf('Fig_spectral_gap_comparison_N_5.pdf');
+    hfig    = gcf;
+    print(hfig,'-bestfit','-dpdf', '-r960', fname);    
+    %% Figure 8: Perp factor
 % 
 clear all
 close all
 clc
 
 FontSize = 25;
-Position = [1 1 7 6];
+Position = [1 1 7 3];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
 
@@ -545,7 +821,7 @@ hold on
     xlim([1 16])
     xticks([0 3 6 9 12 15])
     ylim([0 40])
-    yticks([0 5 10 20 30 40])
+    yticks([0 20 40])
     %zlim([])
     %axis square
     %set(gca, 'Yscale', 'log')
@@ -574,11 +850,11 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( 2, 38, 3, '(#)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 2, 36, 3, '(#)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     %text( 0, 45, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 2.9, 3, 0, '$1e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 7.4, 5, 0, '$3e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 10.8, 10, 0, '$5e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 2.9, 5, 0, '$1e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 7.4, 8, 0, '$3e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 10.8, 13, 0, '$5e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     text( 13.2, 25, 0, '$7e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
 
 % PaperSize:
