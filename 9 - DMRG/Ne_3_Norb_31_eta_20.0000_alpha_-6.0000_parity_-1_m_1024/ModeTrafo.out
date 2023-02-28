@@ -1,0 +1,7 @@
+% Dmrg Iterartion step, Dmrg sweep, left, right, ModeTrafoLocal, ModeTrafoGlobal, Collect RDMs
+% ModeTrafoLocal = 0/1/2 not called/called but rejected/accepted, ModeTrafoGlobal = 0/1/2 not called/Global2RDM/GlobalNo, Collect RDMs=0/1 not collected/collected
+ A_in = [...
+        1    0,     1    32   0 0 0
+        2    0,     2    31   0 0 0
+        3    0,     3    30   0 0 0
+        4    0,     4    29   0 0 0

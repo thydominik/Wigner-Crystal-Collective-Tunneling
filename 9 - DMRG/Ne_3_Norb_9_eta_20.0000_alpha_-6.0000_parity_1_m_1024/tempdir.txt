@@ -1,1 +1,0 @@
-/state/partition1/Ne_3_Norb_35_eta_20.0000_alpha_-6.0000_parity_1_m_1024/

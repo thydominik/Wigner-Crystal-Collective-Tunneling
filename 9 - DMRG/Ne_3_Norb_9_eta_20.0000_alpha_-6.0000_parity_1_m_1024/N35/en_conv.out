@@ -1,8 +1,0 @@
-Energy convergence between individual sweeps: 
-============================================= 
-Sweep:  1, Eivals:        9.2990072608, Diffs:        9.2990072608
-Sweep:  2, Eivals:        5.8134177469, Diffs:       -3.4855895140
-Sweep:  3, Eivals:        5.8134177324, Diffs:       -0.0000000144
-Sweep:  4, Eivals:        5.8114988397, Diffs:       -0.0019188927
-Sweep:  5, Eivals:        5.8114988397, Diffs:       -0.0000000000
-Sweep:  6, Eivals:        5.8115145960, Diffs:        0.0000157563

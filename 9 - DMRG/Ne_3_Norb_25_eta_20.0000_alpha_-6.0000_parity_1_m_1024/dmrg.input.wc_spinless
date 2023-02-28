@@ -1,0 +1,156 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+%           Input  file to setup model independent                             %
+%                        DMRG parameters                                       %
+%                                                                              %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ deastest =0 
+ deastest =1 
+ Memoryopt = 0; %0/1/2/3
+ %ModelTest= 0;      % 1/0 just to test model files/perform full DMRG calculation
+ DMRGMODE = DMRG;   % DMRG/NRG  (uder development DDMRG, TDMRG)
+ M_max = 1024;
+ M_min = 1024;
+ ML_start = 512%32%16%2%64%128%64;     % max # of states for infinite or DEAS algorithm
+ MR_start = 512%32%16%2%64%128%64;     % max # of states for infinite or DEAS algorithm
+
+ DM_cut   = [1e-10,1e-10];   % Density matrix cutoff parameter used to
+                           %   to determine states to keep after truncation
+ Eigval   = [ 1,2,3,4,5,6,7,8,9,10];  % Eigenvalue for target state 1=GS, 2=XS, 3,4..,NMVAL
+ Eigval   = [ 1,2,3,4,5,6,7];  % Eigenvalue for target state 1=GS, 2=XS, 3,4..,NMVAL
+ %p_n      = [.4 .025 .025 .025 .025 .025 .4 .025 .025 .025];  %rho = sum_alpha p_alpha rho_alpha
+ %Eigval   = [ 1,2,3,4];  % Eigenvalue for target state 1=GS, 2=XS, 3,4..,NMVAL
+ %p_n      = [ .4, .1, .1, .4 ];  %rho = sum_alpha p_alpha rho_alpha
+ %p_n      = [ .25, .25, .25, .25 ];  %rho = sum_alpha p_alpha rho_alpha
+ Eigval   = [ 1 2 3 4 5 6]
+ Eigval   = [ 1 2 3 4 5 6 7 8 9 10]
+ %Eigval   = [ 1:256] %to test the full spectrum
+ Eigval   = [ 1]
+
+                    %   NMVAL is set by head_ in ./Fortran/Laso f77 code
+ Spectrum = SA      %  SA/LA smallest/largest magnitude corresponds to smallest largest eigenvalues
+ Case_    = one;    % 'one', 'more' = target state is a liner combination of states
+                      %   from 1 to Eigval
+ sym_ud = 0;     % 0 no spin symmetry, 1 even -1 odd
+%------------------------------------------------------------------------------%
+ Iter_    = 1;      % 1 = new run so TMP is cleaned
+                    %   > 1 take Iter_last from Eexpt.out file and continue from it.
+                    %     in this case if Cont_data is specified then data from that
+                    %     directory is moved to TMP
+                    %     this is needed on a cluster if jobs can not be submitted to a given node.
+ Step_    = 1;      % 1,-1 forward backward direction
+
+ MAX_ITER =   %999     % define either MAX_ITER or MAX_SWEEP !
+ MAX_SWEEP = 6          %
+
+%---Scratch and Home directories------------------------------------------------%
+
+ Cont_data =        % if not specified it is set to TMP as default
+% Cont_data = /home/legeza/dmrgscratch.tgz
+ HOME      = /home/legeza/    %data is searched in HOME/Cont_data
+
+TMP = /state/partition1/Ne_3_Norb_35_eta_20.0000_alpha_-6.0000_parity_1_m_1024/;
+TMP = /state/partition1/Ne_3_Norb_35_eta_20.0000_alpha_-6.0000_parity_1_m_1024/;
+% TMP      = temp/;     % scratch directory do not chage!
+ RES       = RES/;      % output directory  
+
+%---Measurable quantities------------------------------------------------------%
+ HF_test   = 0;        % 0/1 calculates Hartree-Fock energy; last test was in 2002.08 
+ V_symtest = 0;        % 0/1 test syemmetries of V_ijkl 
+ sym_test  = 0;        % 0/1 test syemmetries of V_ijkl 
+ rho_0pt   = 1;        % 0/1 calculate <psi|Ai|psi>
+ rho_1pt   = 1;        % 0/1 calculate one-particle density matrix, <psi|AiAj|psi> 
+ flag_endtoend = 0;    % 0/1 to claculate only <A_n A_L+1-n>, to speed up calculations
+ rho_2pt   = 0;        % 0/1 claculate two-particle density matrix, <psi|AiAjAkAl|psi> not developed yet!!!
+ spectral_function = 0;% 0/1 to calculate spectral function
+ pt_calculate_at = end   % r/c/end   right side/center/after dmrg sweeps ended OR at Iter steps give as a vector [....]
+ %pt_calculate_at = [4 ]   % r/c/end   right side/center/after dmrg sweeps ended 
+                                 % OR at Iter steps given as a vector [....], first element of the vector must be >=CL-3 !
+ pt_betweensameeigvals = 1% 0/1 if several eigvals are calculated <i|AB|1> or <i|AB|i> where i=1,2...,Eigval
+ Hexpt     = 1;        % =0/1/2 calculate H_L, H_R, H_LR;  no time consuming
+ Hexpt_eig = 0;        % =0 do not calculate H_L, H_R eigenvalues
+                       % =1 calculate H_L, H_R eigenvalues for when L=R=N/2
+                       % =2 calculate H_L, H_R eigenvalues for each iteration step
+ Jexpt     = 0;        % =0/1 calculate the current operator
+ Dexpt     = 0;        % =0/1 calculate the dipole  operator
+ Sexpt     = 0;        % =0/1 calculate S_L, S_R, S_LR, S_l, S_s1, S_s2, S_r
+ Rexpt     = 0;        % =0/1 calculate R_L, R_R, R_LR, R_l, R_s1, R_s2, R_r
+ Iexpt     = 1;        % =0/1 calculate mutual information
+ Siexpt    = 0;        % =0/1 calculate S_i site entropies by renormalization; has a bug under development! 
+ Dimerord  = 0;        % =0/1 calculate dimerization order parameter; has a bug under development! 
+ fullH     = 0;        % ==0 for normal use, == 1 for debuging mode to produce full form of H with fullCI
+ EXACT     = 0;        % 0/1/2 to call for exact diagonalization
+ Psi2disk  = 1;        % 0/1 to save coefficients of the target state to disk in each dmrg step
+ MPS_form  = 0;        % 0/1 to generate wavefunction in Matrix-Product-State form
+ MPS_cleartext = 0;    % 0/1 to write matrices in clear text form so that Katharina could read them
+ DeleteTemp   = 0;    %0/1 to leave or delete temp files after dmrg terminated
+ QDCompr   = 0;        % ==0 for normal use, == 1 for Quantum Data Compression
+
+ Cuthill   = 0;        % 0/1 for determining Cuthill ordering!
+ Psi_parity = 0;       % 0/1 calculating the Target state parity under spin reflection
+ Rhoexpt_eig = 0;     %0/1 write to file the eigenvalues of reduced density matrix
+%profile on -history 
+
+%---------------system environments--------------------------------------------%
+Debugmode   = 1;     % 0/1/2 to run standalone/matlab mode/ 
+SBlock_config   = lqqr     % 'LR'/'lqqr'/'lqr'
+SBH_mult_config = LR     % 'LR'/'lqqr'/'lqr'
+Datazip     = 0;     % 0 for normal use 1 for block.tar 2 for block.tgz use
+
+%---for infinite lattice algorithm or DEAS
+Diagfunst       = dav03; % 'laso' == Lanczos, 'dav03'== Davidson, 'eig'==full diagonalization, 'eigs'==matlab Lanczos, 'jdqr'=Jacobi-Davidson
+Diagfigst       = 7;     %  1e-Diagfig determines the residual during Davidson diagonalization or number of digits for Lanczos
+Diagvecmaxst    = 100;    %  maximum number of Davidson vectors
+itmaxst         = 5;    % itmax*nbx = op_call! (default value is 40)
+StartVec_use_inf= 1; % 0/1 == random sarting vector/min(diag_SBH)
+DM_cutst        = 1e-10;   % Density matrix cutoff parameter used for infinite lattice or DEAS (use smaller value for DEAS for fast convergence)
+
+%---for finite lattice algorithm (sweeping)
+Diagfun     = eigs; % 'laso' == Lanczos, 'dav03'== Davidson, 'eig'==full diagonalization, 'eigs'==matlab Lanczos, 'jdqr'=Jacobi-Davidson
+Diagfig     = 6;     %  1e-Diagfig determines the residual during Davidson diagonalization or number of digits for Lanczos
+Diagvecmax  = 100;    %  maximum number of Davidson vectors
+%itmax       = 10;    % itmax*nbx = op_call! (default value is 40)
+StartVec_use= 2;     % 0 == random sarting vector
+                     % 1 == min(diag_SBH)
+                     % 2 == DMRG generated starting vector has not effect on MS-DMRG
+
+%Diagfun     = dav03; % 'laso' == Lanczos, 'dav03'== Davidson, 'eig'==full diagonalization, 'eigs'==matlab Lanczos, 'jdqr'=Jacobi-Davidson
+%Diagfigst   = 5;     %  1e-Diagfig determines the residual during Davidson diagonalization or number of digits for Lanczos
+%Diagfig     = 5;     %  1e-Diagfig determines the residual during Davidson diagonalization or number of digits for Lanczos
+%Diagvecmax  = 20;    %  maximum number of Davidson vectors
+
+%StartVec_use_inf= 1; % 0/1 == random sarting vector/min(diag_SBH)
+%StartVec_use= 2;     % 0 == random sarting vector
+%                     % 1 == min(diag_SBH)
+%                     % 2 == DMRG generated starting vector has not effect on MS-DMRG
+Infalg      = 0;     % 0/1 == no/yes infinite lattice method %last test was in 2003.01 so it could be that it is not working at all!
+Trunc_proc  = 3;     % Truncation procedure 1 == TRE_max, 
+                     %                      2 == Kholevo, 
+                     %                      3 == S_max-S, 
+                     %                      4 == (S_max-S)/S_max 
+                     %                      5 == Jozsa lower bound (unstable for critical systems)
+Turn_cond = 0;       % ==0 for normal use, == 1 to skip blocks when q^l<ML_start
+CI        = 0;       %set 0 to avoid its effect. min(CI)=0, max(CI)=Nu_tot+Nd_tot
+Disk_info    = 0;    % 0/1 to provide infromation about scratch space used in each iteration step      
+symop        = 0;    % 0=all operators are formed, 1= only OP_u & OP_ud are formed
+DEAS_symop        = 0;    % 0=all operators are formed, 1= only OP_u & OP_ud are formed
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+%   Specify the Input file for model parameters                                %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Input_function = % user pre-defined Model.mat & SiteOp.mat files will be used as input files! ok.2005.01.11
+
+%----Spin models---------------------------------------------------------------%
+
+Input_function = ./model.input.wc_spinless; %C2 spin-dependent representation
+
+%ExcludeDEASfunctions = 1
+%SBH_mult_config = lqqr     % 'LR'/'lqqr'/'lqr'
+
+

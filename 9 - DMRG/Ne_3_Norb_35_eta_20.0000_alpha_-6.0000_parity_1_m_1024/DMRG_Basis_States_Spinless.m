@@ -3,25 +3,21 @@ clear all
 
 % Physicial constants:
 Screening   = 10^-1;    % Effective coulomb screening
-Alpha       = 1;        % Coeff of x^2
+Alpha       = -6;        % Coeff of x^2
 Beta        = 1;        % Coeff of x^4
 Epsilon     = 0;        % Coeff of x^1
 Eta         = 20;       % Coulomb dimensionless strength
+Parity      = 1;
 
 Ls_d    = 160;      % Length Scale of the potential [nm]
 L_HO    = 0.65;     % Length scale of the Hamornic oscillator
 
 NumberOf_Electrons  = 3;
-NumberOf_Orbitals   = 9;
+NumberOf_Orbitals   = 35;
 
 NumberOf_Tot_Orbitals = NumberOf_Orbitals;  %total number of orbitals.
 
 xi = 0.3162; 
-
-Alpha       = -6;
-Epsilon     = 0;
-Eta         = 20;
-Parity      = -1;
 
 Length_X   = 80; 
 Length_X1  = 10; 
