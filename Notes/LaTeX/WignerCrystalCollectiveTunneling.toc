@@ -4,37 +4,37 @@
 \contentsline {section}{\numberline {}Contents}{1}{section*.3}%
 \tocdepth@restore 
 \contentsline {section}{\numberline {I}Wigner Crystal}{1}{section*.4}%
-\contentsline {section}{\numberline {II}Path Integral Formalism}{2}{section*.5}%
-\contentsline {subsection}{\numberline {A}Free Particle}{2}{section*.6}%
-\contentsline {subsection}{\numberline {B}Harmonic Oscillator}{2}{section*.7}%
-\contentsline {subsection}{\numberline {C}One Particle Tunneling}{2}{section*.8}%
-\contentsline {subsubsection}{\numberline {1}One Particle Hamiltonian}{2}{section*.9}%
-\contentsline {subsubsection}{\numberline {2}Action Integral Calculation}{2}{section*.10}%
+\contentsline {section}{\numberline {II}Path Integral Formalism}{3}{section*.5}%
+\contentsline {subsection}{\numberline {A}Free Particle}{3}{section*.6}%
+\contentsline {subsection}{\numberline {B}Harmonic Oscillator}{3}{section*.7}%
+\contentsline {subsection}{\numberline {C}One Particle Tunneling}{3}{section*.8}%
+\contentsline {subsubsection}{\numberline {1}One Particle Hamiltonian}{3}{section*.9}%
+\contentsline {subsubsection}{\numberline {2}Action Integral Calculation}{3}{section*.10}%
 \contentsline {subsubsection}{\numberline {3}Tunneling calculation in quartic potentials}{3}{section*.11}%
 \contentsline {section}{\numberline {III}Experimental Considerations}{3}{section*.12}%
 \contentsline {subsection}{\numberline {A}Modeling the Potential and Fitting}{3}{section*.13}%
 \contentsline {subsection}{\numberline {B}Polarization data}{3}{section*.14}%
 \contentsline {subsection}{\numberline {C}Scaling}{3}{section*.15}%
 \contentsline {section}{\numberline {IV}Many Body Tunneling Calculations - Instanton}{3}{section*.16}%
-\contentsline {subsection}{\numberline {A}Quartic Hamiltonian model}{4}{section*.17}%
-\contentsline {subsubsection}{\numberline {1}Rescaling and Dimensionless Hamiltonian}{4}{section*.18}%
-\contentsline {subsection}{\numberline {B}Milnikov method}{4}{section*.19}%
-\contentsline {subsection}{\numberline {C}Classical Equilibrium Positions}{4}{section*.20}%
-\contentsline {subsection}{\numberline {D}Harmonic Oscillator Eigenfrequencies adn Eigenmodes}{4}{section*.21}%
-\contentsline {subsection}{\numberline {E}Trajectory Calculation}{4}{section*.22}%
-\contentsline {subsection}{\numberline {F}Arc Lengt Paramterization}{5}{section*.23}%
-\contentsline {subsection}{\numberline {G}Egzact Diagonalization (ED)}{5}{section*.24}%
-\contentsline {section}{\numberline {V}Polarization}{5}{section*.25}%
-\contentsline {subsection}{\numberline {A}Classical Polarization Calculation}{5}{section*.26}%
-\contentsline {subsection}{\numberline {B}Polarization using ED}{5}{section*.27}%
-\contentsline {section}{\numberline {VI}Open Questions}{5}{section*.28}%
+\contentsline {subsection}{\numberline {A}Quartic Hamiltonian model}{3}{section*.17}%
+\contentsline {subsubsection}{\numberline {1}Rescaling and Dimensionless Hamiltonian}{3}{section*.18}%
+\contentsline {subsection}{\numberline {B}Milnikov method}{3}{section*.19}%
+\contentsline {subsection}{\numberline {C}Classical Equilibrium Positions}{3}{section*.20}%
+\contentsline {subsection}{\numberline {D}Harmonic Oscillator Eigenfrequencies adn Eigenmodes}{3}{section*.21}%
+\contentsline {subsection}{\numberline {E}Trajectory Calculation}{3}{section*.22}%
+\contentsline {subsection}{\numberline {F}Arc Lengt Paramterization}{3}{section*.23}%
+\contentsline {subsection}{\numberline {G}Egzact Diagonalization (ED)}{3}{section*.24}%
+\contentsline {section}{\numberline {V}Polarization}{3}{section*.25}%
+\contentsline {subsection}{\numberline {A}Classical Polarization Calculation}{3}{section*.26}%
+\contentsline {subsection}{\numberline {B}Polarization using ED}{3}{section*.27}%
+\contentsline {section}{\numberline {VI}Open Questions}{3}{section*.28}%
 \appendix 
-\contentsline {section}{\numberline {A}Mathematics}{6}{section*.29}%
-\contentsline {subsection}{\numberline {1}Gaussian Integrals}{6}{section*.30}%
-\contentsline {subsection}{\numberline {2}Cauchy's Resiude Theorem}{6}{section*.31}%
-\contentsline {subsection}{\numberline {3}Besel Problem}{6}{section*.32}%
-\contentsline {section}{\numberline {B}Algorithms and Methods}{7}{section*.33}%
-\contentsline {subsection}{\numberline {1}Monte Carlo and Simulated Annealing}{7}{section*.34}%
-\contentsline {subsection}{\numberline {2}Minimalization by Nelder-Mead algorithm}{7}{section*.35}%
-\contentsline {section}{\numberline {C}Links, Data and other stuff}{7}{section*.36}%
-\contentsline {section}{\numberline {}References}{8}{section*.37}%
+\contentsline {section}{\numberline {A}Mathematics}{3}{section*.29}%
+\contentsline {subsection}{\numberline {1}Gaussian Integrals}{3}{section*.30}%
+\contentsline {subsection}{\numberline {2}Cauchy's Resiude Theorem}{4}{section*.31}%
+\contentsline {subsection}{\numberline {3}Besel Problem}{4}{section*.32}%
+\contentsline {section}{\numberline {B}Algorithms and Methods}{5}{section*.33}%
+\contentsline {subsection}{\numberline {1}Monte Carlo and Simulated Annealing}{5}{section*.34}%
+\contentsline {subsection}{\numberline {2}Minimalization by Nelder-Mead algorithm}{5}{section*.35}%
+\contentsline {section}{\numberline {C}Links, Data and other stuff}{5}{section*.36}%
+\contentsline {section}{\numberline {}References}{5}{section*.37}%

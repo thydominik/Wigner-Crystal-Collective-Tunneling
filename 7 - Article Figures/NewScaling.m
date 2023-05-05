@@ -5,7 +5,7 @@ close all
 clc
 
 FontSize = 20;
-Position = [1 1 7 3];
+Position = [1 1 7 6];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
 
@@ -34,8 +34,8 @@ hold on
 
     
 % Axis Labels:
-    xlabel('$\tilde{V}_k$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    ylabel('$\Pi^{-1} / \Pi^{-1}_0$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
+    xlabel('$v$', 'Interpreter', 'latex', 'FontSize', FontSize)
+    ylabel('$\frac{\Delta(v)}{\Delta(v = 0)}$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
     %zlabel('$P(\alpha, \epsilon)$', 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     ED1 = load('EDSplitting_1_particle_Nx_5000.mat'); ED1 = ED1.data;

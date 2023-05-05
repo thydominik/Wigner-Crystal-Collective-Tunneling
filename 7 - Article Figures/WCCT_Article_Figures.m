@@ -28,10 +28,13 @@ hold on
     xticks([-5 -2.5 0 2.5 5])
     ylim([-0.1 0.1])
     yticks([-0.10 -0.05 0.0 0.05 0.10])
+    %yticks([-0.10  0.0  0.10])
     %zlim([])
     %axis square
 
 % Axis Labels:
+text( 3.75, 0.085, 10, '$\rho(\chi)$', 'Color', 'white', 'interpreter', 'Latex', 'FontSize', FontSize);
+title('$\rho(\chi)$', 'Interpreter', 'latex', 'FontSize', FontSize)
     xlabel('$\chi$', 'Interpreter', 'latex', 'FontSize', FontSize)
     ylabel('$\epsilon$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
@@ -60,11 +63,11 @@ hold on
 % Colors:
     colormap turbo;
     c                   = colorbar('eastoutside'); %, 'Direction','reverse');
-    %c.Label.String      = '$\left| \Psi  \right|^2$';
+    %c.Label.String      = '$\rho(\chi)$';
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -5, 0.085, 10, '(a)', 'Color', 'white', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( -5, 0.085, 10, '(a)', 'Color', 'white', 'interpreter', 'Latex', 'FontSize', FontSize);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
@@ -80,7 +83,7 @@ close all
 clc
 
 FontSize = 30;
-Position = [1 1 6 3];
+Position = [1 1 6 4.5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
 
@@ -91,14 +94,14 @@ hold on
 % Axis limits:
     xlim([-5.5*160 5.5*160])
     xticks([-500 0 500])
-    ylim([-13 70])
-    yticks([0 30 60])
+    ylim([-0.1 0.5])
+    yticks([0 0.5])
     %zlim([])
     %axis square
 
 % Axis Labels:
-    xlabel('$x [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    label = ylabel('$V(x) $', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
+    xlabel('$z [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
+        label = ylabel('$\rho(z) \left[ \frac{1}{nm}\right] $', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5, 'Color','r')
     %label.Position(1) = -5.8;
     %label.Position(2) = 70;
     %set(label, 'Rotation', 0)
@@ -115,8 +118,9 @@ hold on
     WF3 = load(['Z_' num2str(AlphaInd) '_1']); WF3 = WF3.PsiZ; WF3 = interp1(linspace(-7, 7, 100), WF3, linspace(-7, 7, 1000), 'spline');
     WaveFunction = WF1 + WF2 + WF3;
 % Plotting:
+mult = 100;
     % Potential:
-        LinePlot = plot(x * 160, ((Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 7);
+        LinePlot = plot(x * 160, 1/mult * ((Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 5);
         LinePlot.Color(4) = 0.5;
 
         yline(0, 'k-', 'LineWidth', 2.5, 'Alpha', 1);
@@ -124,11 +128,11 @@ hold on
     % Wavefunctions:
     trshld = 8*10^-4;
     shift1 = -9.5;
-    mult = 100;
+    
     %plot(x(abs(WF1) > trshld), mult * abs(WF1(abs(WF1) > trshld)), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF2) > trshld), mult * abs(WF2(abs(WF2) > trshld)), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF3) > trshld), mult * abs(WF3(abs(WF3) > trshld)), 'r-', 'LineWidth', 2.0)
-    plot(x*160, mult * WaveFunction, 'r-', 'LineWidth', 3.5)
+    plot(x*160, WaveFunction, 'r-', 'LineWidth', 6)
 % Colors:
     %colormap turbo;
     %c                   = colorbar('eastoutside'); %, 'Direction','reverse');
@@ -140,7 +144,7 @@ hold on
     % after saving the figure as pdf the label will be in a good place i
     % think.
     %text( -8.7, 65, 0, '(b)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 0, 55, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
+    text( 0, 0.45, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
@@ -156,7 +160,7 @@ clc
 
 Version = 1; % 1 or 2
 FontSize = 30;
-Position = [1 1 6 3];
+Position = [1 1 6 4.5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
 
@@ -167,14 +171,14 @@ hold on
 % Axis limits:
     xlim([-5.5*160 5.5*160])
     xticks([-500 0 500])
-    ylim([-13 70])
-    yticks([0 30 60])
+    ylim([-.1 0.5])
+    yticks([0 0.5 60])
     %zlim([])
     %axis square
 
 % Axis Labels:
-    xlabel('$x [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    ylabel('$V(x)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
+    xlabel('$z [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
+    ylabel('$\rho(z) \left[ \frac{1}{nm}\right] $', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5, 'Color','r')
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     x = linspace(-7, 7, 1000);
@@ -188,8 +192,9 @@ hold on
     WF3 = load(['Z_' num2str(AlphaInd) '_1']); WF3 = WF3.PsiZ; WF3 = interp1(linspace(-7, 7, 100), WF3, linspace(-7, 7, 1000), 'spline');
     WaveFunction = WF1 + WF2 + WF3;
 % Plotting:
+mult = 100;
     % Potential:
-        LinePlot = plot(x*160, ((-Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 7);
+        LinePlot = plot(x*160, 1/mult * ((-Pol.Kappa(1) * x) + 0.012 * (x.^2 - Pol.Alpha(AlphaInd)).^2) / 0.03, 'k-', 'LineWidth', 5);
         LinePlot.Color(4) = 0.5;
 
         yline(0, 'k-', 'LineWidth', 2.5, 'Alpha', 1);
@@ -197,11 +202,11 @@ hold on
     % Wavefunctions:
     trshld = 8*10^-4;
     shift1 = -9.5;
-    mult = 100;
+    
     %plot(x(abs(WF1) > trshld), flip(mult * abs(WF1(abs(WF1) > trshld))), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF2) > trshld), flip(mult * abs(WF2(abs(WF2) > trshld))), 'r-', 'LineWidth', 2.0)
     %plot(x(abs(WF3) > trshld), flip(mult * abs(WF3(abs(WF3) > trshld))), 'r-', 'LineWidth', 2.0)
-    plot(x*160, mult * flip(WaveFunction), 'r-', 'LineWidth', 3.5)
+    plot(x*160, flip(WaveFunction), 'r-', 'LineWidth', 6)
     if Version == 2
         y1 = linspace(2.1,3.2, 10);
         y2 = linspace(-3.3, 3.2, 10);
@@ -217,7 +222,7 @@ hold on
 % Additional Labels:
     %text( -8.7, 65, 0, '(a)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     if Version == 1
-        text( 0, 55, 0, '$\epsilon > 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
+        text( 0, 0.45, 0, '$\epsilon > 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
     elseif Version == 2
         text( 3, -6, 0, '$\epsilon > 0$', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 5);
     end
@@ -808,8 +813,8 @@ clear all
 close all
 clc
 
-FontSize = 25;
-Position = [1 1 7 3];
+FontSize = 19;
+Position = [1 1 7 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
 
@@ -829,7 +834,7 @@ hold on
     box on
 % Axis Labels:
     xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    ylabel('$R_0$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
+    ylabel('$R_0(\alpha, N)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
     %zlabel('$P(\alpha, \epsilon)$', 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     IT1 = load('Standard1particleSplitting.mat'); IT1 = IT1.OneParticleInstanton;
@@ -850,7 +855,7 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( 2, 36, 3, '(#)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 2, 36, 3, '(c)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     %text( 0, 45, 0, '$\epsilon < 0$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     text( 2.9, 5, 0, '$1e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     text( 7.4, 8, 0, '$3e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
@@ -859,7 +864,7 @@ hold on
 
 % PaperSize:
     set(gcf,'paperunits','in');
-    set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
+    set(gcf,'papersize',[Position(3) + 0.2, Position(4) + 0.2]);
 % Saving:
     fname   = sprintf('Fig_perpfactors.pdf');
     hfig    = gcf;
