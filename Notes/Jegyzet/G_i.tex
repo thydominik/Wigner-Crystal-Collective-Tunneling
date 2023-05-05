@@ -1,0 +1,40 @@
+\section{Gaussian integrals}
+%Altland,Simons 102-
+
+\subsection{one dimensional case}
+If Re($a$)>0
+\begin{equation}
+\int\limits_\infty^\infty \text{dx } e^{-\frac{a}{2} x^2} dx= \frac{2 \pi}{a}
+\end{equation}
+
+\begin{equation}
+\int\limits_\infty^\infty \text{dx } e^{-\frac{a}{2} x^2} x^2 = \sqrt{\frac{2 \pi}{a^3}}
+\end{equation}
+
+I the exponent is not purely quadratic:
+\begin{equation}
+\int\limits_\infty^\infty \text{dx } e^{-\frac{a}{2}x^2 + bx} = \frac{2\pi}{a} e^{\frac{b^2}{2a}}
+\end{equation}
+
+This can be performed by changing the variable from $x \rightarrow y = x + \frac{b}{a}$.
+
+For complex arguments, if $Re(\omega) >0$ and $\tilde{z}$ represents the complex conjugate of $z$:
+\begin{equation}
+\int d(z,\tilde{z}) e^{-\tilde{z}\omega z} = \frac{\pi}{\omega}
+\end{equation}
+
+\subsection{more than one dimensional cases:}
+First, the real case:
+\begin{equation}
+\int \,d\vec{v}\, e^{-\frac{1}{2}\vec{v}^T \textbf{A} \vec{v}} = (2\pi)^{N/2} \det\textbf{A}^{-1/2}
+\end{equation}
+
+\begin{equation}
+\int d\vec{v}\, e^{-\frac{1}{2}\vec{v}^T \textbf{A}\vec{v} +\vec{j}^T \vec{v}} = (2\pi)^{N/2} \det A^{-1/2} e^{\frac{1}{2} \vec{j}^T \textbf{A}^{-1}\vec{j}}
+\end{equation}
+Here $\vec{j}$ is an arbitrary N component vector, \textbf{A} is an NxN symmetric positive definite matrix.
+
+Complex case:
+\begin{equation}
+\int d(\vec{v}^\dagger,\vec{v}) e^{-\vec{v}^\dagger \textbf{A}\vec{v}} = \pi^N \det \textbf{A}^{-1}
+\end{equation}
