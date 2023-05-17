@@ -236,6 +236,9 @@ for q = 1:length(alpha)
     Spectrum    = diag(E);
     alpha(q)
     dE(q)       = Spectrum(2) - Spectrum(1)
+
+    
+
 end
 %%
 toc

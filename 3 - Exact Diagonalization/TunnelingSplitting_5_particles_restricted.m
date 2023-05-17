@@ -5,11 +5,11 @@ disp('5 particle tunneling splitting calculation.')
 tic
 %% 5 particle Equilibrium positions
 
-Na      = 20;
+Na      = 10;
 alpha   = linspace(7, 20, Na);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 0.1;
+Beta    = 0.001;
 
 Eq_Pos = [];
 
@@ -58,11 +58,11 @@ hold off
 %%
 for q = 1:length(alpha)
     alpha(q)
-    Nx1 = 30;
-    Nx2 = 35;
+    Nx1 = 20;
+    Nx2 = 30;
     Nx3 = 50;
-    Nx4 = 35;
-    Nx5 = 30;
+    Nx4 = 30;
+    Nx5 = 20;
 
     Nx1 * Nx2 * Nx3 * Nx4 * Nx5
 
