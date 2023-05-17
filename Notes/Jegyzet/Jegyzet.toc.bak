@@ -1,0 +1,23 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Path integral}{1}{section.1}
+\contentsline {section}{\numberline {2}Gaussian integrals}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}one dimensional case}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}more than one dimensional cases:}{5}{subsection.2.2}
+\contentsline {section}{\numberline {3}Nanotube basics - S\IeC {\'a}rk\IeC {\'a}ny}{6}{section.3}
+\contentsline {section}{\numberline {4}Instanton}{7}{section.4}
+\contentsline {section}{\numberline {5}Dimensionless hamiltonian}{8}{section.5}
+\contentsline {subsection}{\numberline {5.1}Action integral with the interaction}{10}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Tunneling distance}{10}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Tunneling time scale}{11}{subsection.5.3}
+\contentsline {section}{\numberline {6}Action integral calculation for 1 particle Instanton tunneling}{12}{section.6}
+\contentsline {subsection}{\numberline {6.1}Tunneling calculation}{14}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Reparametrization of time}{14}{subsection.6.2}
+\contentsline {section}{\numberline {7}scaling}{14}{section.7}
+\contentsline {section}{\numberline {8}Instantons, Determinant \& matrix element calculations}{15}{section.8}
+\contentsline {subsection}{\numberline {8.1}Free particle and harmonic oscillator determinant}{15}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Instanton determinant}{15}{subsection.8.2}
+\contentsline {section}{\numberline {9}Codes}{16}{section.9}
+\contentsline {subsection}{\numberline {9.1}Equlibrium positions in the double well potential - Matlab, Simulated annealing}{16}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}1 particle action integral calculations}{16}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}1 particle tunneling path - Matlab, Simulated annelaing}{16}{subsection.9.3}
+\contentsline {subsection}{\numberline {9.4}3 particle tunneling path - Matlab, Simulated annelaing}{16}{subsection.9.4}

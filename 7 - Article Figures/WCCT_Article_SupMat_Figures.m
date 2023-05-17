@@ -34,7 +34,7 @@ hold on
     ylabel('$\chi(z)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
-    addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\6 - Polarization\3 - Particle\WaveFunction data')
+    %addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\6 - Polarization\3 - Particle\WaveFunction data')
     Polarization = load('Polarization3Particle.mat'); Polarization = Polarization.Polarization
     for alphaInd = 1:26
         for kappaInd = 1:201
@@ -51,10 +51,11 @@ hold on
         end
     end
 % Plotting:
-    alphaIndicies = [5 8 11 14 17 18 19 20];
+    alphaIndicies = [11 14 17 18 19 20];
     k = 1;
+    clim([0 0.9]);
     for i = alphaIndicies
-        subplot(2, 4, k)
+        subplot(2, 3, k)
             alphaInd = i;
             hold on
             surf(linspace(-7, 7, 100), Polarization.Kappa, reshape(LDOS(alphaInd, :, :), [201 100]), 'EdgeColor', 'None', 'FaceColor', 'interp')
@@ -64,22 +65,25 @@ hold on
             ax.FontSize = 14;
             %axis square
             title(['\alpha = ' num2str(Polarization.Alpha(alphaInd))], 'FontSize', 20)
-            xlabel('\chi', 'FontSize', 20)
-            ylabel('\epsilon', 'FontSize', 20)
+            xlabel('\chi', 'FontSize', 20 + 5)
+            ylabel('\epsilon', 'FontSize', 20 + 5)
             view([00 90])
             colormap turbo
-            colorbar
+            %colorbar
+            lims = clim;
+            clim([0 0.17]);
             hold off
             k = k + 1;
     end
 % Colors:
     colormap turbo;
     c                   = colorbar('eastoutside'); %, 'Direction','reverse');
+    c.Position = c.Position + [.05 .22 .01 .01];
     %c.Label.String      = '$\left| \Psi  \right|^2$';
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -5, 0.085, 10, '(c)', 'Color', 'white', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( -5, 0.085, 10, '(c)', 'Color', 'white', 'interpreter', 'Latex', 'FontSize', FontSize);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
@@ -93,7 +97,7 @@ clear all
 close all
 clc
 
-FontSize = 30;
+FontSize = 18;
 Position = [1 1 7 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
@@ -111,11 +115,11 @@ hold on
     %axis square
     box on
 % Axis Labels:
-    xlabel('$z$', 'Interpreter', 'latex', 'FontSize', FontSize + 10)
-    ylabel('$\chi_i(z)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 10)
+    xlabel('$\vartheta$', 'Interpreter', 'latex', 'FontSize', FontSize + 5)
+    ylabel('$\chi_i(\vartheta)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
-    addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\4 - Trajectory Calculation\3 particle\Standard MC Data')
+    %addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\4 - Trajectory Calculation\3 particle\Standard MC Data')
 
     ThreeParticleTraj = load('Traj_3p_STDMC15.mat'); ThreeParticleTraj = ThreeParticleTraj.IterData
 % Plotting:
@@ -134,11 +138,11 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -1.6, 4.6, 0, '(a)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 0.3, 1.25, 0, '$\alpha = 12.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( -1.6, 4.6, 0, '(a)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    text( 0.25, 1.10, 0, '$\alpha = 12.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 3);
 % PaperSize:
     set(gcf,'paperunits','in');
-    set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
+    set(gcf,'papersize',[Position(3) + 0.2, Position(4) + 0.2]);
 % Saving:
     fname   = sprintf('Fig_3Particle_Trajectory.pdf');
     hfig    = gcf;
@@ -171,7 +175,7 @@ hold on
     ylabel('$\chi_i(z)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
-    addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\4 - Trajectory Calculation\5 particle')
+    %addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\4 - Trajectory Calculation\5 particle')
     FiveParticleTraj = load('TrajectoryData_5p_4.mat'); FiveParticleTraj = FiveParticleTraj.IterData
 % Plotting:
     plot(linspace(-1, 1, 160), FiveParticleTraj.Trajectories(2, :),'b-', 'LineWidth', 4.5)
@@ -210,7 +214,7 @@ close all
 clc
 
 
-FontSize = 30;
+FontSize = 19;
 Position = [1 1 7 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
@@ -223,13 +227,14 @@ hold on
     %xlim([-5.5 5.5])
     %xticks([-5 -2.5 0 2.5 5])
     %ylim([-5.5 5.5])
-    %yticks([-5 -2.5 0.0 2.5 5])
+    yticks([0.0 2.0 4.0 6.0 8.0])
+    ytickformat('%.1f')
     %zlim([])
     %axis square
 
 % Axis Labels:
-    xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', FontSize+5)
-    ylabel('$\omega_i$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize+10)
+    xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', FontSize+3)
+    ylabel('$\omega_i \left( \alpha \right)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize+3)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
     F = load('Freqs.mat'); F = F.Frequencies;
@@ -246,8 +251,8 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -1.35, 5, 0, '(#)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 0.5, 0.85, 0, '$\alpha = 10.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( -1.35, 5, 0, '(#)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 0.5, 0.85, 0, '$\alpha = 10.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
@@ -262,7 +267,7 @@ clear all
 close all
 clc
 
-FontSize = 20;
+FontSize = 30;
 Position = [1 1 7 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
@@ -272,19 +277,19 @@ hold on
     set(gca, 'FontSize', FontSize)
 
 % Axis limits:
-    %xlim([-5.5 5.5])
+    xlim([-4 4])
     %xticks([-5 -2.5 0 2.5 5])
-    %ylim([-5.5 5.5])
+    ylim([0 25])
     %yticks([-5 -2.5 0.0 2.5 5])
     %zlim([])
     %axis square
 
 % Axis Labels:
-    xlabel('$S$', 'Interpreter', 'latex', 'FontSize', FontSize)
-    ylabel('$V(S)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
+    xlabel('$s$', 'Interpreter', 'latex', 'FontSize', FontSize)
+    ylabel('$v(s)$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize)
     %zlabel(sprintf('###'), 'Interpreter', 'latex', 'FontSize', FontSize)
 % Data: 
-    addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\4 - Trajectory Calculation\3 particle\Standard MC Data')
+    %addpath('D:\BME PhD\.Wigner Crystal Collective Tunneling\CollectiveTunneling\4 - Trajectory Calculation\3 particle\Standard MC Data')
 
     ThreeParticleTraj = load('Traj_3p_STDMC15.mat'); ThreeParticleTraj = ThreeParticleTraj.IterData
 
@@ -310,9 +315,10 @@ hold on
     SS = SS - min(SS);
     SS = SS - max(SS)/2;
 % Plotting:
-    plot(SS, VS_interpolate,'k-', 'LineWidth', 3)
-    plot(-2.83, 0, 'ro', 'MarkerSize', 7, 'MarkerFaceColor', 'r')
-    plot(2.83, 0, 'ro', 'MarkerSize', 7, 'MarkerFaceColor', 'r')
+box
+    plot(SS, VS_interpolate,'k-', 'LineWidth', 5)
+    plot(-2.83, 0, 'ro', 'MarkerSize', 13, 'MarkerFaceColor', 'r')
+    plot(2.83, 0, 'ro', 'MarkerSize', 13, 'MarkerFaceColor', 'r')
 % Colors:
     %colormap turbo;
     %c                   = colorbar('eastoutside'); %, 'Direction','reverse');
@@ -320,8 +326,8 @@ hold on
     %c.Label.Interpreter = 'latex';
     %c.Label.FontSize    = FontSize + 5; 
 % Additional Labels:
-    text( -3.8, 25, 0, '(#)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
-    text( 2, 20, 0, '$\alpha = 10.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( -3.8, 25, 0, '(#)', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    %text( 2, 20, 0, '$\alpha = 10.5$', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);

@@ -1,10 +1,10 @@
 clc
 clear all
-ED = 1;
+ED = 0;
 disp('WavePacket simulation')
 
 NoP = 2^11;
-alpha = 20;
+alpha = 0;
 
 x               = linspace(-10, 10, NoP);
 IntervalLength  = abs(max(x) - min(x));
@@ -16,10 +16,10 @@ dk      = 2 * pi/IntervalLength;
 Omega   = dk * NoP;
 k       = linspace(-Omega/2, Omega/2, NoP);
 
-dt = 10^-5;
+dt = 10^-3;
 
-k0      = 0.0;
-sigma   = 2;
+k0      = 1;
+sigma   = 1;
 x0      = -sqrt(alpha);
 
 V = 1 * (x.^2 - alpha).^2;
@@ -51,8 +51,8 @@ for j = 1:IterSteps
         else
             psi0= exp((x - x0).^2 / -(sigma^2)) .* exp(1i * k0 * x);
             
-            psi0 = ones(1, length(x));
-            psi0 = psi0 ./ norm(psi0); 
+            %psi0 = ones(1, length(x));
+            %psi0 = psi0 ./ norm(psi0); 
         end
     end
 
@@ -77,7 +77,7 @@ for j = 1:IterSteps
     hold on
         plot(x(2:end-1), V(2:end-1) ./ norm(V(2:end-1)))
         plot(x, abs(psi ./ norm(psi)))
-        
+        ylim([0 .2])
     hold off
     T(j) = sum(abs(psi(end/2 : end)).^2);
 end

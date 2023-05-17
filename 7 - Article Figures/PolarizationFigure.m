@@ -22,9 +22,10 @@ hold on
     %axis square
 box on
 % Axis Labels:
+title('$\tilde{\mathcal{P}}$', 'Interpreter', 'latex', 'FontSize', FontSize)
     xlabel('$\epsilon$', 'Interpreter', 'latex', 'FontSize', FontSize)
     ylabel('$\alpha$', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5)
-    zlabel('$P(\alpha, \epsilon)$', 'Interpreter', 'latex', 'FontSize', FontSize)
+    zlabel('$P(\alpha, \epsilon)$', 'Interpreter', 'latex', 'FontSize', FontSize+5)
 % Data: 
     Polarization = load('Polarization3Particle.mat');
     Polarization = Polarization.Polarization;
@@ -34,7 +35,10 @@ box
      surf( Polarization.Kappa, Polarization.Alpha, Polarization.Polarization , 'EdgeColor', 'interp', 'FaceColor', 'interp')
 colorbar
 c                   = colorbar('eastoutside');
-text( -0.125, 4, 0, '(b)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
+    c                   = colorbar('eastoutside'); %, 'Direction','reverse');
+    %c.Label.String      = '$\tilde{\mathcal{P}}$';
+    %c.Label.Interpreter = 'latex';
+%text( -0.125, 4, 0, '(b)', 'HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
 %     for alphaInd = 1:26
 %         plot3(Polarization.Alpha(alphaInd) * ones(201, 1), Polarization.Kappa, Polarization.Polarization(alphaInd, :, :), 'Color', [alphaInd/26 0.5 (1 - alphaInd/26)], 'LineWidth', 2)
 %     end
