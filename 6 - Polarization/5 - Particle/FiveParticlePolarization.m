@@ -2,14 +2,14 @@ clear all
 clc
 
 % Constants:
-Nx1 = 25;
-Nx2 = 25;
-Nx3 = 35;
-Nx4 = 25;
-Nx5 = 25;
+Nx1 = 15;
+Nx2 = 15;
+Nx3 = 30;
+Nx4 = 15;
+Nx5 = 15;
 
-Alpha   = 10:0.2:12;
-Kappa   = -0.2:0.01:0.2;
+Alpha   = 16;
+Kappa   = -0.0;
 eta = 20;
 
 Polarization = struct();

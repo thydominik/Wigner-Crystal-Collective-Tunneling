@@ -7,7 +7,7 @@ tic
 
 Nx      = 90;
 Nx^3
-alpha   = 0:0.25:15;
+alpha   = 10;
 eta     = 20;
 Eq_Pos  = [];
 Beta    = 10^-5;

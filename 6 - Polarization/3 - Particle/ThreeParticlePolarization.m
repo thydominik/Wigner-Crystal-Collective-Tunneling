@@ -1,15 +1,15 @@
 clc
 clear all
 
-Nx      = 100;
-Alpha   = 4:0.2:9;
-Kappa   = -0.1:0.001:0.1;
+Nx      = 200;
+Alpha   = 10;
+Kappa   = 0;
 Eta     = 20;
 Beta    = 10^-5;
 Polarization = struct();
 
-XMin    = -7;
-XMax    = 7;
+XMin    = -6;
+XMax    = 6;
 
 
 x = linspace(XMin, XMax, Nx);
@@ -86,7 +86,7 @@ for alphaInd = 1:length(Alpha)
         [Psi, E]    = eigs(Hamiltonian, 2, 'sa');
         Spectrum    = diag(E);
         dE       = Spectrum(2) - Spectrum(1);
-        
+
         Polarization.Splittings(alphaInd, kappaInd) = dE;
 
         Int1 = Psi(:, 1)' * (X1 * Psi(:, 1));
@@ -94,58 +94,85 @@ for alphaInd = 1:length(Alpha)
         Int3 = Psi(:, 1)' * (X3 * Psi(:, 1));
 
         P = Int1 + Int2 + Int3;
+%%
+        WaveFunction1    = sqrt(3) * Projector' * Psi(:, 1);
+        WFT1             = reshape(WaveFunction1, [Nx Nx Nx]);
 
-        WaveFunction    = Projector' * Psi(:, 1);
-        WFT             = reshape(WaveFunction, [Nx Nx Nx]);
-        
         Polarization.Polarization(alphaInd, kappaInd) = P;
 
         for Ind1 = 2:Nx
-            PsiX(Ind1) = 0;
-            PsiY(Ind1) = 0;
-            PsiZ(Ind1) = 0;
+            rho_even(Ind1) = 0;
+            PsiX1(Ind1) = 0;
+            PsiY1(Ind1) = 0;
+            PsiZ1(Ind1) = 0;
             for Ind2 = 1:Nx
                 for Ind3 = 1: Nx
-                    PsiX(Ind1) = PsiX(Ind1) + WFT(Ind1, Ind2, Ind3);
-                    PsiY(Ind1) = PsiY(Ind1) + WFT(Ind2, Ind1, Ind3);
-                    PsiZ(Ind1) = PsiZ(Ind1) + WFT(Ind2, Ind3, Ind1);
+                    PsiX1(Ind1) = PsiX1(Ind1) + WFT1(Ind1, Ind2, Ind3)^2;
+                    PsiY1(Ind1) = PsiY1(Ind1) + WFT1(Ind2, Ind1, Ind3)^2;
+                    PsiZ1(Ind1) = PsiZ1(Ind1) + WFT1(Ind2, Ind3, Ind1)^2;
+
                 end
             end
+            rho_even(Ind1) = PsiX1(Ind1) + PsiY1(Ind1) + PsiZ1(Ind1);
         end
 
-        PsiX = PsiX ./norm(PsiX);
-        PsiY = PsiY ./norm(PsiY);
-        PsiZ = PsiZ ./norm(PsiZ);
-        
+        PsiX1 = sqrt(PsiX1 ./norm(PsiX1));
+        PsiY1 = sqrt(PsiY1 ./norm(PsiY1));
+        PsiZ1 = sqrt(PsiZ1 ./norm(PsiZ1));
+
+        WaveFunction2    = sqrt(3) * Projector' * Psi(:, 2);
+        WFT2             = reshape(WaveFunction2, [Nx Nx Nx]);
+
+        Polarization.Polarization(alphaInd, kappaInd) = P;
+
+        for Ind1 = 2:Nx
+            PsiX2(Ind1) = 0;
+            PsiY2(Ind1) = 0;
+            PsiZ2(Ind1) = 0;
+            for Ind2 = 2:Nx
+                for Ind3 = 2:Nx
+                    PsiX2(Ind1) = PsiX2(Ind1) + WFT2(Ind1, Ind2, Ind3)^2;
+                    PsiY2(Ind1) = PsiY2(Ind1) + WFT2(Ind2, Ind1, Ind3)^2;
+                    PsiZ2(Ind1) = PsiZ2(Ind1) + WFT2(Ind2, Ind3, Ind1)^2;
+                end
+            end
+            rho_odd(Ind1) = PsiX2(Ind1) + PsiY2(Ind1) + PsiZ2(Ind1);
+        end
+
+        PsiX2 = sqrt(PsiX2 ./norm(PsiX2));
+        PsiY2 = sqrt(PsiY2 ./norm(PsiY2));
+        PsiZ2 = sqrt(PsiZ2 ./norm(PsiZ2));
+
         NameX = ['X' '_' num2str(alphaInd) '_' num2str(kappaInd) ];
         NameY = ['Y' '_' num2str(alphaInd) '_' num2str(kappaInd) ];
         NameZ = ['Z' '_' num2str(alphaInd) '_' num2str(kappaInd) ];
 
-        save(NameX, 'PsiX')
-        save(NameY, 'PsiY')
-        save(NameZ, 'PsiZ')
+        save(NameX, 'PsiX1')
+        save(NameY, 'PsiY1')
+        save(NameZ, 'PsiZ1')
 
-        Polarization.PsiX = PsiX;
-        Polarization.PsiY = PsiY;
-        Polarization.PsiZ = PsiZ;
+        Polarization.PsiX = PsiX1;
+        Polarization.PsiY = PsiY1;
+        Polarization.PsiZ = PsiZ1;
 
         figure(5)
         clf(figure(5))
         hold on
         plot(x, 10^-3 * (0.25 * (x.^2 - Alpha(alphaInd)).^2 + Kappa(kappaInd) * x))
-        plot(x, abs(PsiX))
-        plot(x, abs(PsiY))
-        plot(x, abs(PsiZ))
+        plot(x, (PsiX2 + PsiY2 + PsiZ2), 'o')
+        plot(x, (PsiX2), '.-')
+        plot(x, (PsiY2), '.-')
+        plot(x, (PsiZ2), '.-')
         hold off
 
-        figure(6)
-        clf(figure(6))
-        hold on
-        surf(x, x, abs(reshape(WFT(:, :, 10), [Nx Nx])), 'EdgeColor', 'none', 'FaceColor', 'interp')
-        axis square
-        hold off
-        Alpha(alphaInd)
-        Kappa(kappaInd)
+        % figure(6)
+        % clf(figure(6))
+        % hold on
+        % surf(x, x, abs(reshape(WFT1(:, :, 10), [Nx Nx])), 'EdgeColor', 'none', 'FaceColor', 'interp')
+        % axis square
+        % hold off
+        % Alpha(alphaInd)
+        % Kappa(kappaInd)
 
     end
 end
@@ -155,10 +182,101 @@ Polarization.Kappa              = Kappa;
 Polarization.Info               = '3 particle polarization and data structure.';
 
 save('Polarization', 'Polarization')
+%%
+WF1 = (PsiX1 + PsiY1 + PsiZ1); %WF1 = interp1(x, WF1, linspace(min(x), max(x), 10^3), 'cubic');% WF1 = 3 * WF1 / norm(WF1);
+WF2 = (PsiX2 + PsiY2 + PsiZ2);% WF2 = interp1(x, WF2, linspace(min(x), max(x), 10^3), 'cubic');% WF2 = 3*  WF2 / norm(WF2);
+%xnew = linspace(min(x), max(x), 10^3);
+figure(6)
+clf
+hold on
+plot(x, WF1.^2)
+plot(x, WF2.^2)
 
+hold off
 
+%%
+figure(5)
+clf(figure(5))
+hold on
+plot(x, 10^-3 * (0.25 * (x.^2 - Alpha(alphaInd)).^2 + Kappa(kappaInd) * x))
+plot(xnew, WF2 , '-', 'LineWidth', 3)
+plot(x, (PsiX2), '.-')
+plot(x, (PsiY2), '.-')
+plot(x, (PsiZ2), '.-')
+hold off
 
+figure(6)
+clf(figure(6))
+hold on
+plot(x, 10^-3 * (0.25 * (x.^2 - Alpha(alphaInd)).^2 + Kappa(kappaInd) * x))
+plot(xnew, WF1, '-', 'LineWidth', 3)
+plot(x, (PsiX1), '.-')
+plot(x, (PsiY1), '.-')
+plot(x, (PsiZ1), '.-')
+hold off
+%%
+figure(8)
+clf(figure(8))
+hold on
+plot(xnew ,(WF1 + WF2).^2 - (WF1 - WF2).^2)
+plot(xnew, WF1 - WF2)
+hold off
+%%
 
+figure(10)
+clf(figure(10))
+hold on
+plot(x, rho_even, 'DisplayName', '\rho_E')
+plot(x, rho_odd, 'DisplayName', '\rho_O')
+box
+legend
+hold off
+%%
+figure(11)
+clf(figure(11))
+hold on
+plot(x, rho_even + rho_odd, 'DisplayName', '\rho_L')
+plot(x, rho_even - rho_odd, 'DisplayName', '\rho_R')
+legend
+box
+hold off
+%%
+figure(12)
+clf(figure(12))
+hold on
+plot(x, rho_odd*2)
+hold off
 
+%%
 
+for Ind1 = 2:Nx
+    PsiX3(Ind1) = 0;
+    PsiY3(Ind1) = 0;
+    PsiZ3(Ind1) = 0;
+    for Ind2 = 2:Nx
+        for Ind3 = 2:Nx
+            PsiX3(Ind1) = PsiX3(Ind1) + (WFT2(Ind1, Ind2, Ind3) * WFT1(Ind1, Ind2, Ind3));
+            PsiY3(Ind1) = PsiY3(Ind1) + (WFT2(Ind2, Ind1, Ind3) * WFT1(Ind2, Ind1, Ind3));
+            PsiZ3(Ind1) = PsiZ3(Ind1) + (WFT2(Ind2, Ind3, Ind1) * WFT1(Ind2, Ind3, Ind1));
+        end
+    end
+    rho_mix(Ind1) = PsiX3(Ind1) + PsiY3(Ind1) + PsiZ3(Ind1);
+end
+rho_mix = rho_mix / norm(rho_mix);
+rho_even = rho_even / norm(rho_even);
+rho_odd = rho_odd / norm(rho_odd);
+figure(13)
+clf(figure(13))
+hold on
+plot(x, rho_mix, 'DisplayName', 'Mix')
+plot(x, rho_even, '.', 'DisplayName', 'even')
+plot(x, rho_odd, 'DisplayName', 'odd')
+box
+legend
 
+hold off
+
+%%
+
+figure(14)
+plot(x,-smooth(rho_mix, 30))
