@@ -3,7 +3,7 @@ clear all
 
 Nx      = 200;
 Alpha   = 10;
-Kappa   = 0;
+Kappa   = 0.1;
 Eta     = 20;
 Beta    = 10^-5;
 Polarization = struct();
@@ -107,9 +107,9 @@ for alphaInd = 1:length(Alpha)
             PsiZ1(Ind1) = 0;
             for Ind2 = 1:Nx
                 for Ind3 = 1: Nx
-                    PsiX1(Ind1) = PsiX1(Ind1) + WFT1(Ind1, Ind2, Ind3)^2;
-                    PsiY1(Ind1) = PsiY1(Ind1) + WFT1(Ind2, Ind1, Ind3)^2;
-                    PsiZ1(Ind1) = PsiZ1(Ind1) + WFT1(Ind2, Ind3, Ind1)^2;
+                    PsiX1(Ind1) = PsiX1(Ind1) + WFT1(Ind1, Ind2, Ind3)^1;
+                    PsiY1(Ind1) = PsiY1(Ind1) + WFT1(Ind2, Ind1, Ind3)^1;
+                    PsiZ1(Ind1) = PsiZ1(Ind1) + WFT1(Ind2, Ind3, Ind1)^1;
 
                 end
             end
@@ -279,4 +279,42 @@ hold off
 %%
 
 figure(14)
-plot(x,-smooth(rho_mix, 30))
+clf(figure(14))
+hold on
+
+%plot(rho_even)
+%plot(flip(rho_even))
+plot(conv(rho_even - flip(rho_even),normpdf([-2:0.10:2],0,1.1)))
+box
+hold off
+
+
+close all
+FontSize = 30;
+Position = [1 1 6 5];
+
+Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
+hold on
+C = conv(rho_even - flip(rho_even),normpdf([-2:0.10:2],0,1.1))
+plot(linspace(-6, 6, length(C)) * 160, 10^-2 * C , 'r-', 'LineWidth', 6)
+
+set(gca, 'FontSize', FontSize)
+%xlim([-7*160 7*160])
+%xticks([-500 0 500])
+%ylim([-0.02 0.5])
+%yticks([0 0.5])
+xlabel('$z [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
+%label = ylabel('$\rho(z) \left[ \frac{1}{nm}\right] $', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5, 'Color','r')
+x = linspace(-7, 7, 1000);
+mult = 100;
+yline(0, 'k-', 'LineWidth', 2.5, 'Alpha', 1);
+trshld = 8*10^-4;
+shift1 = -9.5;
+%text( 10, 0.42, 0, '$\epsilon = 10^{-4}$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
+set(gcf,'paperunits','in');
+set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
+box
+hold off
+fname   = sprintf('Fig_WaveFunction_difference.pdf');
+hfig    = gcf;
+print(hfig,'-bestfit','-dpdf', '-r960', fname);
