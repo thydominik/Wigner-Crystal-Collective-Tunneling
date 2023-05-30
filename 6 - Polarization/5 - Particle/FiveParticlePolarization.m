@@ -4,16 +4,16 @@ clc
 % Constants:
 Nx1 = 20;
 Nx2 = 20;
-Nx3 = 50;
+Nx3 = 40;
 Nx4 = Nx2;
 Nx5 = Nx1;
 
-Alpha   = 14;
+Alpha   = 9;
 Kappa   = 0;
 eta = 20;
 
 Polarization = struct();
-Beta = 10^-8;
+Beta = 10^-5;
 
 Eq_Pos = [];
 
