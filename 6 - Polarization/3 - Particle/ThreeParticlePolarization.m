@@ -277,6 +277,7 @@ legend
 hold off
 
 %%
+clc
 
 figure(14)
 clf(figure(14))
@@ -284,7 +285,7 @@ hold on
 
 %plot(rho_even)
 %plot(flip(rho_even))
-plot(conv(rho_even - flip(rho_even),normpdf([-2:0.10:2],0,1.1)))
+plot(conv(rho_even - flip(rho_even),normpdf([-2:0.10:2],0,1.1)));
 box
 hold off
 
@@ -295,8 +296,19 @@ Position = [1 1 6 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
 hold on
-C = conv(rho_even - flip(rho_even),normpdf([-2:0.10:2],0,1.1))
-plot(linspace(-6, 6, length(C)) * 160, 10^-2 * C , 'r-', 'LineWidth', 6)
+C = conv(rho_even - flip(rho_even), normpdf([-2:0.10:2],0,1.1));
+C = C / norm(C);
+
+I = 0;
+x = linspace(-6, 6 , length(C)) * 160;
+for i = 2:length(C)
+    dx = x(i) - x(i - 1);
+    I = I + dx (C(i) + C(i-1))/2; 
+end
+I
+norm(C)
+%%
+plot(linspace(-6, 6, length(C)) * 160,1/160 * C , 'r-', 'LineWidth', 6)
 
 set(gca, 'FontSize', FontSize)
 %xlim([-7*160 7*160])
