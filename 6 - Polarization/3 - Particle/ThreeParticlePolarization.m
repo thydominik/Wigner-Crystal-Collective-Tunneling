@@ -1,9 +1,9 @@
 clc
 clear all
 
-Nx      = 200;
-Alpha   = 10;
-Kappa   = 0.1;
+Nx      = 100;
+Alpha   = 0:0.5:9;
+Kappa   = -0.1:0.01:0.1;
 Eta     = 20;
 Beta    = 10^-5;
 Polarization = struct();
@@ -38,7 +38,7 @@ for alphaInd = 1:length(Alpha)
     for kappaInd = 1:length(Kappa)
         PotentialMtx = sparse(zeros(Nx));
 
-        U = 0.25 * (x.^2 - Alpha(alphaInd)).^2 + Kappa(kappaInd) * x;
+        U = 0.25 * (x.^2 - Alpha(alphaInd)).^2 - Kappa(kappaInd) * x;
         PotentialMtx = sparse(diag(U));
 
         U1 = kron(kron(PotentialMtx, speye(Nx)), speye(Nx));
@@ -175,6 +175,7 @@ for alphaInd = 1:length(Alpha)
         % Kappa(kappaInd)
 
     end
+    alphaInd
 end
 Polarization.Alpha              = Alpha;
 Polarization.Kappa              = Kappa;
@@ -199,7 +200,7 @@ figure(5)
 clf(figure(5))
 hold on
 plot(x, 10^-3 * (0.25 * (x.^2 - Alpha(alphaInd)).^2 + Kappa(kappaInd) * x))
-plot(xnew, WF2 , '-', 'LineWidth', 3)
+%plot(xnew, WF2 , '-', 'LineWidth', 3)
 plot(x, (PsiX2), '.-')
 plot(x, (PsiY2), '.-')
 plot(x, (PsiZ2), '.-')
@@ -295,16 +296,17 @@ Position = [1 1 6 5];
 
 Figure = figure('color', 'white', 'units', 'inches', 'Position', Position);
 hold on
-C = conv(rho_even - flip(rho_even),normpdf([-2:0.10:2],0,1.1))
-plot(linspace(-6, 6, length(C)) * 160, 10^-2 * C , 'r-', 'LineWidth', 6)
+C = conv(rho_even - flip(rho_even),normpdf([-2:0.2:2],0,1.1))
+plot(linspace(-6, 6, length(C)) * 160/1000, C , 'r-', 'LineWidth', 6)
 
 set(gca, 'FontSize', FontSize)
 %xlim([-7*160 7*160])
 %xticks([-500 0 500])
 %ylim([-0.02 0.5])
-%yticks([0 0.5])
-xlabel('$z [{\rm{nm}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
-%label = ylabel('$\rho(z) \left[ \frac{1}{nm}\right] $', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5, 'Color','r')
+yticks([-10^3 10^3])
+text( 0.5, 0.3, 0, '$N = 3$','HorizontalAlignment', 'center', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize + 15);
+xlabel('$z [\mu{\rm{m}}]$', 'Interpreter', 'latex', 'FontSize', FontSize)
+label = ylabel('$\Delta\rho_{\rm{smeared}}(z)$ [a.u.]', 'FontWeight', 'Bold', 'Interpreter', 'latex', 'FontWeight', 'Bold', 'FontSize', FontSize + 5, 'Color','r')
 x = linspace(-7, 7, 1000);
 mult = 100;
 yline(0, 'k-', 'LineWidth', 2.5, 'Alpha', 1);
@@ -315,6 +317,6 @@ set(gcf,'paperunits','in');
 set(gcf,'papersize',[Position(3) + 1, Position(4) + 1]);
 box
 hold off
-fname   = sprintf('Fig_WaveFunction_difference.pdf');
+fname   = sprintf('Fig_WaveFunction_difference_3_part.pdf');
 hfig    = gcf;
 print(hfig,'-bestfit','-dpdf', '-r960', fname);

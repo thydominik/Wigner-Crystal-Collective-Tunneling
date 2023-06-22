@@ -8,8 +8,8 @@ Nx3 = 40;
 Nx4 = Nx2;
 Nx5 = Nx1;
 
-Alpha   = 9;
-Kappa   = 0;
+Alpha   = 14;
+Kappa   = 5*10^-6;
 eta = 20;
 
 Polarization = struct();

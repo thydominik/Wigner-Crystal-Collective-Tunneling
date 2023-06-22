@@ -1,9 +1,9 @@
 clc
 clear all
 
-Nx      = 1000;
-Alpha   = -1:0.2:8;
-Kappa   = -0.5:0.01:0.5;
+Nx      = 200;
+Alpha   = 0:0.1:9;
+Kappa   = -0.1:0.002:0.1;
 
 WaveFunction = zeros(length(Alpha), length(Kappa), Nx);
 
@@ -40,7 +40,7 @@ for alphaInd = 1 : length(Alpha)
         k = Kappa(kappaInd);
         S   = linspace(-10, 10, Nx);
         dx  = S(2) - S(1);
-        V   = 0.25 * (S.^2 - a).^2 + k * S;
+        V   = 0.25 * (S.^2 - a).^2 - k * S;
 
         PotentialMtx = sparse(diag(V));
         for i = 2:Nx
