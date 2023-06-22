@@ -1,0 +1,110 @@
+clc
+clear all
+
+Nx      = 500;
+Alpha   = 1.0;
+Kappa   = ;
+Kappa linspace(-3, 3, 20)
+beta    = 10^-5;
+WaveFunction = zeros(length(Alpha), length(Kappa), Nx);
+
+% 1 particle Equilibrium positions
+Polarization                            = struct();
+
+% Creating the potnential
+for alphaInd = 1 : length(Alpha)
+    a = Alpha(alphaInd);
+    for kappaInd = 1:length(Kappa)
+        k = Kappa(kappaInd);
+        S   = linspace(-4, 4, Nx);
+        for xInd = 1:Nx
+            V(xInd) = 0.25 * (S(xInd)^2 - a)^2 + 20/((Kappa(kappaInd) - S(xInd))^2 + (beta)^2);
+        end
+
+        dx  = S(2) - S(1);
+
+        PotentialMtx = sparse(diag(V));
+        for i = 2:Nx
+            K = 1/(2 * dx^2);
+            KineticMtx(i - 1, i) = -K;
+            KineticMtx(i, i - 1) = -K;
+        end
+        Hamiltonian = PotentialMtx + sparse(KineticMtx);
+        
+        [Psi, E]    = eig(full(Hamiltonian));
+        E           = diag(E);
+        dE          = E(2) - E(1);
+        
+        Polarization.Splitting(alphaInd, kappaInd) = dE;
+
+        figure(4)
+        clf(figure(4))
+        hold on
+        title([a k])
+        ylim([0 1])
+        plot(S, 5*V/max(V))
+        plot(S, (Psi(:, 1)/norm(Psi(:, 1))))
+        plot(S, (Psi(:, 2)/norm(Psi(:, 2))))
+        yline(0)
+        ylim([-0.2 0.2])
+        %Fr = getframe(gcf);
+        %[Im(:, :, 1, alphaInd), Map] = rgb2ind(Fr.cdata, 8);
+    
+        hold off
+
+        %Polarization calculation
+        Int = 0;
+        for i = 1:1
+            for n = 1:Nx
+                Int = Int + Psi(n, i)' * S(n) * Psi(n, i) * dx;
+            end
+            Pol(alphaInd, kappaInd) = Int;
+        end
+
+        WaveFunction(alphaInd, kappaInd, :) = Psi(:, 1);
+    end
+    
+    
+
+    Split(alphaInd, 1) = E(2) - E(1);
+    Split(alphaInd, 2) = a;
+end
+
+
+figure(5)
+clf(figure(5))
+hold on
+plot( Kappa, Pol.')
+xlabel('Alpha')
+ylabel('Kappa')
+zlabel('P')
+hold off
+
+A = Kappa(1) * reshape(abs(WaveFunction(1, 1, :)), [1 Nx]);
+for i = 2:length( Kappa)
+    A = A + Kappa(i) * reshape(abs(WaveFunction(1, i, :)), [1 Nx]);
+end
+
+
+Polarization.Info                       = '1 particle polarization and data structure.';
+Polarization.Resolution                 = Nx;
+Polarization.Alpha                      = Alpha;
+Polarization.Kappa                      = Kappa;
+Polarization.PolarizationMtx            = Pol;
+Polarization.Splittings                 = Split(:, 1);
+Polarization.GSWaveFunctionMtx          = WaveFunction;
+Polarization.DetectorPos                = 
+save('OneParticlePolarization', 'Polarization')
+disp('Done with calculation')
+
+%
+
+
+%%
+figure(110)
+clf(figure(110))
+hold on
+plot(S, A)
+yline(0)
+
+hold off
