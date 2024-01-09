@@ -1,0 +1,695 @@
+%apsrev4-2.bst 2019-01-14 (MD) hand-edited version of apsrev4-1.bst
+%Control: key (0)
+%Control: author (8) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (0) allowed
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{49}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{https://doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Wigner}(1934)}]{Wigner1934}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Wigner}},\ }\bibfield  {title} {\bibinfo {title} {On the interaction of
+  electrons in metals},\ }\href {https://doi.org/10.1103/PhysRev.46.1002}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev.}\ }\textbf {\bibinfo
+  {volume} {46}},\ \bibinfo {pages} {1002} (\bibinfo {year}
+  {1934})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schulz}(1993)}]{Schulz1993}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
+  {Schulz}},\ }\bibfield  {title} {\bibinfo {title} {Wigner crystal in one
+  dimension},\ }\href {https://doi.org/10.1103/PhysRevLett.71.1864} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {71}},\ \bibinfo {pages} {1864} (\bibinfo {year}
+  {1993})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Andrei}\ \emph {et~al.}(1988)\citenamefont {Andrei},
+  \citenamefont {Deville}, \citenamefont {Glattli}, \citenamefont {Williams},
+  \citenamefont {Paris},\ and\ \citenamefont {Etienne}}]{Andrei1988}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~Y.}\ \bibnamefont
+  {Andrei}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Deville}},
+  \bibinfo {author} {\bibfnamefont {D.~C.}\ \bibnamefont {Glattli}}, \bibinfo
+  {author} {\bibfnamefont {F.~I.~B.}\ \bibnamefont {Williams}}, \bibinfo
+  {author} {\bibfnamefont {E.}~\bibnamefont {Paris}},\ and\ \bibinfo {author}
+  {\bibfnamefont {B.}~\bibnamefont {Etienne}},\ }\bibfield  {title} {\bibinfo
+  {title} {Observation of a magnetically induced wigner solid},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.60.2765} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {60}},\ \bibinfo
+  {pages} {2765} (\bibinfo {year} {1988})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Meyer}\ and\ \citenamefont
+  {Matveev}(2008)}]{Meyer2009}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~S.}\ \bibnamefont
+  {Meyer}}\ and\ \bibinfo {author} {\bibfnamefont {K.~A.}\ \bibnamefont
+  {Matveev}},\ }\bibfield  {title} {\bibinfo {title} {Wigner crystal physics in
+  quantum wires},\ }\href {https://doi.org/10.1088/0953-8984/21/2/023203}
+  {\bibfield  {journal} {\bibinfo  {journal} {Journal of Physics: Condensed
+  Matter}\ }\textbf {\bibinfo {volume} {21}},\ \bibinfo {pages} {023203}
+  (\bibinfo {year} {2008})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Jiang}\ \emph {et~al.}(1990)\citenamefont {Jiang},
+  \citenamefont {Willett}, \citenamefont {Stormer}, \citenamefont {Tsui},
+  \citenamefont {Pfeiffer},\ and\ \citenamefont {West}}]{Jiang1990}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~W.}\ \bibnamefont
+  {Jiang}}, \bibinfo {author} {\bibfnamefont {R.~L.}\ \bibnamefont {Willett}},
+  \bibinfo {author} {\bibfnamefont {H.~L.}\ \bibnamefont {Stormer}}, \bibinfo
+  {author} {\bibfnamefont {D.~C.}\ \bibnamefont {Tsui}}, \bibinfo {author}
+  {\bibfnamefont {L.~N.}\ \bibnamefont {Pfeiffer}},\ and\ \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {West}},\ }\bibfield  {title} {\bibinfo
+  {title} {Quantum liquid versus electron solid around \ensuremath{\nu}=1/5
+  landau-level filling},\ }\href {https://doi.org/10.1103/PhysRevLett.65.633}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {65}},\ \bibinfo {pages} {633} (\bibinfo {year}
+  {1990})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Goldman}\ \emph {et~al.}(1990)\citenamefont
+  {Goldman}, \citenamefont {Santos}, \citenamefont {Shayegan},\ and\
+  \citenamefont {Cunningham}}]{Goldman1990}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~J.}\ \bibnamefont
+  {Goldman}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Santos}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ and\
+  \bibinfo {author} {\bibfnamefont {J.~E.}\ \bibnamefont {Cunningham}},\
+  }\bibfield  {title} {\bibinfo {title} {Evidence for two-dimentional quantum
+  wigner crystal},\ }\href {https://doi.org/10.1103/PhysRevLett.65.2189}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {65}},\ \bibinfo {pages} {2189} (\bibinfo {year}
+  {1990})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Buhmann}\ \emph {et~al.}(1991)\citenamefont
+  {Buhmann}, \citenamefont {Joss}, \citenamefont {von Klitzing}, \citenamefont
+  {Kukushkin}, \citenamefont {Plaut}, \citenamefont {Martinez}, \citenamefont
+  {Ploog},\ and\ \citenamefont {Timofeev}}]{Buhmann1991}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Buhmann}}, \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Joss}},
+  \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {von Klitzing}}, \bibinfo
+  {author} {\bibfnamefont {I.~V.}\ \bibnamefont {Kukushkin}}, \bibinfo {author}
+  {\bibfnamefont {A.~S.}\ \bibnamefont {Plaut}}, \bibinfo {author}
+  {\bibfnamefont {G.}~\bibnamefont {Martinez}}, \bibinfo {author}
+  {\bibfnamefont {K.}~\bibnamefont {Ploog}},\ and\ \bibinfo {author}
+  {\bibfnamefont {V.~B.}\ \bibnamefont {Timofeev}},\ }\bibfield  {title}
+  {\bibinfo {title} {Novel magneto-optical behavior in the wigner-solid
+  regime},\ }\href {https://doi.org/10.1103/PhysRevLett.66.926} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {66}},\ \bibinfo {pages} {926} (\bibinfo {year} {1991})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Santos}\ \emph {et~al.}(1992)\citenamefont {Santos},
+  \citenamefont {Jo}, \citenamefont {Suen}, \citenamefont {Engel},\ and\
+  \citenamefont {Shayegan}}]{Santos1992}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~B.}\ \bibnamefont
+  {Santos}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Jo}}, \bibinfo
+  {author} {\bibfnamefont {Y.~W.}\ \bibnamefont {Suen}}, \bibinfo {author}
+  {\bibfnamefont {L.~W.}\ \bibnamefont {Engel}},\ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ }\bibfield  {title} {\bibinfo
+  {title} {Effect of landau-level mixing on quantum-liquid and solid states of
+  two-dimensional hole systems},\ }\href
+  {https://doi.org/10.1103/PhysRevB.46.13639} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {46}},\ \bibinfo
+  {pages} {13639} (\bibinfo {year} {1992})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Shirahama}\ and\ \citenamefont
+  {Kono}(1995)}]{Shirahama1995}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Shirahama}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Kono}},\ }\bibfield  {title} {\bibinfo {title} {Dynamical transition in the
+  wigner solid on a liquid helium surface},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.74.781} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {74}},\ \bibinfo
+  {pages} {781} (\bibinfo {year} {1995})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Yoon}\ \emph {et~al.}(1999)\citenamefont {Yoon},
+  \citenamefont {Li}, \citenamefont {Shahar}, \citenamefont {Tsui},\ and\
+  \citenamefont {Shayegan}}]{Yoon1999}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Yoon}}, \bibinfo {author} {\bibfnamefont {C.~C.}\ \bibnamefont {Li}},
+  \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Shahar}}, \bibinfo
+  {author} {\bibfnamefont {D.~C.}\ \bibnamefont {Tsui}},\ and\ \bibinfo
+  {author} {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ }\bibfield  {title}
+  {\bibinfo {title} {Wigner crystallization and metal-insulator transition of
+  two-dimensional holes in gaas at
+  $\mathit{B}\phantom{\rule{0ex}{0ex}}=\phantom{\rule{0ex}{0ex}}0$},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.82.1744} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {82}},\ \bibinfo
+  {pages} {1744} (\bibinfo {year} {1999})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Chen}\ \emph {et~al.}(2006)\citenamefont {Chen},
+  \citenamefont {Sambandamurthy}, \citenamefont {Wang}, \citenamefont {Lewis},
+  \citenamefont {Engel}, \citenamefont {Tsui}, \citenamefont {Ye},
+  \citenamefont {Pfeiffer},\ and\ \citenamefont {West}}]{Chen2006}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.~P.}\ \bibnamefont
+  {Chen}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Sambandamurthy}}, \bibinfo {author} {\bibfnamefont {Z.~H.}\ \bibnamefont
+  {Wang}}, \bibinfo {author} {\bibfnamefont {R.~M.}\ \bibnamefont {Lewis}},
+  \bibinfo {author} {\bibfnamefont {L.~W.}\ \bibnamefont {Engel}}, \bibinfo
+  {author} {\bibfnamefont {D.~C.}\ \bibnamefont {Tsui}}, \bibinfo {author}
+  {\bibfnamefont {P.~D.}\ \bibnamefont {Ye}}, \bibinfo {author} {\bibfnamefont
+  {L.~N.}\ \bibnamefont {Pfeiffer}},\ and\ \bibinfo {author} {\bibfnamefont
+  {K.~W.}\ \bibnamefont {West}},\ }\bibfield  {title} {\bibinfo {title}
+  {Melting of a 2d quantum electron solid in high magnetic field},\ }\href
+  {https://doi.org/10.1038/nphys322} {\bibfield  {journal} {\bibinfo  {journal}
+  {Nature Physics}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages} {452}
+  (\bibinfo {year} {2006})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Zhu}\ \emph {et~al.}(2010)\citenamefont {Zhu},
+  \citenamefont {Chen}, \citenamefont {Jiang}, \citenamefont {Engel},
+  \citenamefont {Tsui}, \citenamefont {Pfeiffer},\ and\ \citenamefont
+  {West}}]{Zhu2010}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Zhu}}, \bibinfo {author} {\bibfnamefont {Y.~P.}\ \bibnamefont {Chen}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Jiang}}, \bibinfo
+  {author} {\bibfnamefont {L.~W.}\ \bibnamefont {Engel}}, \bibinfo {author}
+  {\bibfnamefont {D.~C.}\ \bibnamefont {Tsui}}, \bibinfo {author}
+  {\bibfnamefont {L.~N.}\ \bibnamefont {Pfeiffer}},\ and\ \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {West}},\ }\bibfield  {title} {\bibinfo
+  {title} {Observation of a pinning mode in a wigner solid with
+  $\ensuremath{\nu}=1/3$ fractional quantum hall excitations},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.105.126803} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {105}},\
+  \bibinfo {pages} {126803} (\bibinfo {year} {2010})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Tiemann}\ \emph {et~al.}(2014)\citenamefont
+  {Tiemann}, \citenamefont {Rhone}, \citenamefont {Shibata},\ and\
+  \citenamefont {Muraki}}]{Tiemann2014}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Tiemann}}, \bibinfo {author} {\bibfnamefont {T.~D.}\ \bibnamefont {Rhone}},
+  \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Shibata}},\ and\ \bibinfo
+  {author} {\bibfnamefont {K.}~\bibnamefont {Muraki}},\ }\bibfield  {title}
+  {\bibinfo {title} {Nmr profiling of quantum electron solids in high magnetic
+  fields},\ }\href {https://doi.org/10.1038/nphys3031} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nature Physics}\ }\textbf {\bibinfo {volume} {10}},\
+  \bibinfo {pages} {648} (\bibinfo {year} {2014})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Deng}\ \emph {et~al.}(2016)\citenamefont {Deng},
+  \citenamefont {Liu}, \citenamefont {Jo}, \citenamefont {Pfeiffer},
+  \citenamefont {West}, \citenamefont {Baldwin},\ and\ \citenamefont
+  {Shayegan}}]{Deng2016}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Deng}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Liu}}, \bibinfo
+  {author} {\bibfnamefont {I.}~\bibnamefont {Jo}}, \bibinfo {author}
+  {\bibfnamefont {L.~N.}\ \bibnamefont {Pfeiffer}}, \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {West}}, \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {Baldwin}},\ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ }\bibfield  {title} {\bibinfo
+  {title} {Commensurability oscillations of composite fermions induced by the
+  periodic potential of a wigner crystal},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.117.096601} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {117}},\
+  \bibinfo {pages} {096601} (\bibinfo {year} {2016})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Deng}\ \emph {et~al.}(2019)\citenamefont {Deng},
+  \citenamefont {Pfeiffer}, \citenamefont {West}, \citenamefont {Baldwin},
+  \citenamefont {Engel},\ and\ \citenamefont {Shayegan}}]{Deng2019}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Deng}}, \bibinfo {author} {\bibfnamefont {L.~N.}\ \bibnamefont {Pfeiffer}},
+  \bibinfo {author} {\bibfnamefont {K.~W.}\ \bibnamefont {West}}, \bibinfo
+  {author} {\bibfnamefont {K.~W.}\ \bibnamefont {Baldwin}}, \bibinfo {author}
+  {\bibfnamefont {L.~W.}\ \bibnamefont {Engel}},\ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ }\bibfield  {title} {\bibinfo
+  {title} {Probing the melting of a two-dimensional quantum wigner crystal via
+  its screening efficiency},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.122.116601} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {122}},\
+  \bibinfo {pages} {116601} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Ma}\ \emph {et~al.}(2020)\citenamefont {Ma},
+  \citenamefont {Villegas~Rosales}, \citenamefont {Deng}, \citenamefont
+  {Chung}, \citenamefont {Pfeiffer}, \citenamefont {West}, \citenamefont
+  {Baldwin}, \citenamefont {Winkler},\ and\ \citenamefont {Shayegan}}]{Ma2020}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~K.}\ \bibnamefont
+  {Ma}}, \bibinfo {author} {\bibfnamefont {K.~A.}\ \bibnamefont
+  {Villegas~Rosales}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Deng}}, \bibinfo {author} {\bibfnamefont {Y.~J.}\ \bibnamefont {Chung}},
+  \bibinfo {author} {\bibfnamefont {L.~N.}\ \bibnamefont {Pfeiffer}}, \bibinfo
+  {author} {\bibfnamefont {K.~W.}\ \bibnamefont {West}}, \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {Baldwin}}, \bibinfo {author}
+  {\bibfnamefont {R.}~\bibnamefont {Winkler}},\ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ }\bibfield  {title} {\bibinfo
+  {title} {Thermal and quantum melting phase diagrams for a
+  magnetic-field-induced wigner solid},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.125.036601} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {125}},\
+  \bibinfo {pages} {036601} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Regan}\ \emph {et~al.}(2020)\citenamefont {Regan},
+  \citenamefont {Wang}, \citenamefont {Jin}, \citenamefont {Bakti~Utama},
+  \citenamefont {Gao}, \citenamefont {Wei}, \citenamefont {Zhao}, \citenamefont
+  {Zhao}, \citenamefont {Zhang}, \citenamefont {Yumigeta}, \citenamefont
+  {Blei}, \citenamefont {Carlstr{\"o}m}, \citenamefont {Watanabe},
+  \citenamefont {Taniguchi}, \citenamefont {Tongay}, \citenamefont {Crommie},
+  \citenamefont {Zettl},\ and\ \citenamefont {Wang}}]{Regan2020}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.~C.}\ \bibnamefont
+  {Regan}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Wang}},
+  \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Jin}}, \bibinfo {author}
+  {\bibfnamefont {M.~I.}\ \bibnamefont {Bakti~Utama}}, \bibinfo {author}
+  {\bibfnamefont {B.}~\bibnamefont {Gao}}, \bibinfo {author} {\bibfnamefont
+  {X.}~\bibnamefont {Wei}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Zhao}}, \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Zhao}}, \bibinfo
+  {author} {\bibfnamefont {Z.}~\bibnamefont {Zhang}}, \bibinfo {author}
+  {\bibfnamefont {K.}~\bibnamefont {Yumigeta}}, \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Blei}}, \bibinfo {author} {\bibfnamefont
+  {J.~D.}\ \bibnamefont {Carlstr{\"o}m}}, \bibinfo {author} {\bibfnamefont
+  {K.}~\bibnamefont {Watanabe}}, \bibinfo {author} {\bibfnamefont
+  {T.}~\bibnamefont {Taniguchi}}, \bibinfo {author} {\bibfnamefont
+  {S.}~\bibnamefont {Tongay}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Crommie}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Zettl}},\ and\ \bibinfo {author} {\bibfnamefont
+  {F.}~\bibnamefont {Wang}},\ }\bibfield  {title} {\bibinfo {title} {Mott and
+  generalized wigner crystal states in wse2/ws2 moir{\'e}superlattices},\
+  }\href {https://doi.org/10.1038/s41586-020-2092-4} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nature}\ }\textbf {\bibinfo {volume} {579}},\ \bibinfo
+  {pages} {359} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Smole{\'n}ski}\ \emph {et~al.}(2021)\citenamefont
+  {Smole{\'n}ski}, \citenamefont {Dolgirev}, \citenamefont {Kuhlenkamp},
+  \citenamefont {Popert}, \citenamefont {Shimazaki}, \citenamefont {Back},
+  \citenamefont {Lu}, \citenamefont {Kroner}, \citenamefont {Watanabe},
+  \citenamefont {Taniguchi}, \citenamefont {Esterlis}, \citenamefont {Demler},\
+  and\ \citenamefont {Imamo{\u g}lu}}]{Smoleski2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Smole{\'n}ski}}, \bibinfo {author} {\bibfnamefont {P.~E.}\ \bibnamefont
+  {Dolgirev}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Kuhlenkamp}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Popert}},
+  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Shimazaki}}, \bibinfo
+  {author} {\bibfnamefont {P.}~\bibnamefont {Back}}, \bibinfo {author}
+  {\bibfnamefont {X.}~\bibnamefont {Lu}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Kroner}}, \bibinfo {author} {\bibfnamefont
+  {K.}~\bibnamefont {Watanabe}}, \bibinfo {author} {\bibfnamefont
+  {T.}~\bibnamefont {Taniguchi}}, \bibinfo {author} {\bibfnamefont
+  {I.}~\bibnamefont {Esterlis}}, \bibinfo {author} {\bibfnamefont
+  {E.}~\bibnamefont {Demler}},\ and\ \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Imamo{\u g}lu}},\ }\bibfield  {title} {\bibinfo {title}
+  {Signatures of wigner crystal of electrons in a monolayer semiconductor},\
+  }\href {https://doi.org/10.1038/s41586-021-03590-4} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nature}\ }\textbf {\bibinfo {volume} {595}},\ \bibinfo
+  {pages} {53} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Zhou}\ \emph {et~al.}(2021)\citenamefont {Zhou},
+  \citenamefont {Sung}, \citenamefont {Brutschea}, \citenamefont {Esterlis},
+  \citenamefont {Wang}, \citenamefont {Scuri}, \citenamefont {Gelly},
+  \citenamefont {Heo}, \citenamefont {Taniguchi}, \citenamefont {Watanabe},
+  \citenamefont {Zar{\'a}nd}, \citenamefont {Lukin}, \citenamefont {Kim},
+  \citenamefont {Demler},\ and\ \citenamefont {Park}}]{Zhou2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Zhou}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Sung}}, \bibinfo
+  {author} {\bibfnamefont {E.}~\bibnamefont {Brutschea}}, \bibinfo {author}
+  {\bibfnamefont {I.}~\bibnamefont {Esterlis}}, \bibinfo {author}
+  {\bibfnamefont {Y.}~\bibnamefont {Wang}}, \bibinfo {author} {\bibfnamefont
+  {G.}~\bibnamefont {Scuri}}, \bibinfo {author} {\bibfnamefont {R.~J.}\
+  \bibnamefont {Gelly}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Heo}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Taniguchi}},
+  \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Watanabe}}, \bibinfo
+  {author} {\bibfnamefont {G.}~\bibnamefont {Zar{\'a}nd}}, \bibinfo {author}
+  {\bibfnamefont {M.~D.}\ \bibnamefont {Lukin}}, \bibinfo {author}
+  {\bibfnamefont {P.}~\bibnamefont {Kim}}, \bibinfo {author} {\bibfnamefont
+  {E.}~\bibnamefont {Demler}},\ and\ \bibinfo {author} {\bibfnamefont
+  {H.}~\bibnamefont {Park}},\ }\bibfield  {title} {\bibinfo {title} {Bilayer
+  wigner crystals in a transition metal dichalcogenide heterostructure},\
+  }\href {https://doi.org/10.1038/s41586-021-03560-w} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nature}\ }\textbf {\bibinfo {volume} {595}},\ \bibinfo
+  {pages} {48} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Li}\ \emph {et~al.}(2021)\citenamefont {Li},
+  \citenamefont {Li}, \citenamefont {Regan}, \citenamefont {Wang},
+  \citenamefont {Zhao}, \citenamefont {Kahn}, \citenamefont {Yumigeta},
+  \citenamefont {Blei}, \citenamefont {Taniguchi}, \citenamefont {Watanabe},
+  \citenamefont {Tongay}, \citenamefont {Zettl}, \citenamefont {Crommie},\ and\
+  \citenamefont {Wang}}]{Li2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Li}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Li}}, \bibinfo
+  {author} {\bibfnamefont {E.~C.}\ \bibnamefont {Regan}}, \bibinfo {author}
+  {\bibfnamefont {D.}~\bibnamefont {Wang}}, \bibinfo {author} {\bibfnamefont
+  {W.}~\bibnamefont {Zhao}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Kahn}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Yumigeta}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Blei}}, \bibinfo {author}
+  {\bibfnamefont {T.}~\bibnamefont {Taniguchi}}, \bibinfo {author}
+  {\bibfnamefont {K.}~\bibnamefont {Watanabe}}, \bibinfo {author}
+  {\bibfnamefont {S.}~\bibnamefont {Tongay}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Zettl}}, \bibinfo {author} {\bibfnamefont {M.~F.}\
+  \bibnamefont {Crommie}},\ and\ \bibinfo {author} {\bibfnamefont
+  {F.}~\bibnamefont {Wang}},\ }\bibfield  {title} {\bibinfo {title} {Imaging
+  two-dimensional generalized wigner crystals},\ }\href
+  {https://doi.org/10.1038/s41586-021-03874-9} {\bibfield  {journal} {\bibinfo
+  {journal} {Nature}\ }\textbf {\bibinfo {volume} {597}},\ \bibinfo {pages}
+  {650} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Villegas~Rosales}\ \emph {et~al.}(2021)\citenamefont
+  {Villegas~Rosales}, \citenamefont {Singh}, \citenamefont {Ma}, \citenamefont
+  {Hossain}, \citenamefont {Chung}, \citenamefont {Pfeiffer}, \citenamefont
+  {West}, \citenamefont {Baldwin},\ and\ \citenamefont
+  {Shayegan}}]{Villegas2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.~A.}\ \bibnamefont
+  {Villegas~Rosales}}, \bibinfo {author} {\bibfnamefont {S.~K.}\ \bibnamefont
+  {Singh}}, \bibinfo {author} {\bibfnamefont {M.~K.}\ \bibnamefont {Ma}},
+  \bibinfo {author} {\bibfnamefont {M.~S.}\ \bibnamefont {Hossain}}, \bibinfo
+  {author} {\bibfnamefont {Y.~J.}\ \bibnamefont {Chung}}, \bibinfo {author}
+  {\bibfnamefont {L.~N.}\ \bibnamefont {Pfeiffer}}, \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {West}}, \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {Baldwin}},\ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ }\bibfield  {title} {\bibinfo
+  {title} {Competition between fractional quantum hall liquid and wigner solid
+  at small fillings: Role of layer thickness and landau level mixing},\ }\href
+  {https://doi.org/10.1103/PhysRevResearch.3.013181} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Res.}\ }\textbf {\bibinfo {volume} {3}},\
+  \bibinfo {pages} {013181} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Falson}\ \emph {et~al.}(2022)\citenamefont {Falson},
+  \citenamefont {Sodemann}, \citenamefont {Skinner}, \citenamefont {Tabrea},
+  \citenamefont {Kozuka}, \citenamefont {Tsukazaki}, \citenamefont {Kawasaki},
+  \citenamefont {von Klitzing},\ and\ \citenamefont {Smet}}]{Falson2022}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Falson}}, \bibinfo {author} {\bibfnamefont {I.}~\bibnamefont {Sodemann}},
+  \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont {Skinner}}, \bibinfo
+  {author} {\bibfnamefont {D.}~\bibnamefont {Tabrea}}, \bibinfo {author}
+  {\bibfnamefont {Y.}~\bibnamefont {Kozuka}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Tsukazaki}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Kawasaki}}, \bibinfo {author} {\bibfnamefont
+  {K.}~\bibnamefont {von Klitzing}},\ and\ \bibinfo {author} {\bibfnamefont
+  {J.~H.}\ \bibnamefont {Smet}},\ }\bibfield  {title} {\bibinfo {title}
+  {Competing correlated states around the zero-field wigner crystallization
+  transition of electrons in two dimensions},\ }\href
+  {https://doi.org/10.1038/s41563-021-01166-1} {\bibfield  {journal} {\bibinfo
+  {journal} {Nature Materials}\ }\textbf {\bibinfo {volume} {21}},\ \bibinfo
+  {pages} {311} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hossain}\ \emph {et~al.}(2022)\citenamefont
+  {Hossain}, \citenamefont {Ma}, \citenamefont {Villegas-Rosales},
+  \citenamefont {Chung}, \citenamefont {Pfeiffer}, \citenamefont {West},
+  \citenamefont {Baldwin},\ and\ \citenamefont {Shayegan}}]{Hossain2022}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~S.}\ \bibnamefont
+  {Hossain}}, \bibinfo {author} {\bibfnamefont {M.~K.}\ \bibnamefont {Ma}},
+  \bibinfo {author} {\bibfnamefont {K.~A.}\ \bibnamefont {Villegas-Rosales}},
+  \bibinfo {author} {\bibfnamefont {Y.~J.}\ \bibnamefont {Chung}}, \bibinfo
+  {author} {\bibfnamefont {L.~N.}\ \bibnamefont {Pfeiffer}}, \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {West}}, \bibinfo {author}
+  {\bibfnamefont {K.~W.}\ \bibnamefont {Baldwin}},\ and\ \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Shayegan}},\ }\bibfield  {title} {\bibinfo
+  {title} {Anisotropic two-dimensional disordered wigner solid},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.129.036601} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {129}},\
+  \bibinfo {pages} {036601} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Shapir}\ \emph {et~al.}(2019)\citenamefont {Shapir},
+  \citenamefont {Hamo}, \citenamefont {Pecker}, \citenamefont {Moca},
+  \citenamefont {Legeza}, \citenamefont {Zarand},\ and\ \citenamefont
+  {Ilani}}]{Shapir.2019}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Shapir}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Hamo}},
+  \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Pecker}}, \bibinfo
+  {author} {\bibfnamefont {C.~P.}\ \bibnamefont {Moca}}, \bibinfo {author}
+  {\bibfnamefont {{\"O}.}~\bibnamefont {Legeza}}, \bibinfo {author}
+  {\bibfnamefont {G.}~\bibnamefont {Zarand}},\ and\ \bibinfo {author}
+  {\bibfnamefont {S.}~\bibnamefont {Ilani}},\ }\bibfield  {title} {\bibinfo
+  {title} {Imaging the electronic wigner crystal in one dimension},\ }\href
+  {https://doi.org/10.1126/science.aat0905} {\bibfield  {journal} {\bibinfo
+  {journal} {Science}\ }\textbf {\bibinfo {volume} {364}},\ \bibinfo {pages}
+  {870} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Deshpande}\ and\ \citenamefont
+  {Bockrath}(2008)}]{Deshpande.2008}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~V.}\ \bibnamefont
+  {Deshpande}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Bockrath}},\ }\bibfield  {title} {\bibinfo {title} {The one-dimensional
+  wigner crystal in carbon nanotubes},\ }\href
+  {https://doi.org/10.1038/nphys895} {\bibfield  {journal} {\bibinfo  {journal}
+  {Nature Physics}\ }\textbf {\bibinfo {volume} {4}},\ \bibinfo {pages} {314}
+  (\bibinfo {year} {2008})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Secchi}\ and\ \citenamefont
+  {Rontani}(2010)}]{RontaniPRB2010}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Secchi}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Rontani}},\ }\bibfield  {title} {\bibinfo {title} {Wigner molecules in
+  carbon-nanotube quantum dots},\ }\href
+  {https://doi.org/10.1103/PhysRevB.82.035417} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {82}},\ \bibinfo
+  {pages} {035417} (\bibinfo {year} {2010})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Mil’nikov}\ and\ \citenamefont
+  {Nakamura}(2001)}]{Milnikov.2001}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.~V.}\ \bibnamefont
+  {Mil’nikov}}\ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Nakamura}},\ }\bibfield  {title} {\bibinfo {title} {Practical implementation
+  of the instanton theory for the ground-state tunneling splitting},\ }\href
+  {https://doi.org/10.1063/1.1406532} {\bibfield  {journal} {\bibinfo
+  {journal} {The Journal of Chemical Physics}\ }\textbf {\bibinfo {volume}
+  {115}},\ \bibinfo {pages} {6881} (\bibinfo {year} {2001})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Charlier}\ \emph {et~al.}(2007)\citenamefont
+  {Charlier}, \citenamefont {Blase},\ and\ \citenamefont
+  {Roche}}]{Charlier.2007}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.-C.}\ \bibnamefont
+  {Charlier}}, \bibinfo {author} {\bibfnamefont {X.}~\bibnamefont {Blase}},\
+  and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Roche}},\ }\bibfield
+   {title} {\bibinfo {title} {Electronic and transport properties of
+  nanotubes},\ }\href {https://doi.org/10.1103/RevModPhys.79.677} {\bibfield
+  {journal} {\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume}
+  {79}},\ \bibinfo {pages} {677} (\bibinfo {year} {2007})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {S\'ark\'any}\ \emph {et~al.}(2017)\citenamefont
+  {S\'ark\'any}, \citenamefont {Szirmai}, \citenamefont {Moca}, \citenamefont
+  {Glazman},\ and\ \citenamefont {Zar\'and}}]{Sarkany.2017}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {S\'ark\'any}}, \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Szirmai}}, \bibinfo {author} {\bibfnamefont {C.~P.}\ \bibnamefont {Moca}},
+  \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Glazman}},\ and\ \bibinfo
+  {author} {\bibfnamefont {G.}~\bibnamefont {Zar\'and}},\ }\bibfield  {title}
+  {\bibinfo {title} {Wigner crystal phases in confined carbon nanotubes},\
+  }\href {https://doi.org/10.1103/PhysRevB.95.115433} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {95}},\
+  \bibinfo {pages} {115433} (\bibinfo {year} {2017})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Fiete}(2007)}]{Fiete2007}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont
+  {Fiete}},\ }\bibfield  {title} {\bibinfo {title} {Colloquium: The
+  spin-incoherent luttinger liquid},\ }\href
+  {https://doi.org/10.1103/RevModPhys.79.801} {\bibfield  {journal} {\bibinfo
+  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume} {79}},\ \bibinfo
+  {pages} {801} (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Coleman}(1988)}]{Coleman.1988}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Coleman}},\ }\href@noop {} {\emph {\bibinfo {title} {Aspects of Symmetry}}}\
+  (\bibinfo  {publisher} {Cambridge university press},\ \bibinfo {year}
+  {1988})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Ciafaloni}\ and\ \citenamefont
+  {Destri}(1988)}]{Ciafaloni:1987qr}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Ciafaloni}}\ and\ \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Destri}},\ }\bibfield  {title} {\bibinfo {title} {{Effective potential and
+  asymmetric instantons}},\ }\href {https://doi.org/10.1007/BF02730617}
+  {\bibfield  {journal} {\bibinfo  {journal} {Nuovo Cim. A}\ }\textbf {\bibinfo
+  {volume} {99}},\ \bibinfo {pages} {449} (\bibinfo {year} {1988})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Grafke}\ \emph {et~al.}(2015)\citenamefont {Grafke},
+  \citenamefont {Grauer},\ and\ \citenamefont {Schäfer}}]{Grafke.2015}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Grafke}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Grauer}},\
+  and\ \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Schäfer}},\
+  }\bibfield  {title} {\bibinfo {title} {The instanton method and its numerical
+  implementation in fluid mechanics},\ }\href
+  {https://doi.org/10.1088/1751-8113/48/33/333001} {\bibfield  {journal}
+  {\bibinfo  {journal} {Journal of Physics A: Mathematical and Theoretical}\
+  }\textbf {\bibinfo {volume} {48}},\ \bibinfo {pages} {333001} (\bibinfo
+  {year} {2015})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Richardson}(2018)}]{Richardson.2018}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~O.}\ \bibnamefont
+  {Richardson}},\ }\bibfield  {title} {\bibinfo {title} {Ring-polymer instanton
+  theory},\ }\href {https://doi.org/10.1080/0144235X.2018.1472353} {\bibfield
+  {journal} {\bibinfo  {journal} {International Reviews in Physical Chemistry}\
+  }\textbf {\bibinfo {volume} {37}},\ \bibinfo {pages} {171} (\bibinfo {year}
+  {2018})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Vanderbilt}\ and\ \citenamefont
+  {Louie}(1984)}]{VANDERBILT1984259}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {Vanderbilt}}\ and\ \bibinfo {author} {\bibfnamefont {S.~G.}\ \bibnamefont
+  {Louie}},\ }\bibfield  {title} {\bibinfo {title} {A monte carlo simulated
+  annealing approach to optimization over continuous variables},\ }\href
+  {https://doi.org/https://doi.org/10.1016/0021-9991(84)90095-0} {\bibfield
+  {journal} {\bibinfo  {journal} {Journal of Computational Physics}\ }\textbf
+  {\bibinfo {volume} {56}},\ \bibinfo {pages} {259} (\bibinfo {year}
+  {1984})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {MacKenzie}(2000)}]{mackenzie2000path}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {MacKenzie}},\ }\href@noop {} {\bibinfo {title} {Path integral methods and
+  applications}} (\bibinfo {year} {2000}),\ \Eprint
+  {https://arxiv.org/abs/quant-ph/0004090} {arXiv:quant-ph/0004090 [quant-ph]}
+  \BibitemShut {NoStop}%
+\bibitem [{\citenamefont {White}(1992)}]{White.1992}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.~R.}\ \bibnamefont
+  {White}},\ }\bibfield  {title} {\bibinfo {title} {Density matrix formulation
+  for quantum renormalization groups},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.69.2863} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {69}},\ \bibinfo
+  {pages} {2863} (\bibinfo {year} {1992})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schollw\"ock}(2005)}]{Schollwock.2005}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {U.}~\bibnamefont
+  {Schollw\"ock}},\ }\bibfield  {title} {\bibinfo {title} {The density-matrix
+  renormalization group},\ }\href {https://doi.org/10.1103/RevModPhys.77.259}
+  {\bibfield  {journal} {\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf
+  {\bibinfo {volume} {77}},\ \bibinfo {pages} {259} (\bibinfo {year}
+  {2005})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schollwöck}(2011)}]{SCHOLLWOCK201196}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {U.}~\bibnamefont
+  {Schollwöck}},\ }\bibfield  {title} {\bibinfo {title} {The density-matrix
+  renormalization group in the age of matrix product states},\ }\href
+  {https://doi.org/https://doi.org/10.1016/j.aop.2010.09.012} {\bibfield
+  {journal} {\bibinfo  {journal} {Annals of Physics}\ }\textbf {\bibinfo
+  {volume} {326}},\ \bibinfo {pages} {96} (\bibinfo {year} {2011})},\ \bibinfo
+  {note} {january 2011 Special Issue}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {McCulloch}(2007)}]{mcculloch2007density}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.~P.}\ \bibnamefont
+  {McCulloch}},\ }\bibfield  {title} {\bibinfo {title} {From density-matrix
+  renormalization group to matrix product states},\ }\href@noop {} {\bibfield
+  {journal} {\bibinfo  {journal} {Journal of Statistical Mechanics: Theory and
+  Experiment}\ }\textbf {\bibinfo {volume} {2007}},\ \bibinfo {pages} {P10014}
+  (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Legeza}\ and\ \citenamefont {S\'olyom}(2003)}]{Ors}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {{\"O}.}~\bibnamefont
+  {Legeza}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {S\'olyom}},\ }\bibfield  {title} {\bibinfo {title} {Optimizing the
+  density-matrix renormalization group method using quantum information
+  entropy},\ }\href {https://doi.org/10.1103/PhysRevB.68.195116} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+  {68}},\ \bibinfo {pages} {195116} (\bibinfo {year} {2003})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Legeza}\ and\ \citenamefont
+  {F{\'a}th}(1996)}]{legeza1996accuracy}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {{\"O}.}~\bibnamefont
+  {Legeza}}\ and\ \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {F{\'a}th}},\ }\bibfield  {title} {\bibinfo {title} {Accuracy of the
+  density-matrix renormalization-group method},\ }\href@noop {} {\bibfield
+  {journal} {\bibinfo  {journal} {Physical Review B}\ }\textbf {\bibinfo
+  {volume} {53}},\ \bibinfo {pages} {14349} (\bibinfo {year}
+  {1996})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hagym\'asi}\ and\ \citenamefont
+  {Legeza}(2016)}]{Ors2016}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Hagym\'asi}}\ and\ \bibinfo {author} {\bibfnamefont {O.}~\bibnamefont
+  {Legeza}},\ }\bibfield  {title} {\bibinfo {title} {Entanglement, excitations,
+  and correlation effects in narrow zigzag graphene nanoribbons},\ }\href
+  {https://doi.org/10.1103/PhysRevB.94.165147} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {94}},\ \bibinfo
+  {pages} {165147} (\bibinfo {year} {2016})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Simon}(1984)}]{SIMON1984101}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~D.}\ \bibnamefont
+  {Simon}},\ }\bibfield  {title} {\bibinfo {title} {Analysis of the symmetric
+  lanczos algorithm with reorthogonalization methods},\ }\href
+  {https://doi.org/https://doi.org/10.1016/0024-3795(84)90025-9} {\bibfield
+  {journal} {\bibinfo  {journal} {Linear Algebra and its Applications}\
+  }\textbf {\bibinfo {volume} {61}},\ \bibinfo {pages} {101} (\bibinfo {year}
+  {1984})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Anderson}(1967)}]{Anderson1967}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~W.}\ \bibnamefont
+  {Anderson}},\ }\bibfield  {title} {\bibinfo {title} {Infrared catastrophe in
+  fermi gases with local scattering potentials},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.18.1049} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {18}},\ \bibinfo
+  {pages} {1049} (\bibinfo {year} {1967})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Leggett}\ \emph {et~al.}(1987)\citenamefont
+  {Leggett}, \citenamefont {Chakravarty}, \citenamefont {Dorsey}, \citenamefont
+  {Fisher}, \citenamefont {Garg},\ and\ \citenamefont {Zwerger}}]{Leggett1987}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~J.}\ \bibnamefont
+  {Leggett}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Chakravarty}}, \bibinfo {author} {\bibfnamefont {A.~T.}\ \bibnamefont
+  {Dorsey}}, \bibinfo {author} {\bibfnamefont {M.~P.~A.}\ \bibnamefont
+  {Fisher}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Garg}},\ and\
+  \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Zwerger}},\ }\bibfield
+  {title} {\bibinfo {title} {Dynamics of the dissipative two-state system},\
+  }\href {https://doi.org/10.1103/RevModPhys.59.1} {\bibfield  {journal}
+  {\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume} {59}},\
+  \bibinfo {pages} {1} (\bibinfo {year} {1987})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Glazman}\ \emph {et~al.}(1992)\citenamefont
+  {Glazman}, \citenamefont {Ruzin},\ and\ \citenamefont
+  {Shklovskii}}]{Shklovskii.1992}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.~I.}\ \bibnamefont
+  {Glazman}}, \bibinfo {author} {\bibfnamefont {I.~M.}\ \bibnamefont {Ruzin}},\
+  and\ \bibinfo {author} {\bibfnamefont {B.~I.}\ \bibnamefont {Shklovskii}},\
+  }\bibfield  {title} {\bibinfo {title} {Quantum transport and pinning of a
+  one-dimensional wigner crystal},\ }\href
+  {https://doi.org/10.1103/PhysRevB.45.8454} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {45}},\ \bibinfo
+  {pages} {8454} (\bibinfo {year} {1992})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kane}\ and\ \citenamefont
+  {Fisher}(1992)}]{KaneFisher1992}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~L.}\ \bibnamefont
+  {Kane}}\ and\ \bibinfo {author} {\bibfnamefont {M.~P.~A.}\ \bibnamefont
+  {Fisher}},\ }\bibfield  {title} {\bibinfo {title} {Transmission through
+  barriers and resonant tunneling in an interacting one-dimensional electron
+  gas},\ }\href {https://doi.org/10.1103/PhysRevB.46.15233} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+  {46}},\ \bibinfo {pages} {15233} (\bibinfo {year} {1992})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Fiete}\ and\ \citenamefont
+  {Balents}(2004)}]{FieteBalents2004}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.~A.}\ \bibnamefont
+  {Fiete}}\ and\ \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Balents}},\ }\bibfield  {title} {\bibinfo {title} {Green's function for
+  magnetically incoherent interacting electrons in one dimension},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.93.226401} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {93}},\
+  \bibinfo {pages} {226401} (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
+\end{thebibliography}%

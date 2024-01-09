@@ -1,0 +1,37 @@
+Dear Editor,
+
+Please, find enclosed our manuscript "Collective Wigner crystal tunneling in 
+carbon nanotubes," which we submit for publication in Physical Review B as a regular paper.
+
+The Wigner crystal – originally proposed by Eugene Wigner in 1934 – is an extraordinary 
+state of matter that emerges in a sufficiently dilute electron gas in the presence of Coulomb interaction.  
+The Coulomb interaction is so strong in this limit, that it destroys the electron liquid, and
+electrons localize and form a crystalline pattern. This quantum crystal exhibits intriguing phenomena. 
+In particular, in a recent experiment, the quantum tunneling  of a small, one-dimensional electron 
+crystal has been observed [Shapir et al, Science 364, 870 (2019)]. 
+
+Our goal in this work is to analyze and understand the crystal's collective tunneling, and provide a detailed 
+theoretical description of this complex phenomenon. By combining Density Matrix Renormalization Group computations, exact diagonalization, and instanton theory, we present a complete theoretical framework, and provide an accurate 
+theoretical description of the experiments. 
+
+Our results, as well as the experiments, reflect certain universal properties of the collective tunneling process, 
+observed through a scaling collapse of the experimental and theoretical curves for different crystal sizes. 
+We also demonstrate the effect of the crystal's quantum fluctuations, which reduce the barrier height and increase 
+the amplitude of collective tunneling substantially.
+
+We are confident that these results will captivate the readership of Physical Review B, 
+which appears to us as the most appropriate journal to publish them. 
+
+Yours sincerely,
+
+D. Szombathy, C.P. Moca, and G. Zarand, for the authors
+
+
+List of possible referees
+
+M. Bockrath (Ohio State Univ.)  
+Massimo Rontani (Universita degli Studi di Modena)
+Greg Fiete (Northeastern University) 
+Julia S Meyer (Univ. Grenoble Alpes)
+
+

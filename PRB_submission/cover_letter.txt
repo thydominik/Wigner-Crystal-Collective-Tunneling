@@ -1,0 +1,24 @@
+Dear Editor,
+
+Enclosed herewith is our manuscript titled "Collective Wigner crystal tunneling in carbon nanotubes," which we would like to submit for publication in Physical Review B.
+
+The Wigner crystal is an extraordinary state of matter that arises when a strongly interacting electron system is confined to a low-dimensional space. Originating from physicist Eugene Wigner's groundbreaking proposition in 1934, the Wigner crystal represents a highly ordered electron arrangement within a periodic lattice structure. The repulsive interactions between electrons cause them to space themselves apart, resulting in a crystalline pattern. This unique state exhibits intriguing phenomena, including collective tunneling, which arises from the interplay of quantum mechanics and Coulomb interactions.
+
+Utilizing Density Matrix Renormalization Group computations, exact diagonalization, and instanton theory, we present a robust theoretical framework to describe and analyze the Wigner crystal composed of a small number of electrons in a double well potential that displays the collective tunneling phenomena. The agreement between our theoretical predictions and experimental observations substantiates the reliability and significance of our findings.
+
+An important outcome of our study is the identification of a scaling collapse in both experimentally extracted and theoretically computed tunneling amplitudes. This scaling collapse signifies the important role of collective quantum fluctuations in renormalizing the tunneling process within the Wigner necklace. Additionally, our research highlights that as the number of electrons in the system increases, collective behavior substantially enhances tunneling.
+
+Therefore, we are confident that our work will captivate the readership of Physical Review B.
+
+Yours sincerely,
+D. Szombathy, M. A. Werner, C.P. Moca, O. Legeza, A. Hamo, S. Ilani, and G. Zarand
+
+
+List of possible referees
+
+
+Vikram V. Deshpande (California Institute of Technology, USA)
+K. A. Matveev (Argonne National Laboratory, USA)
+Dmitry S. Novikov (Princeton University, USA)
+Massimo Rontani (Universita degli Studi di Modena, Italy)
+Leon Balents (Kavli Institute for Theoretical Physics, USA)
