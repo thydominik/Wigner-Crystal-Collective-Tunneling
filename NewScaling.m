@@ -96,17 +96,10 @@ hold on
     %text( 600, 0.5*10^-1, 0, '$5e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
     %text( 900, 0.5*10^-1, 0, '$7e^-$', 'HorizontalAlignment', 'center', 'FontWeight', 'Bold', 'Color', 'black', 'interpreter', 'Latex', 'FontSize', FontSize);
 
-    qw{1} = plot(nan, 'o', 'MarkerSize', 8, 'LineWidth', 0.5, MarkerEdgeColor='red', MarkerFaceColor='white')
-    qw{2} = plot(nan, 'o', 'MarkerSize', 8, 'LineWidth', 0.5, MarkerEdgeColor='blue', MarkerFaceColor='white')
-    qw{3} = plot(nan, 'o', 'MarkerSize', 8, 'LineWidth', 0.5, MarkerEdgeColor='black', MarkerFaceColor='white')
-    qw{4} = plot(nan, 'o', 'MarkerSize', 8, 'LineWidth', 0.5, MarkerEdgeColor='green', MarkerFaceColor='white')
-    qw{5} = plot(nan, 'o', 'MarkerSize', 5, 'LineWidth', 0.5, MarkerEdgeColor='red', MarkerFaceColor='red')
-    qw{6} = plot(nan, 'o', 'MarkerSize', 5, 'LineWidth', 0.5, MarkerEdgeColor='blue', MarkerFaceColor='blue')
-    qw{7} = plot(nan, 'o', 'MarkerSize', 5, 'LineWidth', 0.5, MarkerEdgeColor='black', MarkerFaceColor='black')
-    qw{8} = plot(nan, 'o', 'MarkerSize', 5, 'LineWidth', 0.5, MarkerEdgeColor='green', MarkerFaceColor='green')
-
-    l=legend([qw{:}], {'EXP N = 1', 'EXP N = 3', 'EXP N = 5', 'EXP N = 7', 'ED N = 1', 'ED N = 3', 'ED N = 5', 'ED N = 7', }, 'location', 'best');
-    l.Position=[0.2603 0.4300 0.1429 0.1545];
+    qw{1} = plot(nan, 'o', 'MarkerSize', 8, 'LineWidth', 0.5, MarkerEdgeColor='black', MarkerFaceColor='white')
+    qw{2} = plot(nan, 'o', 'MarkerSize', 5, 'LineWidth', 0.5, MarkerEdgeColor='black', MarkerFaceColor='black')
+    l=legend([qw{:}], {'EXP', 'ED'}, 'location', 'best');
+    l.Position=[0.2903 0.3640 0.1429 0.1545];
 % PaperSize:
     set(gcf,'paperunits','in');
     set(gcf,'papersize',[Position(3) + 0.2, Position(4) + 0.2]);

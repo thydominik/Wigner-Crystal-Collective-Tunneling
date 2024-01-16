@@ -5,12 +5,12 @@ disp('3 particle tunneling splitting calculation.')
 tic
 % 3 particle Equilibrium positions
 
-Nx      = 90;
+Nx      = 40;
 Nx^3
-alpha   = 10;
-eta     = 20;
+alpha   = 1:10;
+eta     = 4;
 Eq_Pos  = [];
-Beta    = 10^-5;
+Beta    = 10^-10;
 
 Eq_pos_3 = [];
 

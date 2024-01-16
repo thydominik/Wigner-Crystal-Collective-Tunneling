@@ -5,11 +5,11 @@ disp('3 particle tunneling splitting calculation.')
 tic
 % 3 particle Equilibrium positions
 
-Na      = 50;
-alpha   = linspace(2, 15, Na);
+Na      = 20;
+alpha   = linspace(2, 10, Na);
 eta     = 20;
 Eq_Pos  = [];
-Beta    = 0.1;
+Beta    = 0.00000001;
 
 Eq_pos_3 = [];
 
@@ -56,7 +56,7 @@ hold off
 
 %%
 Nx1 = 40;
-Nx2 = 90;
+Nx2 = 70;
 Nx3 = 40;
 Nx1 * Nx2 * Nx3
 
@@ -170,13 +170,14 @@ for i = 1:length(alpha)
     [Psi, E]    = eigs(Hamiltonian, 2, 'sa');
     Spectrum    = diag(E);
     dE(i)       = Spectrum(2) - Spectrum(1);
+    disp(i)
 end
 %%
 toc
 figure(3)
-clf(figure(3))
+%clf(figure(3))
 hold on
-plot(alpha, dE)
+plot(alpha - 2, dE)
 set(gca, 'Yscale', 'log')
 hold off
 
