@@ -506,7 +506,7 @@ DMRG3   = load('DMRG3.mat'); DMRG3 = DMRG3.DMRG3
 DMRG5   = load('DMRG5.mat'); DMRG5 = DMRG5.DMRG5
 DMRG7   = load('DMRG7.mat'); DMRG7 = DMRG7.DMRG7
 
-ED1 = load('EDSplitting_1_particle_Nx_5000.mat'); ED1 = ED1.data;
+ED1 = load('EDSplitting_1_particle_Nx_5000.mat'); ED1 = ED1.Split;
 ED3 = load('EDSplitting_3_particles_restricted_Nx_90_beta_1e-05.mat'); ED3 = ED3.data;
 ED5 = load('ED5P.mat'); ED5 = ED5.data;
 ED7 = load('ED7P.mat'); ED7 = ED7.ED7;
